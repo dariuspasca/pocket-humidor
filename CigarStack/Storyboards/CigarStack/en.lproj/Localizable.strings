@@ -1,0 +1,81 @@
+/* 
+  Localizable.strings
+  CigarStack
+
+  Created by Darius Pasca on 10/03/2018.
+  Copyright © 2018 Darius Pasca. All rights reserved.
+*/
+
+/* Common Words */
+"OK" = "OK";
+"Cancel" = "Cancel";
+"Order" = "Order";
+"Date" = "Date";
+"Name" = "Name";
+"Quantity" = "Quantity";
+"Price" = "Price";
+"Country" = "Country";
+"Age" = "Age";
+"Years" = "Years";
+"Notes" = "Notes";
+"Size" = "Size";
+"Search" = "Search";
+
+/* Side Menu */
+"Your Humidors" = "Your Humidors";
+
+/*Alerts */
+"Humidor already exists!" = "Humidor already exists!";
+"You can't have multiple humidors with the same name." = "You can't have multiple humidors with the same name.";
+"No Humidor Present" = "No Humidor Present";
+"A Humidor is required." = "A Humidor is required.";
+
+/* Humidor Attributes */
+"Humidor Name" = "Humidor Name";
+"Humidity Level" = "Humidity Level";
+"Divider" = "Divider";
+"Dividers" = "Dividers";
+"Use dividers to keep your humidor organized." = "Use dividers to keep your humidor organized.";
+"Add New Divider" = "Add New Divider";
+"Divider Name" = "Divider Name";
+"Main Divider" = "Main Divider";
+
+/* New Cigar */
+"Add Cigar" = "Add Cigar";
+"Cigar Name" = "Cigar Name";
+"Country of origin" = "Country of origin";
+"From" = "From";
+"Shop Name" = "Shop Name";
+"Purchase Date" = "Purchase Date";
+"Has been aged" = "Has been aged";
+"Since" = "Since";
+"Photo" = "Photo";
+"Location" = "Location";
+
+/* Settings Storyboard */
+
+"Send Feedback?" = "Send Feedback?";
+"Change the display currency. It does not convert prices from previous currency." = "Change the display currency. It does not convert prices from previous currency.";
+"Currency" = "Currency";
+"Automatically open newly added humidor." = "Automatically open newly created humidor";
+"Open New Humidor" = "Open New Humidor";
+"Select default display order." = "Select default display order.";
+"Sort Order" = "Sort Order" ;
+"Select the preferred order when sorting" = "Select the preferred order when sorting";
+"Ascending" = "Ascending";
+"Descending" = "Descending";
+"Data Sync" = "Data Sync";
+"Automatically upload and store your data in iCloud to be accessible from all your devices." = "Automatically upload and store your data in iCloud to be accessible from all your devices.";
+"Analytics" = "Analytics";
+"Anonymous crash reports and usage statistics can be reported to help improve CigarStack." = "Anonymous crash reports and usage statistics can be reported to help improve CigarStack.";
+"Send Crash Reports" = "Send Crash Reports";
+"Send Analytics" = "Send Analytics";
+"Information" = "Information";
+"Version" = "Version";
+"Status" = "Status";
+"Unlimited" = "Unlimited";
+"Limited" = "Limited";
+"Rate" = "Rate";
+"Attributions" = "Attributions";
+"Purchase CigarStack Pro" = "Purchase CigarStack Pro";
+"Restore Purchase" = "Restore Purchase";
