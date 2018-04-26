@@ -10,7 +10,7 @@ import UIKit
 import PagingKit
 import SideMenu
 
-class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTableDelegate, UISideMenuNavigationControllerDelegate, AddHumidorDelegate {
+class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTableDelegate, UISideMenuNavigationControllerDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
@@ -47,13 +47,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         
         if UserSettings.currentHumidor.value != ""
         {
-        setupData()
-        
-        prepareDataSource()
+        fetchHumidorData()
+        setupMenuViewData()
+        setupHumidorViewData()
         menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
         menuViewController?.registerFocusView(view: UnderlineFocusView())
         contentViewController?.scrollView.isScrollEnabled = false
-
         let firstView = dataSource[0].content as! ContentTableViewController
         firstView.isSelected()
         }
@@ -65,16 +64,27 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if UserSettings.shouldReloadData.value {
-            prepareDataSource()
-       
-            contentViewController?.reloadData(with: (menuViewController?.currentFocusedIndex!)!, completion: nil)
-
+        if UserSettings.shouldReloadView.value{
+            scrollView.contentOffset.y = 0.0
+            fetchHumidorData()
+            setupMenuViewData()
+            setupHumidorViewData()
+            menuViewController?.reloadData(with: 0, completionHandler: nil)
+            contentViewController?.reloadData(with: 0, completion: nil)
+            UserSettings.shouldReloadView.value = false
+        }
+        else if UserSettings.shouldReloadData.value{
+            setupMenuViewData()
+            setupHumidorViewData()
+          //  contentViewController?.reloadData(with: (menuViewController?.currentFocusedIndex!)!, completion: nil)
+            contentViewController?.reloadData()
+            let selectedView = dataSource[(menuViewController?.currentFocusedIndex)!].content as! ContentTableViewController
+            selectedView.isSelected()
+            UserSettings.shouldReloadData.value = false
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if UserSettings.currentHumidor.value != ""{
             let offSet = scrollView.contentOffset.y
             if offSet > 34 {
                 self.navigationItem.title = UserSettings.currentHumidor.value
@@ -83,8 +93,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
             else if offSet < 28{
                 self.navigationItem.title = ""
             }
-        }
     }
+    
     
     //MARK: - SideMenu
      func setupSideMenu() {
@@ -96,9 +106,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newHumidor"{
-            let destVC = segue.destination as! UINavigationController
-            let slideVC = destVC.topViewController as! AddHumidorController
-            slideVC.delegate = self
             if UserSettings.isPremium.value == false {
                 let count = CoreDataController.sharedInstance.countHumidors()
                 if count > 1{
@@ -119,23 +126,21 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         }
     }
     
-    func setupData(){
-        if UserSettings.currentHumidor.value != "" {
+    
+    //MARK: - Data
+    func fetchHumidorData(){
         humidor = CoreDataController.sharedInstance.searchHumidor(name: UserSettings.currentHumidor.value)
-            
         trays = (humidor!.trays?.allObjects as! [Tray]).sorted(by: { $0.orderID < $1.orderID })
-            
+    }
+    
+    func setupHumidorViewData(){
         humidorName.text = humidor!.name
         humidorHumidity.text = String(describing: humidor!.humidity) + " %"
         humidorCigars.text = String(describing: humidor!.quantity)
         humidorValue.text = getSymbolForCurrencyCode(code: UserSettings.currency.value)! + " " + String(describing: humidor!.value)
-        }
-        else{
-            print("TODO - no humidor interface")
-        }
     }
     
-    func prepareDataSource(){
+    func setupMenuViewData(){
         dataSource.removeAll()
         for  i in 0...trays.count-1{
             let vc = UIStoryboard(name: "ContentTableViewController", bundle: nil).instantiateInitialViewController() as! ContentTableViewController
@@ -144,14 +149,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
             dataSource.append((menu: trays[i].name!, content: vc))
         }
     }
-   
-    func getSymbolForCurrencyCode(code: String) -> String?
-    {
-        let locale = NSLocale(localeIdentifier: code)
-        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: code)
-    }
-    
-    
     
     //MARK: - Delegates
     
@@ -161,18 +158,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         self.view.layoutIfNeeded()
     }
     
-    /* Update data when user selects another humidor */
-    func sideMenuWillDisappear(menu: UISideMenuNavigationController, animated: Bool) {
-        if humidor == nil || humidor?.name != UserSettings.currentHumidor.value {
-            setupData()
-            prepareDataSource()
-            menuViewController?.reloadData()
-            contentViewController?.reloadData()
-        }
-    }
-    
-    func newHumidorDelegate() {
-        setupData()
+    func getSymbolForCurrencyCode(code: String) -> String?
+    {
+        let locale = NSLocale(localeIdentifier: code)
+        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: code)
     }
     
 }

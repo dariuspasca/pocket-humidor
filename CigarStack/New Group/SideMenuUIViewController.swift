@@ -36,7 +36,11 @@ class SideMenuUIViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UserSettings.currentHumidor.value = humidorsList[indexPath.row]
-        dismiss(animated: true, completion: nil)
+        UserSettings.shouldReloadView.value = true
+        DispatchQueue.main.async
+            {
+                self.dismiss(animated: true, completion: nil)
+        }
     }
 
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

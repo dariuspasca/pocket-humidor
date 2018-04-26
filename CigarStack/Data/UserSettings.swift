@@ -76,6 +76,7 @@ class UserSettings{
     static var openHumidor = UserSetting<Bool>(key: "openNewHumidor", defaultValue: true)
     static var currency = UserSetting<String>(key: "Currency", defaultValue: Locale.current.currencyCode!)
     
-    static var shouldReloadData = UserSetting<Bool>(key: "SortAscending", defaultValue: false)
+    static var shouldReloadData = UserSetting<Bool>(key: "shouldReloadData", defaultValue: false)
+    static var shouldReloadView = UserSetting<Bool>(key: "shouldReloadView", defaultValue: false)
     static var currentHumidor = UserSetting<String>(key: "currentHumidor", defaultValue: "")
 }

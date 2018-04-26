@@ -9,15 +9,10 @@
 import UIKit
 import Eureka
 
-protocol AddHumidorDelegate{
-    func newHumidorDelegate()
-}
-
 class AddHumidorController: FormViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var dismissKeyboard = false
-    var delegate: AddHumidorDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,7 +140,7 @@ class AddHumidorController: FormViewController {
             
             if UserSettings.openHumidor.value == true{
                 UserSettings.currentHumidor.value = name!
-                delegate?.newHumidorDelegate()
+                UserSettings.shouldReloadView.value = true
             }
             dismiss(animated: true, completion: nil)
         }

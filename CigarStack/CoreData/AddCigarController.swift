@@ -136,7 +136,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
                 }
-            <<< DateRow("Purchase Date"){
+            <<< DateInlineRow("Purchase Date"){
                 $0.title = NSLocalizedString("Purchase Date", comment: "")
                 $0.maximumDate = Date()
                 $0.value = Date()
@@ -162,7 +162,13 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                         self.navigationAccessoryIsHidden = true
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+                }.cellUpdate { cell, row in
+                    if self.navigationAccessoryIsHidden{
+                        self.navigationAccessoryIsHidden = false
+                    }
+                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
             }
+            
             +++ Section()
             <<< ImageRow("Cigar picture") { row in
                 row.title = NSLocalizedString("Photo", comment: "")
