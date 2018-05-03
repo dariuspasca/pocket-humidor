@@ -9,6 +9,9 @@
 /* Common Words */
 "OK" = "OK";
 "Cancel" = "Cancel";
+"Delete" = "Delete";
+"Edit" = "Edit";
+"Done" = "Done";
 "Order" = "Order";
 "Date" = "Date";
 "Name" = "Name";
@@ -29,6 +32,16 @@
 "You can't have multiple humidors with the same name." = "You can't have multiple humidors with the same name.";
 "No Humidor Present" = "No Humidor Present";
 "A Humidor is required." = "A Humidor is required.";
+"Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Are you sure you want to continue? This will permanently delete all cigars from selected humidors.";
+
+/* Snack Bar */
+"Cigar deleted" = "Cigar deleted";
+"Undo" = "Undo";
+
+/* Move Cigar */
+"Move" = "Move";
+"Move to" = "Move to";
+"Move All" = "Move All";
 
 /* Humidor Attributes */
 "Humidor Name" = "Humidor Name";

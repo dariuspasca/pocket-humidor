@@ -13,13 +13,23 @@ class AddHumidorController: FormViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var dismissKeyboard = false
+    var navigationAccessoryIsHidden = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.tintColor =  UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = 44.0
-        navigationAccessoryView.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        
+        self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
+        
+        navigationAccessoryView = {
+            let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
+            naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            naview.doneButton.target = self
+            naview.doneButton.action = "navigationDone:"
+            return naview
+        }()
         
         
         form +++ Section()
@@ -28,6 +38,11 @@ class AddHumidorController: FormViewController {
                 $0.add(rule: RuleRequired(msg: "required"))
                 $0.validationOptions = .validatesOnChange
                 }.cellUpdate { cell, row in
+                    if !self.navigationAccessoryIsHidden{
+                        self.navigationAccessoryIsHidden = true
+                    }
+                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+                    
                     if row.validate().isEmpty {
                         let trimmedWhitespacesName = row.value!.trimmingCharacters(in: NSCharacterSet.whitespaces)
                         if trimmedWhitespacesName != ""{
@@ -51,7 +66,7 @@ class AddHumidorController: FormViewController {
                 $0.value = 75
                 $0.steps = 100
                 $0.maximumValue = 100
-                $0.minimumValue = 0
+                $0.minimumValue = 50
                 }.cellSetup({ (cell, row) in
                     cell.height = ({return 80})
                 })
@@ -60,7 +75,12 @@ class AddHumidorController: FormViewController {
                 $0.placeholder = NSLocalizedString("Notes", comment: "")
                 }.cellSetup({ (cell, row) in
                     cell.height = ({return 90})
-                })
+                }).cellUpdate { cell, row in
+                    if self.navigationAccessoryIsHidden{
+                        self.navigationAccessoryIsHidden = false
+                    }
+                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+            }
         
 
             +++ MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete,],
@@ -96,6 +116,13 @@ class AddHumidorController: FormViewController {
         
     }
     
+    //MARK: -Keyboard
+    
+    override func textInputShouldReturn<T>(_ textInput: UITextInput, cell: Cell<T>) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -107,7 +134,7 @@ class AddHumidorController: FormViewController {
             showAlertButtonTapped(title: NSLocalizedString("Humidor already exists!", comment: ""), message: NSLocalizedString("You can't have multiple humidors with the same name.", comment: ""))
         }
         else{
-            let humidorOrderID = CoreDataController.sharedInstance.countHumidors() + 1
+            let humidorOrderID = CoreDataController.sharedInstance.countHumidors()
             let humidity = formValues["Humidity Level"] as! Float
             let notes = formValues["Notes"] as? String
             let newHumidor = CoreDataController.sharedInstance.addNewHumidor(name: name!, humidityLevel: Int16(humidity), notes: notes, orderID: Int16(humidorOrderID))

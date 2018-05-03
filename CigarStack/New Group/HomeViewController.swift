@@ -45,13 +45,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         scrollView.delegate = self
         setupSideMenu()
         
+        
+        menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
+        menuViewController?.registerFocusView(view: UnderlineFocusView())
         if UserSettings.currentHumidor.value != ""
         {
         fetchHumidorData()
         setupMenuViewData()
         setupHumidorViewData()
-        menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
-        menuViewController?.registerFocusView(view: UnderlineFocusView())
         contentViewController?.scrollView.isScrollEnabled = false
         let firstView = dataSource[0].content as! ContentTableViewController
         firstView.isSelected()
@@ -63,24 +64,35 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         firstLoad?()
     }
     
+    /*
+        Reloads the view when humidor has been changed
+        Reload  only the data when humidor hasn't been changed (i.e: added a cigar, changed trays name)
+ */
     override func viewWillAppear(_ animated: Bool) {
-        if UserSettings.shouldReloadView.value{
-            scrollView.contentOffset.y = 0.0
-            fetchHumidorData()
-            setupMenuViewData()
-            setupHumidorViewData()
-            menuViewController?.reloadData(with: 0, completionHandler: nil)
-            contentViewController?.reloadData(with: 0, completion: nil)
-            UserSettings.shouldReloadView.value = false
+        //Check if there is a humidor
+        if UserSettings.currentHumidor.value != "" {
+            if UserSettings.shouldReloadView.value{
+                scrollView.contentOffset.y = 0.0
+                fetchHumidorData()
+                setupMenuViewData()
+                setupHumidorViewData()
+                menuViewController?.reloadData(with: 0, completionHandler: nil)
+                contentViewController?.reloadData(with: 0, completion: nil)
+                let firstView = dataSource[0].content as! ContentTableViewController
+                firstView.isSelected()
+                UserSettings.shouldReloadView.value = false
+            }
+            else if UserSettings.shouldReloadData.value{
+                setupMenuViewData()
+                setupHumidorViewData()
+                contentViewController?.reloadData()
+                let selectedView = dataSource[(menuViewController?.currentFocusedIndex)!].content as! ContentTableViewController
+                selectedView.isSelected()
+                UserSettings.shouldReloadData.value = false
+            }
         }
-        else if UserSettings.shouldReloadData.value{
-            setupMenuViewData()
-            setupHumidorViewData()
-          //  contentViewController?.reloadData(with: (menuViewController?.currentFocusedIndex!)!, completion: nil)
-            contentViewController?.reloadData()
-            let selectedView = dataSource[(menuViewController?.currentFocusedIndex)!].content as! ContentTableViewController
-            selectedView.isSelected()
-            UserSettings.shouldReloadData.value = false
+        else{
+            // TO DO
         }
     }
     
@@ -156,6 +168,22 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     func dataChanged(height: CGFloat) {
         contentViewHeight.constant = height
         self.view.layoutIfNeeded()
+    }
+    
+    func updateData(container: Tray){
+        var found = false
+        for data in dataSource{
+            if data.menu == container.name!{
+                found = true
+                setupMenuViewData()
+                contentViewController?.reloadData()
+                break
+            }
+        }
+        if !found{
+            self.fetchHumidorData()
+            self.setupHumidorViewData()
+        }
     }
     
     func getSymbolForCurrencyCode(code: String) -> String?

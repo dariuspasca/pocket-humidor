@@ -9,6 +9,9 @@
 /* Common Words */
 "OK" = "OK";
 "Cancel" = "Annulla";
+"Delete" = "Elimina";
+"Edit" = "Modifica";
+"Done" = "Fine";
 "Order" = "Ordine";
 "Date" = "Data";
 "Name" = "Nome";
@@ -27,7 +30,18 @@
 /*Alerts */
 "Humidor already exists!" = "Humidor già presente!";
 "You can't have multiple humidors with the same name." = "Non puoi avere più humidor con lo stesso nome.";
+"No Humidor Present" = "Nessun Humidor Presente";  /* TO CHANGE */
 "A Humidor is required." = "È necessario un Humidor.";
+"Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Confermi di voler continuare? Verranno eliminati definitivamente tutti i sigari dagli umidificatori selezionati.";
+
+/* Snack Bar */
+"Cigar deleted" = "Sigaro eliminato";
+"Undo" = "Annulla";
+
+/* Move Cigar */
+"Move" = "Sposta";
+"Move to" = "Sposta in";
+"Move All" = "Sposta Tutti";
 
 /* Humidor Attributes */
 "Humidor Name" = "Nome Humidor";

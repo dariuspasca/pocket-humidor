@@ -1,0 +1,48 @@
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "40u-Cf-wpe"; */
+"40u-Cf-wpe.title" = "Item";
+
+/* Class = "UILabel"; text = "$2300"; ObjectID = "6ak-2H-xA6"; */
+"6ak-2H-xA6.text" = "$2300";
+
+/* Class = "UILabel"; text = "Cigars"; ObjectID = "98t-4C-pAk"; */
+"98t-4C-pAk.text" = "Sigari";
+
+/* Class = "UIBarButtonItem"; title = "More"; ObjectID = "BNx-Pe-6Uc"; */
+"BNx-Pe-6Uc.title" = "More";
+
+/* Class = "UITabBarItem"; title = "Humidors"; ObjectID = "JSB-ot-pgu"; */
+"JSB-ot-pgu.title" = "Humidors";
+
+/* Class = "UILabel"; text = "Humidor"; ObjectID = "LQV-lU-Khu"; */
+"LQV-lU-Khu.text" = "Humidor";
+
+/* Class = "UINavigationItem"; title = "New Humidor"; ObjectID = "LpM-X8-fb5"; */
+"LpM-X8-fb5.title" = "New Humidor";
+
+/* Class = "UILabel"; text = "325"; ObjectID = "MtW-B8-Obb"; */
+"MtW-B8-Obb.text" = "325";
+
+/* Class = "UIButton"; normalTitle = "Manage"; ObjectID = "Oen-sU-DGZ"; */
+"Oen-sU-DGZ.normalTitle" = "Gestisci";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "Q7C-XL-2tU"; */
+"Q7C-XL-2tU.title" = "Impostazioni";
+
+/* Class = "UILabel"; text = "Humidity"; ObjectID = "d4F-P2-kxB"; */
+"d4F-P2-kxB.text" = "Umidità";
+
+/* Class = "UILabel"; text = "75%"; ObjectID = "ha9-nQ-OuI"; */
+"ha9-nQ-OuI.text" = "75%";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kkU-ap-guo"; */
+"kkU-ap-guo.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "o8x-fk-E74"; */
+"o8x-fk-E74.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Menu"; ObjectID = "pzi-Ot-Wgo"; */
+"pzi-Ot-Wgo.title" = "Menu";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "zMU-jE-L2u"; */
+"zMU-jE-L2u.text" = "Valore";

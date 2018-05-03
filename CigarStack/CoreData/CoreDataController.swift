@@ -66,7 +66,7 @@ class CoreDataController {
         newCigar.editDate = currentDate
         newCigar.image = image
         tray.addToCigars(newCigar)
-        updateHumidorValues(tray: tray, quantity: quantity, value: price!, sign: "+")
+        updateHumidorValues(tray: tray, quantity: quantity, value: price!, add: true)
         self.saveContext()
         
         return newCigar
@@ -86,42 +86,65 @@ class CoreDataController {
         }
     }
     
-    /* Move cigar from one tray to another
-    func moveCigar(currentTray: Tray, destinationTray: Tray, cigar: Cigar){
-        self.changeCigarNumber(tray: currentTray, addedQuantity: cigar.quantity, sign: "-")
-        destinationTray.addToCigars(cigar)
-        self.changeCigarNumber(tray: destinationTray, addedQuantity: cigar.quantity, sign: "+")
+    
+    func moveCigar(destinationTray: Tray, cigar: Cigar){
+        if cigar.tray!.humidor! != destinationTray.humidor!{
+            self.updateHumidorValues(tray: cigar.tray!, quantity: cigar.quantity, value: cigar.price, add: false)
+            self.updateHumidorValues(tray: destinationTray, quantity: cigar.quantity, value: cigar.price, add: true)
+        }
+        cigar.tray! = destinationTray
         self.saveContext()
     }
-     
-     PRIMA TOGLI DAL VECCHIO HUMIDOR IL VALORE E POI AGGIUNGI NELL ALTRO
     
- */
+    
+    
+    func updateCigarQuantity(cigar: Cigar, quantity: Int32, add: Bool){
+        let pricePerCigar = cigar.price/Double(cigar.quantity)
+        if add{
+            cigar.quantity = cigar.quantity + quantity
+            cigar.price = Double(cigar.quantity) * pricePerCigar
+            self.updateHumidorValues(tray: cigar.tray!, quantity: quantity, value: Double(quantity) * pricePerCigar, add: true)
+        }
+        else{
+            cigar.quantity = cigar.quantity - quantity
+            cigar.price = Double(cigar.quantity) * pricePerCigar
+            self.updateHumidorValues(tray: cigar.tray!, quantity: quantity, value: Double(quantity) * pricePerCigar, add: false)
+        }
+        self.saveContext()
+    }
+ 
+    func deleteHumidor(humidor:Humidor){
+        self.context.delete(humidor)
+        self.saveContext()
+    }
+    
+    func setHumidorOrderID(humidor: Humidor, orderID: Int16){
+        humidor.orderID = orderID
+        self.saveContext()
+    }
+    
     
     func deleteCigar(cigar: Cigar){
         self.context.delete(cigar)
-        self.updateHumidorValues(tray: cigar.tray!, quantity: cigar.quantity, value: cigar.price, sign: "-")
+        self.updateHumidorValues(tray: cigar.tray!, quantity: cigar.quantity, value: cigar.price, add: false)
         self.saveContext()
     }
     
     
     /* Updates humidor cigar quantity */
-    func updateHumidorValues (tray: Tray, quantity: Int32, value: Double, sign: Character){
+    func updateHumidorValues (tray: Tray, quantity: Int32, value: Double, add: Bool){
         var currentNumberOfCigarsHumidor = tray.humidor?.value(forKey: "quantity") as! Int32
         var currentValue = tray.humidor?.value(forKey: "value") as! Double
-        switch  sign {
-        case "+" :
+        if add{
             currentValue += value
             currentNumberOfCigarsHumidor += quantity
-        case "-" :
+        }
+        else{
             currentValue -= value
             currentNumberOfCigarsHumidor -= quantity
-        default:
-            break
-        }
+            }
         tray.humidor?.quantity = currentNumberOfCigarsHumidor
         tray.humidor?.value = currentValue
-        
     }
     
     /* Humidors can't have same name */

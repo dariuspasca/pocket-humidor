@@ -158,11 +158,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             <<< TextAreaRow("Notes"){
                 $0.placeholder = NSLocalizedString("Notes", comment: "")
                 }.cellUpdate { cell, row in
-                    if !self.navigationAccessoryIsHidden{
-                        self.navigationAccessoryIsHidden = true
-                    }
-                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
-                }.cellUpdate { cell, row in
                     if self.navigationAccessoryIsHidden{
                         self.navigationAccessoryIsHidden = false
                     }

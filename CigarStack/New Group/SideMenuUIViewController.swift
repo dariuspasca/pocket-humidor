@@ -56,7 +56,16 @@ class SideMenuUIViewController: UIViewController, UITableViewDelegate, UITableVi
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
-
+    
+    /* There is only one segue, no need to check identifier */
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+            if humidorsList.isEmpty{
+                return false
+            }
+            else{
+                return true
+            }
+    }
     
     // MARK: - CoreData
     
@@ -75,6 +84,7 @@ class SideMenuUIViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
+    
 }
 
 
