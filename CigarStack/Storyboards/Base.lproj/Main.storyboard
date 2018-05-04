@@ -31,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="-3254" y="339"/>
         </scene>
-        <!--View Controller-->
+        <!--Add-->
         <scene sceneID="c5x-TF-OHX">
             <objects>
                 <viewController id="aVh-Vg-0eM" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="4h3-jA-RjB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="" image="Add" id="WWz-9b-otJ"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Add" image="Add2" id="WWz-9b-otJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQm-Ny-np6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -503,7 +503,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Add" width="32" height="32"/>
+        <image name="Add2" width="22" height="22"/>
         <image name="Humidor" width="25" height="25"/>
         <image name="Humidor - Filled" width="25" height="25"/>
         <image name="Settings" width="16" height="16"/>

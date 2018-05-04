@@ -110,6 +110,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at:[indexPath], with: .right)
             self.tableView.endUpdates()
+            self.isSelected()
             /* Undo view */
             let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar deleted", comment: ""),
                                        duration: .short,
@@ -120,7 +121,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                         self.tableView.beginUpdates()
                                         self.tableView.insertRows(at: [indexPath], with: .right)
                                         self.tableView.endUpdates()
-                                        
+                                        self.isSelected()
                                         /* Set delete to false thus the context won't be changed */
                                         delete = false
             })
@@ -133,8 +134,6 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (delete == true) {
                     CoreDataController.sharedInstance.deleteCigar(cigar: tempCigar)
-                   // self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .none)
-                    self.isSelected()
                 }
             }
             
@@ -226,6 +225,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                 self.tableView.reloadRows(at: [cigarToMoveIndex!], with: .none)
             }
             self.tableView.endUpdates()
+            self.isSelected()
             
             let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar moved", comment: ""),
                                        duration: .short,
@@ -242,7 +242,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                             self.tableView.reloadRows(at: [self.cigarToMoveIndex!], with: .none)
                                         }
                                         self.tableView.endUpdates()
-                                        
+                                        self.isSelected()
                                         /* Set delete to false thus the context won't be changed */
                                         move = false
             })
@@ -267,7 +267,6 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                         CoreDataController.sharedInstance.updateCigarQuantity(cigar: cigarToMove, quantity: quantity, add: false)
                         CoreDataController.sharedInstance.updateCigarQuantity(cigar: newCigar, quantity: cigarToMove.quantity, add: false)
                     }
-                    self.isSelected()
                     self.delegate?.updateData(container: self.tray)
                 }
             }
