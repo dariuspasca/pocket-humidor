@@ -78,6 +78,5 @@ class UserSettings{
     
     static var shouldReloadData = UserSetting<Bool>(key: "shouldReloadData", defaultValue: false)
     static var shouldReloadView = UserSetting<Bool>(key: "shouldReloadView", defaultValue: false)
-    static var shouldReloadTopView = UserSetting<Bool>(key: "shouldReloadTopView", defaultValue: false)
     static var currentHumidor = UserSetting<String>(key: "currentHumidor", defaultValue: "")
 }

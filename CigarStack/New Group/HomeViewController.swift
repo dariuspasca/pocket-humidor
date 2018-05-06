@@ -162,6 +162,37 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         }
     }
     
+    //MARK: - MoreButton
+    
+    @IBAction func more(_ sender: UIBarButtonItem) {
+        
+        let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("Sort by", comment: ""), preferredStyle: .actionSheet)
+        optionMenu.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        let sortEnum: [TableSortOrder] = [.byName, .byDate, .byCountry, .byAge, .byPrice, .byQuantity]
+        
+        for enumOption in sortEnum{
+            let alert = UIAlertAction(title: enumOption.displayName, style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+                UserSettings.tableSortOrder = enumOption
+                UserSettings.shouldReloadView.value = true
+                self.viewWillAppear(true)
+            })
+            if alert.title! == UserSettings.tableSortOrder.displayName{
+                alert.setValue(true, forKey: "checked")
+            }
+            optionMenu.addAction(alert)
+        }
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in })
+        
+        optionMenu.addAction(cancelAction)
+        optionMenu.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
+    
     //MARK: - Delegates
     
     /* Changes the tableview container height based on content hight*/

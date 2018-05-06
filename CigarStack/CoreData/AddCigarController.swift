@@ -45,7 +45,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             naview.doneButton.action = "navigationDone:"
             return naview
         }()
-    
  
         form +++ Section()
             <<< TextRow ("Name") {

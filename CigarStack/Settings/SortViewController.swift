@@ -30,6 +30,7 @@ class SortViewController: FormViewController {
                         if descendingRow.value == true {
                             descendingRow.value = !(descendingRow.value!)
                             UserSettings.sortAscending.value = true
+                            UserSettings.shouldReloadView.value = true
                             descendingRow.updateCell()
                         }
                     }
@@ -53,6 +54,7 @@ class SortViewController: FormViewController {
                         if ascendingRow.value == true {
                             ascendingRow.value = !(ascendingRow.value!)
                             UserSettings.sortAscending.value = false
+                            UserSettings.shouldReloadView.value = true
                             ascendingRow.updateCell()
                         }
                     }

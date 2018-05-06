@@ -26,6 +26,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+        cigars = sortData(ascending: UserSettings.sortAscending.value)
         //Remove extra empty cells in TableView
         self.tableView.tableFooterView = UIView()
         self.tableView.estimatedRowHeight = 70.0
@@ -77,7 +78,34 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         return 70.0
     }
     
+    //Paging Kit
+    @available(iOS 11.0, *)
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        guard let tableViewLayoutMargin = tableViewLayoutMargin else { return }
+        
+        tableView.layoutMargins = tableViewLayoutMargin
+    }
+    
+    /// To support safe area, all tableViews aligned on scrollView (superview) needs to be set margin for the cell's contentView and separator.
+    @available(iOS 11.0, *)
+    private var tableViewLayoutMargin: UIEdgeInsets? {
+        guard let superview = view.superview else {
+            return nil
+        }
+        
+        let defaultTableContentInsetLeft: CGFloat = 16
+        return UIEdgeInsets(
+            top: 0,
+            left: superview.safeAreaInsets.left + defaultTableContentInsetLeft,
+            bottom: 0,
+            right: 0
+        )
+    }
+    
     // MARK: - SwipeAction
+    
+    //Right
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
        // let moveAction = self.contextualMoveAction(forRowAtIndexPath: indexPath)
@@ -85,13 +113,18 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         return swipeConfig
     }
     
+    //Left
      func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let moveAction = self.contextualMoveAction(forRowAtIndexPath: indexPath)
-        let swipeConfig = UISwipeActionsConfiguration(actions: [moveAction])
-        return swipeConfig
+        if CoreDataController.sharedInstance.countHumidors() > 1 {
+            let moveAction = self.contextualMoveAction(forRowAtIndexPath: indexPath)
+            let swipeConfig = UISwipeActionsConfiguration(actions: [moveAction])
+            return swipeConfig
+        }
+        else{
+            return nil
+        }
     }
-    
-    // MARK: - Left SwipeAction
+
     func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             
@@ -143,21 +176,24 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         return action
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moveCigarIdentifier"{
+            let destinationNavigationController = segue.destination as! UINavigationController
+            
+            let vc = destinationNavigationController.topViewController as! MoveCigarViewController
+            vc.cigar = self.cigars![cigarToMoveIndex!.row]
+            vc.delegate = self
+        }
+    }
+    
     func contextualMoveAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        
         let action = UIContextualAction(style: .normal,
                                         title: NSLocalizedString("Move", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                                             
                                             /* Prepare the selected cigar to be sent to the segue */
-                                            
-                                           let vc = MoveCigarViewController()
-                                           vc.cigar = self.cigars![indexPath.row]
-                                           vc.delegate = self
-                                           self.cigarToMoveIndex = indexPath
-                                           let navigationVC = UINavigationController(rootViewController: vc)
-                                           navigationVC.navigationBar.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-                                           self.present(navigationVC, animated: true, completion: nil)
-                                           completionHandler(true)
+                                            self.cigarToMoveIndex = indexPath
+                                            self.performSegue(withIdentifier: "moveCigarIdentifier", sender: self)
+                                            completionHandler(true)
         }
         
         action.backgroundColor = UIColor(red: 49/255, green: 130/255, blue: 217/255, alpha: 1)
@@ -165,52 +201,10 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         return action
     }
     
-    func fetchData(){
-        cigars = tray.cigars?.allObjects as? [Cigar]
-    }
-    
-    @available(iOS 11.0, *)
-    override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
-        guard let tableViewLayoutMargin = tableViewLayoutMargin else { return }
-        
-        tableView.layoutMargins = tableViewLayoutMargin
-    }
-    
-    /// To support safe area, all tableViews aligned on scrollView (superview) needs to be set margin for the cell's contentView and separator.
-    @available(iOS 11.0, *)
-    private var tableViewLayoutMargin: UIEdgeInsets? {
-        guard let superview = view.superview else {
-            return nil
-        }
-        
-        let defaultTableContentInsetLeft: CGFloat = 16
-        return UIEdgeInsets(
-            top: 0,
-            left: superview.safeAreaInsets.left + defaultTableContentInsetLeft,
-            bottom: 0,
-            right: 0
-        )
-    }
-    
-    func computeAge(pastDate: Date,currentDate: Date) -> (years: Int, months: Int) {
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.month, .year], from: pastDate, to: currentDate)
-        let theYears = components.year!
-        let theMonths = components.month!
-        return (theYears, theMonths)
-    }
-    
-    func getSymbolForCurrencyCode(code: String) -> String?
-    {
-        let locale = NSLocale(localeIdentifier: code)
-        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: code)
-    }
-    
-    //MARK: - Delegates
     func moveCigarDelegate(toTray: Tray, quantity: Int32) {
         if cigarToMoveIndex != nil{
             var move = true
+            /* Better implementation using .copy */
             let cigarToMove = cigars![cigarToMoveIndex!.row]
             let initialQuantity = cigarToMove.quantity
             let initialPRice = cigarToMove.price
@@ -271,6 +265,77 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                 }
             }
         }
+    }
+    
+    // MARK: - Data
+    
+    func fetchData(){
+        cigars = tray.cigars?.allObjects as? [Cigar]
+    }
+    
+    func sortData(ascending: Bool)-> [Cigar]{
+        var sortArray = [Cigar]()
+        switch UserSettings.tableSortOrder.rawValue {
+        case 0:
+            if ascending{
+                sortArray = cigars!.sorted(by: { $0.creationDate! < $1.creationDate! })
+            }
+            else{
+                sortArray = cigars!.sorted(by: { $0.name! > $1.name! })
+            }
+        case 1:
+            if ascending{
+                sortArray = cigars!.sorted(by: { $0.name! < $1.name! })
+            }
+            else{
+                sortArray = cigars!.sorted(by: { $0.name! > $1.name! })
+            }
+        case 2:
+            if ascending{
+                sortArray = cigars!.sorted(by: { $0.quantity < $1.quantity })
+            }
+            else{
+                sortArray = cigars!.sorted(by: { $0.quantity > $1.quantity })
+            }
+        case 3:
+            if ascending{
+                sortArray = cigars!.sorted(by: { $0.price < $1.price })
+            }
+            else{
+                sortArray = cigars!.sorted(by: { $0.price > $1.price })
+            }
+        case 4:
+            if ascending{
+                sortArray = cigars!.sorted(by: { $0.origin! < $1.origin! })
+            }
+            else{
+                sortArray = cigars!.sorted(by: { $0.origin! > $1.origin! })
+            }
+        case 5:
+            if ascending{
+                sortArray = cigars!.sorted(by: { $0.ageDate! < $1.ageDate! })
+            }
+            else{
+                sortArray = cigars!.sorted(by: { $0.ageDate! > $1.ageDate! })
+            }
+        default:
+            break
+        }
+        return sortArray
+    }
+    
+    func computeAge(pastDate: Date,currentDate: Date) -> (years: Int, months: Int) {
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.month, .year], from: pastDate, to: currentDate)
+        let theYears = components.year!
+        let theMonths = components.month!
+        return (theYears, theMonths)
+    }
+    
+    func getSymbolForCurrencyCode(code: String) -> String?
+    {
+        let locale = NSLocale(localeIdentifier: code)
+        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: code)
     }
 }
 

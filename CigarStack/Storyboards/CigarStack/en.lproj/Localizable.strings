@@ -23,6 +23,7 @@
 "Notes" = "Notes";
 "Size" = "Size";
 "Search" = "Search";
+"Sort by" = "Sort by";
 
 /* Side Menu */
 "Your Humidors" = "Your Humidors";
@@ -30,8 +31,7 @@
 /*Alerts */
 "Humidor already exists!" = "Humidor already exists!";
 "You can't have multiple humidors with the same name." = "You can't have multiple humidors with the same name.";
-"No Humidor Present" = "No Humidor Present";
-"A Humidor is required." = "A Humidor is required.";
+"To add cigars at least one humidor is required. You can create one by pressing the plus (+) button in the top right corner." = "To add cigars at least one humidor is required. You can create one by pressing the plus (+) button in the top right corner.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Are you sure you want to continue? This will permanently delete all cigars from selected humidors.";
 
 /* Snack Bar */

@@ -14,16 +14,24 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         self.delegate = self
+        
+        // Remove the titles and adjust the inset to account for missing title
+
     }
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 1 {
             if UserSettings.currentHumidor.value != ""{
                 let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
+                if UIDevice.current.userInterfaceIdiom == .pad{
+                    destVC.modalPresentationStyle = .formSheet
+                    destVC.modalTransitionStyle = .coverVertical
+                    destVC.preferredContentSize = CGSize(width: 500, height: 700)
+                }
                 present(destVC, animated: true, completion: nil)
             }
             else{
                 // create the alert
-                let alert = UIAlertController(title: "", message: NSLocalizedString("A Humidor is required.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "", message: NSLocalizedString("To add cigars at least one humidor is required. You can create one by pressing the plus (+) button in the top right corner.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

@@ -29,7 +29,7 @@ class MoveCigarViewController: FormViewController {
         
         navigationAccessoryView.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         
-        self.navigationItem.title =  cigar.name!
+       // self.navigationItem.title =  cigar.name!
         quantity = cigar.quantity
         let currentTray = cigar.tray?.name!
         

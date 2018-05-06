@@ -173,6 +173,14 @@ class AddHumidorController: FormViewController {
         }
     }
 
+    //Blocks the popover the scroll the tableview when keyboard is shown
+    override func keyboardWillShow(_ notification: Notification) {
+        // super.keyboardWillShow(notification)
+    }
+    
+    override func keyboardWillHide(_ notification: Notification) {
+        //super.keyboardWillHide(notification)
+    }
     
     func showAlertButtonTapped(title: String, message: String) {
         
