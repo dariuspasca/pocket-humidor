@@ -99,10 +99,18 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqR-nc-Lli" userLabel="TimeView">
-                                                    <rect key="frame" x="693" y="-0.6666666666666643" width="70" height="70.666666666666657"/>
+                                                    <rect key="frame" x="339" y="-0.6666666666666643" width="70" height="70.666666666666657"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqm-nw-4vn">
+                                                            <rect key="frame" x="11.333333333333314" y="10.666666666666664" width="48" height="48"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="48" id="Yv8-0u-J4I"/>
+                                                                <constraint firstAttribute="width" constant="48" id="ck5-sl-mPr"/>
+                                                            </constraints>
+                                                        </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C1g-uh-ta4" userLabel="Years">
-                                                            <rect key="frame" x="22.666666666666629" y="23.333333333333336" width="25" height="25"/>
+                                                            <rect key="frame" x="22.666666666666686" y="23.333333333333336" width="25" height="25"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8x-0W-Upq">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="16.333333333333332"/>
@@ -125,22 +133,15 @@
                                                                 <constraint firstAttribute="height" constant="25" id="wjY-9R-LP3"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="Zhb-xt-qGy">
-                                                            <rect key="frame" x="12" y="12.666666666666664" width="46" height="46"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="46" id="FpB-9n-QZF"/>
-                                                                <constraint firstAttribute="width" constant="46" id="xTs-hD-xId"/>
-                                                            </constraints>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="Zhb-xt-qGy" firstAttribute="centerX" secondItem="oqR-nc-Lli" secondAttribute="centerX" id="UuO-vT-hfN"/>
+                                                        <constraint firstItem="Rqm-nw-4vn" firstAttribute="centerX" secondItem="oqR-nc-Lli" secondAttribute="centerX" id="awZ-ab-wNF"/>
                                                         <constraint firstItem="C1g-uh-ta4" firstAttribute="centerX" secondItem="oqR-nc-Lli" secondAttribute="centerX" id="hFF-Nb-wz5"/>
                                                         <constraint firstItem="C1g-uh-ta4" firstAttribute="centerY" secondItem="oqR-nc-Lli" secondAttribute="centerY" id="itZ-qf-gCc"/>
                                                         <constraint firstAttribute="height" constant="70" id="jfE-SM-OZJ"/>
                                                         <constraint firstAttribute="width" constant="70" id="qgf-2U-nFF"/>
-                                                        <constraint firstItem="Zhb-xt-qGy" firstAttribute="centerY" secondItem="oqR-nc-Lli" secondAttribute="centerY" id="wto-Gc-6Xp"/>
+                                                        <constraint firstItem="Rqm-nw-4vn" firstAttribute="centerY" secondItem="oqR-nc-Lli" secondAttribute="centerY" id="wiZ-Vr-cqn"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -160,7 +161,7 @@
                                             <outlet property="currency" destination="cLw-Lp-qxE" id="1Yt-eu-7Is"/>
                                             <outlet property="name" destination="0hY-Gc-9UW" id="2i4-HM-6Io"/>
                                             <outlet property="price" destination="5cQ-76-vn4" id="KUf-df-PTb"/>
-                                            <outlet property="progress" destination="Zhb-xt-qGy" id="OHc-6A-zKZ"/>
+                                            <outlet property="progress" destination="Rqm-nw-4vn" id="kP9-xS-jE5"/>
                                             <outlet property="quantity" destination="L4i-dd-v9t" id="TcQ-hD-byf"/>
                                             <outlet property="years" destination="U8x-0W-Upq" id="RvK-QR-ZO2"/>
                                             <outlet property="yearsLabel" destination="gqQ-Gw-59U" id="QDd-d2-Cyd"/>
@@ -232,7 +233,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle" width="220" height="220"/>
         <image name="plus" width="33" height="33"/>
     </resources>
     <color key="tintColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

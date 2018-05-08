@@ -26,6 +26,7 @@
 		B75A843A2042DAB3008528D8 /* CigarStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A84392042DAB3008528D8 /* CigarStackTests.swift */; };
 		B75A84452042DAB3008528D8 /* CigarStackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A84442042DAB3008528D8 /* CigarStackUITests.swift */; };
 		B7658097205293D8004FD39F /* AttributesLicense.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7F57D462052904E0046FCB1 /* AttributesLicense.plist */; };
+		B7790CB720A1DD58003A713E /* circleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7790CB620A1DD58003A713E /* circleView.swift */; };
 		B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75A84282042DAB3008528D8 /* Main.storyboard */; };
 		B79953F8209A50CD00B2AA4B /* MoveCigarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79953F7209A50CD00B2AA4B /* MoveCigarViewController.swift */; };
 		B7A13387206BCD110003854B /* NewCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A13386206BCD110003854B /* NewCigar.storyboard */; };
@@ -90,6 +91,7 @@
 		B75A84402042DAB3008528D8 /* CigarStackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CigarStackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75A84442042DAB3008528D8 /* CigarStackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarStackUITests.swift; sourceTree = "<group>"; };
 		B75A84462042DAB3008528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7790CB620A1DD58003A713E /* circleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circleView.swift; sourceTree = "<group>"; };
 		B79953F7209A50CD00B2AA4B /* MoveCigarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCigarViewController.swift; sourceTree = "<group>"; };
 		B7A13386206BCD110003854B /* NewCigar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewCigar.storyboard; sourceTree = "<group>"; };
 		B7A4813320581B95001242F7 /* PagingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PagingKit.framework; path = Carthage/Build/iOS/PagingKit.framework; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				B7A4813520581E34001242F7 /* HomeViewController.swift */,
 				B7A48137205822BC001242F7 /* ContentTableViewController.swift */,
 				B7A4813B20582755001242F7 /* ContentTableViewCell.swift */,
+				B7790CB620A1DD58003A713E /* circleView.swift */,
 			);
 			name = Home;
 			path = "New Group";
@@ -459,6 +462,7 @@
 				B7CF29BE20519AE300D8C4A3 /* SplitViewController.swift in Sources */,
 				B79953F8209A50CD00B2AA4B /* MoveCigarViewController.swift in Sources */,
 				B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */,
+				B7790CB720A1DD58003A713E /* circleView.swift in Sources */,
 				B7A4813C20582755001242F7 /* ContentTableViewCell.swift in Sources */,
 				B7E524A32061620500E2CC38 /* TabBarViewController.swift in Sources */,
 				B7A48138205822BC001242F7 /* ContentTableViewController.swift in Sources */,

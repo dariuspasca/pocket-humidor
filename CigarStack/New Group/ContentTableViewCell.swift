@@ -15,8 +15,9 @@ class ContentTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var currency: UILabel!
     @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var progress: UIImageView!
     @IBOutlet weak var years: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
-
+    @IBOutlet weak var progress: UIView!
+    
+    
 }

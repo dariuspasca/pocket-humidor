@@ -45,7 +45,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         scrollView.delegate = self
         setupSideMenu()
         
-        
+        //Resets sort order to default
+        UserSettings.tableSortOrder = TableSortOrder(rawValue: UserSettings.defaultSortOrder.value)!
         menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
         menuViewController?.registerFocusView(view: UnderlineFocusView())
         if UserSettings.currentHumidor.value != ""
@@ -147,9 +148,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     
     func setupHumidorViewData(){
         humidorName.text = humidor!.name
-        humidorHumidity.text = String(describing: humidor!.humidity) + " %"
-        humidorCigars.text = String(describing: humidor!.quantity)
-        humidorValue.text = getSymbolForCurrencyCode(code: UserSettings.currency.value)! + " " + String(describing: humidor!.value)
+        humidorHumidity.text = String(humidor!.humidity) + " %"
+        humidorCigars.text = String((humidor!.quantity))
+        humidorValue.text = getSymbolForCurrencyCode(code: UserSettings.currency.value)! + " " + String(humidor!.value)
     }
     
     func setupMenuViewData(){
@@ -162,14 +163,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         }
     }
     
-    //MARK: - MoreButton
+    //MARK: - Sort Alert
     
     @IBAction func more(_ sender: UIBarButtonItem) {
         
         let optionMenu = UIAlertController(title: nil, message: NSLocalizedString("Sort by", comment: ""), preferredStyle: .actionSheet)
         optionMenu.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-        let sortEnum: [TableSortOrder] = [.byName, .byDate, .byCountry, .byAge, .byPrice, .byQuantity]
-        
+        let sortEnum: [TableSortOrder] = [.byDate, .byName, .byQuantity, .byPrice, .byCountry, .byAge]
         for enumOption in sortEnum{
             let alert = UIAlertAction(title: enumOption.displayName, style: .default, handler: {
                 (alert: UIAlertAction!) -> Void in
@@ -179,6 +179,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
             })
             if alert.title! == UserSettings.tableSortOrder.displayName{
                 alert.setValue(true, forKey: "checked")
+                UserSettings.shouldReloadView.value = false
             }
             optionMenu.addAction(alert)
         }
@@ -188,7 +189,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         
         optionMenu.addAction(cancelAction)
         optionMenu.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
-        
         self.present(optionMenu, animated: true, completion: nil)
     }
     
@@ -215,6 +215,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
             self.fetchHumidorData()
             self.setupHumidorViewData()
         }
+    }
+    
+    func deleteDelegate() {
+        fetchHumidorData()
+        setupHumidorViewData()
     }
     
     func getSymbolForCurrencyCode(code: String) -> String?

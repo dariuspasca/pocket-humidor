@@ -172,6 +172,8 @@ class MoveCigarViewController: FormViewController {
                         listRow.value = nil
                     }
                 }
+                }.cellSetup{cell, row in
+                    cell.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
             }
         }
         form.last!.reload()

@@ -13,6 +13,7 @@ import TTGSnackbar
 protocol ContainerTableDelegate {
     func dataChanged(height: CGFloat)
     func updateData(container: Tray)
+    func deleteDelegate()
 }
 
 class ContentTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, moveCigarViewDelegate {
@@ -51,20 +52,43 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ContentTableViewCell
         let cigar = cigars![indexPath.row]
-        let pastDate:Date!
-        if cigar.ageDate == nil {
-            pastDate = cigar.creationDate!
-        }
-        else{
-            pastDate = cigar.ageDate!
-        }
+        let pastDate = cigar.ageDate!
         let (years, months) = computeAge(pastDate: pastDate, currentDate: Date())
+        
+        var color:CGColor?
+        
+        switch years {
+        case ..<5:
+            color = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1).cgColor
+        case 5..<10:
+            color = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1).cgColor
+        case 10..<15:
+            color = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1).cgColor
+        case 15..<20:
+            color = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1).cgColor
+        case 20..<25:
+            color = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 1).cgColor
+        case 25..<30:
+            color = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1).cgColor
+        case 30..<35:
+            color = UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1).cgColor
+        case 35..<40:
+            color = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1).cgColor
+        case 40..<45:
+            color = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1).cgColor
+        case 45...:
+            color = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        default:
+            break
+        }
+        
+        let progressCircle = circleView(frame: CGRect(x: 0, y: 0, width: cell.progress.frame.width, height: cell.progress.frame.height), percent: Double(months)/12, color: color!)
         cell.quantity.text = String(cigar.quantity)
         cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.name.text =  cigar.name!
         cell.currency.text = getSymbolForCurrencyCode(code: UserSettings.currency.value)!
         cell.price.text = String(cigar.price)
-        cell.progress.image = UIImage(named: "circle")
+        cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
         cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
         return cell
@@ -167,6 +191,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (delete == true) {
                     CoreDataController.sharedInstance.deleteCigar(cigar: tempCigar)
+                    self.delegate?.deleteDelegate()
                 }
             }
             

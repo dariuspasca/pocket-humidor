@@ -13,6 +13,9 @@ class GeneralViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationAccessoryView.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        
         func tableSortRow(_ tableSort: TableSortOrder) -> ListCheckRow<TableSortOrder> {
             return ListCheckRow<TableSortOrder>() {
                 $0.title = tableSort.displayName
@@ -26,7 +29,7 @@ class GeneralViewController: FormViewController {
         form +++ Section(footer: NSLocalizedString("Change the display currency. It does not convert prices from previous currency.", comment: ""))
             <<< PickerInputRow<String>(NSLocalizedString("Currency", comment: "")){
                 $0.title = $0.tag
-                $0.value = UserDefaults.standard.string(forKey: "Currency")
+                $0.value = UserSettings.currency.value
                 $0.options = Locale.commonISOCurrencyCodes
                 }
                 .onChange{ row in
@@ -56,6 +59,8 @@ class GeneralViewController: FormViewController {
         guard row.section === form[2] else { return }
         guard let selectedSort = (row.section as! SelectableSection<ListCheckRow<TableSortOrder>>).selectedRow()?.baseValue as? TableSortOrder else { return }
         
+        UserSettings.shouldReloadData.value = true
+        UserSettings.defaultSortOrder.value = selectedSort.hashValue
         UserSettings.tableSortOrder = selectedSort
     }
 

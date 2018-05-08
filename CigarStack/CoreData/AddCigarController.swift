@@ -8,7 +8,6 @@
 
 import UIKit
 import Eureka
-import ImageRow
 import FlagKit
 
 class AddCigarController: FormViewController, SelectCountryDelegate {
@@ -32,7 +31,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         //Default Country
         selectedCountryCode = "CU"
         humidor = CoreDataController.sharedInstance.searchHumidor(name: UserSettings.currentHumidor.value)
-        
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         tableView.estimatedRowHeight = 44.0
@@ -142,6 +140,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         }
             <<< SwitchRow("Has been aged"){
                 $0.title = NSLocalizedString("Has been aged", comment: "")
+                $0.value = true
         }
             <<< DateInlineRow("Since"){
                 $0.title = NSLocalizedString("Since", comment: "")
@@ -161,17 +160,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                         self.navigationAccessoryIsHidden = false
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
-            }
-            
-            +++ Section()
-            <<< ImageRow("Cigar picture") { row in
-                row.title = NSLocalizedString("Photo", comment: "")
-                row.sourceTypes = [.PhotoLibrary, .Camera]
-                row.placeholderImage = UIImage(named: "plus")
-                row.clearAction = .yes(style: UIAlertActionStyle.destructive)
-                }.cellUpdate { cell, row in
-                    cell.accessoryView?.layer.cornerRadius = 8
-                    cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
             }
         
         +++ Section(NSLocalizedString("Location", comment: ""))
@@ -258,7 +246,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {
-        var imageData: Data?
         
         let formValues = self.form.values()
         let nameForm = formValues["Name"] as! String
@@ -267,19 +254,17 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         let priceForm = formValues["Price"] as! Double
         let fromForm = formValues["From"] as? String
         let purchaseDateForm = formValues["Purchase Date"] as! Date
-        let ageDateForm = formValues["Since"] as? Date
+        var ageDateForm = formValues["Since"] as? Date
         let notesForm = formValues["Notes"] as? String
-        let imageForm = formValues["Cigar picture"] as? UIImage
         let humidorForm = formValues["Humidor"] as! String
         let trayForm = formValues["Tray"] as! String
         
-        if imageForm != nil {
-            imageData = UIImageJPEGRepresentation(imageForm!, 1)
+        if ageDateForm == nil{
+            ageDateForm = purchaseDateForm
         }
-        
         let humidor = CoreDataController.sharedInstance.searchHumidor(name: humidorForm)
         let location = CoreDataController.sharedInstance.searchTray(humidor: humidor!, searchTray: trayForm)
-        _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: Int32(quantityForm), size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , image: imageData, notes: notesForm)
+        _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: Int32(quantityForm), size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , image: nil, notes: notesForm)
         if humidorForm == UserSettings.currentHumidor.value {
              UserSettings.shouldReloadData.value = true
         }

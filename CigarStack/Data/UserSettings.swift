@@ -72,6 +72,7 @@ class UserSettings{
     static var sendAnalytics = UserSetting<Bool>(key: "sendAnalytics", defaultValue: true)
     static var sendCrashReports = UserSetting<Bool>(key: "sendCrashReports", defaultValue: true)
     static var iCloud = UserSetting<Bool>(key: "iCloud", defaultValue: true)
+    static var defaultSortOrder = UserSetting<Int>(key: "defaultSortOrder", defaultValue: 0)
     static var sortAscending = UserSetting<Bool>(key: "SortAscending", defaultValue: true)
     static var openHumidor = UserSetting<Bool>(key: "openNewHumidor", defaultValue: true)
     static var currency = UserSetting<String>(key: "Currency", defaultValue: Locale.current.currencyCode!)
