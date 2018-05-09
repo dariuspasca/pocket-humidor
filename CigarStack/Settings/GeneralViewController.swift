@@ -26,17 +26,7 @@ class GeneralViewController: FormViewController {
             }
         }
         
-        form +++ Section(footer: NSLocalizedString("Change the display currency. It does not convert prices from previous currency.", comment: ""))
-            <<< PickerInputRow<String>(NSLocalizedString("Currency", comment: "")){
-                $0.title = $0.tag
-                $0.value = UserSettings.currency.value
-                $0.options = Locale.commonISOCurrencyCodes
-                }
-                .onChange{ row in
-                    UserSettings.currency.value = row.value!
-            }
-            
-            +++ Section(footer: NSLocalizedString("Automatically open newly added humidor.", comment: ""))
+        form +++ Section(footer: NSLocalizedString("Automatically open newly added humidor.", comment: ""))
             <<< SwitchRow(NSLocalizedString("Open New Humidor", comment: "")){
                 $0.title = $0.tag
                 $0.value = UserSettings.openHumidor.value
@@ -56,7 +46,7 @@ class GeneralViewController: FormViewController {
     }
     
     override func valueHasBeenChanged(for row: BaseRow, oldValue: Any?, newValue: Any?) {
-        guard row.section === form[2] else { return }
+        guard row.section === form[1] else { return }
         guard let selectedSort = (row.section as! SelectableSection<ListCheckRow<TableSortOrder>>).selectedRow()?.baseValue as? TableSortOrder else { return }
         
         UserSettings.shouldReloadData.value = true

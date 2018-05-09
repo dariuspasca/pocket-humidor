@@ -13,7 +13,7 @@ class circleView: UIView {
     var backgroundLayer: CAShapeLayer!
     var progressLayer: CAShapeLayer!
     
-    init(frame: CGRect, percent: Double, color: CGColor) {
+    init(frame: CGRect, percent: Double) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0), radius: (frame.size.width - 10)/2, startAngle: CGFloat(-Double.pi/2), endAngle: CGFloat(Double.pi + Double.pi/2), clockwise: true)
@@ -28,7 +28,7 @@ class circleView: UIView {
         progressLayer = CAShapeLayer()
         progressLayer.path = circlePath.cgPath
         progressLayer.fillColor = UIColor.clear.cgColor
-        progressLayer.strokeColor = color
+        progressLayer.strokeColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1).cgColor
         progressLayer.lineWidth = 3.0
         progressLayer.strokeEnd = CGFloat(percent)
         progressLayer.lineCap = kCALineCapRound

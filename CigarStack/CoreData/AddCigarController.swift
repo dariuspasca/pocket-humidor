@@ -137,7 +137,14 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 $0.title = NSLocalizedString("Purchase Date", comment: "")
                 $0.maximumDate = Date()
                 $0.value = Date()
-        }
+                }.onChange({ (row) in
+                    let sinceRow = self.form.rowBy(tag: "Since") as! DateInlineRow
+                    sinceRow.maximumDate = row.value!
+                    if sinceRow.value! > row.value!{
+                        sinceRow.value = row.value
+                        sinceRow.reload()
+                    }
+                })
             <<< SwitchRow("Has been aged"){
                 $0.title = NSLocalizedString("Has been aged", comment: "")
                 $0.value = true
@@ -332,5 +339,14 @@ class CurrencyFormatter : NumberFormatter, FormatterProtocol {
             return textInput.position(from: position, offset:((newValue?.count ?? 0) - (oldValue?.count ?? 0))) ?? position
         }
     }
+
+extension Double {
+    var asLocalCurrency:String{
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        return formatter.string(from: self as NSNumber)!
+    }
+}
 
 

@@ -75,7 +75,6 @@ class UserSettings{
     static var defaultSortOrder = UserSetting<Int>(key: "defaultSortOrder", defaultValue: 0)
     static var sortAscending = UserSetting<Bool>(key: "SortAscending", defaultValue: true)
     static var openHumidor = UserSetting<Bool>(key: "openNewHumidor", defaultValue: true)
-    static var currency = UserSetting<String>(key: "Currency", defaultValue: Locale.current.currencyCode!)
     
     static var shouldReloadData = UserSetting<Bool>(key: "shouldReloadData", defaultValue: false)
     static var shouldReloadView = UserSetting<Bool>(key: "shouldReloadView", defaultValue: false)

@@ -29,6 +29,7 @@
 		B7790CB720A1DD58003A713E /* circleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7790CB620A1DD58003A713E /* circleView.swift */; };
 		B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75A84282042DAB3008528D8 /* Main.storyboard */; };
 		B79953F8209A50CD00B2AA4B /* MoveCigarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79953F7209A50CD00B2AA4B /* MoveCigarViewController.swift */; };
+		B79C85EE20A39C70006A719F /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79C85ED20A39C70006A719F /* Search.storyboard */; };
 		B7A13387206BCD110003854B /* NewCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A13386206BCD110003854B /* NewCigar.storyboard */; };
 		B7A4813420581B95001242F7 /* PagingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A4813320581B95001242F7 /* PagingKit.framework */; };
 		B7A4813620581E34001242F7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4813520581E34001242F7 /* HomeViewController.swift */; };
@@ -43,6 +44,7 @@
 		B7CF29BE20519AE300D8C4A3 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */; };
 		B7CF29C02051A03F00D8C4A3 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29BF2051A03F00D8C4A3 /* PurchaseViewController.swift */; };
 		B7CF29C22051A42100D8C4A3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */; };
+		B7D2BEEC20A38B0500F93515 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2BEEB20A38B0500F93515 /* SearchViewController.swift */; };
 		B7D6BE322048121700B50CCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D6BE312048121600B50CCA /* Assets.xcassets */; };
 		B7E524A32061620500E2CC38 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E524A22061620500E2CC38 /* TabBarViewController.swift */; };
 		B7E524A7206166AA00E2CC38 /* AddCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E524A6206166AA00E2CC38 /* AddCigarController.swift */; };
@@ -93,6 +95,7 @@
 		B75A84462042DAB3008528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7790CB620A1DD58003A713E /* circleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circleView.swift; sourceTree = "<group>"; };
 		B79953F7209A50CD00B2AA4B /* MoveCigarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCigarViewController.swift; sourceTree = "<group>"; };
+		B79C85ED20A39C70006A719F /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		B7A13386206BCD110003854B /* NewCigar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewCigar.storyboard; sourceTree = "<group>"; };
 		B7A4813320581B95001242F7 /* PagingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PagingKit.framework; path = Carthage/Build/iOS/PagingKit.framework; sourceTree = "<group>"; };
 		B7A4813520581E34001242F7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		B7CF29BF2051A03F00D8C4A3 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		B7D2BEEB20A38B0500F93515 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B7D3A0B42055686F00AA6A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7D3A0B52055686F00AA6A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7D3A0B62055687000AA6A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 		B7219C8F205179D6001096A6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				B79C85ED20A39C70006A719F /* Search.storyboard */,
 				B75A842D2042DAB3008528D8 /* LaunchScreen.storyboard */,
 				B75A84282042DAB3008528D8 /* Main.storyboard */,
 				B7A13386206BCD110003854B /* NewCigar.storyboard */,
@@ -244,6 +249,7 @@
 				B72A6848205FCF53006CDFED /* CoreData */,
 				B7161B182055AC2E001B2E1A /* Home */,
 				B7219C9520518377001096A6 /* Data */,
+				B7D2BEEA20A38AEE00F93515 /* Search */,
 				B7219C9220517A7B001096A6 /* Settings */,
 				B7219C8F205179D6001096A6 /* Storyboards */,
 				B7D6BE312048121600B50CCA /* Assets.xcassets */,
@@ -284,6 +290,14 @@
 				B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7D2BEEA20A38AEE00F93515 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B7D2BEEB20A38B0500F93515 /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,7 +364,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Darius Pasca";
 				TargetAttributes = {
 					B75A84202042DAB3008528D8 = {
@@ -399,6 +413,7 @@
 				B721833920542D3B00E8DD09 /* Localizable.strings in Resources */,
 				B7A13387206BCD110003854B /* NewCigar.storyboard in Resources */,
 				B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */,
+				B79C85EE20A39C70006A719F /* Search.storyboard in Resources */,
 				B7D6BE322048121700B50CCA /* Assets.xcassets in Resources */,
 				B7A4813A205825D9001242F7 /* ContentTableViewController.storyboard in Resources */,
 				B7658097205293D8004FD39F /* AttributesLicense.plist in Resources */,
@@ -476,6 +491,7 @@
 				B7CF29C02051A03F00D8C4A3 /* PurchaseViewController.swift in Sources */,
 				B7219C942051836B001096A6 /* UserEngagement.swift in Sources */,
 				B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */,
+				B7D2BEEC20A38B0500F93515 /* SearchViewController.swift in Sources */,
 				B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */,
 				B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */,
 				B7219C97205186C0001096A6 /* UserSettings.swift in Sources */,
@@ -572,6 +588,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -579,6 +596,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -630,6 +648,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -637,6 +656,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

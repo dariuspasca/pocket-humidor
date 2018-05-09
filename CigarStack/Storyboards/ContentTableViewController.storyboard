@@ -29,13 +29,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BsE-hf-ADk">
-                                                    <rect key="frame" x="10" y="15.666666666666664" width="277" height="39"/>
+                                                    <rect key="frame" x="10" y="-1" width="277" height="72.333333333333329"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="nJM-4Q-e0D" userLabel="CigarInfo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="277" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="277" height="18.333333333333332"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-dd-v9t">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="23" height="18"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="23" height="18.333333333333332"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="23" id="mfN-yl-ICL"/>
                                                                     </constraints>
@@ -44,10 +44,10 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUH-WZ-lAX">
-                                                                    <rect key="frame" x="29" y="0.0" width="12" height="18"/>
+                                                                    <rect key="frame" x="29" y="0.0" width="12" height="18.333333333333332"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="Ydv-0r-ii5">
-                                                                            <rect key="frame" x="0.0" y="2.3333333333333339" width="12" height="12"/>
+                                                                            <rect key="frame" x="0.0" y="2.6666666666666679" width="12" height="12"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="12" id="QTo-15-jxY"/>
                                                                                 <constraint firstAttribute="height" constant="12" id="VSZ-Ta-aGc"/>
@@ -62,7 +62,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CigarName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hY-Gc-9UW">
-                                                                    <rect key="frame" x="47" y="0.0" width="230" height="18"/>
+                                                                    <rect key="frame" x="47" y="0.0" width="230" height="18.333333333333332"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="SsO-PM-jn0"/>
                                                                     </constraints>
@@ -77,19 +77,19 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="AjG-0T-ri2" userLabel="Price">
-                                                            <rect key="frame" x="0.0" y="22" width="91" height="17"/>
+                                                            <rect key="frame" x="0.0" y="22.333333333333329" width="83" height="50"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLw-Lp-qxE">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="17"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLw-Lp-qxE">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="56" id="lNt-vv-cxb"/>
+                                                                        <constraint firstAttribute="width" constant="48" id="lNt-vv-cxb"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cQ-76-vn4">
-                                                                    <rect key="frame" x="57" y="0.0" width="34" height="17"/>
+                                                                    <rect key="frame" x="49" y="0.0" width="34" height="50"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -158,7 +158,6 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="countryFlag" destination="Ydv-0r-ii5" id="iUE-0a-1Im"/>
-                                            <outlet property="currency" destination="cLw-Lp-qxE" id="1Yt-eu-7Is"/>
                                             <outlet property="name" destination="0hY-Gc-9UW" id="2i4-HM-6Io"/>
                                             <outlet property="price" destination="5cQ-76-vn4" id="KUf-df-PTb"/>
                                             <outlet property="progress" destination="Rqm-nw-4vn" id="kP9-xS-jE5"/>

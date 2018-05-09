@@ -13,7 +13,6 @@ class ContentTableViewCell: UITableViewCell {
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var countryFlag: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var currency: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var years: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!

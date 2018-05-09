@@ -14,8 +14,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         self.delegate = self
-        
-        // Remove the titles and adjust the inset to account for missing title
 
     }
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -46,7 +44,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let viewControllers = self.viewControllers
-        if viewController == viewControllers![1] {
+        if viewController == viewControllers![2] {
             return false
         }
         else {

@@ -96,7 +96,19 @@ class CoreDataController {
         self.saveContext()
     }
     
-    
+    func searchCigarThatContains(key: String) -> [Cigar]?{
+        var results: [Cigar]?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cigar")
+        request.predicate =  NSPredicate(format: "name contains[c] %@", key)
+        
+        do {
+            results = try context.fetch(request) as? [Cigar]
+        } catch let error {
+            let fetchError = error as NSError
+            print(fetchError)        }
+        
+        return results
+    }
     
     func updateCigarQuantity(cigar: Cigar, quantity: Int32, add: Bool){
         let pricePerCigar = cigar.price/Double(cigar.quantity)
@@ -176,15 +188,15 @@ class CoreDataController {
     
     
     func fetchHumidors() -> [Humidor] {
-        let humidors: [Humidor]
+        var humidors: [Humidor]!
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Humidor")
         let sort = NSSortDescriptor(key: #keyPath(Humidor.orderID), ascending: true)
         request.sortDescriptors = [sort]
         do {
             humidors = try context.fetch(request) as! [Humidor]
-        } catch {
-            fatalError("Failed to fetch humidors: \(error)")
-        }
+        } catch let error {
+            let fetchError = error as NSError
+            print(fetchError)        }
         return humidors
     }
     
@@ -205,9 +217,9 @@ class CoreDataController {
     private func saveContext(){
         do {
             try self.context.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
-        }
+        } catch let error {
+            let fetchError = error as NSError
+            print(fetchError)        }
     }
     
     

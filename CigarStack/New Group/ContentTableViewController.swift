@@ -55,39 +55,16 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         let pastDate = cigar.ageDate!
         let (years, months) = computeAge(pastDate: pastDate, currentDate: Date())
         
-        var color:CGColor?
-        
-        switch years {
-        case ..<5:
-            color = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1).cgColor
-        case 5..<10:
-            color = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1).cgColor
-        case 10..<15:
-            color = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1).cgColor
-        case 15..<20:
-            color = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1).cgColor
-        case 20..<25:
-            color = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 1).cgColor
-        case 25..<30:
-            color = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1).cgColor
-        case 30..<35:
-            color = UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1).cgColor
-        case 35..<40:
-            color = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1).cgColor
-        case 40..<45:
-            color = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1).cgColor
-        case 45...:
-            color = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
-        default:
-            break
+        var percentage = Double(months)/12
+        if years > 0 && months == 0 {
+            percentage = 0.01
         }
         
-        let progressCircle = circleView(frame: CGRect(x: 0, y: 0, width: cell.progress.frame.width, height: cell.progress.frame.height), percent: Double(months)/12, color: color!)
+        let progressCircle = circleView(frame: CGRect(x: 0, y: 0, width: cell.progress.frame.width, height: cell.progress.frame.height), percent: percentage)
         cell.quantity.text = String(cigar.quantity)
         cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.name.text =  cigar.name!
-        cell.currency.text = getSymbolForCurrencyCode(code: UserSettings.currency.value)!
-        cell.price.text = String(cigar.price)
+        cell.price.text = cigar.price.asLocalCurrency
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
         cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
@@ -355,12 +332,6 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         let theYears = components.year!
         let theMonths = components.month!
         return (theYears, theMonths)
-    }
-    
-    func getSymbolForCurrencyCode(code: String) -> String?
-    {
-        let locale = NSLocale(localeIdentifier: code)
-        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: code)
     }
 }
 

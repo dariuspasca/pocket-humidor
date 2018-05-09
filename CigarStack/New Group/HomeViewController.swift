@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         humidorName.text = humidor!.name
         humidorHumidity.text = String(humidor!.humidity) + " %"
         humidorCigars.text = String((humidor!.quantity))
-        humidorValue.text = getSymbolForCurrencyCode(code: UserSettings.currency.value)! + " " + String(humidor!.value)
+        humidorValue.text = humidor!.value.asLocalCurrency
     }
     
     func setupMenuViewData(){
@@ -220,12 +220,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     func deleteDelegate() {
         fetchHumidorData()
         setupHumidorViewData()
-    }
-    
-    func getSymbolForCurrencyCode(code: String) -> String?
-    {
-        let locale = NSLocale(localeIdentifier: code)
-        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: code)
     }
     
 }
