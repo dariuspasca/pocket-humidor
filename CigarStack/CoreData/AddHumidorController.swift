@@ -23,6 +23,7 @@ class AddHumidorController: FormViewController {
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         
+        
         navigationAccessoryView = {
             let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
             naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
@@ -71,6 +72,7 @@ class AddHumidorController: FormViewController {
                     cell.height = ({return 80})
                 })
             +++ Section()
+            /*
             <<< TextAreaRow("Notes"){
                 $0.placeholder = NSLocalizedString("Notes", comment: "")
                 }.cellSetup({ (cell, row) in
@@ -81,7 +83,7 @@ class AddHumidorController: FormViewController {
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
             }
-        
+        */
 
             +++ MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete,],
                            header: NSLocalizedString("Dividers", comment: ""),
@@ -95,12 +97,16 @@ class AddHumidorController: FormViewController {
                             $0.multivaluedRowToInsertAt = { index in
                                 return NameRow() {
                                     $0.placeholder = NSLocalizedString("Divider Name", comment: "")
+                                    }.cellSetup { (cell, row) in
+                                        cell.textField.autocorrectionType = .yes
                                 }
                             }
                             $0 <<< NameRow() {
                                 $0.placeholder = NSLocalizedString("Divider Name", comment: "")
                                 $0.add(rule: RuleRequired(msg: "required"))
                                 $0.validationOptions = .validatesOnChange
+                                }.cellSetup { (cell, row) in
+                                    cell.textField.autocorrectionType = .yes
                             }
         }
         
@@ -136,8 +142,7 @@ class AddHumidorController: FormViewController {
         else{
             let humidorOrderID = CoreDataController.sharedInstance.countHumidors()
             let humidity = formValues["Humidity Level"] as! Float
-            let notes = formValues["Notes"] as? String
-            let newHumidor = CoreDataController.sharedInstance.addNewHumidor(name: name!, humidityLevel: Int16(humidity), notes: notes, orderID: Int16(humidorOrderID))
+            let newHumidor = CoreDataController.sharedInstance.addNewHumidor(name: name!, humidityLevel: Int16(humidity),orderID: Int16(humidorOrderID))
             let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
     
             
@@ -175,11 +180,15 @@ class AddHumidorController: FormViewController {
 
     //Blocks the popover the scroll the tableview when keyboard is shown
     override func keyboardWillShow(_ notification: Notification) {
-        // super.keyboardWillShow(notification)
+        if UIDevice.current.userInterfaceIdiom != .pad{
+            super.keyboardWillShow(notification)
+        }
     }
     
     override func keyboardWillHide(_ notification: Notification) {
-        //super.keyboardWillHide(notification)
+        if UIDevice.current.userInterfaceIdiom != .pad{
+           super.keyboardWillHide(notification)
+        }
     }
     
     func showAlertButtonTapped(title: String, message: String) {

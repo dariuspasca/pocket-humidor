@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Cigar" representedClassName="Cigar" syncable="YES" codeGenerationType="class">
         <attribute name="ageDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -32,7 +32,6 @@
         <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="humidity" attributeType="Integer 16" minValueString="0" maxValueString="100" defaultValueString="75" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="orderID" attributeType="Integer 16" minValueString="-1" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quantity" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="value" attributeType="Double" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -54,14 +53,14 @@
     <entity name="Tray" representedClassName="Tray" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="orderID" attributeType="Integer 16" minValueString="-1" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="cigars" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Cigar" inverseName="tray" inverseEntity="Cigar" syncable="YES"/>
+        <relationship name="cigars" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Cigar" inverseName="tray" inverseEntity="Cigar" syncable="YES"/>
         <relationship name="humidor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Humidor" inverseName="trays" inverseEntity="Humidor" syncable="YES"/>
     </entity>
     <elements>
         <element name="Cigar" positionX="432" positionY="-324" width="128" height="285"/>
         <element name="Gift" positionX="666" positionY="-387" width="128" height="103"/>
         <element name="History" positionX="439" positionY="99" width="128" height="73"/>
-        <element name="Humidor" positionX="36" positionY="-349" width="128" height="165"/>
+        <element name="Humidor" positionX="36" positionY="-349" width="128" height="148"/>
         <element name="Review" positionX="666" positionY="-264" width="128" height="210"/>
         <element name="Tray" positionX="241" positionY="-319" width="128" height="103"/>
     </elements>

@@ -49,12 +49,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         UserSettings.tableSortOrder = TableSortOrder(rawValue: UserSettings.defaultSortOrder.value)!
         menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
         menuViewController?.registerFocusView(view: UnderlineFocusView())
+        contentViewController?.scrollView.isScrollEnabled = false
         if UserSettings.currentHumidor.value != ""
         {
         fetchHumidorData()
         setupMenuViewData()
         setupHumidorViewData()
-        contentViewController?.scrollView.isScrollEnabled = false
         let firstView = dataSource[0].content as! ContentTableViewController
         firstView.isSelected()
         }

@@ -107,8 +107,8 @@ class ManageHumidorsTableViewController: UITableViewController {
     
     func fetchHumidorsList(){
         let humidors = CoreDataController.sharedInstance.fetchHumidors()
-        if !humidors.isEmpty {
-            for humidor in humidors {
+        if humidors != nil {
+            for humidor in humidors! {
                 humidorsList.append(humidor.name!)
             }
         }

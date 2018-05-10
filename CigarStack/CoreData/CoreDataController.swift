@@ -20,7 +20,7 @@ class CoreDataController {
     }
     
     /* New Humidor */
-    func addNewHumidor(name: String, humidityLevel: Int16, notes: String?, orderID: Int16) -> Humidor {
+    func addNewHumidor(name: String, humidityLevel: Int16, orderID: Int16) -> Humidor {
         let entityHumidor = NSEntityDescription.entity(forEntityName: "Humidor", in: self.context)
         let newHumidor = Humidor (entity: entityHumidor!, insertInto: context)
         
@@ -28,7 +28,6 @@ class CoreDataController {
         newHumidor.createDate = Date()
         newHumidor.humidity = humidityLevel
         newHumidor.orderID = orderID
-        newHumidor.notes = notes
         self.saveContext()
         
         return newHumidor
@@ -187,13 +186,13 @@ class CoreDataController {
     }
     
     
-    func fetchHumidors() -> [Humidor] {
-        var humidors: [Humidor]!
+    func fetchHumidors() -> [Humidor]? {
+        var humidors: [Humidor]?
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Humidor")
         let sort = NSSortDescriptor(key: #keyPath(Humidor.orderID), ascending: true)
         request.sortDescriptors = [sort]
         do {
-            humidors = try context.fetch(request) as! [Humidor]
+            humidors = try context.fetch(request) as? [Humidor]
         } catch let error {
             let fetchError = error as NSError
             print(fetchError)        }

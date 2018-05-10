@@ -43,7 +43,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         searchResults = CoreDataController.sharedInstance.searchCigarThatContains(key: searchBar.text!)
-        CoreDataController.sharedInstance.fetchAllCigars()
         self.tableView.reloadData()
         isSearching = false
         self.searchBar.endEditing(true)

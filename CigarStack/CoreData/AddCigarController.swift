@@ -234,7 +234,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     func getHumidorsList() -> [String]{
         let humidorsObject = CoreDataController.sharedInstance.fetchHumidors()
         var humidors = [String]()
-        for humidor in humidorsObject{
+        for humidor in humidorsObject!{
             if humidor.name! == self.humidor.name!
             {
                 humidors.insert(humidor.name!, at: 0)

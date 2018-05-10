@@ -73,10 +73,8 @@ class SideMenuUIViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func updateHumidorsList(){
         let humidors = CoreDataController.sharedInstance.fetchHumidors()
-        if !humidors.isEmpty {
-            /* Clears array possible previous data */
-            humidorsList.removeAll()
-            for humidor in humidors {
+        if humidors != nil {
+            for humidor in humidors! {
                 if humidor.name! == UserSettings.currentHumidor.value{
                     humidorsList.insert(humidor.name!, at: 0)
                 }
@@ -86,7 +84,6 @@ class SideMenuUIViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
-    
 }
 
 

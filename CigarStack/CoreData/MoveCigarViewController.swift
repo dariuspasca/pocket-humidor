@@ -120,8 +120,8 @@ class MoveCigarViewController: FormViewController {
 
     func populateHumidorsList(){
         let humidors = CoreDataController.sharedInstance.fetchHumidors()
-        if !humidors.isEmpty {
-            for humidor in humidors {
+        if !humidors!.isEmpty {
+            for humidor in humidors! {
                 if humidor.name! == UserSettings.currentHumidor.value{
                     humidorsList.insert(humidor.name!, at: 0)
                 }
