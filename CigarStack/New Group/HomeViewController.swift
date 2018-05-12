@@ -30,6 +30,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     var menuViewController: PagingMenuViewController?
     var contentViewController: PagingContentViewController?
     @IBOutlet weak var menuViewControllerContainerView: UIView!
+    @IBOutlet weak var contentViewControllerContainer: UIView!
     
     static var sizingCell = TitleLabelMenuViewCell(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
     var dataSource = [(menu: String, content: UIViewController)]()
@@ -53,20 +54,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
         menuViewController?.registerFocusView(view: UnderlineFocusView())
         contentViewController?.scrollView.isScrollEnabled = false
-        if UserSettings.currentHumidor.value != ""
-        {
-        fetchHumidorData()
-        setupMenuViewData()
-        setupHumidorViewData()
-        let firstView = dataSource[0].content as! ContentTableViewController
-        firstView.isSelected()
-        }
-        else{
+        
+        if UserSettings.currentHumidor.value == "" {
             topBar.isHidden = true
             menuViewControllerContainerView.isHidden = true
             moreButton.isEnabled = false
-            setupMenuViewData()
         }
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,53 +68,82 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         firstLoad?()
     }
     
-    /*
-        Reloads the view when humidor has been changed
-        Reload  only the data when humidor hasn't been changed (i.e: added a cigar, changed trays name)
- */
     override func viewWillAppear(_ animated: Bool) {
         //Check if there is a humidor
         if UserSettings.currentHumidor.value != "" {
+            
+            //Reloads the entire view content
             if UserSettings.shouldReloadView.value{
-                if topBar.isHidden{
-                    UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
-                        self.topBar.alpha = 1; self.menuViewControllerContainerView.alpha = 1
-                    }, completion: { _ in
-                        self.topBar.isHidden = false;self.menuViewControllerContainerView.isHidden = false
-                    })
-                }
-                moreButton.isEnabled = true
-                scrollView.contentOffset.y = 0.0
+             
+                moreButton.isEnabled = true // If is the first humidor @moreButton is disabled and need to be enabled
+                scrollView.contentOffset.y = 0.0  //Goes back to top when changing humidor
                 fetchHumidorData()
                 setupMenuViewData()
-                setupHumidorViewData()
+                
+                // When adding first humidor the topBar and the navigation menu is hidden ( the content view not because it is used for the dnzempty)
+                if topBar.isHidden{
+                    self.topBar.isHidden = false
+                    self.menuViewControllerContainerView.isHidden = false
+                    //Fede in animation
+                    UIView.animate(withDuration: 1.0, delay: 0, options: [], animations: {
+                        self.topBar.alpha = 1;
+                        self.menuViewControllerContainerView.alpha = 1
+                    }, completion: nil)
+                    setupHumidorViewData(withAnimation: false)
+                }
+                else{
+                    setupHumidorViewData(withAnimation: true)
+                }
+                
+                // Reloads data from first menu - if not specified generates layout mess
                 menuViewController?.reloadData(with: 0, completionHandler: nil)
                 contentViewController?.reloadData(with: 0, completion: nil)
+                
+                //Set the container view height
                 let firstView = dataSource[0].content as! ContentTableViewController
                 firstView.isSelected()
                 UserSettings.shouldReloadView.value = false
             }
+                
+                // Reloads only the container view ( eg: when cigar has been added )
             else if UserSettings.shouldReloadData.value{
                 setupMenuViewData()
-                setupHumidorViewData()
+                setupHumidorViewData(withAnimation: true)
                 contentViewController?.reloadData()
+                
+                //Sets the container view height
                 let selectedView = dataSource[(menuViewController?.currentFocusedIndex)!].content as! ContentTableViewController
                 selectedView.isSelected()
                 UserSettings.shouldReloadData.value = false
             }
         }
+            
+        //This is called when all humidors are deleted or there are none
         else{
-            contentViewHeight.constant = self.view.frame.height - 144.0
-            UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
-                self.topBar.alpha = 0
-            }, completion: { _ in
-                self.topBar.isHidden = true
-            })
-            menuViewControllerContainerView.isHidden = true
-            moreButton.isEnabled = false
             setupMenuViewData()
-            contentViewController?.reloadData()
-            menuViewController?.reloadData()
+            
+            //gives the container a standard height otherwise results 0 when deleting all humidors ( 100 top bar , 44 menu)
+            contentViewHeight.constant = self.view.frame.height - 144.0
+            
+            //If the moreButton is enabled means that all humidors have been deleted, otherwise would be disabled from viewDidLoad
+            if moreButton.isEnabled {
+                moreButton.isEnabled = false
+                 //More animations
+                
+                UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
+                    self.topBar.alpha = 0;
+                    self.menuViewControllerContainerView.alpha = 0
+                    self.contentViewControllerContainer.alpha = 0
+                }, completion: { _ in
+                    self.topBar.isHidden = true;
+                    self.menuViewControllerContainerView.isHidden = true;
+                    self.contentViewController?.reloadData();
+                    self.menuViewController?.reloadData();
+                    UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+                        self.contentViewControllerContainer.alpha = 1
+                    }, completion: nil)
+                })
+            }
             UserSettings.shouldReloadView.value = false
         }
     }
@@ -144,14 +167,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         SideMenuManager.default.menuFadeStatusBar = false
     }
     
-    func setupHumidorViewData(){
-        humidorName.fadeTransition(1.1)
+    func setupHumidorViewData(withAnimation: Bool){
+        if withAnimation{
+            humidorName.fadeTransition(1.1)
+            humidorHumidity.fadeTransition(1.1)
+            humidorCigars.fadeTransition(1.1)
+            humidorValue.fadeTransition(1.1)
+        }
         humidorName.text = humidor!.name
-        humidorHumidity.fadeTransition(1.1)
         humidorHumidity.text = String(humidor!.humidity) + " %"
-        humidorCigars.fadeTransition(1.1)
         humidorCigars.text = String((humidor!.quantity))
-        humidorValue.fadeTransition(1.1)
         humidorValue.text = humidor!.value.asLocalCurrency
     }
     
@@ -252,13 +277,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         }
         if !found{
             self.fetchHumidorData()
-            self.setupHumidorViewData()
+            self.setupHumidorViewData(withAnimation: true)
         }
     }
     
     func deleteDelegate() {
         fetchHumidorData()
-        setupHumidorViewData()
+        setupHumidorViewData(withAnimation: true)
     }
     
 }

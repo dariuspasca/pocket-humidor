@@ -491,6 +491,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentViewControllerContainer" destination="fIX-yI-Mbs" id="dT8-dz-DJh"/>
                         <outlet property="contentViewHeight" destination="Dgt-It-HRf" id="7Zi-dE-xoU"/>
                         <outlet property="humidorCigars" destination="MtW-B8-Obb" id="hEu-RS-Hsg"/>
                         <outlet property="humidorHumidity" destination="ha9-nQ-OuI" id="YRI-cv-bcT"/>
