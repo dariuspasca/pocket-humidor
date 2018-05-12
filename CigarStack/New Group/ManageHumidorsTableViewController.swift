@@ -13,6 +13,7 @@ class ManageHumidorsTableViewController: UITableViewController {
 
     var cancelButton: UIBarButtonItem!
     var deleteButton: UIBarButtonItem!
+    // Should use optional
     var selectedItems = [String]()
     var humidorsList = [String]()
     var rearrange = false
@@ -165,14 +166,14 @@ class ManageHumidorsTableViewController: UITableViewController {
         self.tableView.setEditing(editMode, animated: true)
         if editMode{
             navigationItem.leftBarButtonItem = deleteButton
-             navigationItem.rightBarButtonItem?.title = NSLocalizedString("Done", comment: "")
+            navigationItem.rightBarButtonItem?.title = NSLocalizedString("Done", comment: "")
             navigationItem.leftBarButtonItem?.isEnabled = false
         }
         else{
             navigationItem.leftBarButtonItem = cancelButton
             navigationItem.rightBarButtonItem?.title = NSLocalizedString("Edit", comment: "")
             navigationItem.leftBarButtonItem?.isEnabled = true
-            
+            selectedItems.removeAll()
             if rearrange{
                 rearrange = false
                 for (index,item) in humidorsList.enumerated(){

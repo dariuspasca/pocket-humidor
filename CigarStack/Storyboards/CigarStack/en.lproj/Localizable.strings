@@ -28,10 +28,14 @@
 /* Side Menu */
 "Your Humidors" = "Your Humidors";
 
+/* Empty Data Source */
+"You don't have any humidors yet." = "You don't have any humidors yet.";
+"To add a humidor, tap the plus button in the right top corner." = "To add a humidor, tap the plus button in the right top corner.";
+
 /*Alerts */
 "Humidor already exists!" = "Humidor already exists!";
 "You can't have multiple humidors with the same name." = "You can't have multiple humidors with the same name.";
-"To add cigars at least one humidor is required. You can create one by pressing the plus (+) button in the top right corner." = "To add cigars at least one humidor is required. You can create one by pressing the plus (+) button in the top right corner.";
+"To add cigars at least one humidor is required. Tap the plus button in the right top corner to add a humidor." = "To add cigars at least one humidor is required. Tap the plus button in the right top corner to add a humidor.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Are you sure you want to continue? This will permanently delete all cigars from selected humidors.";
 
 /* Snack Bar */

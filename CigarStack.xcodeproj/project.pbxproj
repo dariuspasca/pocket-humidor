@@ -21,6 +21,7 @@
 		B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684D205FCF8E006CDFED /* CoreDataController.swift */; };
 		B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7183063205FB69B000AF92D /* CigarStack.xcdatamodeld */; };
 		B73624B8204DF88700B92801 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73624B7204DF88700B92801 /* SettingsViewController.swift */; };
+		B745A1A620A6AE7E000F2C83 /* EmptyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */; };
 		B75A84252042DAB3008528D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A84242042DAB3008528D8 /* AppDelegate.swift */; };
 		B75A842F2042DAB3008528D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75A842D2042DAB3008528D8 /* LaunchScreen.storyboard */; };
 		B75A843A2042DAB3008528D8 /* CigarStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A84392042DAB3008528D8 /* CigarStackTests.swift */; };
@@ -28,6 +29,7 @@
 		B7658097205293D8004FD39F /* AttributesLicense.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7F57D462052904E0046FCB1 /* AttributesLicense.plist */; };
 		B7790CB720A1DD58003A713E /* circleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7790CB620A1DD58003A713E /* circleView.swift */; };
 		B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75A84282042DAB3008528D8 /* Main.storyboard */; };
+		B798AB3B20A4BB54001753F7 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B798AB3A20A4BB54001753F7 /* SearchTableViewCell.swift */; };
 		B79953F8209A50CD00B2AA4B /* MoveCigarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79953F7209A50CD00B2AA4B /* MoveCigarViewController.swift */; };
 		B79C85EE20A39C70006A719F /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79C85ED20A39C70006A719F /* Search.storyboard */; };
 		B7A13387206BCD110003854B /* NewCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A13386206BCD110003854B /* NewCigar.storyboard */; };
@@ -84,6 +86,7 @@
 		B72A684A205FCF84006CDFED /* AddHumidorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHumidorController.swift; sourceTree = "<group>"; };
 		B72A684D205FCF8E006CDFED /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		B73624B7204DF88700B92801 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewController.swift; sourceTree = "<group>"; };
 		B75A84212042DAB3008528D8 /* CigarStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CigarStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75A84242042DAB3008528D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B75A84302042DAB3008528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +97,7 @@
 		B75A84442042DAB3008528D8 /* CigarStackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarStackUITests.swift; sourceTree = "<group>"; };
 		B75A84462042DAB3008528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7790CB620A1DD58003A713E /* circleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circleView.swift; sourceTree = "<group>"; };
+		B798AB3A20A4BB54001753F7 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B79953F7209A50CD00B2AA4B /* MoveCigarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCigarViewController.swift; sourceTree = "<group>"; };
 		B79C85ED20A39C70006A719F /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		B7A13386206BCD110003854B /* NewCigar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewCigar.storyboard; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				B7A4813520581E34001242F7 /* HomeViewController.swift */,
 				B7A48137205822BC001242F7 /* ContentTableViewController.swift */,
 				B7A4813B20582755001242F7 /* ContentTableViewCell.swift */,
+				B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */,
 				B7790CB620A1DD58003A713E /* circleView.swift */,
 			);
 			name = Home;
@@ -295,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				B7D2BEEB20A38B0500F93515 /* SearchViewController.swift */,
+				B798AB3A20A4BB54001753F7 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -491,7 +497,9 @@
 				B7219C942051836B001096A6 /* UserEngagement.swift in Sources */,
 				B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */,
 				B7D2BEEC20A38B0500F93515 /* SearchViewController.swift in Sources */,
+				B798AB3B20A4BB54001753F7 /* SearchTableViewCell.swift in Sources */,
 				B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */,
+				B745A1A620A6AE7E000F2C83 /* EmptyTableViewController.swift in Sources */,
 				B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */,
 				B7219C97205186C0001096A6 /* UserSettings.swift in Sources */,
 				B7219C9B20518A13001096A6 /* SortViewController.swift in Sources */,

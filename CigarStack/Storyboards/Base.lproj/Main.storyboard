@@ -496,6 +496,8 @@
                         <outlet property="humidorHumidity" destination="ha9-nQ-OuI" id="YRI-cv-bcT"/>
                         <outlet property="humidorName" destination="LQV-lU-Khu" id="fTL-6Z-011"/>
                         <outlet property="humidorValue" destination="6ak-2H-xA6" id="c4u-hB-obX"/>
+                        <outlet property="menuViewControllerContainerView" destination="qpQ-or-I4s" id="Iq2-9i-xq9"/>
+                        <outlet property="moreButton" destination="Wtt-Kd-uxI" id="fzm-Ly-m52"/>
                         <outlet property="scrollView" destination="Ate-3w-gNH" id="2Rp-am-kE6"/>
                         <outlet property="topBar" destination="NgL-yH-Hmw" id="8fs-0W-j2P"/>
                     </connections>

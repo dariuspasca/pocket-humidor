@@ -61,7 +61,13 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         let progressCircle = circleView(frame: CGRect(x: 0, y: 0, width: cell.progress.frame.width, height: cell.progress.frame.height), percent: percentage)
-        cell.quantity.text = String(cigar.quantity)
+        if cigar.quantity > 99 {
+             cell.quantity.text = "+99"
+            cell.quantity.font = cell.quantity.font.withSize(12)
+        }
+        else{
+             cell.quantity.text = String(cigar.quantity)
+        }
         cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.name.text =  cigar.name!
         cell.price.text = cigar.price.asLocalCurrency

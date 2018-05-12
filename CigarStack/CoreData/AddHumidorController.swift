@@ -130,6 +130,7 @@ class AddHumidorController: FormViewController {
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
+        self.view.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -174,7 +175,7 @@ class AddHumidorController: FormViewController {
                 UserSettings.currentHumidor.value = name!
                 UserSettings.shouldReloadView.value = true
             }
-            dismiss(animated: true, completion: nil)
+            cancel(sender)
         }
     }
 

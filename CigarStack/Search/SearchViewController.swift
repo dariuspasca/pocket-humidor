@@ -81,38 +81,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70.0
+        return 80.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ContentTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! SearchTableViewCell
         let cigar = searchResults![indexPath.row]
-        let pastDate = cigar.ageDate!
-        let (years, months) = computeAge(pastDate: pastDate, currentDate: Date())
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale.current
         
-        var percentage = Double(months)/12
-        if years > 0 && months == 0 {
-            percentage = 0.01
+        if cigar.quantity > 99 {
+            cell.cigarNumber.text = "+99"
+        }
+        else{
+            cell.cigarNumber.text = String(cigar.quantity)
         }
         
-        let progressCircle = circleView(frame: CGRect(x: 0, y: 0, width: cell.progress.frame.width, height: cell.progress.frame.height), percent: percentage)
-        cell.quantity.text = String(cigar.quantity)
-        cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
-        cell.name.text =  cigar.name!
-        cell.price.text = cigar.price.asLocalCurrency
-        cell.progress.addSubview(progressCircle)
-        cell.years.text = String(years)
-        cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
+        cell.cigarCountry.image = Flag(countryCode: cigar.origin!)?.image(style: .circle)
+        cell.cigarName.text = cigar.name!
+        cell.cigarCreationDate.text =  dateFormatter.string(from: cigar.creationDate!)
+        cell.cigarHumidor.text = cigar.tray!.humidor!.name!
+        cell.cigarShape.text = cigar.size!
+        
         return cell
     }
-    
-    func computeAge(pastDate: Date,currentDate: Date) -> (years: Int, months: Int) {
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.month, .year], from: pastDate, to: currentDate)
-        let theYears = components.year!
-        let theMonths = components.month!
-        return (theYears, theMonths)
-    }
-
 
 }

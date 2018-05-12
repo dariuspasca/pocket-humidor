@@ -25,9 +25,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     @IBOutlet weak var humidorCigars: UILabel!
     @IBOutlet weak var humidorValue: UILabel!
     
+    @IBOutlet weak var moreButton: UIBarButtonItem!
     
     var menuViewController: PagingMenuViewController?
     var contentViewController: PagingContentViewController?
+    @IBOutlet weak var menuViewControllerContainerView: UIView!
     
     static var sizingCell = TitleLabelMenuViewCell(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
     var dataSource = [(menu: String, content: UIViewController)]()
@@ -47,6 +49,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         
         //Resets sort order to default
         UserSettings.tableSortOrder = TableSortOrder(rawValue: UserSettings.defaultSortOrder.value)!
+        
         menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
         menuViewController?.registerFocusView(view: UnderlineFocusView())
         contentViewController?.scrollView.isScrollEnabled = false
@@ -57,6 +60,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         setupHumidorViewData()
         let firstView = dataSource[0].content as! ContentTableViewController
         firstView.isSelected()
+        }
+        else{
+            topBar.isHidden = true
+            menuViewControllerContainerView.isHidden = true
+            moreButton.isEnabled = false
+            setupMenuViewData()
         }
     }
     
@@ -73,6 +82,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         //Check if there is a humidor
         if UserSettings.currentHumidor.value != "" {
             if UserSettings.shouldReloadView.value{
+                if topBar.isHidden{
+                    UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+                        self.topBar.alpha = 1; self.menuViewControllerContainerView.alpha = 1
+                    }, completion: { _ in
+                        self.topBar.isHidden = false;self.menuViewControllerContainerView.isHidden = false
+                    })
+                }
+                moreButton.isEnabled = true
                 scrollView.contentOffset.y = 0.0
                 fetchHumidorData()
                 setupMenuViewData()
@@ -93,7 +110,18 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
             }
         }
         else{
-            // TO DO
+            contentViewHeight.constant = self.view.frame.height - 144.0
+            UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
+                self.topBar.alpha = 0
+            }, completion: { _ in
+                self.topBar.isHidden = true
+            })
+            menuViewControllerContainerView.isHidden = true
+            moreButton.isEnabled = false
+            setupMenuViewData()
+            contentViewController?.reloadData()
+            menuViewController?.reloadData()
+            UserSettings.shouldReloadView.value = false
         }
     }
     
@@ -109,11 +137,39 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     }
     
     
-    //MARK: - SideMenu
+    //MARK: - Setups
      func setupSideMenu() {
         SideMenuManager.default.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? UISideMenuNavigationController
         SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
         SideMenuManager.default.menuFadeStatusBar = false
+    }
+    
+    func setupHumidorViewData(){
+        humidorName.fadeTransition(1.1)
+        humidorName.text = humidor!.name
+        humidorHumidity.fadeTransition(1.1)
+        humidorHumidity.text = String(humidor!.humidity) + " %"
+        humidorCigars.fadeTransition(1.1)
+        humidorCigars.text = String((humidor!.quantity))
+        humidorValue.fadeTransition(1.1)
+        humidorValue.text = humidor!.value.asLocalCurrency
+    }
+    
+    func setupMenuViewData(){
+        dataSource.removeAll()
+        if UserSettings.currentHumidor.value != ""{
+            for  i in 0...trays.count-1{
+                let vc = UIStoryboard(name: "ContentTableViewController", bundle: nil).instantiateInitialViewController() as! ContentTableViewController
+                vc.tray = trays[i]
+                vc.delegate = self
+                dataSource.append((menu: trays[i].name!, content: vc))
+            }
+        }
+        else{
+            let vc = EmptyTableViewController()
+            vc.superViewHeight = self.view.frame.height
+            dataSource.append((menu: "", content: vc))
+        }
     }
     
     //MARK: - Segue
@@ -144,23 +200,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     func fetchHumidorData(){
         humidor = CoreDataController.sharedInstance.searchHumidor(name: UserSettings.currentHumidor.value)
         trays = (humidor!.trays?.allObjects as! [Tray]).sorted(by: { $0.orderID < $1.orderID })
-    }
-    
-    func setupHumidorViewData(){
-        humidorName.text = humidor!.name
-        humidorHumidity.text = String(humidor!.humidity) + " %"
-        humidorCigars.text = String((humidor!.quantity))
-        humidorValue.text = humidor!.value.asLocalCurrency
-    }
-    
-    func setupMenuViewData(){
-        dataSource.removeAll()
-        for  i in 0...trays.count-1{
-            let vc = UIStoryboard(name: "ContentTableViewController", bundle: nil).instantiateInitialViewController() as! ContentTableViewController
-            vc.tray = trays[i]
-            vc.delegate = self
-            dataSource.append((menu: trays[i].name!, content: vc))
-        }
     }
     
     //MARK: - Sort Alert
@@ -266,6 +305,17 @@ extension HomeViewController: PagingMenuViewControllerDelegate {
 extension HomeViewController: PagingContentViewControllerDelegate {
     func contentViewController(viewController: PagingContentViewController, didManualScrollOn index: Int, percent: CGFloat) {
         menuViewController?.scroll(index: index, percent: percent, animated: false)
+    }
+}
+
+extension UIView {
+    func fadeTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            kCAMediaTimingFunctionEaseInEaseOut)
+        animation.type = kCATransitionFade
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransitionFade)
     }
 }
 

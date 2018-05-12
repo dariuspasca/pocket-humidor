@@ -28,11 +28,15 @@
 /* Side Menu */
 "Your Humidors" = "I Tuoi Humidor";
 
+/* Empty Data Source */
+"You don't have any humidors yet." = "Non hai ancora nessun humidor.";
+"To add a humidor, tap the plus button in the right top corner." = "Per aggiungere un humidor, premmi il bottone più nell'angolo in alto a destra.";
+
 /*Alerts */
 "Humidor already exists!" = "Humidor già presente!";
 "You can't have multiple humidors with the same name." = "Non puoi avere più humidor con lo stesso nome.";
 "No Humidor Available" = "Nessun Humidor Disponibile";
-"To add cigars at least one humidor is required. You can create one by pressing the plus (+) button in the top right corner." = "Per inserire un sigaro e necessario almeno un humidor. Puoi crearne uno premmendo il bottone più (+) nell'angolo in alto a destra.";
+"To add cigars at least one humidor is required. Tap the plus button in the right top corner to add a humidor." = "Per aggiungere sigari e necessario almeno un humidor. Premmi il bottone più nell'angolo in alto a destra per aggiungere un humidor.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Confermi di voler continuare? Verranno eliminati definitivamente tutti i sigari dagli umidificatori selezionati.";
 
 /* Snack Bar */
