@@ -8,8 +8,9 @@
 
 import UIKit
 import FlagKit
+import DZNEmptyDataSet
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -22,6 +23,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("Search", comment: "")
         self.tableView.tableFooterView = UIView()
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -42,7 +45,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-        searchResults = CoreDataController.sharedInstance.searchCigarThatContains(key: searchBar.text!)
+        let results = CoreDataController.sharedInstance.searchCigarThatContains(key: searchBar.text!)
+        searchResults = results?.filter() { $0.gift == nil && $0.review == nil }
         self.tableView.reloadData()
         isSearching = false
         self.searchBar.endEditing(true)
@@ -71,12 +75,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchResults != nil {
-            return searchResults!.count
-        }
-        else{
-            return 0
-        }
+        return searchResults?.count ?? 0
     }
     
     
@@ -94,6 +93,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if cigar.quantity > 99 {
             cell.cigarNumber.text = "+99"
+            cell.cigarNumber.font = cell.cigarNumber.font.withSize(12)
         }
         else{
             cell.cigarNumber.text = String(cigar.quantity)
@@ -106,6 +106,29 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.cigarShape.text = cigar.size!
         
         return cell
+    }
+    
+    // MARK: - DZNEmptyDataSet
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        
+        let attributes =
+            [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20, weight: .light),
+             NSAttributedStringKey.foregroundColor : UIColor.black,
+             NSAttributedStringKey.backgroundColor : UIColor.clear]
+        return NSAttributedString(string: NSLocalizedString("Search Cigars", comment: ""), attributes: attributes)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let attributes =
+            [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .light),
+             NSAttributedStringKey.foregroundColor : UIColor.darkGray,
+             NSAttributedStringKey.backgroundColor : UIColor.clear]
+        return NSAttributedString(string: NSLocalizedString("Search cigars by name, country of origin or size.", comment: ""), attributes: attributes)
+    }
+    
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return  -tableView.frame.height/3
     }
 
 }

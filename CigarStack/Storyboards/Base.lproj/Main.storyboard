@@ -25,6 +25,7 @@
                         <segue destination="cI2-eS-ltG" kind="relationship" relationship="viewControllers" id="KzV-yv-Rh0"/>
                         <segue destination="l49-De-x3v" kind="relationship" relationship="viewControllers" id="V0l-VU-Vlv"/>
                         <segue destination="aVh-Vg-0eM" kind="relationship" relationship="viewControllers" id="yBW-lk-GDD"/>
+                        <segue destination="URx-tx-zUL" kind="relationship" relationship="viewControllers" id="PfQ-gG-Sou"/>
                         <segue destination="9w1-Zr-c3o" kind="relationship" relationship="viewControllers" id="3Jd-Nl-Fwj"/>
                     </connections>
                 </tabBarController>
@@ -42,7 +43,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="4h3-jA-RjB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="" image="Add2" id="WWz-9b-otJ">
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="Add" id="WWz-9b-otJ">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                 </viewController>
@@ -507,6 +508,21 @@
             </objects>
             <point key="canvasLocation" x="-655.07246376811599" y="632.60869565217399"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="BY5-dm-vgf">
+            <objects>
+                <viewController id="Y6g-Jf-1Dz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1aV-OL-JPn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="m7W-gC-luz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YtT-Ue-5bY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-561" y="1609"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rs9-0N-BPl">
             <objects>
@@ -536,9 +552,19 @@
             </objects>
             <point key="canvasLocation" x="-2393" y="1518"/>
         </scene>
+        <!--History-->
+        <scene sceneID="K83-Rc-IQN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="History" id="URx-tx-zUL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="cbr-99-33c"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCE-YJ-Cb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2077" y="1427"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="Add2" width="22" height="22"/>
+        <image name="Add" width="21" height="21"/>
         <image name="Humidor" width="25" height="25"/>
         <image name="Humidor - Filled" width="25" height="25"/>
         <image name="Settings" width="16" height="16"/>

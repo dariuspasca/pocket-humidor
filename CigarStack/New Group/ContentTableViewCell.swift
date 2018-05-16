@@ -17,6 +17,7 @@ class ContentTableViewCell: UITableViewCell {
     @IBOutlet weak var years: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var progress: UIView!
+    @IBOutlet weak var size: UILabel!
     
     
 }

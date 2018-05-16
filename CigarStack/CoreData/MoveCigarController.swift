@@ -21,45 +21,54 @@ class MoveCigarViewController: FormViewController {
     var selectedHumidor = 0
     var quantity: Int32!
     var delegate:moveCigarViewDelegate!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Move", comment: ""),style: .plain, target: self, action: #selector(moveCigar))
         
-        navigationAccessoryView.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        navigationAccessoryView = {
+            let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
+            naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            naview.doneButton.target = self
+            naview.doneButton.action = #selector(dismissKeyboard)
+            return naview
+        }()
+        self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         
-       // self.navigationItem.title =  cigar.name!
+        
+        self.navigationItem.title =  cigar.name!
         quantity = cigar.quantity
         let currentTray = cigar.tray?.name!
         
         populateHumidorsList()
         populateTraysList(humidorName: UserSettings.currentHumidor.value)
-        form +++ Section()
-            <<< SwitchRow("Move all"){
-                $0.title = NSLocalizedString("Move All", comment: "")
-                $0.value = true
-                if quantity == 1 {
-                    $0.hidden = true
-                }
-        }
+        
+        form +++ Section(){
+            if self.cigar.quantity > 1 {
+                $0.hidden = false
+            }
+            else{
+                $0.hidden = true
+            }
+            
+            }
+            
             <<< PickerInputRow<String>("Picker Row") {
                 $0.title = NSLocalizedString("Quantity", comment: "")
                 var options = [String]()
                 for i in 1...Int(quantity){
                     options.append("\(i)")
                 }
-                $0.value = options.first!
+                $0.value = options.last!
                 $0.options = options
-                $0.hidden = .function(["Move all"], { form -> Bool in
-                    let row: RowOf<Bool>! = form.rowBy(tag: "Move all")
-                    return row.value ?? true == true
-                })
-                }.cellSetup { cell, row in cell.tintColor = UIColor.black }.cellUpdate { cell, row in
+
+                }.cellUpdate { cell, row in
                     self.quantity = Int32(row.value!)
             }
-        
-            +++ Section(NSLocalizedString("Humidors", comment: ""))
+            
+            
+            +++ Section()
             
             <<< PushRow<String>(NSLocalizedString("Move to", comment: "")){
                 $0.title = $0.tag
@@ -71,18 +80,20 @@ class MoveCigarViewController: FormViewController {
                         to.navigationController?.navigationBar.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
                     }
                 }.onChange{[weak self] row in
+                    row.deselect()
                     if let index = self?.humidorsList.index(where: {$0 == row.value }){
                         self?.populateTraysList(humidorName: (self?.humidorsList[index])!)
                         self?.selectedHumidor = index
+                        row.updateCell()
                         self?.updateSection()
                     }
-                }
-        
-        
+            }
+            
+            
             +++ SelectableSection<ListCheckRow<String>>(NSLocalizedString("Dividers", comment: ""), selectionType: .singleSelection(enableDeselection: false ))
-                var flag = false
-                for tray in traysList {
-                form.last! <<< ListCheckRow<String>(tray){ listRow in
+        var flag = false
+        for tray in traysList {
+            form.last! <<< ListCheckRow<String>(tray){ listRow in
                 listRow.title = tray
                 listRow.selectableValue = tray
                 if selectedHumidor == 0 {
@@ -107,17 +118,26 @@ class MoveCigarViewController: FormViewController {
                         listRow.value = nil
                     }
                 }
-                    }.cellSetup { cell, row in cell.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1) }
+                }.cellSetup { cell, row in cell.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1) }
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if UserSettings.currentHumidor.value == humidorsList[selectedHumidor]{
+            if cigar.tray?.humidor?.trays?.count == 1 {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+            else{
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            }
+        }
+        else{
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
     
-
+    
     func populateHumidorsList(){
         let humidors = CoreDataController.sharedInstance.fetchHumidors()
         if !humidors!.isEmpty {
@@ -179,6 +199,10 @@ class MoveCigarViewController: FormViewController {
         form.last!.reload()
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @objc func moveCigar(){
         let selectedTray = (form.last! as! SelectableSection<ListCheckRow<String>>).selectedRow()!.value!
         let humidor = CoreDataController.sharedInstance.searchHumidor(name: humidorsList[selectedHumidor])
@@ -187,7 +211,7 @@ class MoveCigarViewController: FormViewController {
         dismiss(animated: true, completion: nil)
         
     }
-
+    
     @objc func cancel(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }

@@ -53,7 +53,7 @@ class EmptyTableViewController: UITableViewController, DZNEmptyDataSetSource, DZ
             [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .light),
              NSAttributedStringKey.foregroundColor : UIColor.darkGray,
              NSAttributedStringKey.backgroundColor : UIColor.clear]
-        return NSAttributedString(string: NSLocalizedString("To add a humidor, tap the plus button in the right top corner.", comment: ""), attributes: attributes)
+        return NSAttributedString(string: NSLocalizedString("To add a humidor, tap the + button in the right top corner.", comment: ""), attributes: attributes)
     }
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {

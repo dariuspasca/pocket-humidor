@@ -73,16 +73,16 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="18"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oq-Cf-gyF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="18"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="18"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="26" id="cEL-52-TvX"/>
+                                                                        <constraint firstAttribute="width" constant="25" id="cEL-52-TvX"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucK-zp-IsQ">
-                                                                    <rect key="frame" x="32" y="0.0" width="12" height="18"/>
+                                                                    <rect key="frame" x="31" y="0.0" width="12" height="18"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="1IU-ph-Gh8">
                                                                             <rect key="frame" x="0.0" y="2.5" width="12" height="12"/>
@@ -100,7 +100,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CigarName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npv-Iz-kEf">
-                                                                    <rect key="frame" x="50" y="0.0" width="179" height="18"/>
+                                                                    <rect key="frame" x="49" y="0.0" width="180" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -123,17 +123,17 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="R3y-jT-ypi" userLabel="Location">
                                                             <rect key="frame" x="0.0" y="23" width="355" height="36.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmA-Wd-I2P">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="13" height="36.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="·" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmA-Wd-I2P">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="36.5"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="13" id="WTU-yv-di0"/>
+                                                                        <constraint firstAttribute="width" constant="31" id="WTU-yv-di0"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
+                                                                    <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lu-XK-H1u">
-                                                                    <rect key="frame" x="14" y="0.0" width="220" height="36.5"/>
+                                                                    <rect key="frame" x="32" y="0.0" width="202" height="36.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.42655369639396667" green="0.47584608197212219" blue="0.48026475310325623" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -264,8 +264,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Search" width="26" height="26"/>
-        <image name="Search - Filled" width="25" height="25"/>
+        <image name="Search" width="21" height="22"/>
+        <image name="Search - Filled" width="21" height="22"/>
         <image name="plus" width="50" height="50"/>
     </resources>
     <color key="tintColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

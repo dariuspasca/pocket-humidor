@@ -28,7 +28,7 @@ class AddHumidorController: FormViewController {
             let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
             naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
             naview.doneButton.target = self
-            naview.doneButton.action = "navigationDone:"
+            naview.doneButton.action = #selector(dismisskeyboard)
             return naview
         }()
         
@@ -120,6 +120,10 @@ class AddHumidorController: FormViewController {
             dismissKeyboard = true
         }
         
+    }
+    
+    @objc func dismisskeyboard() {
+        view.endEditing(true)
     }
     
     //MARK: -Keyboard

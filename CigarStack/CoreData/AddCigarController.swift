@@ -40,7 +40,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
             naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
             naview.doneButton.target = self
-            naview.doneButton.action = "navigationDone:"
+            naview.doneButton.action = #selector(dismisskeyboard)
             return naview
         }()
  
@@ -66,7 +66,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                     else{
                         self.saveButton.isEnabled = false
                     }
-                    
                 }
             
             <<< PushRow<String>("Size"){
@@ -107,7 +106,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             
             <<< DecimalRow("Price"){
                 $0.useFormatterDuringInput = true
-                $0.title = NSLocalizedString("Price", comment: "")
+                $0.title = NSLocalizedString("Total Price", comment: "")
                 let formatter = CurrencyFormatter()
                 formatter.locale = NSLocale.current
                 formatter.numberStyle = NumberFormatter.Style.currency
@@ -148,7 +147,8 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             <<< SwitchRow("Has been aged"){
                 $0.title = NSLocalizedString("Has been aged", comment: "")
                 $0.value = true
-        }
+                }
+            
             <<< DateInlineRow("Since"){
                 $0.title = NSLocalizedString("Since", comment: "")
                 $0.maximumDate = Date()
@@ -250,6 +250,10 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         	dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismisskeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {

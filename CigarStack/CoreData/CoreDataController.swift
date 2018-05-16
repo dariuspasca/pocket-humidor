@@ -185,7 +185,6 @@ class CoreDataController {
         return nil
     }
     
-    
     func fetchHumidors() -> [Humidor]? {
         var humidors: [Humidor]?
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Humidor")
@@ -210,6 +209,26 @@ class CoreDataController {
             
         }
         return nil
+    }
+    
+    func updateCigar(cigar: Cigar,gift: Gift?, review: Review?){
+        cigar.gift = gift
+        cigar.review = review
+        
+        self.saveContext()
+    }
+    
+    func createGift(to: String,notes: String?) -> Gift{
+        let entityGift = NSEntityDescription.entity(forEntityName: "Gift", in: self.context)
+        let newGift = Gift (entity: entityGift!, insertInto: context)
+        
+        newGift.to = to
+        newGift.notes = notes
+        newGift.giftDate = Date()
+        
+        self.saveContext()
+        return newGift
+        
     }
     
      /* Save Context */

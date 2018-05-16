@@ -13,16 +13,17 @@ import TTGSnackbar
 protocol ContainerTableDelegate {
     func dataChanged(height: CGFloat)
     func updateData(container: Tray)
-    func deleteDelegate()
+    func updateHumidorView()
 }
 
-class ContentTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, moveCigarViewDelegate {
+class ContentTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, moveCigarViewDelegate, giftCigarViewDelegate, smokeCigarViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var delegate: ContainerTableDelegate?
     var tray: Tray!
     var cigars: [Cigar]?
-    var cigarToMoveIndex: IndexPath?
+    var cigarIndex: IndexPath?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.name.text =  cigar.name!
         cell.price.text = cigar.price.asLocalCurrency
+        cell.size.text = cigar.size!
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
         cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
@@ -115,14 +117,15 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     //Right
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
-       // let moveAction = self.contextualMoveAction(forRowAtIndexPath: indexPath)
-        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        let smokeAction = self.contextualSmokeAction(forRowAtIndexPath: indexPath)
+        let giftAction = self.contextualGiftAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction, smokeAction, giftAction])
         return swipeConfig
     }
     
     //Left
      func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if CoreDataController.sharedInstance.countHumidors() > 1 {
+        if CoreDataController.sharedInstance.countHumidors() > 1 || (tray.humidor?.trays?.count)! > 1{
             let moveAction = self.contextualMoveAction(forRowAtIndexPath: indexPath)
             let swipeConfig = UISwipeActionsConfiguration(actions: [moveAction])
             return swipeConfig
@@ -130,6 +133,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         else{
             return nil
         }
+        
     }
 
     func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
@@ -174,33 +178,87 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (delete == true) {
                     CoreDataController.sharedInstance.deleteCigar(cigar: tempCigar)
-                    self.delegate?.deleteDelegate()
+                    self.delegate?.updateHumidorView()
                 }
             }
             
             completionHandler(true)
         }
-        action.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+
+        action.backgroundColor = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1)
         return action
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "moveCigarIdentifier"{
-            let destinationNavigationController = segue.destination as! UINavigationController
-            
-            let vc = destinationNavigationController.topViewController as! MoveCigarViewController
-            vc.cigar = self.cigars![cigarToMoveIndex!.row]
-            vc.delegate = self
+    func contextualGiftAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal,
+                                        title: NSLocalizedString("Gift", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                                            
+                                            /* Prepare the selected cigar to be sent to the segue */
+                                            self.cigarIndex = indexPath
+                                            let vc = GiftCigarController()
+                                            vc.cigar = self.cigars![indexPath.row]
+                                            vc.delegate = self
+                                            
+                                            let navigationController = UINavigationController(rootViewController: vc)
+                                            navigationController.navigationBar.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+                                            
+                                            navigationController.modalPresentationStyle = .formSheet
+                                            navigationController.modalTransitionStyle = .coverVertical
+
+                                            
+                                            self.present(navigationController, animated: true, completion: nil)
+                                            completionHandler(true)
         }
+        
+        action.backgroundColor = UIColor(red: 255/255, green: 108/255, blue: 136/255, alpha: 1)
+        
+        return action
     }
+    
+    func contextualSmokeAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal,
+                                        title: NSLocalizedString("Smoke", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                                            
+                                            /* Prepare the selected cigar to be sent to the segue */
+                                            self.cigarIndex = indexPath
+                                            let vc = SmokeCigarController()
+                                            vc.cigar = self.cigars![indexPath.row]
+                                            vc.delegate = self
+                                            
+                                            let navigationController = UINavigationController(rootViewController: vc)
+                                            navigationController.navigationBar.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+                                            
+                                            navigationController.modalPresentationStyle = .formSheet
+                                            navigationController.modalTransitionStyle = .coverVertical
+                                            
+                                            
+                                            self.present(navigationController, animated: true, completion: nil)
+                                            completionHandler(true)
+        }
+        
+        action.backgroundColor = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1)
+        
+        return action
+    }
+    
     
     func contextualMoveAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal,
                                         title: NSLocalizedString("Move", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                                             
                                             /* Prepare the selected cigar to be sent to the segue */
-                                            self.cigarToMoveIndex = indexPath
-                                            self.performSegue(withIdentifier: "moveCigarIdentifier", sender: self)
+                                            self.cigarIndex = indexPath
+                                            let vc = MoveCigarViewController()
+                                            vc.cigar = self.cigars![self.cigarIndex!.row]
+                                            vc.delegate = self
+                                            
+                                            let navigationController = UINavigationController(rootViewController: vc)
+                                            navigationController.navigationBar.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+                                            
+                                            navigationController.modalPresentationStyle = .formSheet
+                                            navigationController.modalTransitionStyle = .coverVertical
+                                            
+                                            self.present(navigationController, animated: true, completion: nil)
                                             completionHandler(true)
         }
         
@@ -210,21 +268,21 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func moveCigarDelegate(toTray: Tray, quantity: Int32) {
-        if cigarToMoveIndex != nil{
+        if cigarIndex != nil{
             var move = true
             /* Better implementation using .copy */
-            let cigarToMove = cigars![cigarToMoveIndex!.row]
+            let cigarToMove = cigars![cigarIndex!.row]
             let initialQuantity = cigarToMove.quantity
-            let initialPRice = cigarToMove.price
+            let initialPrice = cigarToMove.price
             self.tableView.beginUpdates()
             if cigarToMove.quantity == quantity {
-                self.cigars!.remove(at: cigarToMoveIndex!.row)
-                self.tableView.deleteRows(at:[cigarToMoveIndex!], with: .none)
+                self.cigars!.remove(at: cigarIndex!.row)
+                self.tableView.deleteRows(at:[cigarIndex!], with: .none)
             }
             else{
-                cigars![cigarToMoveIndex!.row].price = cigarToMove.price - (Double(quantity)*(cigarToMove.price/Double(initialQuantity)))
-                cigars![cigarToMoveIndex!.row].quantity = initialQuantity - quantity
-                self.tableView.reloadRows(at: [cigarToMoveIndex!], with: .none)
+                cigars![cigarIndex!.row].price = cigarToMove.price - (Double(quantity)*(cigarToMove.price/Double(initialQuantity)))
+                cigars![cigarIndex!.row].quantity = initialQuantity - quantity
+                self.tableView.reloadRows(at: [cigarIndex!], with: .none)
             }
             self.tableView.endUpdates()
             self.isSelected()
@@ -236,12 +294,13 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                         /* Undo button action*/
                                         self.tableView.beginUpdates()
                                         if initialQuantity == quantity{
-                                            self.cigars!.insert(cigarToMove, at: self.cigarToMoveIndex!.row)
-                                            self.tableView.insertRows(at: [self.cigarToMoveIndex!], with: .right)
+                                            self.cigars!.insert(cigarToMove, at: self.cigarIndex!.row)
+                                            self.tableView.insertRows(at: [self.cigarIndex!], with: .right)
                                         }
                                         else{
-                                            self.cigars![self.cigarToMoveIndex!.row].quantity = cigarToMove.quantity
-                                            self.tableView.reloadRows(at: [self.cigarToMoveIndex!], with: .none)
+                                            self.cigars![self.cigarIndex!.row].quantity = initialQuantity
+                                            self.cigars![self.cigarIndex!.row].price = initialPrice
+                                            self.tableView.reloadRows(at: [self.cigarIndex!], with: .none)
                                         }
                                         self.tableView.endUpdates()
                                         self.isSelected()
@@ -261,7 +320,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                     }
                     else{
                         cigarToMove.quantity = initialQuantity
-                        cigarToMove.price = initialPRice
+                        cigarToMove.price = initialPrice
                         
                         //Create copy of original cigar than update the quantity
                         let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: toTray, name: cigarToMove.name!, origin: cigarToMove.origin!, quantity: initialQuantity, size: cigarToMove.size!, purchaseDate: cigarToMove.purchaseDate, from: cigarToMove.from, price: cigarToMove.price, ageDate: cigarToMove.ageDate, image: cigarToMove.image, notes: cigarToMove.notes)
@@ -275,10 +334,86 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    func giftCigarDelegate(to: String, notes: String?, quantity: Int32){
+        if cigarIndex != nil{
+            var gift = true
+            /* Better implementation using .copy */
+            let cigarToGift = cigars![cigarIndex!.row]
+            let initialQuantity = cigars![cigarIndex!.row].quantity
+            let initialPrice = cigarToGift.price
+            self.tableView.beginUpdates()
+            if cigarToGift.quantity == quantity {
+                self.cigars!.remove(at: cigarIndex!.row)
+                self.tableView.deleteRows(at:[cigarIndex!], with: .none)
+            }
+            else{
+                cigars![cigarIndex!.row].price = cigarToGift.price - (Double(quantity)*(cigarToGift.price/Double(initialQuantity)))
+                cigars![cigarIndex!.row].quantity = initialQuantity - quantity
+                self.tableView.reloadRows(at: [cigarIndex!], with: .none)
+            }
+            self.tableView.endUpdates()
+            self.isSelected()
+            
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar gifted", comment: ""),
+                                       duration: .short,
+                                       actionText: NSLocalizedString("Undo", comment: ""),
+                                       actionBlock: { (snackbar) in
+                                        /* Undo button action*/
+                                        self.tableView.beginUpdates()
+                                        if initialQuantity == quantity{
+                                            self.cigars!.insert(cigarToGift, at: self.cigarIndex!.row)
+                                            self.tableView.insertRows(at: [self.cigarIndex!], with: .right)
+                                        }
+                                        else{
+                                            self.cigars![self.cigarIndex!.row].quantity = initialQuantity
+                                            self.cigars![self.cigarIndex!.row].price = initialPrice
+                                            self.tableView.reloadRows(at: [self.cigarIndex!], with: .none)
+                                        }
+                                        self.tableView.endUpdates()
+                                        self.isSelected()
+                                        /* Set delete to false thus the context won't be changed */
+                                        gift = false
+            })
+            snackbar.backgroundColor = UIColor.darkGray
+            snackbar.show()
+            
+            /* Action after dismiss of undo view
+             Removes the item from context if user hasn't selected otherwise
+             */
+            snackbar.dismissBlock = {
+                (snackbar: TTGSnackbar) -> Void in if (gift == true) {
+                    let gift = CoreDataController.sharedInstance.createGift(to: to, notes: notes)
+                    if initialQuantity == quantity {
+                        CoreDataController.sharedInstance.updateCigar(cigar: cigarToGift, gift: gift, review: nil)
+                        CoreDataController.sharedInstance.updateHumidorValues(tray: cigarToGift.tray!, quantity: cigarToGift.quantity, value: cigarToGift.price, add: false)
+                    }
+                    else{
+                        cigarToGift.quantity = initialQuantity
+                        cigarToGift.price = initialPrice
+                        
+                        //Create copy of original cigar than update the quantity
+                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: cigarToGift.tray!, name: cigarToGift.name!, origin: cigarToGift.origin!, quantity: quantity, size: cigarToGift.size!, purchaseDate: cigarToGift.purchaseDate, from: cigarToGift.from, price: (Double(quantity)*(cigarToGift.price/Double(cigarToGift.quantity))), ageDate: cigarToGift.ageDate, image: cigarToGift.image, notes: cigarToGift.notes)
+                        
+                        CoreDataController.sharedInstance.updateCigarQuantity(cigar: cigarToGift, quantity: quantity, add: false)
+                        CoreDataController.sharedInstance.updateHumidorValues(tray: newCigar.tray!, quantity: newCigar.quantity, value: newCigar.price, add: false)
+                        
+                        CoreDataController.sharedInstance.updateCigar(cigar: newCigar, gift: gift, review: nil)
+                    }
+                    self.delegate?.updateHumidorView()
+                }
+            }
+    }
+    }
+    
+    func smokeCigarDelegate(){
+        print("smoke delegate")
+    }
+    
     // MARK: - Data
     
     func fetchData(){
-        cigars = tray.cigars?.allObjects as? [Cigar]
+        let unfilteredCigars = tray.cigars?.allObjects as? [Cigar]
+        cigars = unfilteredCigars?.filter() { $0.gift == nil && $0.review == nil }
     }
     
     func sortData(ascending: Bool)-> [Cigar]{

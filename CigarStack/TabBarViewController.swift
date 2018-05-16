@@ -20,16 +20,17 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         if item.tag == 1 {
             if UserSettings.currentHumidor.value != ""{
                 let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
+                destVC.modalPresentationStyle = .formSheet
+                destVC.modalTransitionStyle = .coverVertical
+                
                 if UIDevice.current.userInterfaceIdiom == .pad{
-                    destVC.modalPresentationStyle = .formSheet
-                    destVC.modalTransitionStyle = .coverVertical
                     destVC.preferredContentSize = CGSize(width: 500, height: 700)
                 }
                 present(destVC, animated: true, completion: nil)
             }
             else{
                 // create the alert
-                let alert = UIAlertController(title: NSLocalizedString("No Humidor Available", comment: ""), message: NSLocalizedString("To add cigars at least one humidor is required. Tap the plus button in the right top corner to add a humidor.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: NSLocalizedString("No Humidor Available", comment: ""), message: NSLocalizedString("To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

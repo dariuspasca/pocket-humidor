@@ -6,7 +6,7 @@
   Copyright © 2018 Darius Pasca. All rights reserved.
 */
 
-/* Common Words */
+/* Various Words */
 "OK" = "OK";
 "Cancel" = "Annulla";
 "Delete" = "Elimina";
@@ -17,6 +17,7 @@
 "Name" = "Nome";
 "Quantity" = "Quantità";
 "Price" = "Prezzo";
+"Total Price" = "Prezzo Totale";
 "Country" = "Paese";
 "Age" = "Età";
 "Years" = "Anni";
@@ -24,23 +25,28 @@
 "Size" = "Formato";
 "Search" = "Cerca";
 "Sort by" = "Ordina per";
+"Gift" = "Regala";
+"Gift to:" = "Regala a:";
+"Smoke" = "Fuma";
 
 /* Side Menu */
 "Your Humidors" = "I Tuoi Humidor";
 
 /* Empty Data Source */
 "You don't have any humidors yet." = "Non hai ancora nessun humidor.";
-"To add a humidor, tap the plus button in the right top corner." = "Per aggiungere un humidor, premmi il bottone più nell'angolo in alto a destra.";
+"To add a humidor, tap the + button in the right top corner." = "Per aggiungere un humidor, premmi il bottone + nell'angolo in alto a destra.";
 
 /*Alerts */
 "Humidor already exists!" = "Humidor già presente!";
 "You can't have multiple humidors with the same name." = "Non puoi avere più humidor con lo stesso nome.";
 "No Humidor Available" = "Nessun Humidor Disponibile";
-"To add cigars at least one humidor is required. Tap the plus button in the right top corner to add a humidor." = "Per aggiungere sigari e necessario almeno un humidor. Premmi il bottone più nell'angolo in alto a destra per aggiungere un humidor.";
+"To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor." = "Per aggiungere sigari e necessario almeno un humidor. Premmi il bottone + nell'angolo in alto a destra per aggiungere un humidor.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Confermi di voler continuare? Verranno eliminati definitivamente tutti i sigari dagli umidificatori selezionati.";
 
 /* Snack Bar */
 "Cigar deleted" = "Sigaro eliminato";
+"Cigar moved" = "Sigaro spostato";
+"Cigar regalato" = "Cigar regalato";
 "Undo" = "Annulla";
 
 /* Move Cigar */

@@ -60,6 +60,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
             menuViewControllerContainerView.isHidden = true
             moreButton.isEnabled = false
         }
+        else{
+            UserSettings.shouldReloadView.value = true
+        }
         
     }
     
@@ -169,10 +172,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     
     func setupHumidorViewData(withAnimation: Bool){
         if withAnimation{
-            humidorName.fadeTransition(1.1)
-            humidorHumidity.fadeTransition(1.1)
-            humidorCigars.fadeTransition(1.1)
-            humidorValue.fadeTransition(1.1)
+            humidorName.fadeTransition(0.5)
+            humidorHumidity.fadeTransition(0.5)
+            humidorCigars.fadeTransition(0.5)
+            humidorValue.fadeTransition(0.5)
         }
         humidorName.text = humidor!.name
         humidorHumidity.text = String(humidor!.humidity) + " %"
@@ -281,8 +284,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         }
     }
     
-    func deleteDelegate() {
-        fetchHumidorData()
+    func updateHumidorView() {
+        //fetchHumidorData()
         setupHumidorViewData(withAnimation: true)
     }
     
