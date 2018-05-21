@@ -18,6 +18,7 @@ protocol ContainerTableDelegate {
 
 class ContentTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, moveCigarViewDelegate, giftCigarViewDelegate, smokeCigarViewDelegate {
     
+    
     @IBOutlet weak var tableView: UITableView!
     var delegate: ContainerTableDelegate?
     var tray: Tray!
@@ -33,6 +34,10 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.tableFooterView = UIView()
         self.tableView.estimatedRowHeight = 70.0
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tableView.setEditing(false, animated: false)
     }
     
     func isSelected(){
@@ -181,7 +186,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                     self.delegate?.updateHumidorView()
                 }
             }
-            
+            self.tableView.setEditing(false, animated: true)
             completionHandler(true)
         }
 
@@ -207,6 +212,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
 
                                             
                                             self.present(navigationController, animated: true, completion: nil)
+                                            self.tableView.setEditing(false, animated: true)
                                             completionHandler(true)
         }
         
@@ -233,6 +239,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                             
                                             
                                             self.present(navigationController, animated: true, completion: nil)
+                                            self.tableView.setEditing(false, animated: true)
                                             completionHandler(true)
         }
         
@@ -259,11 +266,11 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                             navigationController.modalTransitionStyle = .coverVertical
                                             
                                             self.present(navigationController, animated: true, completion: nil)
+                                            self.tableView.setEditing(false, animated: true)
                                             completionHandler(true)
         }
         
         action.backgroundColor = UIColor(red: 49/255, green: 130/255, blue: 217/255, alpha: 1)
-        
         return action
     }
     
@@ -339,7 +346,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             var gift = true
             /* Better implementation using .copy */
             let cigarToGift = cigars![cigarIndex!.row]
-            let initialQuantity = cigars![cigarIndex!.row].quantity
+            let initialQuantity = cigarToGift.quantity
             let initialPrice = cigarToGift.price
             self.tableView.beginUpdates()
             if cigarToGift.quantity == quantity {
@@ -405,8 +412,75 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     }
     
-    func smokeCigarDelegate(){
-        print("smoke delegate")
+    func smokeCigarDelegate(quantity: Int32, review: [String : Int16], notes: String?) {
+        if cigarIndex != nil{
+            var gift = true
+            /* Better implementation using .copy */
+            let cigarToSmoke = cigars![cigarIndex!.row]
+            let initialQuantity = cigarToSmoke.quantity
+            let initialPrice = cigarToSmoke.price
+            self.tableView.beginUpdates()
+            if cigarToSmoke.quantity == quantity {
+                self.cigars!.remove(at: cigarIndex!.row)
+                self.tableView.deleteRows(at:[cigarIndex!], with: .none)
+            }
+            else{
+                cigars![cigarIndex!.row].price = cigarToSmoke.price - (Double(quantity)*(cigarToSmoke.price/Double(initialQuantity)))
+                cigars![cigarIndex!.row].quantity = initialQuantity - quantity
+                self.tableView.reloadRows(at: [cigarIndex!], with: .none)
+            }
+            self.tableView.endUpdates()
+            self.isSelected()
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar smoked", comment: ""),
+                                       duration: .short,
+                                       actionText: NSLocalizedString("Undo", comment: ""),
+                                       actionBlock: { (snackbar) in
+                                        /* Undo button action*/
+                                        self.tableView.beginUpdates()
+                                        if initialQuantity == quantity{
+                                            self.cigars!.insert(cigarToSmoke, at: self.cigarIndex!.row)
+                                            self.tableView.insertRows(at: [self.cigarIndex!], with: .right)
+                                        }
+                                        else{
+                                            self.cigars![self.cigarIndex!.row].quantity = initialQuantity
+                                            self.cigars![self.cigarIndex!.row].price = initialPrice
+                                            self.tableView.reloadRows(at: [self.cigarIndex!], with: .none)
+                                        }
+                                        self.tableView.endUpdates()
+                                        self.isSelected()
+                                        /* Set delete to false thus the context won't be changed */
+                                        gift = false
+            })
+            snackbar.backgroundColor = UIColor.darkGray
+            snackbar.show()
+            
+            /* Action after dismiss of undo view
+             Removes the item from context if user hasn't selected otherwise
+             */
+            snackbar.dismissBlock = {
+                (snackbar: TTGSnackbar) -> Void in if (gift == true) {
+                    let review = CoreDataController.sharedInstance.createReview(score: review["score"]!, appearance: review["appearance"]!, flavour: review["flavor"]!, ash: review["ash"]!, draw: review["draw"]!, texture: review["texture"]!, strength: review["strength"]!, notes: notes)
+                    
+                    if initialQuantity == quantity {
+                        CoreDataController.sharedInstance.updateCigar(cigar: cigarToSmoke, gift: nil, review: review)
+                        CoreDataController.sharedInstance.updateHumidorValues(tray: cigarToSmoke.tray!, quantity: cigarToSmoke.quantity, value: cigarToSmoke.price, add: false)
+                    }
+                    else{
+                        cigarToSmoke.quantity = initialQuantity
+                        cigarToSmoke.price = initialPrice
+                        
+                        //Create copy of original cigar than update the quantity
+                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: cigarToSmoke.tray!, name: cigarToSmoke.name!, origin: cigarToSmoke.origin!, quantity: quantity, size: cigarToSmoke.size!, purchaseDate: cigarToSmoke.purchaseDate, from: cigarToSmoke.from, price: (Double(quantity)*(cigarToSmoke.price/Double(cigarToSmoke.quantity))), ageDate: cigarToSmoke.ageDate, image: cigarToSmoke.image, notes: cigarToSmoke.notes)
+                        
+                        CoreDataController.sharedInstance.updateCigarQuantity(cigar: cigarToSmoke, quantity: quantity, add: false)
+                        CoreDataController.sharedInstance.updateHumidorValues(tray: newCigar.tray!, quantity: newCigar.quantity, value: newCigar.price, add: false)
+                        
+                        CoreDataController.sharedInstance.updateCigar(cigar: newCigar, gift: nil, review: review)
+                    }
+                    self.delegate?.updateHumidorView()
+                }
+            }
+        }
     }
     
     // MARK: - Data

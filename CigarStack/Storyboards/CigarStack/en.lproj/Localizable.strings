@@ -39,6 +39,7 @@
 /*Alerts */
 "Humidor already exists!" = "Humidor already exists!";
 "You can't have multiple humidors with the same name." = "You can't have multiple humidors with the same name.";
+"No Humidor Available" = "No Humidor Available";
 "To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor." = "To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Are you sure you want to continue? This will permanently delete all cigars from selected humidors.";
 
@@ -74,6 +75,46 @@
 "Since" = "Since";
 "Photo" = "Photo";
 "Location" = "Location";
+
+/* Cigar Review */
+"How would you rate it?" = "How would you rate it?";
+"Bad" = "Bad";
+"Poor" = "Poor";
+"Average" = "Average";
+"Good" = "Good";
+"Very Good" = "Very Good";
+"Excellent" = "Excellent";
+
+"Appearance" = "Appearance";
+"Veins" = "Veins";
+"Not Uniform" = "Not Uniform";
+"Uniform" = "Uniform";
+"Perfect" = "Perfect";
+
+"Texture" = "Texture";
+"Crumbly" = "Crumbly";
+"Dry" = "Dry";
+"Spongy" = "Spongy";
+
+"Draw" = "Draw";
+"Tight" = "Tight";
+"Hard" = "Hard";
+"Normal" = "Normal";
+
+"Ash" = "Ash";
+"Britlte" = "Brittle";
+"Compact" = "Compact";
+"Solid" = "Solid";
+
+"Strength" = "Strength";
+"Light" = "Light";
+"Medium" = "Medium";
+"Med-Full" = "Med-Full";
+"Full" = "Full";
+
+"Flavor" = "Flavor";
+
+"Additional notes" = "Additional notes";
 
 /* Settings Storyboard */
 

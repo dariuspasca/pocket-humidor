@@ -76,6 +76,46 @@
 "Photo" = "Foto";
 "Location" = "Posizione";
 
+/* Cigar Review */
+"How would you rate it?" = "Come lo valuteresti?";
+"Bad" = "Cattivo";
+"Poor" = "Scadente";
+"Average" = "Medio";
+"Good" = "Buono";
+"Very Good" = "Molto Buono";
+"Excellent" = "Eccezzionale";
+
+"Appearance" = "Aspetto";
+"Veins" = "Venature";
+"Not Uniform" = "Non Unif.";
+"Uniform" = "Uniforme";
+"Perfect" = "Perfetto";
+
+"Texture" = "Tatto";
+"Crumbly" = "Friabile";
+"Dry" = "Secco";
+"Spongy" = "Morbido";
+
+"Draw" = "Tiraggio";
+"Tight" = "Faticoso";
+"Hard" = "Eccessivo";
+"Normal" = "Normale";
+
+"Ash" = "Cenere";
+"Britlte" = "Friabile";
+"Compact" = "Compatta";
+"Solid" = "Solida";
+
+"Strength" = "Forza";
+"Light" = "Leggero";
+"Medium" = "Medio";
+"Med-Full" = "Med-Forte";
+"Full" = "Forte";
+
+"Flavor" = "Aroma";
+
+"Additional notes" = "Note aggiuntive";
+
 /* Settings Storyboard */
 
 "Send Feedback?" = "Invia Suggerimenti?";

@@ -198,7 +198,19 @@ class CoreDataController {
         return humidors
     }
     
-    
+    func fetchCigarHistory() -> [Cigar]?{
+        var cigars: [Cigar]?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cigar")
+        request.predicate = NSPredicate(format: "gift != nil OR review != nil")
+        
+        do {
+            cigars = try context.fetch(request) as? [Cigar]
+        } catch let error {
+            let fetchError = error as NSError
+            print(fetchError)        }
+        
+        return cigars
+    }
     
     func searchTray(humidor: Humidor, searchTray: String) -> Tray? {
         let traysArray = humidor.trays?.allObjects as! [Tray]
@@ -229,6 +241,23 @@ class CoreDataController {
         self.saveContext()
         return newGift
         
+    }
+    
+    func createReview(score: Int16, appearance: Int16, flavour: Int16, ash: Int16, draw: Int16, texture: Int16, strength: Int16, notes: String?) -> Review{
+        let entityReview = NSEntityDescription.entity(forEntityName: "Review", in: self.context)
+        let newReview = Review (entity: entityReview!, insertInto: context)
+        
+        newReview.score = score
+        newReview.appearance = appearance
+        newReview.flavour = flavour
+        newReview.ash = ash
+        newReview.draw = draw
+        newReview.texture = texture
+        newReview.strength = strength
+        newReview.notes = notes
+        newReview.reviewDate = Date()
+        
+        return newReview
     }
     
      /* Save Context */
