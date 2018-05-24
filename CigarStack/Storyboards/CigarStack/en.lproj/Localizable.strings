@@ -116,6 +116,16 @@
 
 "Additional notes" = "Additional notes";
 
+/* Search */
+"Search Cigars" = "Search Cigars";
+"Search cigars by name, country of origin or size." = "Search cigars by name, country of origin or size.";
+"No results for" = "No results for";
+
+/* History */
+"Gifted to" = "Gifted to";
+"Rating" = "Rating";
+
+
 /* Settings Storyboard */
 
 "Send Feedback?" = "Send Feedback?";

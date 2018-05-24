@@ -182,7 +182,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
              */
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (delete == true) {
-                    CoreDataController.sharedInstance.deleteCigar(cigar: tempCigar)
+                    CoreDataController.sharedInstance.deleteCigar(cigar: tempCigar, withUpdate: true)
                     self.delegate?.updateHumidorView()
                 }
             }

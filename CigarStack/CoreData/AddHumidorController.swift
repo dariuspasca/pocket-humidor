@@ -71,19 +71,8 @@ class AddHumidorController: FormViewController {
                 }.cellSetup({ (cell, row) in
                     cell.height = ({return 80})
                 })
+            
             +++ Section()
-            /*
-            <<< TextAreaRow("Notes"){
-                $0.placeholder = NSLocalizedString("Notes", comment: "")
-                }.cellSetup({ (cell, row) in
-                    cell.height = ({return 90})
-                }).cellUpdate { cell, row in
-                    if self.navigationAccessoryIsHidden{
-                        self.navigationAccessoryIsHidden = false
-                    }
-                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
-            }
-        */
 
             +++ MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete,],
                            header: NSLocalizedString("Dividers", comment: ""),

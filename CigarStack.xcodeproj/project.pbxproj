@@ -40,6 +40,7 @@
 		B7A48138205822BC001242F7 /* ContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A48137205822BC001242F7 /* ContentTableViewController.swift */; };
 		B7A4813A205825D9001242F7 /* ContentTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */; };
 		B7A4813C20582755001242F7 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4813B20582755001242F7 /* ContentTableViewCell.swift */; };
+		B7A8532A20B6B6E80093C158 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A8532920B6B6E80093C158 /* HistoryTableViewCell.swift */; };
 		B7B4F0E92045BC2B00343A8E /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E42045BC2A00343A8E /* Eureka.framework */; };
 		B7B4F0EA2045BC2B00343A8E /* TTGSnackbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */; };
 		B7B4F0EB2045BC2B00343A8E /* FlagKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E62045BC2A00343A8E /* FlagKit.framework */; };
@@ -112,6 +113,7 @@
 		B7A48137205822BC001242F7 /* ContentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewController.swift; sourceTree = "<group>"; };
 		B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentTableViewController.storyboard; sourceTree = "<group>"; };
 		B7A4813B20582755001242F7 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
+		B7A8532920B6B6E80093C158 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		B7B4F0E42045BC2A00343A8E /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTGSnackbar.framework; path = Carthage/Build/iOS/TTGSnackbar.framework; sourceTree = "<group>"; };
 		B7B4F0E62045BC2A00343A8E /* FlagKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlagKit.framework; path = Carthage/Build/iOS/FlagKit.framework; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */,
 				B7849A5220ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift */,
+				B7A8532920B6B6E80093C158 /* HistoryTableViewCell.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				B7CA195820AB22B30009FA99 /* MoveCigarController.swift in Sources */,
 				B7790CB720A1DD58003A713E /* circleView.swift in Sources */,
 				B7A4813C20582755001242F7 /* ContentTableViewCell.swift in Sources */,
+				B7A8532A20B6B6E80093C158 /* HistoryTableViewCell.swift in Sources */,
 				B7E524A32061620500E2CC38 /* TabBarViewController.swift in Sources */,
 				B7A48138205822BC001242F7 /* ContentTableViewController.swift in Sources */,
 				B75A84252042DAB3008528D8 /* AppDelegate.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 import FlagKit
+import TTGSnackbar
 
 struct history {
     var name: Date
@@ -17,6 +18,11 @@ struct history {
     init(name: Date, cigars: [Cigar]) {
         self.name = name
         self.cigars = cigars
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = history (name: name, cigars: cigars)
+        return copy
     }
 }
 
@@ -75,7 +81,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ContentTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! HistoryTableViewCell
         let cigar = data![indexPath.section].cigars[indexPath.row]
         let pastDate = cigar.ageDate!
         let (years, months) = computeAge(pastDate: pastDate, currentDate: Date())
@@ -95,11 +101,19 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.name.text =  cigar.name!
-        cell.price.text = cigar.price.asLocalCurrency
         cell.size.text = cigar.size!
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
         cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
+        
+        if cigar.review != nil {
+            cell.status.text = NSLocalizedString("Rating", comment: "")
+            cell.statusDetail.text = String(cigar.review!.score) + " / 100"
+         }
+        else{
+            cell.status.text = NSLocalizedString("Gifted to", comment: "")
+            cell.statusDetail.text = cigar.gift!.to!
+         }
         return cell
     }
     
@@ -144,6 +158,84 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         }
         
+    }
+    
+    //MARK - Delete Swipe
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
+    }
+    
+    
+    func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            
+            var delete = true
+            var section = self.data![indexPath.section].copy() as! history
+            
+            if section.cigars.count > 1 {
+                self.data!.remove(at: indexPath.section)
+                
+                var newArray = section.cigars
+                newArray.remove(at: indexPath.row)
+                self.data!.insert(history(name: section.name, cigars: newArray), at: indexPath.section)
+                
+                self.tableView.beginUpdates()
+                self.tableView.deleteRows(at:[indexPath], with: .right)
+                self.tableView.endUpdates()
+            }
+            else{
+                self.data!.remove(at: indexPath.section)
+                
+                self.tableView.beginUpdates()
+                self.tableView.deleteSections([indexPath.section], with: .right)
+                self.tableView.endUpdates()
+            }
+            
+            /* Undo view */
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar deleted", comment: ""),
+                                       duration: .middle,
+                                       actionText: NSLocalizedString("Undo", comment: ""),
+                                       actionBlock: { (snackbar) in
+                                        /* Undo button action*/
+                                        
+                                        if section.cigars.count > 1 {
+                                            self.data!.remove(at: indexPath.section)
+                                            self.data!.insert(section, at: indexPath.section)
+                                            self.tableView.beginUpdates()
+                                            self.tableView.insertRows(at: [indexPath], with: .right)
+                                            self.tableView.endUpdates()
+                                        }
+                                        else{
+                                            self.data!.insert(section, at: indexPath.section)
+                                            self.tableView.beginUpdates()
+                                            self.tableView.insertSections([indexPath.section], with: .right)
+                                            self.tableView.endUpdates()
+                                        }
+
+                                        
+                                        /* Set delete to false thus the context won't be changed */
+                                        delete = false
+            })
+            snackbar.backgroundColor = UIColor.darkGray
+            snackbar.show()
+            
+            /* Action after dismiss of undo view
+             Removes the item from context if user hasn't selected otherwise
+             */
+            snackbar.dismissBlock = {
+                (snackbar: TTGSnackbar) -> Void in if (delete == true) {
+                    CoreDataController.sharedInstance.deleteCigar(cigar: section.cigars[indexPath.row], withUpdate: false)
+                }
+            }
+            self.tableView.setEditing(false, animated: true)
+            completionHandler(true)
+        }
+        
+        action.backgroundColor = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1)
+        return action
     }
 
     func computeAge(pastDate: Date,currentDate: Date) -> (years: Int, months: Int) {

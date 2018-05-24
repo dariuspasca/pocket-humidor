@@ -135,9 +135,11 @@ class CoreDataController {
     }
     
     
-    func deleteCigar(cigar: Cigar){
+    func deleteCigar(cigar: Cigar, withUpdate: Bool){
         self.context.delete(cigar)
-        self.updateHumidorValues(tray: cigar.tray!, quantity: cigar.quantity, value: cigar.price, add: false)
+        if withUpdate{
+            self.updateHumidorValues(tray: cigar.tray!, quantity: cigar.quantity, value: cigar.price, add: false)
+        }
         self.saveContext()
     }
     

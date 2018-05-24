@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    var noResultsFlag: Bool!
     
     var isSearching = false
     var searchResults:[Cigar]?
@@ -25,18 +26,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.tableFooterView = UIView()
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        // Do any additional setup after loading the view.
+        noResultsFlag = false
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         searchResults?.removeAll()
         searchBar.text = ""
+        noResultsFlag = false
         self.tableView.reloadData()
     }
     
@@ -47,9 +43,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.endEditing(true)
         let results = CoreDataController.sharedInstance.searchCigarThatContains(key: searchBar.text!)
         searchResults = results?.filter() { $0.gift == nil && $0.review == nil }
+        if searchResults!.isEmpty {
+            noResultsFlag = true
+            self.tableView.reloadEmptyDataSet()
+        }
+        else{
+            noResultsFlag = false
+        }
         self.tableView.reloadData()
         isSearching = false
         self.searchBar.endEditing(true)
+        
+        
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -116,15 +121,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20, weight: .light),
              NSAttributedStringKey.foregroundColor : UIColor.black,
              NSAttributedStringKey.backgroundColor : UIColor.clear]
-        return NSAttributedString(string: NSLocalizedString("Search Cigars", comment: ""), attributes: attributes)
+        if noResultsFlag{
+            return NSAttributedString(string: NSLocalizedString("No results for", comment: ""), attributes: attributes)
+        }
+        else{
+            return NSAttributedString(string: NSLocalizedString("Search Cigars", comment: ""), attributes: attributes)
+        }
+        
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let attributes =
-            [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .light),
-             NSAttributedStringKey.foregroundColor : UIColor.darkGray,
-             NSAttributedStringKey.backgroundColor : UIColor.clear]
-        return NSAttributedString(string: NSLocalizedString("Search cigars by name, country of origin or size.", comment: ""), attributes: attributes)
+        if noResultsFlag{
+            let attributes =
+                [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .bold),
+                 NSAttributedStringKey.foregroundColor : UIColor.black,
+                 NSAttributedStringKey.backgroundColor : UIColor.clear]
+             return NSAttributedString(string: searchBar.text!, attributes: attributes)
+        }
+        else{
+            let attributes =
+                [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .light),
+                 NSAttributedStringKey.foregroundColor : UIColor.darkGray,
+                 NSAttributedStringKey.backgroundColor : UIColor.clear]
+             return NSAttributedString(string: NSLocalizedString("Search cigars by name, country of origin or size.", comment: ""), attributes: attributes)
+        }
+       
     }
     
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
