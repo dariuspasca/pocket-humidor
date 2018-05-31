@@ -26,9 +26,16 @@ struct history {
     }
 }
 
-class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate,  DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, filterViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var contentSize: NSLayoutConstraint!
+    @IBOutlet weak var titleView: UILabel!
+    
+    var navigationBarBottomLine: UIImage?
+    var filter: Filter = .both
+    
     var data:[history]?
     
     override func viewDidLoad() {
@@ -36,11 +43,45 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        // Do any additional setup after loading the view.
+        scrollView.delegate = self
+        tableView.isScrollEnabled = false
+        self.navigationItem.title = ""
+        titleView.text = NSLocalizedString("History", comment: "")
+        self.navigationItem.title =  ""
+        navigationBarBottomLine = self.navigationController?.navigationBar.shadowImage
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        scrollView.contentOffset.y = 0.0
+        data = nil
+        prepareData()
+        self.tableView.reloadData()
+        contentSize.constant = getTableViewHeight() + 45
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       prepareData()
+    override func viewWillDisappear(_ animated: Bool) {
+        filter = .both
+    }
+    
+    // MARK: - ScrollView
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offSet = scrollView.contentOffset.y
+        if offSet > 34 {
+            self.navigationItem.title = titleView.text
+            if offSet > 43.5 {
+                self.navigationController?.navigationBar.shadowImage = navigationBarBottomLine
+            }
+            else{
+                self.navigationController?.navigationBar.shadowImage = UIImage()
+            }
+        }
+            
+        else if offSet < 30 {
+            self.navigationItem.title = ""
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+        }
     }
 
     
@@ -120,12 +161,11 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func prepareData(){
         //fetch all cigars that have a review or gift object
-        let cigars = CoreDataController.sharedInstance.fetchCigarHistory()
+        let cigars = CoreDataController.sharedInstance.fetchCigarHistory(filter: filter)
         
         if cigars != nil{
             
         let sortedCigars = cigars!.sorted(by: { ($0.gift?.giftDate ?? $0.review!.reviewDate!) > ($1.gift?.giftDate ?? $1.review!.reviewDate!) })
-            
         for cigar in sortedCigars{
             let cigarDate = cigar.review?.reviewDate ?? cigar.gift?.giftDate
             
@@ -236,6 +276,32 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         action.backgroundColor = UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1)
         return action
+    }
+    
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "filterSegue"{
+            let navVC = segue.destination as! UINavigationController
+            let vc = navVC.viewControllers.first as! FilterViewController
+            vc.delegate = self
+            vc.historyFilter = filter
+            
+        }
+    }
+    
+    // MARK: - Delegate
+    func filterViewDelegate(filterDelegate: Filter) {
+        if filterDelegate != filter {
+            filter = filterDelegate
+        }
+    }
+    
+    // MARK: - Called Functions
+    
+    func getTableViewHeight() -> CGFloat{
+        self.view.layoutIfNeeded()
+        return self.tableView.contentSize.height
     }
 
     func computeAge(pastDate: Date,currentDate: Date) -> (years: Int, months: Int) {

@@ -122,8 +122,16 @@
 "No results for" = "No results for";
 
 /* History */
+"History" = "History";
 "Gifted to" = "Gifted to";
 "Rating" = "Rating";
+"Apply" = "Apply";
+"History filter" = "History filter";
+"Gifted" = "Gifted";
+"Smoked" = "Smoked";
+"Both" = "Both";
+"Show" = "Show";
+"Select which cigars to be displayed." = "Select which cigars to be displayed.";
 
 
 /* Settings Storyboard */

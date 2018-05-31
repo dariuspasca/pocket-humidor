@@ -46,6 +46,7 @@
 		B7B4F0EB2045BC2B00343A8E /* FlagKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E62045BC2A00343A8E /* FlagKit.framework */; };
 		B7B4F0ED2045BC2B00343A8E /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E82045BC2B00343A8E /* DZNEmptyDataSet.framework */; };
 		B7CA195820AB22B30009FA99 /* MoveCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CA195720AB22B30009FA99 /* MoveCigarController.swift */; };
+		B7CB23BC20C0519C00370D0D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CB23BB20C0519C00370D0D /* FilterViewController.swift */; };
 		B7CF29BE20519AE300D8C4A3 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */; };
 		B7CF29C02051A03F00D8C4A3 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29BF2051A03F00D8C4A3 /* PurchaseViewController.swift */; };
 		B7CF29C22051A42100D8C4A3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */; };
@@ -120,6 +121,7 @@
 		B7B4F0E72045BC2A00343A8E /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		B7B4F0E82045BC2B00343A8E /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
 		B7CA195720AB22B30009FA99 /* MoveCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCigarController.swift; sourceTree = "<group>"; };
+		B7CB23BB20C0519C00370D0D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		B7CF29BF2051A03F00D8C4A3 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */,
+				B7CB23BB20C0519C00370D0D /* FilterViewController.swift */,
 				B7849A5220ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift */,
 				B7A8532920B6B6E80093C158 /* HistoryTableViewCell.swift */,
 			);
@@ -527,6 +530,7 @@
 				B7849A5320ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift in Sources */,
 				B798AB3B20A4BB54001753F7 /* SearchTableViewCell.swift in Sources */,
 				B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */,
+				B7CB23BC20C0519C00370D0D /* FilterViewController.swift in Sources */,
 				B745A1A620A6AE7E000F2C83 /* EmptyTableViewController.swift in Sources */,
 				B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */,
 				B7219C97205186C0001096A6 /* UserSettings.swift in Sources */,

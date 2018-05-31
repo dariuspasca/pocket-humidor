@@ -200,10 +200,17 @@ class CoreDataController {
         return humidors
     }
     
-    func fetchCigarHistory() -> [Cigar]?{
+    func fetchCigarHistory(filter: Filter) -> [Cigar]?{
         var cigars: [Cigar]?
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cigar")
-        request.predicate = NSPredicate(format: "gift != nil OR review != nil")
+        switch filter {
+        case .both:
+            request.predicate = NSPredicate(format: "gift != nil OR review != nil")
+        case .gift:
+            request.predicate = NSPredicate(format: "gift != nil")
+        case .smoke:
+            request.predicate = NSPredicate(format: "review != nil")
+        }
         
         do {
             cigars = try context.fetch(request) as? [Cigar]

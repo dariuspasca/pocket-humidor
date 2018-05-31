@@ -35,6 +35,24 @@ enum TableSortOrder: Int {
     }
 }
 
+enum Filter: Int {
+    // 2 is the default preference value
+    case gift = 0
+    case smoke = 1
+    case both = 2
+    
+    var displayName: String{
+        switch self {
+        case .both:
+            return NSLocalizedString("Both", comment: "")
+        case .gift:
+            return NSLocalizedString("Gifted", comment: "")
+        case .smoke:
+            return NSLocalizedString("Smoked", comment: "")
+        }
+    }
+}
+
 struct UserSetting<SettingType> {
     private let key: String
     private let defaultValue: SettingType
