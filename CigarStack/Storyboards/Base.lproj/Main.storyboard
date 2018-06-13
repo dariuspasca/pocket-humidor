@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JBj-zo-QTm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JBj-zo-QTm">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,162 +50,6 @@
             </objects>
             <point key="canvasLocation" x="-1862" y="-559"/>
         </scene>
-        <!--Side Menu Navigation Controller-->
-        <scene sceneID="JjS-se-GDR">
-            <objects>
-                <navigationController storyboardIdentifier="LeftMenuNavigationController" id="edb-Ga-Dgc" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="DA2-JH-yHS">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </navigationBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="go3-Ty-RlL" kind="relationship" relationship="rootViewController" id="5d0-Tj-IOM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NmL-pN-DUg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="678" y="-1486"/>
-        </scene>
-        <!--Side MenuUI View Controller-->
-        <scene sceneID="fWt-jN-Uzi">
-            <objects>
-                <viewController id="go3-Ty-RlL" customClass="SideMenuUIViewController" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hZH-e1-6iG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M3W-9O-8Ga">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="humidorCell" rowHeight="50" id="Yiw-qy-tZ8" customClass="SideMenuHumidorCell" customModule="CigarStack" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yiw-qy-tZ8" id="lan-d9-U8Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8x-fk-E74">
-                                                    <rect key="frame" x="30" y="14.000000000000002" width="334" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="o8x-fk-E74" firstAttribute="centerY" secondItem="lan-d9-U8Z" secondAttribute="centerY" id="O9o-rx-VRV"/>
-                                                <constraint firstItem="o8x-fk-E74" firstAttribute="leading" secondItem="lan-d9-U8Z" secondAttribute="leadingMargin" constant="10" id="VYf-ub-brX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="o8x-fk-E74" secondAttribute="trailing" constant="30" id="sdN-TB-NbN"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="humidorName" destination="o8x-fk-E74" id="f9q-ch-C6o"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="go3-Ty-RlL" id="dIu-3e-Okt"/>
-                                    <outlet property="delegate" destination="go3-Ty-RlL" id="Gmk-TG-jYz"/>
-                                </connections>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwq-F9-0p0">
-                                <rect key="frame" x="0.0" y="637" width="414" height="35"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oen-sU-DGZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
-                                        <state key="normal" title="Manage"/>
-                                        <connections>
-                                            <segue destination="fIO-Hh-5h8" kind="presentation" identifier="manageHumidorsSegue" modalPresentationStyle="formSheet" id="DYO-iL-0K6"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="Oen-sU-DGZ" firstAttribute="leading" secondItem="rwq-F9-0p0" secondAttribute="leading" id="ISz-xX-wca"/>
-                                    <constraint firstAttribute="bottom" secondItem="Oen-sU-DGZ" secondAttribute="bottom" id="JV6-nE-57q"/>
-                                    <constraint firstAttribute="trailing" secondItem="Oen-sU-DGZ" secondAttribute="trailing" id="NlW-c0-qOn"/>
-                                    <constraint firstAttribute="height" constant="35" id="R9e-As-ChK"/>
-                                    <constraint firstItem="Oen-sU-DGZ" firstAttribute="top" secondItem="rwq-F9-0p0" secondAttribute="top" id="pos-2O-xCf"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="M3W-9O-8Ga" firstAttribute="top" secondItem="EfI-nj-h64" secondAttribute="top" id="390-vU-i6g"/>
-                            <constraint firstItem="M3W-9O-8Ga" firstAttribute="top" secondItem="EfI-nj-h64" secondAttribute="top" id="AlH-wb-GDm"/>
-                            <constraint firstItem="rwq-F9-0p0" firstAttribute="trailing" secondItem="EfI-nj-h64" secondAttribute="trailing" id="EWK-5v-TcS"/>
-                            <constraint firstItem="EfI-nj-h64" firstAttribute="trailing" secondItem="M3W-9O-8Ga" secondAttribute="trailing" id="KQZ-y5-HAK"/>
-                            <constraint firstItem="M3W-9O-8Ga" firstAttribute="leading" secondItem="EfI-nj-h64" secondAttribute="leading" id="U3k-0O-iSX"/>
-                            <constraint firstItem="EfI-nj-h64" firstAttribute="bottom" secondItem="M3W-9O-8Ga" secondAttribute="bottom" id="W9H-MN-96L"/>
-                            <constraint firstItem="M3W-9O-8Ga" firstAttribute="trailing" secondItem="EfI-nj-h64" secondAttribute="trailing" id="fh0-da-EqI"/>
-                            <constraint firstItem="rwq-F9-0p0" firstAttribute="leading" secondItem="EfI-nj-h64" secondAttribute="leading" id="gBC-ex-MC4"/>
-                            <constraint firstItem="M3W-9O-8Ga" firstAttribute="leading" secondItem="EfI-nj-h64" secondAttribute="leading" id="lyF-5u-zNv"/>
-                            <constraint firstItem="rwq-F9-0p0" firstAttribute="bottom" secondItem="EfI-nj-h64" secondAttribute="bottom" id="zbR-8M-xf3"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="EfI-nj-h64"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="CgQ-T9-Og4"/>
-                    <connections>
-                        <outlet property="humidorsTable" destination="M3W-9O-8Ga" id="7zR-Hd-L2L"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oiV-Gb-sC9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1600.0000000000002" y="-1487.771739130435"/>
-        </scene>
-        <!--Your Humidors-->
-        <scene sceneID="3j0-GJ-GWq">
-            <objects>
-                <tableViewController id="bTE-nI-1UN" customClass="ManageHumidorsTableViewController" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3xd-ID-pkG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="humidorCell" rowHeight="65" id="0N3-NZ-TVq" customClass="SideMenuHumidorCell" customModule="CigarStack" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="65"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0N3-NZ-TVq" id="r8d-go-sYa">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="64.666666666666671"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkU-ap-guo">
-                                            <rect key="frame" x="30" y="21.666666666666671" width="308" height="22"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="kkU-ap-guo" firstAttribute="centerY" secondItem="r8d-go-sYa" secondAttribute="centerY" id="4m0-kq-U9f"/>
-                                        <constraint firstItem="kkU-ap-guo" firstAttribute="leading" secondItem="r8d-go-sYa" secondAttribute="leadingMargin" constant="10" id="Cuq-PT-Pch"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="kkU-ap-guo" secondAttribute="trailing" constant="30" id="ZH2-5a-WgG"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="humidorName" destination="kkU-ap-guo" id="zqk-Rw-NYO"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="bTE-nI-1UN" id="l4E-QN-oAa"/>
-                            <outlet property="delegate" destination="bTE-nI-1UN" id="5gn-9a-nc2"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Your Humidors" id="m3D-gu-OA1">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="40u-Cf-wpe"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="K7J-wl-I9y"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LgZ-bG-huJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3473.913043478261" y="-1486.1413043478262"/>
-        </scene>
         <!--New Humidor-->
         <scene sceneID="yvQ-mM-Bsi">
             <objects>
@@ -235,12 +78,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EaQ-Co-nKy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1655" y="-722"/>
+            <point key="canvasLocation" x="1654" y="-230"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zYt-6V-ma0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gBY-8K-PVv" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newHumidorNavigtion" automaticallyAdjustsScrollViewInsets="NO" id="gBY-8K-PVv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rvz-za-5zo">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -253,7 +96,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQi-Wg-dYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="678" y="-721"/>
+            <point key="canvasLocation" x="677" y="-229"/>
         </scene>
         <!--Settings-->
         <scene sceneID="eHW-PV-ngQ">
@@ -473,7 +316,7 @@
                     <navigationItem key="navigationItem" id="4uK-gE-tB0">
                         <barButtonItem key="leftBarButtonItem" title="Menu" image="menu" id="pzi-Ot-Wgo">
                             <connections>
-                                <segue destination="edb-Ga-Dgc" kind="presentation" identifier="sideMenu" id="RI8-B8-VkF"/>
+                                <segue destination="stO-qe-JtT" kind="presentation" identifier="sideMenu" id="RI8-B8-VkF"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -508,25 +351,6 @@
             </objects>
             <point key="canvasLocation" x="-655.07246376811599" y="632.60869565217399"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Rs9-0N-BPl">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fIO-Hh-5h8" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ilg-cj-3WB">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bTE-nI-1UN" kind="relationship" relationship="rootViewController" id="uOw-w0-k6d"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e6E-2T-lJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2562" y="-1488"/>
-        </scene>
         <!--Search-->
         <scene sceneID="DkE-2e-9WT">
             <objects>
@@ -546,6 +370,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCE-YJ-Cb0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2077" y="1427"/>
+        </scene>
+        <!--LeftMenuNavigationController-->
+        <scene sceneID="zNU-ZH-djJ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LeftMenuNavigationController" storyboardName="SideMenuMain" referencedIdentifier="LeftMenuNavigationController" id="stO-qe-JtT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c1N-YZ-RNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="533" y="-825"/>
         </scene>
     </scenes>
     <resources>

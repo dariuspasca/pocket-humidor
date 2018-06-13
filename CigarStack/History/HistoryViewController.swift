@@ -294,6 +294,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func filterViewDelegate(filterDelegate: Filter) {
         if filterDelegate != filter {
             filter = filterDelegate
+            //forse reload on ipad where  the view is shown as form sheet thus viewillappear is not called
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                self.viewWillAppear(true)
+            }
         }
     }
     

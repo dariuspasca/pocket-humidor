@@ -19,6 +19,8 @@ class ManageHumidorsTableViewController: UITableViewController {
     var rearrange = false
     var editMode = false
     
+    var humidorDetail: Humidor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
@@ -74,6 +76,10 @@ class ManageHumidorsTableViewController: UITableViewController {
                selectedItems.append(humidorsList[indexPath.row])
             }
         }
+        else{
+            humidorDetail = CoreDataController.sharedInstance.searchHumidor(name: humidorsList[indexPath.row])
+            self.performSegue(withIdentifier: "humidorDetail", sender: self)
+        }
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -103,6 +109,14 @@ class ManageHumidorsTableViewController: UITableViewController {
     
 
 
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "humidorDetail"{
+            let destinationVC = segue.destination as! HumidorDetailViewController
+            destinationVC.humidor = humidorDetail!
+        }
+    }
     
     // MARK: - CoreData
     

@@ -21,6 +21,7 @@
 "Country" = "Paese";
 "Age" = "Età";
 "Years" = "Anni";
+"Months" = "Mesi";
 "Notes" = "Note";
 "Size" = "Formato";
 "Search" = "Cerca";
@@ -28,6 +29,7 @@
 "Gift" = "Regala";
 "Gift to:" = "Regala a:";
 "Smoke" = "Fuma";
+"and" = "e";
 
 /* Side Menu */
 "Your Humidors" = "I Tuoi Humidor";
@@ -63,6 +65,16 @@
 "Add New Divider" = "Aggiungi Nuovo Divisore";
 "Divider Name" = "Nome Divisore";
 "Main Divider" = "Divisore Centrale";
+
+/* Humidor Detail */
+"About" = "Informazioni";
+"Statistics" = "Statistiche";
+"Number of cigars:" = "Numero cigari:";
+"Humiditiy level:" = "Livello di umidità:";
+"Most expensive:" = "Il più costoso:";
+"Oldest:" = "Il più vecchio:";
+"Average cigar price:" = "Prezzo medio sigaro:";
+"Average cigar age:" = "Stagionatura media sigaro:";
 
 /* New Cigar */
 "Add Cigar" = "Aggiungi Sigaro";

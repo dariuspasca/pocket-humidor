@@ -16,6 +16,7 @@
 		B7219C992051888B001096A6 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C982051888B001096A6 /* GeneralViewController.swift */; };
 		B7219C9B20518A13001096A6 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C9A20518A13001096A6 /* SortViewController.swift */; };
 		B7219C9D20518AA0001096A6 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C9C20518AA0001096A6 /* DataViewController.swift */; };
+		B7222DB620C18D4F000BA0E5 /* HumidorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */; };
 		B7224F912047FEC6005516B3 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7224F902047FEC6005516B3 /* SideMenu.framework */; };
 		B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684A205FCF84006CDFED /* AddHumidorController.swift */; };
 		B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684D205FCF8E006CDFED /* CoreDataController.swift */; };
@@ -52,6 +53,7 @@
 		B7CF29C22051A42100D8C4A3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */; };
 		B7D2BEEC20A38B0500F93515 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2BEEB20A38B0500F93515 /* SearchViewController.swift */; };
 		B7D6BE322048121700B50CCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D6BE312048121600B50CCA /* Assets.xcassets */; };
+		B7D7CF3620C1822800E4131A /* SideMenuMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */; };
 		B7E524A32061620500E2CC38 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E524A22061620500E2CC38 /* TabBarViewController.swift */; };
 		B7E524A7206166AA00E2CC38 /* AddCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E524A6206166AA00E2CC38 /* AddCigarController.swift */; };
 		B7E6A47520A742990085EA2D /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E6A47420A742990085EA2D /* History.storyboard */; };
@@ -88,6 +90,7 @@
 		B7219C982051888B001096A6 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		B7219C9A20518A13001096A6 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		B7219C9C20518AA0001096A6 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
+		B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidorDetailViewController.swift; sourceTree = "<group>"; };
 		B7224F902047FEC6005516B3 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
 		B72A684A205FCF84006CDFED /* AddHumidorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHumidorController.swift; sourceTree = "<group>"; };
 		B72A684D205FCF8E006CDFED /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 		B7D4B98720976F1300A48167 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D4B98920976F1800A48167 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D6BE312048121600B50CCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideMenuMain.storyboard; sourceTree = "<group>"; };
 		B7E524A22061620500E2CC38 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B7E524A6206166AA00E2CC38 /* AddCigarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCigarController.swift; sourceTree = "<group>"; };
 		B7E6A47420A742990085EA2D /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				B79C85ED20A39C70006A719F /* Search.storyboard */,
 				B75A842D2042DAB3008528D8 /* LaunchScreen.storyboard */,
 				B75A84282042DAB3008528D8 /* Main.storyboard */,
+				B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */,
 				B7A13386206BCD110003854B /* NewCigar.storyboard */,
 				B721834B2054432000E8DD09 /* Settings.storyboard */,
 				B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */,
@@ -228,6 +233,7 @@
 		B72A6848205FCF53006CDFED /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */,
 				B72A684D205FCF8E006CDFED /* CoreDataController.swift */,
 				B72A684A205FCF84006CDFED /* AddHumidorController.swift */,
 				B7E524A6206166AA00E2CC38 /* AddCigarController.swift */,
@@ -444,6 +450,7 @@
 				B75A842F2042DAB3008528D8 /* LaunchScreen.storyboard in Resources */,
 				B721833920542D3B00E8DD09 /* Localizable.strings in Resources */,
 				B7A13387206BCD110003854B /* NewCigar.storyboard in Resources */,
+				B7D7CF3620C1822800E4131A /* SideMenuMain.storyboard in Resources */,
 				B7E6A47520A742990085EA2D /* History.storyboard in Resources */,
 				B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */,
 				B79C85EE20A39C70006A719F /* Search.storyboard in Resources */,
@@ -506,6 +513,7 @@
 			files = (
 				B7849A5120ADBE6D00CD80BA /* HistoryViewController.swift in Sources */,
 				B7CF29C22051A42100D8C4A3 /* AboutViewController.swift in Sources */,
+				B7222DB620C18D4F000BA0E5 /* HumidorDetailViewController.swift in Sources */,
 				B7CF29BE20519AE300D8C4A3 /* SplitViewController.swift in Sources */,
 				B7EF0ADF20ACC9EF008F9DF2 /* SmokeCigarController.swift in Sources */,
 				B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */,
