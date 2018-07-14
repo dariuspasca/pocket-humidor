@@ -39,7 +39,7 @@ class SmokeCigarController: FormViewController {
         quantity = 1
         
         form +++ Section(){
-                if cigar.quantity > 1 {
+            if self.cigar.quantity > 1 {
                     $0.hidden = false
                 }
                 else{

@@ -129,6 +129,25 @@ class CoreDataController {
         self.saveContext()
     }
     
+    func deleteTray(tray:Tray, save: Bool){
+        // Update humidor cigar quantity before delete
+        let unfilteredCigars = tray.cigars?.allObjects as? [Cigar]
+        let cigars = unfilteredCigars?.filter() { $0.gift == nil && $0.review == nil}
+        var quantity:Int32 = 0
+        var value: Double = 0
+        if cigars != nil {
+            for cigar in cigars!{
+                quantity = quantity + cigar.quantity
+                value = value + cigar.price
+            }
+        }
+        self.updateHumidorValues(tray: tray, quantity: quantity, value: value, add: false)
+        self.context.delete(tray)
+        if save{
+            self.saveContext()
+        }
+    }
+    
     func setHumidorOrderID(humidor: Humidor, orderID: Int16){
         humidor.orderID = orderID
         self.saveContext()
@@ -239,6 +258,7 @@ class CoreDataController {
         self.saveContext()
     }
     
+    
     func createGift(to: String,notes: String?) -> Gift{
         let entityGift = NSEntityDescription.entity(forEntityName: "Gift", in: self.context)
         let newGift = Gift (entity: entityGift!, insertInto: context)
@@ -251,6 +271,7 @@ class CoreDataController {
         return newGift
         
     }
+    
     
     func createReview(score: Int16, appearance: Int16, flavour: Int16, ash: Int16, draw: Int16, texture: Int16, strength: Int16, notes: String?) -> Review{
         let entityReview = NSEntityDescription.entity(forEntityName: "Review", in: self.context)
@@ -270,12 +291,16 @@ class CoreDataController {
     }
     
      /* Save Context */
-    private func saveContext(){
+     func saveContext(){
         do {
             try self.context.save()
         } catch let error {
             let fetchError = error as NSError
             print(fetchError)        }
+    }
+    
+    func discardContext(){
+        self.context.rollback()
     }
     
     

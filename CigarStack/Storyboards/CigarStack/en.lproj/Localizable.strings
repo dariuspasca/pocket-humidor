@@ -21,6 +21,7 @@
 "Country" = "Country";
 "Age" = "Age";
 "Years" = "Years";
+"Month" = "Month";
 "Months" = "Months";
 "Notes" = "Notes";
 "Size" = "Size";
@@ -33,6 +34,7 @@
 
 /* Side Menu */
 "Your Humidors" = "Your Humidors";
+"Manage" = "Manage";
 
 /* Empty Data Source */
 "You don't have any humidors yet." = "You don't have any humidors yet.";
@@ -44,6 +46,7 @@
 "No Humidor Available" = "No Humidor Available";
 "To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor." = "To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Are you sure you want to continue? This will permanently delete all cigars from selected humidors.";
+"There is already a divisor with same name." = "There is already a divisor with same name.";
 
 /* Snack Bar */
 "Cigar deleted" = "Cigar deleted";
@@ -73,8 +76,8 @@
 "Humidity level:" = "Humidity level:";
 "Most expensive:" = "Most expensive:";
 "Oldest cigar:" = "Oldest cigar:";
-"Average cigar price:" = "Average cigar price:";
-"Average cigar age:" = "Average cigar age:";
+"Average price:" = "Average price:";
+"Average age:" = "Average age:";
 
 /* New Cigar */
 "Add Cigar" = "Add Cigar";

@@ -206,7 +206,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
             if UserSettings.isPremium.value == false {
                 let count = CoreDataController.sharedInstance.countHumidors()
                 if count > 1{
-                    print("fart")
+                    print("Humidor more than 1 -- LIMIT FREE VERSION")
                 }
             }
         }

@@ -21,6 +21,7 @@
 "Country" = "Paese";
 "Age" = "Età";
 "Years" = "Anni";
+"Month" = "Mese";
 "Months" = "Mesi";
 "Notes" = "Note";
 "Size" = "Formato";
@@ -33,6 +34,7 @@
 
 /* Side Menu */
 "Your Humidors" = "I Tuoi Humidor";
+"Manage" = "Gestisci";
 
 /* Empty Data Source */
 "You don't have any humidors yet." = "Non hai ancora nessun humidor.";
@@ -42,8 +44,9 @@
 "Humidor already exists!" = "Humidor già presente!";
 "You can't have multiple humidors with the same name." = "Non puoi avere più humidor con lo stesso nome.";
 "No Humidor Available" = "Nessun Humidor Disponibile";
-"To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor." = "Per aggiungere sigari e necessario almeno un humidor. Premmi il bottone + nell'angolo in alto a destra per aggiungere un humidor.";
+"To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor." = "Per aggiungere sigari è necessario almeno un humidor. Premmi il bottone + nell'angolo in alto a destra per aggiungere un humidor.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Confermi di voler continuare? Verranno eliminati definitivamente tutti i sigari dagli umidificatori selezionati.";
+"There is already a divisor with same name." = "Un divisore con lo stesso nome è già presente.";
 
 /* Snack Bar */
 "Cigar deleted" = "Sigaro eliminato";
@@ -69,12 +72,12 @@
 /* Humidor Detail */
 "About" = "Informazioni";
 "Statistics" = "Statistiche";
-"Number of cigars:" = "Numero cigari:";
+"Number of cigars:" = "Numero sigari:";
 "Humiditiy level:" = "Livello di umidità:";
 "Most expensive:" = "Il più costoso:";
 "Oldest:" = "Il più vecchio:";
-"Average cigar price:" = "Prezzo medio sigaro:";
-"Average cigar age:" = "Stagionatura media sigaro:";
+"Average price:" = "Prezzo medio:";
+"Average age:" = "Stagionatura media:";
 
 /* New Cigar */
 "Add Cigar" = "Aggiungi Sigaro";

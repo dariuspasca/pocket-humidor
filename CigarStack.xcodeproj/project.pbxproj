@@ -23,6 +23,7 @@
 		B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7183063205FB69B000AF92D /* CigarStack.xcdatamodeld */; };
 		B73624B8204DF88700B92801 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73624B7204DF88700B92801 /* SettingsViewController.swift */; };
 		B745A1A620A6AE7E000F2C83 /* EmptyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */; };
+		B757517E20E6370300853F8E /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B757517D20E6370300853F8E /* Eureka.framework */; };
 		B75A84252042DAB3008528D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A84242042DAB3008528D8 /* AppDelegate.swift */; };
 		B75A842F2042DAB3008528D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75A842D2042DAB3008528D8 /* LaunchScreen.storyboard */; };
 		B75A843A2042DAB3008528D8 /* CigarStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A84392042DAB3008528D8 /* CigarStackTests.swift */; };
@@ -42,7 +43,6 @@
 		B7A4813A205825D9001242F7 /* ContentTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */; };
 		B7A4813C20582755001242F7 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4813B20582755001242F7 /* ContentTableViewCell.swift */; };
 		B7A8532A20B6B6E80093C158 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A8532920B6B6E80093C158 /* HistoryTableViewCell.swift */; };
-		B7B4F0E92045BC2B00343A8E /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E42045BC2A00343A8E /* Eureka.framework */; };
 		B7B4F0EA2045BC2B00343A8E /* TTGSnackbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */; };
 		B7B4F0EB2045BC2B00343A8E /* FlagKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E62045BC2A00343A8E /* FlagKit.framework */; };
 		B7B4F0ED2045BC2B00343A8E /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E82045BC2B00343A8E /* DZNEmptyDataSet.framework */; };
@@ -96,6 +96,7 @@
 		B72A684D205FCF8E006CDFED /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		B73624B7204DF88700B92801 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewController.swift; sourceTree = "<group>"; };
+		B757517D20E6370300853F8E /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		B75A84212042DAB3008528D8 /* CigarStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CigarStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75A84242042DAB3008528D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B75A84302042DAB3008528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,10 +119,8 @@
 		B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentTableViewController.storyboard; sourceTree = "<group>"; };
 		B7A4813B20582755001242F7 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
 		B7A8532920B6B6E80093C158 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
-		B7B4F0E42045BC2A00343A8E /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTGSnackbar.framework; path = Carthage/Build/iOS/TTGSnackbar.framework; sourceTree = "<group>"; };
 		B7B4F0E62045BC2A00343A8E /* FlagKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlagKit.framework; path = Carthage/Build/iOS/FlagKit.framework; sourceTree = "<group>"; };
-		B7B4F0E72045BC2A00343A8E /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		B7B4F0E82045BC2B00343A8E /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
 		B7CA195720AB22B30009FA99 /* MoveCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCigarController.swift; sourceTree = "<group>"; };
 		B7CB23BB20C0519C00370D0D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		B7E6A47420A742990085EA2D /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		B7EE3FD62066B43D000B761B /* CountrySelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectViewController.swift; sourceTree = "<group>"; };
 		B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeCigarController.swift; sourceTree = "<group>"; };
+		B7F37DF720E6348000E40AF2 /* Eureka.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Eureka.framework.dSYM; path = Carthage/Build/iOS/Eureka.framework.dSYM; sourceTree = "<group>"; };
 		B7F57D462052904E0046FCB1 /* AttributesLicense.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AttributesLicense.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,7 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7B4F0E92045BC2B00343A8E /* Eureka.framework in Frameworks */,
+				B757517E20E6370300853F8E /* Eureka.framework in Frameworks */,
 				B7B4F0EA2045BC2B00343A8E /* TTGSnackbar.framework in Frameworks */,
 				B7B4F0EB2045BC2B00343A8E /* FlagKit.framework in Frameworks */,
 				B7B4F0ED2045BC2B00343A8E /* DZNEmptyDataSet.framework in Frameworks */,
@@ -318,12 +318,12 @@
 		B7B4F0E32045BC2A00343A8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B757517D20E6370300853F8E /* Eureka.framework */,
+				B7F37DF720E6348000E40AF2 /* Eureka.framework.dSYM */,
 				B7A4813320581B95001242F7 /* PagingKit.framework */,
 				B7224F902047FEC6005516B3 /* SideMenu.framework */,
 				B7B4F0E82045BC2B00343A8E /* DZNEmptyDataSet.framework */,
-				B7B4F0E42045BC2A00343A8E /* Eureka.framework */,
 				B7B4F0E62045BC2A00343A8E /* FlagKit.framework */,
-				B7B4F0E72045BC2A00343A8E /* ImageRow.framework */,
 				B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */,
 			);
 			name = Frameworks;
@@ -484,12 +484,12 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DZNEmptyDataSet.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FlagKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TTGSnackbar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SideMenu.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PagingKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
 			);
 			name = Carthage;
 			outputPaths = (

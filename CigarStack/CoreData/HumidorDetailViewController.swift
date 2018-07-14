@@ -9,11 +9,14 @@
 import UIKit
 import Eureka
 
-class HumidorDetailViewController: UIViewController {
-    
-    @IBOutlet weak var tableFormView: FormViewController!
+class HumidorDetailViewController: UIViewController, UITableViewDelegate {
+
     
     @IBOutlet weak var humidorNameLabel: UILabel!
+    
+    //Dividers Stack
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var dividersLabel: UILabel!
     
     //About Stack
     @IBOutlet weak var aboutLabel: UILabel!
@@ -46,6 +49,8 @@ class HumidorDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
         humidorNameLabel.text = humidor!.name
         aboutLabel.text = NSLocalizedString("About", comment: "")
         humidityLabel.text = NSLocalizedString("Humidity level:", comment: "")
@@ -58,12 +63,12 @@ class HumidorDetailViewController: UIViewController {
         statsLabel.text = NSLocalizedString("Statistics", comment: "")
         expensiveLabel.text = NSLocalizedString("Most expensive:", comment: "")
         olderLabel.text = NSLocalizedString("Oldest:", comment: "")
-        AVGPriceLabel.text = NSLocalizedString("Average cigar price:", comment: "")
-        AVGAgeLabel.text = NSLocalizedString("Average cigar age:" , comment: "")
+        AVGPriceLabel.text = NSLocalizedString("Average price:", comment: "")
+        AVGAgeLabel.text = NSLocalizedString("Average age:" , comment: "")
+        
+        dividersLabel.text = NSLocalizedString("Dividers", comment: "")
         
         computeStatistics()
-        
-      //  tableFormView.form +++ MultivaluedSection(multivaluedOptions: [.Reorder, .Delete,])
         
     }
     
@@ -106,10 +111,44 @@ class HumidorDetailViewController: UIViewController {
             }
             AVGPriceValue.text = (avgPrice / Double(humidor.quantity)).asLocalCurrency
             expensiveValue.text = mostExpensive.asLocalCurrency
-            olderstValue.text = String(oldest.years) + " " + NSLocalizedString("Years", comment: "") + " " + NSLocalizedString("and", comment: "") + " " + String(oldest.months) + " " + NSLocalizedString("Months", comment: "")
+        
+        var month: String
+        var year: String
+        
+        if Int(oldest.years) == 1 {
+            year = NSLocalizedString("Year", comment: "")
+        }
+        else{
+            year = NSLocalizedString("Years", comment: "")
+        }
+        
+        if Int(oldest.months) == 1 {
+            month = NSLocalizedString("Month", comment: "")
+        }
+        else{
+            month = NSLocalizedString("Months", comment: "")
+        }
+        
+        
+            olderstValue.text = String(oldest.years) + " " + year + " " + NSLocalizedString("and", comment: "") + " " + String(oldest.months) + " " +  month
             let avgAgeValue = Double(avgAge)/Double(humidor.quantity)
             let splitAge = modf(avgAgeValue)
-            AVGAgeValue.text = String(Int(splitAge.0)) + " " + NSLocalizedString("Years", comment: "") + " " + NSLocalizedString("and", comment: "") + " " + String(Int(splitAge.1*10)) + " " + NSLocalizedString("Months", comment: "")
+        
+        if Int(splitAge.0) == 1 {
+            year = NSLocalizedString("Year", comment: "")
+        }
+        else{
+            year = NSLocalizedString("Years", comment: "")
+        }
+        
+        if Int(splitAge.1*10) == 1 {
+            month = NSLocalizedString("Month", comment: "")
+        }
+        else{
+            month = NSLocalizedString("Months", comment: "")
+        }
+        
+            AVGAgeValue.text = String(Int(splitAge.0)) + " " + year + " " + NSLocalizedString("and", comment: "") + " " + String(Int(splitAge.1*10)) + " " + month
     }
     
     func computeAge(pastDate: Date,currentDate: Date) -> (years: Int, months: Int) {
@@ -123,7 +162,58 @@ class HumidorDetailViewController: UIViewController {
     @IBAction func edit(_ sender: UIBarButtonItem) {
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "containerSegue" {
+            let destVC = segue.destination as! HumidorTrayDetails
+            destVC.humidor = humidor
+        }
+        else if segue.identifier == "editHumidor" {
+            let navVC = segue.destination as! UINavigationController
+            let destVC = navVC.topViewController as! AddHumidorController
+            destVC.humidor = humidor
+        }
+    }
 
+}
+
+class HumidorTrayDetails: FormViewController{
+    
+    
+    var humidor: Humidor!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let trays = (humidor!.trays?.allObjects as! [Tray]).sorted(by: { $0.orderID < $1.orderID })
+        
+        tableView.backgroundColor = UIColor.white
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        
+        
+        form +++ Section()
+        for tray in trays {
+            
+            form.last!
+            
+            <<< IntRow(){
+                $0.title = tray.name!
+                var count: Int32 = 0
+                let unfilteredCigars = tray.cigars?.allObjects as? [Cigar]
+                for cigar in unfilteredCigars!{
+                    if cigar.gift == nil || cigar.review == nil {
+                        count += cigar.quantity
+                    }
+                }
+                $0.value = Int(count)
+                $0.disabled = true
+            }.cellUpdate({cell, row in
+                 cell.textField.textColor = UIColor.darkGray
+                 cell.titleLabel?.textColor = UIColor.black
+            })
+        }
+    }
+    
+    
 }
 
 

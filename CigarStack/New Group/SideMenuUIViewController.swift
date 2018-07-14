@@ -13,9 +13,11 @@ class SideMenuUIViewController: UIViewController, UITableViewDelegate, UITableVi
 
     var humidorsList = [String]()
 
+    @IBOutlet weak var manageButton: UIButton!
     @IBOutlet weak var humidorsTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        manageButton.setTitle(NSLocalizedString("Manage", comment: ""), for: .normal)
         updateHumidorsList()
         //Remove extra empty cells in TableView
         self.humidorsTable.estimatedRowHeight = 50.0
