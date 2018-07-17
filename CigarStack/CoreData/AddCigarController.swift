@@ -10,6 +10,10 @@ import UIKit
 import Eureka
 import FlagKit
 
+protocol AddCigarDelegate{
+    func addCigarForceReload()
+}
+
 class AddCigarController: FormViewController, SelectCountryDelegate {
     
     var sizes = ["Cigarillo" , "Small Panetela" , "Slim Panetela" , "Short Panetela" , "Pantetela" , "Long Panetela" , "Toscanello" , "Toscano",
@@ -17,6 +21,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                  "Giant Corona" , "Churchill" , "Petit Robusto" , "Robusto" , "Robusto Extra", "Double Robusto" , "Giant Robusto" ,
                  "Culebra" , "Oetut Pyramid" , "Pyramid" , "Double Pyramid" , "Petit Perfecto" , "Perfecto" , "Double Perfecto" , "Giant Perfecto" ]
     
+    var delegate:AddCigarDelegate?
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var dismissKeyboard = false
     var navigationAccessoryIsHidden = true
@@ -279,7 +284,11 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         if humidorForm == UserSettings.currentHumidor.value {
              UserSettings.shouldReloadData.value = true
         }
+        
         dismiss(animated: true, completion: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            delegate?.addCigarForceReload()
+        }
         
     }
 

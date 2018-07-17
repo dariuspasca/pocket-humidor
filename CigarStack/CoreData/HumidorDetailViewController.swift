@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class HumidorDetailViewController: UIViewController, UITableViewDelegate {
+class HumidorDetailViewController: UIViewController, UITableViewDelegate{
 
     
     @IBOutlet weak var humidorNameLabel: UILabel!
@@ -68,7 +68,16 @@ class HumidorDetailViewController: UIViewController, UITableViewDelegate {
         
         dividersLabel.text = NSLocalizedString("Dividers", comment: "")
         
-        computeStatistics()
+        if humidor.quantity == 0 {
+            expensiveValue.text = "N/A"
+            olderstValue.text = "N/A"
+            AVGAgeValue.text = "N/A"
+            AVGPriceValue.text = "N/A"
+
+        }
+        else{
+            computeStatistics()
+        }
         
     }
     
@@ -171,14 +180,17 @@ class HumidorDetailViewController: UIViewController, UITableViewDelegate {
             let navVC = segue.destination as! UINavigationController
             let destVC = navVC.topViewController as! AddHumidorController
             destVC.humidor = humidor
+        
+            navVC.modalPresentationStyle = .formSheet
+            navVC.modalTransitionStyle = .coverVertical
         }
     }
+    
 
 }
 
 class HumidorTrayDetails: FormViewController{
-    
-    
+
     var humidor: Humidor!
     
     override func viewDidLoad() {
@@ -212,7 +224,6 @@ class HumidorTrayDetails: FormViewController{
             })
         }
     }
-    
     
 }
 

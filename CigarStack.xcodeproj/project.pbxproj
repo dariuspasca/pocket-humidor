@@ -18,6 +18,7 @@
 		B7219C9D20518AA0001096A6 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C9C20518AA0001096A6 /* DataViewController.swift */; };
 		B7222DB620C18D4F000BA0E5 /* HumidorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */; };
 		B7224F912047FEC6005516B3 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7224F902047FEC6005516B3 /* SideMenu.framework */; };
+		B729AF9F20FD584200E73AED /* DetailCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B729AF9E20FD584200E73AED /* DetailCigar.storyboard */; };
 		B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684A205FCF84006CDFED /* AddHumidorController.swift */; };
 		B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684D205FCF8E006CDFED /* CoreDataController.swift */; };
 		B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7183063205FB69B000AF92D /* CigarStack.xcdatamodeld */; };
@@ -59,6 +60,7 @@
 		B7E6A47520A742990085EA2D /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E6A47420A742990085EA2D /* History.storyboard */; };
 		B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE3FD62066B43D000B761B /* CountrySelectViewController.swift */; };
 		B7EF0ADF20ACC9EF008F9DF2 /* SmokeCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */; };
+		B7F5021420FD5346001035A2 /* CigarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,7 @@
 		B7219C9C20518AA0001096A6 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidorDetailViewController.swift; sourceTree = "<group>"; };
 		B7224F902047FEC6005516B3 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
+		B729AF9E20FD584200E73AED /* DetailCigar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailCigar.storyboard; sourceTree = "<group>"; };
 		B72A684A205FCF84006CDFED /* AddHumidorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHumidorController.swift; sourceTree = "<group>"; };
 		B72A684D205FCF8E006CDFED /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		B73624B7204DF88700B92801 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		B7EE3FD62066B43D000B761B /* CountrySelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectViewController.swift; sourceTree = "<group>"; };
 		B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeCigarController.swift; sourceTree = "<group>"; };
 		B7F37DF720E6348000E40AF2 /* Eureka.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Eureka.framework.dSYM; path = Carthage/Build/iOS/Eureka.framework.dSYM; sourceTree = "<group>"; };
+		B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarDetailViewController.swift; sourceTree = "<group>"; };
 		B7F57D462052904E0046FCB1 /* AttributesLicense.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AttributesLicense.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +183,7 @@
 		B7161B182055AC2E001B2E1A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */,
 				B702A162209317AA00AB1AFC /* ManageHumidorsTableViewController.swift */,
 				B713C1B3204ABC6400AA40DD /* SideMenuUIViewController.swift */,
 				B7A4813520581E34001242F7 /* HomeViewController.swift */,
@@ -200,6 +205,7 @@
 				B75A84282042DAB3008528D8 /* Main.storyboard */,
 				B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */,
 				B7A13386206BCD110003854B /* NewCigar.storyboard */,
+				B729AF9E20FD584200E73AED /* DetailCigar.storyboard */,
 				B721834B2054432000E8DD09 /* Settings.storyboard */,
 				B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */,
 				B721833720542D3B00E8DD09 /* Localizable.strings */,
@@ -457,6 +463,7 @@
 				B7D6BE322048121700B50CCA /* Assets.xcassets in Resources */,
 				B7A4813A205825D9001242F7 /* ContentTableViewController.storyboard in Resources */,
 				B7658097205293D8004FD39F /* AttributesLicense.plist in Resources */,
+				B729AF9F20FD584200E73AED /* DetailCigar.storyboard in Resources */,
 				B72183492054432000E8DD09 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +548,7 @@
 				B7CB23BC20C0519C00370D0D /* FilterViewController.swift in Sources */,
 				B745A1A620A6AE7E000F2C83 /* EmptyTableViewController.swift in Sources */,
 				B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */,
+				B7F5021420FD5346001035A2 /* CigarDetailViewController.swift in Sources */,
 				B7219C97205186C0001096A6 /* UserSettings.swift in Sources */,
 				B7219C9B20518A13001096A6 /* SortViewController.swift in Sources */,
 				B7E524A7206166AA00E2CC38 /* AddCigarController.swift in Sources */,

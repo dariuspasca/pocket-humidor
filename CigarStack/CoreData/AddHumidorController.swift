@@ -9,15 +9,20 @@
 import UIKit
 import Eureka
 
+protocol NewHumidorDelegate{
+    func newHumidorForceReload()
+}
 
 class AddHumidorController: FormViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    var delegate:NewHumidorDelegate?
     var dismissKeyboard = false
     var navigationAccessoryIsHidden = true
     var humidor: Humidor?
     var isCurrentHumidor = false
     var dividersHaveBeenEdited = false
+    var isDeleting = true
     var trayList: [Tray]?
     
 
@@ -26,13 +31,6 @@ class AddHumidorController: FormViewController {
         view.tintColor =  UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = 44.0
-        
-        if humidor != nil {
-            trayList = (humidor!.trays?.allObjects as! [Tray]).sorted(by: { $0.orderID < $1.orderID })
-            if UserSettings.currentHumidor.value == humidor!.name {
-                isCurrentHumidor = true
-            }
-        }
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         
@@ -44,6 +42,14 @@ class AddHumidorController: FormViewController {
             naview.doneButton.action = #selector(dismisskeyboard)
             return naview
         }()
+        
+        if humidor != nil {
+            trayList = (humidor!.trays?.allObjects as! [Tray]).sorted(by: { $0.orderID < $1.orderID })
+            if UserSettings.currentHumidor.value == humidor!.name {
+                isCurrentHumidor = true
+            }
+        }
+        
         
         
         form +++ Section()
@@ -167,6 +173,11 @@ class AddHumidorController: FormViewController {
                                             row.value! = ""
                                            
                                         }
+                                        else{
+                                            self.saveButton.isEnabled = true
+                                            self.dividersHaveBeenEdited = true
+                                            
+                                        }
                                     }
                                 }
                                 })
@@ -186,9 +197,11 @@ class AddHumidorController: FormViewController {
 
         if humidor != nil{
             var section = form.sectionBy(tag: "trays")
-            for tray in trayList!{
+            for tray in trayList!.reversed(){
                 let row =  NameRow() {
                     $0.value = tray.name!
+                    }.cellSetup { (cell, row) in
+                        cell.textField.autocorrectionType = .yes
                     }.onCellHighlightChanged({ (cell, row) in
                         if row.isHighlighted == false {
             
@@ -207,7 +220,6 @@ class AddHumidorController: FormViewController {
                     })
                 section?.insert(row, at: 0)
             }
-           // section?.removeLast()
         }
         
         
@@ -223,29 +235,54 @@ class AddHumidorController: FormViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath){
+        let section = form.last!
+        let movedObject = section[sourceIndexPath.row] as! NameRow
+        let another = section[destinationIndexPath.row] as! NameRow
+        let temp = another.value!
+        another.value = movedObject.value!
+        movedObject.value = temp
+        
+        self.saveButton.isEnabled = true
+        self.dividersHaveBeenEdited = true
+        self.isDeleting = false
+    }
+    
     override func rowsHaveBeenAdded(_ rows: [BaseRow], at indexes: [IndexPath]) {
         super.rowsHaveBeenAdded(rows, at: indexes)
     }
     
     
     override func rowsHaveBeenRemoved(_ rows: [BaseRow], at indexes: [IndexPath]) {
-        if humidor != nil {
-            let row = rows[0] as! NameRow
-            var index: Int16 = 0
-            for (i,tray) in trayList!.enumerated(){
-                if tray.name! == row.value!{
-                    CoreDataController.sharedInstance.deleteTray(tray: tray, save: false)
-                    trayList?.remove(at: i)
+        if self.isDeleting == true {
+            if humidor != nil{
+                let row = rows[0] as! NameRow
+                let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
+                if name != "" {
+                    var index: Int16 = 0
+                    for (i,tray) in trayList!.enumerated(){
+                        if tray.name! == name{
+                            CoreDataController.sharedInstance.deleteTray(tray: tray, save: false)
+                            trayList?.remove(at: i)
+                        }
+                        else{
+                            tray.orderID = index
+                            index += 1
+                        }
+                    }
                 }
-                else{
-                    tray.orderID = index
-                    index += 1
-                }
+                self.saveButton.isEnabled = true
+                self.dividersHaveBeenEdited = true
             }
-            self.saveButton.isEnabled = true
-            self.dividersHaveBeenEdited = true
+    
+
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: indexes, with: .right)
+            self.tableView.endUpdates()
+
         }
-        super.rowsHaveBeenRemoved(rows, at: indexes)
+
+        self.isDeleting = true
     }
  
     
@@ -265,8 +302,10 @@ class AddHumidorController: FormViewController {
         if humidor != nil {
             CoreDataController.sharedInstance.discardContext()
         }
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
+    
+
     
     @IBAction func save(_ sender: UIBarButtonItem) {
         let formValues = self.form.values()
@@ -283,6 +322,7 @@ class AddHumidorController: FormViewController {
             /* Add new trays and assign new orderID */
             
             let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
+        
             for (index,tray) in trays.enumerated(){
                 let name = (tray as! String).trimmingCharacters(in: NSCharacterSet.whitespaces)
                 var found = false
@@ -294,13 +334,16 @@ class AddHumidorController: FormViewController {
                         break
                     }
                 }
-                if !found{
+                if found == false{
                    _ = CoreDataController.sharedInstance.addNewTray(name: name, humidor: humidor!, orderID: Int16(index))
                 }
             }
     
             UserSettings.shouldReloadView.value = true
             CoreDataController.sharedInstance.saveContext()
+            if UIDevice.current.userInterfaceIdiom == .pad{
+                delegate?.newHumidorForceReload()
+            }
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }
         else{
@@ -313,7 +356,6 @@ class AddHumidorController: FormViewController {
                 //could change to humidor but it looses clearance
                 let newHumidor = CoreDataController.sharedInstance.addNewHumidor(name: name!, humidityLevel: Int16(humidity),orderID: Int16(humidorOrderID))
                 let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
-                
                 
                 switch trays.count{
                 case 0:
@@ -343,9 +385,13 @@ class AddHumidorController: FormViewController {
                     UserSettings.currentHumidor.value = name!
                     UserSettings.shouldReloadView.value = true
                 }
-                cancel(sender)
+                dismiss(animated: true, completion: nil)
+                if UIDevice.current.userInterfaceIdiom == .pad{
+                    delegate?.newHumidorForceReload()
+                }
             }
         }
+        
     }
 
     //Blocks the popover the scroll the tableview when keyboard is shown

@@ -13,6 +13,7 @@ import TTGSnackbar
 protocol ContainerTableDelegate {
     func dataChanged(height: CGFloat)
     func updateData(container: Tray)
+    func presentCigarDetailSegue(cigar: Cigar)
     func updateHumidorView()
 }
 
@@ -84,9 +85,6 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         self.tableView.deselectRow(at: indexPath, animated: true)
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.0
@@ -483,6 +481,28 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    // MARK: - Segue
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        delegate?.presentCigarDetailSegue(cigar: cigars![indexPath.row])
+        
+       // performSegue(withIdentifier: "detailCigar", sender: self)
+    }
+    
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailCigar"{
+            let storyboard = UIStoryboard(name: "DetailCigar", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "DetailCigar") as! CigarDetailViewController
+            vc.cigar = cigars![cigarIndex!.row]
+            
+            self.present(vc, animated: true, completion: nil)
+            
+        }
+        
+    }
+    */
     // MARK: - Data
     
     func fetchData(){
@@ -549,6 +569,8 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         return (theYears, theMonths)
     }
 }
+
+
 
 
 

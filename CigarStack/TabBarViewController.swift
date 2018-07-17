@@ -8,8 +8,8 @@
 
 import UIKit
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
-    
+class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigarDelegate {
+
     var previousSelectedItem: Int!
 
     override func viewDidLoad() {
@@ -20,6 +20,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         if item.tag == 1 {
             if UserSettings.currentHumidor.value != ""{
                 let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
+                let vc = destVC.topViewController as! AddCigarController
+                vc.delegate = self
                 destVC.modalPresentationStyle = .formSheet
                 destVC.modalTransitionStyle = .coverVertical
                 
@@ -41,6 +43,12 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             }
         }
 
+    }
+    
+    func addCigarForceReload() {
+        let nav = self.viewControllers![0] as! UINavigationController
+        let home = nav.topViewController as! HomeViewController
+        home.viewWillAppear(true)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

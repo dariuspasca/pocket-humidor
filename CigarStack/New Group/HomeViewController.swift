@@ -10,7 +10,8 @@ import UIKit
 import PagingKit
 import SideMenu
 
-class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTableDelegate, UISideMenuNavigationControllerDelegate {
+class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTableDelegate, UISideMenuNavigationControllerDelegate, NewHumidorDelegate {
+    
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
@@ -203,6 +204,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newHumidor"{
+            let navVC = segue.destination as! UINavigationController
+            let destVC = navVC.topViewController as! AddHumidorController
+            destVC.delegate = self
             if UserSettings.isPremium.value == false {
                 let count = CoreDataController.sharedInstance.countHumidors()
                 if count > 1{
@@ -268,6 +272,15 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         self.view.layoutIfNeeded()
     }
     
+    func presentCigarDetailSegue(cigar: Cigar) {
+        let storyboard = UIStoryboard(name: "DetailCigar", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DetailCigar") as! CigarDetailViewController
+        vc.cigar = cigar
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationCapturesStatusBarAppearance = true
+        self.present(vc, animated: true, completion: nil)
+    }
     func updateData(container: Tray){
         var found = false
         for data in dataSource{
@@ -284,9 +297,17 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         }
     }
     
+    func newHumidorForceReload() {
+        self.viewWillAppear(true)
+    }
+    
     func updateHumidorView() {
         //fetchHumidorData()
         setupHumidorViewData(withAnimation: true)
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
+        return .slide
     }
     
 }
