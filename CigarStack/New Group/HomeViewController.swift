@@ -281,6 +281,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         vc.modalPresentationCapturesStatusBarAppearance = true
         self.present(vc, animated: true, completion: nil)
     }
+    
     func updateData(container: Tray){
         var found = false
         for data in dataSource{

@@ -1,0 +1,75 @@
+
+/* Class = "UILabel"; text = "Price per cigar"; ObjectID = "0oL-aI-LLW"; */
+"0oL-aI-LLW.text" = "Price per cigar";
+
+/* Class = "UILabel"; text = "Age"; ObjectID = "8CF-jg-EFJ"; */
+"8CF-jg-EFJ.text" = "Age";
+
+/* Class = "UILabel"; text = "23,00 $"; ObjectID = "CcB-RA-nS8"; */
+"CcB-RA-nS8.text" = "23,00 $";
+
+/* Class = "UILabel"; text = "Size"; ObjectID = "DGK-Gp-INU"; */
+"DGK-Gp-INU.text" = "Size";
+
+/* Class = "UILabel"; text = "Quantity"; ObjectID = "ECA-zB-AuW"; */
+"ECA-zB-AuW.text" = "Quantity";
+
+/* Class = "UILabel"; text = "230,00 $"; ObjectID = "LSh-8L-tfA"; */
+"LSh-8L-tfA.text" = "230,00 $";
+
+/* Class = "UILabel"; text = "13 Aug 2001"; ObjectID = "Nhf-SF-uFq"; */
+"Nhf-SF-uFq.text" = "13 Aug 2001";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "TDu-Zg-cOK"; */
+"TDu-Zg-cOK.text" = "Notes";
+
+/* Class = "UIButton"; normalTitle = "Edit"; ObjectID = "VaV-F1-eix"; */
+"VaV-F1-eix.normalTitle" = "Edit";
+
+/* Class = "UILabel"; text = "3 Years / 2 Moths"; ObjectID = "Vxa-ZZ-z7a"; */
+"Vxa-ZZ-z7a.text" = "3 Years / 2 Moths";
+
+/* Class = "UILabel"; text = "From"; ObjectID = "WUa-ll-NvU"; */
+"WUa-ll-NvU.text" = "From";
+
+/* Class = "UILabel"; text = "10 Cigars"; ObjectID = "dcd-8v-R9i"; */
+"dcd-8v-R9i.text" = "10 Cigars";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "fAs-10-0z6"; */
+"fAs-10-0z6.text" = "About";
+
+/* Class = "UILabel"; text = "23 Jan 2017"; ObjectID = "gvG-51-PHZ"; */
+"gvG-51-PHZ.text" = "23 Jan 2017";
+
+/* Class = "UILabel"; text = "Country of origin"; ObjectID = "iiB-DB-kRh"; */
+"iiB-DB-kRh.text" = "Country of origin";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "jLZ-Za-CTr"; */
+"jLZ-Za-CTr.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "jyb-XV-EZV"; */
+"jyb-XV-EZV.text" = "Name";
+
+/* Class = "UILabel"; text = "Purchase Date"; ObjectID = "kV8-vu-EMC"; */
+"kV8-vu-EMC.text" = "Purchase Date";
+
+/* Class = "UILabel"; text = "JJ Fox"; ObjectID = "n2I-6s-Rgv"; */
+"n2I-6s-Rgv.text" = "JJ Fox";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "sN3-4d-3Ou"; */
+"sN3-4d-3Ou.text" = "Total";
+
+/* Class = "UILabel"; text = "Cuba"; ObjectID = "sew-ge-Y7h"; */
+"sew-ge-Y7h.text" = "Cuba";
+
+/* Class = "UILabel"; text = "Details"; ObjectID = "tIx-mt-zZl"; */
+"tIx-mt-zZl.text" = "Details";
+
+/* Class = "UILabel"; text = "Aging"; ObjectID = "uqo-sh-6a2"; */
+"uqo-sh-6a2.text" = "Aging";
+
+/* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "vNu-1p-0Qe"; */
+"vNu-1p-0Qe.normalTitle" = "Delete";
+
+/* Class = "UILabel"; text = "Purchased From"; ObjectID = "z3f-zu-Ibs"; */
+"z3f-zu-Ibs.text" = "Purchased From";

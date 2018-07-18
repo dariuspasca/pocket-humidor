@@ -18,7 +18,6 @@
 		B7219C9D20518AA0001096A6 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C9C20518AA0001096A6 /* DataViewController.swift */; };
 		B7222DB620C18D4F000BA0E5 /* HumidorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */; };
 		B7224F912047FEC6005516B3 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7224F902047FEC6005516B3 /* SideMenu.framework */; };
-		B729AF9F20FD584200E73AED /* DetailCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B729AF9E20FD584200E73AED /* DetailCigar.storyboard */; };
 		B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684A205FCF84006CDFED /* AddHumidorController.swift */; };
 		B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684D205FCF8E006CDFED /* CoreDataController.swift */; };
 		B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7183063205FB69B000AF92D /* CigarStack.xcdatamodeld */; };
@@ -61,6 +60,7 @@
 		B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE3FD62066B43D000B761B /* CountrySelectViewController.swift */; };
 		B7EF0ADF20ACC9EF008F9DF2 /* SmokeCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */; };
 		B7F5021420FD5346001035A2 /* CigarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */; };
+		B7FDDF0B20FEB632001E8D4F /* DetailCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7FDDF0D20FEB632001E8D4F /* DetailCigar.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +94,6 @@
 		B7219C9C20518AA0001096A6 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidorDetailViewController.swift; sourceTree = "<group>"; };
 		B7224F902047FEC6005516B3 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
-		B729AF9E20FD584200E73AED /* DetailCigar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailCigar.storyboard; sourceTree = "<group>"; };
 		B72A684A205FCF84006CDFED /* AddHumidorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHumidorController.swift; sourceTree = "<group>"; };
 		B72A684D205FCF8E006CDFED /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		B73624B7204DF88700B92801 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +108,9 @@
 		B75A84402042DAB3008528D8 /* CigarStackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CigarStackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75A84442042DAB3008528D8 /* CigarStackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarStackUITests.swift; sourceTree = "<group>"; };
 		B75A84462042DAB3008528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B76CB0DD20FF3DA300D8035D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DetailCigar.storyboard; sourceTree = "<group>"; };
+		B76CB0DF20FF3DA900D8035D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailCigar.strings; sourceTree = "<group>"; };
+		B76CB0E020FF3DAE00D8035D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DetailCigar.strings; sourceTree = "<group>"; };
 		B76CC16620A83B3A004986EA /* GiftCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCigarController.swift; sourceTree = "<group>"; };
 		B7790CB620A1DD58003A713E /* circleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circleView.swift; sourceTree = "<group>"; };
 		B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +207,7 @@
 				B75A84282042DAB3008528D8 /* Main.storyboard */,
 				B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */,
 				B7A13386206BCD110003854B /* NewCigar.storyboard */,
-				B729AF9E20FD584200E73AED /* DetailCigar.storyboard */,
+				B7FDDF0D20FEB632001E8D4F /* DetailCigar.storyboard */,
 				B721834B2054432000E8DD09 /* Settings.storyboard */,
 				B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */,
 				B721833720542D3B00E8DD09 /* Localizable.strings */,
@@ -463,7 +465,7 @@
 				B7D6BE322048121700B50CCA /* Assets.xcassets in Resources */,
 				B7A4813A205825D9001242F7 /* ContentTableViewController.storyboard in Resources */,
 				B7658097205293D8004FD39F /* AttributesLicense.plist in Resources */,
-				B729AF9F20FD584200E73AED /* DetailCigar.storyboard in Resources */,
+				B7FDDF0B20FEB632001E8D4F /* DetailCigar.storyboard in Resources */,
 				B72183492054432000E8DD09 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +624,16 @@
 				B7D3A0B42055686F00AA6A29 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B7FDDF0D20FEB632001E8D4F /* DetailCigar.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B76CB0DD20FF3DA300D8035D /* Base */,
+				B76CB0DF20FF3DA900D8035D /* it */,
+				B76CB0E020FF3DAE00D8035D /* en */,
+			);
+			name = DetailCigar.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

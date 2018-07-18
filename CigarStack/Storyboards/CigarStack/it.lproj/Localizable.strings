@@ -47,6 +47,8 @@
 "To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor." = "Per aggiungere sigari è necessario almeno un humidor. Premmi il bottone + nell'angolo in alto a destra per aggiungere un humidor.";
 "Are you sure you want to continue? All cigars will be permanently removed from selected humidors." = "Confermi di voler continuare? Verranno eliminati definitivamente tutti i sigari dagli umidificatori selezionati.";
 "There is already a divisor with same name." = "Un divisore con lo stesso nome è già presente.";
+"Do you want to delete this cigar?" = "Vuoi eliminare questo sigaro?";
+"Your cannot undo this action." = "Non puoi annullare questa azione successivamente.";
 
 /* Snack Bar */
 "Cigar deleted" = "Sigaro eliminato";

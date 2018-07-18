@@ -29,10 +29,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BsE-hf-ADk">
-                                                    <rect key="frame" x="10" y="-1" width="279" height="72.666666666666671"/>
+                                                    <rect key="frame" x="10" y="-1" width="289" height="72.666666666666671"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="nJM-4Q-e0D" userLabel="CigarInfo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="279" height="18.666666666666668"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="289" height="18.666666666666668"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-dd-v9t">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="18.666666666666668"/>
@@ -62,13 +62,23 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CigarName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hY-Gc-9UW">
-                                                                    <rect key="frame" x="49" y="0.0" width="230" height="18.666666666666668"/>
+                                                                    <rect key="frame" x="49" y="0.0" width="240" height="18.666666666666668"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="SsO-PM-jn0"/>
+                                                                        <constraint firstAttribute="width" constant="240" id="ylh-4W-OiG"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="ylh-4W-OiG"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="ylh-4W-OiG"/>
+                                                                        </mask>
+                                                                    </variation>
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
