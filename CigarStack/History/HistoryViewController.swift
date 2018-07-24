@@ -158,6 +158,15 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "DetailCigar", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DetailCigar") as! CigarDetailViewController
+        vc.cigar = data![indexPath.section].cigars[indexPath.row]
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationCapturesStatusBarAppearance = true
+        self.present(vc, animated: true, completion: nil)
+    }
     
     func prepareData(){
         //fetch all cigars that have a review or gift object

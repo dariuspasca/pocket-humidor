@@ -22,6 +22,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                  "Culebra" , "Oetut Pyramid" , "Pyramid" , "Double Pyramid" , "Petit Perfecto" , "Perfecto" , "Double Perfecto" , "Giant Perfecto" ]
     
     var delegate:AddCigarDelegate?
+    var cigarToEdit: Cigar?
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var dismissKeyboard = false
     var navigationAccessoryIsHidden = true
@@ -29,6 +30,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     var selectedCountryCode:String!
     var humidor: Humidor!
     var humidorTrays: [Tray]!
+    var changesStatus: [Bool]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,12 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         //Default Country
         selectedCountryCode = "CU"
         humidor = CoreDataController.sharedInstance.searchHumidor(name: UserSettings.currentHumidor.value)
+        
+        if cigarToEdit != nil {
+            changesStatus = Array(repeating: false, count: 11)
+            selectedCountryCode = cigarToEdit?.origin!
+            valuateSaveButonStatus()
+        }
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         tableView.estimatedRowHeight = 44.0
@@ -52,6 +60,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         form +++ Section()
             <<< TextRow ("Name") {
                 $0.placeholder = NSLocalizedString("Cigar Name", comment: "")
+                $0.value = cigarToEdit?.name! ?? nil
                 $0.add(rule: RuleRequired(msg: "required"))
                 $0.validationOptions = .validatesOnChange
                 }.cellUpdate { cell, row in
@@ -65,7 +74,18 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                         if trimmedWhitespacesName != ""{
                             row.value = trimmedWhitespacesName
                             cell.update()
-                            self.saveButton.isEnabled = true
+                            if self.cigarToEdit != nil{
+                                if self.cigarToEdit!.name != row.value!{
+                                    self.changesStatus![0] = true
+                                }
+                                else{
+                                    self.changesStatus![0] = false
+                                }
+                                self.valuateSaveButonStatus()
+                            }
+                            else{
+                                 self.saveButton.isEnabled = true
+                            }
                         }
                     }
                     else{
@@ -75,12 +95,22 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             
             <<< PushRow<String>("Size"){
                 $0.title = NSLocalizedString("Size", comment: "")
-                $0.value = sizes.first
+                $0.value = cigarToEdit?.size ?? sizes.first
                 $0.selectorTitle = $0.tag
                 $0.options = sizes
                 }.onPresent{ from, to in
                     to.selectableRowCellUpdate = { cell, _ in cell.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)}
                     to.enableDeselection = false
+            }.cellUpdate { cell, row in
+                if self.cigarToEdit != nil {
+                    if self.cigarToEdit?.size != row.value! {
+                        self.changesStatus![1] = true
+                    }
+                    else{
+                        self.changesStatus![1] = false
+                    }
+                    self.valuateSaveButonStatus()
+                }
             }
             <<< LabelRow ("Country of origin") {
                 $0.title = NSLocalizedString("Country of origin", comment: "")
@@ -89,13 +119,27 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 }
                 .onCellSelection { cell, row in
                     self.performSegue(withIdentifier: "countrySelect", sender: self)
-                }
+                }.cellUpdate { cell, row in
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.origin != self.selectedCountryCode {
+                            self.changesStatus![2] = true
+                        }
+                        else{
+                            self.changesStatus![2] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
+            }
 
             
             +++ Section()
             <<< IntRow("Quantity"){
                 $0.title = NSLocalizedString("Quantity", comment: "")
-                $0.value = 1
+                var quantity = 1
+                if cigarToEdit != nil{
+                    quantity = Int(cigarToEdit!.quantity)
+                }
+                $0.value =  quantity
                 $0.cell.inputAccessoryView?.isHidden = false
         }.cellUpdate { cell, row in
             if self.navigationAccessoryIsHidden{
@@ -107,6 +151,17 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                     row.value = 1
                     cell.update()
                 }
+        
+                if self.cigarToEdit != nil {
+                    if (self.cigarToEdit?.quantity)! != Int32(row.value!) {
+                        self.changesStatus![3] = true
+                    }
+                    else{
+                        self.changesStatus![3] = false
+                    }
+                    self.valuateSaveButonStatus()
+                }
+
             }
             
             <<< DecimalRow("Price"){
@@ -116,12 +171,23 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 formatter.locale = NSLocale.current
                 formatter.numberStyle = NumberFormatter.Style.currency
                 $0.formatter = formatter
-                $0.value = 0
+                $0.value = cigarToEdit?.price ?? 0
                 }.cellUpdate { cell, row in
                     if self.navigationAccessoryIsHidden{
                         self.navigationAccessoryIsHidden = false
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.price != row.value! {
+                            self.changesStatus![4] = true
+                        }
+                        else{
+                            self.changesStatus![4] = false
+                        }
+                    self.valuateSaveButonStatus()
+                    }
+
                 }
         
             
@@ -131,16 +197,27 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             <<< TextRow("From"){
                 $0.title = NSLocalizedString("From", comment: "")
                 $0.placeholder = NSLocalizedString("Shop Name", comment: "")
+                $0.value = cigarToEdit?.from ?? nil
                 }.cellUpdate { cell, row in
                     if !self.navigationAccessoryIsHidden{
                         self.navigationAccessoryIsHidden = true
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+                    
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.from != row.value {
+                            self.changesStatus![5] = true
+                        }
+                        else{
+                            self.changesStatus![5] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
                 }
             <<< DateInlineRow("Purchase Date"){
                 $0.title = NSLocalizedString("Purchase Date", comment: "")
+                $0.value = cigarToEdit?.purchaseDate ?? Date()
                 $0.maximumDate = Date()
-                $0.value = Date()
                 }.onChange({ (row) in
                     let sinceRow = self.form.rowBy(tag: "Since") as! DateInlineRow
                     sinceRow.maximumDate = row.value!
@@ -148,36 +225,72 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                         sinceRow.value = row.value
                         sinceRow.reload()
                     }
+                    
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.purchaseDate != row.value {
+                            self.changesStatus![6] = true
+                        }
+                        else{
+                            self.changesStatus![6] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
                 })
             <<< SwitchRow("Has been aged"){
                 $0.title = NSLocalizedString("Has been aged", comment: "")
-                $0.value = true
+                if cigarToEdit != nil{
+                    $0.value = true
+                }
+                else{
+                    $0.value = false
+                }
                 }
             
             <<< DateInlineRow("Since"){
                 $0.title = NSLocalizedString("Since", comment: "")
-                $0.maximumDate = Date()
-                $0.value = Date()
+                $0.maximumDate = cigarToEdit?.purchaseDate ?? Date()
+                $0.value = cigarToEdit?.ageDate ?? Date()
                 $0.hidden = .function(["Has been aged"], { form -> Bool in
                     let row: RowOf<Bool>! = form.rowBy(tag: "Has been aged")
                     return row.value ?? false == false
                 })
-        }
+                }.onChange({ (row) in
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.purchaseDate != row.value {
+                            self.changesStatus![7] = true
+                        }
+                        else{
+                            self.changesStatus![7] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
+                })
         
             +++ Section()
             <<< TextAreaRow("Notes"){
                 $0.placeholder = NSLocalizedString("Notes", comment: "")
+                $0.value = cigarToEdit?.notes ?? nil
                 }.cellUpdate { cell, row in
                     if self.navigationAccessoryIsHidden{
                         self.navigationAccessoryIsHidden = false
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+                    
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.notes != row.value {
+                            self.changesStatus![8] = true
+                        }
+                        else{
+                            self.changesStatus![8] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
             }
         
         +++ Section(NSLocalizedString("Location", comment: ""))
             <<< PushRow<String>("Humidor"){
                 $0.title = NSLocalizedString("Humidor", comment: "")
-                $0.value = humidor.name!
+                $0.value = cigarToEdit?.tray?.humidor?.name ?? humidor.name!
                 $0.selectorTitle = $0.tag
                 $0.options = getHumidorsList()
                 }.onPresent{ from, to in
@@ -191,17 +304,37 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                     trayRow.value = traysOptions.first!
                     trayRow.options = traysOptions
                     trayRow.updateCell()
+                    
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.tray?.humidor?.name != row.value {
+                            self.changesStatus![9] = true
+                        }
+                        else{
+                            self.changesStatus![9] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
                 }
             <<< PushRow<String>("Tray"){
                 let traysOptions = getTraysList(humidor: humidor)
                 $0.title = NSLocalizedString("Divider", comment: "")
-                $0.value = traysOptions.first!
+                $0.value =  cigarToEdit?.tray?.name! ??  traysOptions.first!
                 $0.selectorTitle = $0.tag
                 $0.options = traysOptions
                 }.onPresent{ from, to in
                     to.selectableRowCellUpdate = { cell, _ in cell.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)}
                     to.enableDeselection = false
-                }
+                }.onChange{ row in
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.tray?.name != row.value {
+                            self.changesStatus![10] = true
+                        }
+                        else{
+                            self.changesStatus![10] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -218,6 +351,16 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         self.view.endEditing(true)
     }
+    
+    func valuateSaveButonStatus(){
+        if !changesStatus!.contains(true){
+            self.saveButton.isEnabled = false
+        }
+        else{
+             self.saveButton.isEnabled = true
+        }
+    }
+    
     
     //MARK: -Keyboard
     
@@ -278,11 +421,33 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         if ageDateForm == nil{
             ageDateForm = purchaseDateForm
         }
+        
         let humidor = CoreDataController.sharedInstance.searchHumidor(name: humidorForm)
         let location = CoreDataController.sharedInstance.searchTray(humidor: humidor!, searchTray: trayForm)
-        _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: Int32(quantityForm), size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , image: nil, notes: notesForm)
+        
+        if cigarToEdit != nil {
+            cigarToEdit?.name = nameForm
+            cigarToEdit?.size = sizeForm
+            cigarToEdit?.origin = selectedCountryCode
+            cigarToEdit?.quantity = Int32(quantityForm)
+            cigarToEdit?.purchaseDate = purchaseDateForm
+            cigarToEdit?.ageDate = ageDateForm
+            cigarToEdit?.from = fromForm
+            cigarToEdit?.price = priceForm
+            cigarToEdit?.notes = notesForm
+            
+            if changesStatus![10] == true{
+                cigarToEdit?.tray = location
+            }
+
+            CoreDataController.sharedInstance.saveContext()
+        }
+        else{
+            _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: Int32(quantityForm), size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , image: nil, notes: notesForm)
+        }
+        
         if humidorForm == UserSettings.currentHumidor.value {
-             UserSettings.shouldReloadData.value = true
+            UserSettings.shouldReloadData.value = true
         }
         
         dismiss(animated: true, completion: nil)

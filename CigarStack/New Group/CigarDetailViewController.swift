@@ -29,6 +29,10 @@ class CigarDetailViewController: UIViewController {
     @IBOutlet weak var ageDateLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var fromDateLabel: UILabel!
+    @IBOutlet weak var giftedStack: UIStackView!
+    @IBOutlet weak var giftedToLabel: UILabel!
+    @IBOutlet weak var giftedDateLabel: UILabel!
+    @IBOutlet weak var giftNotes: UILabel!
     
     
     override func viewDidLoad() {
@@ -52,11 +56,13 @@ class CigarDetailViewController: UIViewController {
         
         quantityLabel.text = String(cigar.quantity)
         
-        if cigar.price == 0 {
+        if cigar.quantity < 2 {
             pricePerCigarLabel.text = cigar.price.asLocalCurrency
         }
         else{
-            pricePerCigarLabel.text = String(Double(cigar.quantity)/cigar.price)
+            let price = cigar.price/Double(cigar.quantity)
+            let priceRounded = Double(round(1000*price)/1000)
+            pricePerCigarLabel.text = String(priceRounded.asLocalCurrency)
         }
         priceTotalLabel.text = cigar.price.asLocalCurrency
         
@@ -68,6 +74,33 @@ class CigarDetailViewController: UIViewController {
         dateFormatter.locale = Locale.current
         fromDateLabel.text = dateFormatter.string(from: cigar.purchaseDate!).capitalized
         ageDateLabel.text = dateFormatter.string(from: cigar.ageDate!).capitalized
+        
+        let (years, months) = computeAge(pastDate: cigar.ageDate!, currentDate: Date())
+        if years == 1 {
+            if months == 1 {
+                ageLabel.text = String(years) + " " + NSLocalizedString("Year", comment: "") + " / " + String(months) + " " + NSLocalizedString("Month", comment: "")
+            }
+            else{
+                ageLabel.text = String(years) + " " + NSLocalizedString("Year", comment: "") + " / " + String(months) + " " + NSLocalizedString("Months", comment: "")
+            }
+        }
+        else{
+            if months == 1 {
+                ageLabel.text = String(years) + " " + NSLocalizedString("Years", comment: "") + " / " + String(months) + " " + NSLocalizedString("Month", comment: "")
+            }
+            else{
+                ageLabel.text = String(years) + " " + NSLocalizedString("Years", comment: "") + " / " + String(months) + " " + NSLocalizedString("Months", comment: "")
+            }
+        }
+        if cigar.gift != nil {
+            giftedStack.isHidden = false
+            giftedToLabel.text = cigar.gift!.to!
+            giftedDateLabel.text = dateFormatter.string(from: cigar.gift!.giftDate!).capitalized
+            giftNotes.text = cigar.gift!.notes ?? "N/A"
+        }
+        else{
+            giftedStack.isHidden = true
+        }
         
         
         
@@ -104,16 +137,31 @@ class CigarDetailViewController: UIViewController {
         
     }
     
-    override var prefersStatusBarHidden: Bool{
-        return true
+    @IBAction func editCigar(_ sender: UIButton) {
+        let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
+        let vc = destVC.topViewController as! AddCigarController
+        vc.cigarToEdit = cigar
+       // vc.delegate = self
+        destVC.modalPresentationStyle = .formSheet
+        destVC.modalTransitionStyle = .coverVertical
+        
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            destVC.preferredContentSize = CGSize(width: 500, height: 700)
+        }
+        present(destVC, animated: true, completion: nil)
     }
-    
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
-        return .slide
-    }
+  
     
     @IBAction func cancel(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func computeAge(pastDate: Date,currentDate: Date) -> (years: Int, months: Int) {
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.month, .year], from: pastDate, to: currentDate)
+        let theYears = components.year!
+        let theMonths = components.month!
+        return (theYears, theMonths)
     }
 
 }

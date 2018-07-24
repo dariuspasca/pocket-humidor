@@ -14,8 +14,17 @@
 /* Class = "UILabel"; text = "Quantity"; ObjectID = "ECA-zB-AuW"; */
 "ECA-zB-AuW.text" = "Quantity";
 
+/* Class = "UILabel"; text = "N/A"; ObjectID = "JF4-Ak-Dqe"; */
+"JF4-Ak-Dqe.text" = "N/A";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "JL2-RT-vIR"; */
+"JL2-RT-vIR.text" = "Date";
+
 /* Class = "UILabel"; text = "230,00 $"; ObjectID = "LSh-8L-tfA"; */
 "LSh-8L-tfA.text" = "230,00 $";
+
+/* Class = "UILabel"; text = "28 July 2018"; ObjectID = "Nae-B5-ASt"; */
+"Nae-B5-ASt.text" = "28 July 2018";
 
 /* Class = "UILabel"; text = "13 Aug 2001"; ObjectID = "Nhf-SF-uFq"; */
 "Nhf-SF-uFq.text" = "13 Aug 2001";
@@ -38,6 +47,12 @@
 /* Class = "UILabel"; text = "About"; ObjectID = "fAs-10-0z6"; */
 "fAs-10-0z6.text" = "About";
 
+/* Class = "UILabel"; text = "History"; ObjectID = "fuQ-Ij-V27"; */
+"fuQ-Ij-V27.text" = "History";
+
+/* Class = "UILabel"; text = "Darius"; ObjectID = "gXm-wl-fBe"; */
+"gXm-wl-fBe.text" = "Darius";
+
 /* Class = "UILabel"; text = "23 Jan 2017"; ObjectID = "gvG-51-PHZ"; */
 "gvG-51-PHZ.text" = "23 Jan 2017";
 
@@ -56,6 +71,9 @@
 /* Class = "UILabel"; text = "JJ Fox"; ObjectID = "n2I-6s-Rgv"; */
 "n2I-6s-Rgv.text" = "JJ Fox";
 
+/* Class = "UILabel"; text = "Gifted to"; ObjectID = "nSP-uF-HI9"; */
+"nSP-uF-HI9.text" = "Gifted to";
+
 /* Class = "UILabel"; text = "Total"; ObjectID = "sN3-4d-3Ou"; */
 "sN3-4d-3Ou.text" = "Total";
 
@@ -70,6 +88,9 @@
 
 /* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "vNu-1p-0Qe"; */
 "vNu-1p-0Qe.normalTitle" = "Delete";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "w65-VP-soR"; */
+"w65-VP-soR.text" = "Notes";
 
 /* Class = "UILabel"; text = "Purchased From"; ObjectID = "z3f-zu-Ibs"; */
 "z3f-zu-Ibs.text" = "Purchased From";

@@ -73,3 +73,15 @@
 
 /* Class = "UILabel"; text = "Purchased From"; ObjectID = "z3f-zu-Ibs"; */
 "z3f-zu-Ibs.text" = "Acquistato da";
+
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "JL2-RT-vIR"; */
+"JL2-RT-vIR.text" = "Data";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "TDu-Zg-cOK"; */
+"TDu-Zg-cOK.text" = "Note";
+
+
+/* Class = "UILabel"; text = "Gifted to"; ObjectID = "nSP-uF-HI9"; */
+"nSP-uF-HI9.text" = "Regalato a";
+
