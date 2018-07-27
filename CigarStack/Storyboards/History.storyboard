@@ -318,6 +318,7 @@
                         <outlet property="scrollView" destination="b0G-jh-pVH" id="q5r-AR-7oh"/>
                         <outlet property="tableView" destination="Jbf-A9-SC4" id="Qgq-ih-YCJ"/>
                         <outlet property="titleView" destination="HYL-wK-tHJ" id="wp8-Pk-tR8"/>
+                        <outlet property="topView" destination="vbl-ff-hnG" id="vp2-1h-cye"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jk-ar-jCd" userLabel="First Responder" sceneMemberID="firstResponder"/>

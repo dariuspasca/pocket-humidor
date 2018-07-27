@@ -435,6 +435,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             cigarToEdit?.from = fromForm
             cigarToEdit?.price = priceForm
             cigarToEdit?.notes = notesForm
+            cigarToEdit?.editDate = Date()
             
             if changesStatus![10] == true{
                 cigarToEdit?.tray = location

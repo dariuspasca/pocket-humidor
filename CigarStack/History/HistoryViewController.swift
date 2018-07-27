@@ -33,6 +33,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var contentSize: NSLayoutConstraint!
     @IBOutlet weak var titleView: UILabel!
     
+    @IBOutlet weak var topView: UIView!
     var navigationBarBottomLine: UIImage?
     var filter: Filter = .both
     
@@ -57,7 +58,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         data = nil
         prepareData()
         self.tableView.reloadData()
-        contentSize.constant = getTableViewHeight() + 45
+        if data == nil {
+            topView.isHidden = true
+            contentSize.constant = self.view.frame.height - topView.frame.height
+        }
+        else{
+            topView.isHidden = false
+            contentSize.constant = getTableViewHeight() + 45
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +91,34 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.navigationController?.navigationBar.shadowImage = UIImage()
         }
     }
-
+    
+    // MARK: - DZNEmptyDataSet
+    
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let attributes =
+            [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .light),
+             NSAttributedStringKey.foregroundColor : UIColor.darkGray,
+             NSAttributedStringKey.backgroundColor : UIColor.clear]
+        return NSAttributedString(string: NSLocalizedString("When you smoke or gift a cigar it will show here.", comment: ""), attributes: attributes)
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        let language = Locale.current.languageCode
+        if language! == "en" {
+            return UIImage(named: "historyempty_en")
+        }
+        else{
+            return UIImage(named: "historyempty_ita")
+        }
+        
+    }
+    
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        //let offset = UIScreen.main.bounds.height / 3
+        return -((self.view.center.y - scrollView.center.y)+topView.frame.height)
+    }
+    
     
     // MARK: - TableView
     
@@ -241,6 +276,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.tableView.beginUpdates()
                 self.tableView.deleteSections([indexPath.section], with: .right)
                 self.tableView.endUpdates()
+                if self.data!.isEmpty {
+                    self.topView.isHidden = true
+                }
             }
             
             /* Undo view */
@@ -262,6 +300,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
                                             self.tableView.beginUpdates()
                                             self.tableView.insertSections([indexPath.section], with: .right)
                                             self.tableView.endUpdates()
+                                             self.topView.isHidden = false
                                         }
 
                                         
