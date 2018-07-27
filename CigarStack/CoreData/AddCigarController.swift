@@ -429,10 +429,22 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             cigarToEdit?.name = nameForm
             cigarToEdit?.size = sizeForm
             cigarToEdit?.origin = selectedCountryCode
-            cigarToEdit?.quantity = Int32(quantityForm)
+            let quantity = Int32(quantityForm)
+            //Update humidor quantity
+            if cigarToEdit?.quantity != quantity {
+                humidor?.quantity = (humidor?.quantity)! - (cigarToEdit?.quantity)!
+                humidor?.quantity = (humidor?.quantity)! + quantity
+            }
+
+            cigarToEdit?.quantity = quantity
             cigarToEdit?.purchaseDate = purchaseDateForm
             cigarToEdit?.ageDate = ageDateForm
             cigarToEdit?.from = fromForm
+            //Update humidor value
+            if cigarToEdit?.price != priceForm {
+                humidor?.value = (humidor?.value)! - (cigarToEdit?.price)!
+                humidor?.value = (humidor?.value)! + priceForm
+            }
             cigarToEdit?.price = priceForm
             cigarToEdit?.notes = notesForm
             cigarToEdit?.editDate = Date()
