@@ -278,7 +278,7 @@ class CoreDataController {
     }
     
     
-    func createReview(score: Int16, appearance: Int16, flavour: Int16, ash: Int16, draw: Int16, texture: Int16, strength: Int16, notes: String?) -> Review{
+    func createReview(score: Int16, appearance: Int16, flavour: Int16, ash: Int16, draw: Int16, texture: Int16, strength: Int16, notes: String?, reviewDate: Date?) -> Review{
         let entityReview = NSEntityDescription.entity(forEntityName: "Review", in: self.context)
         let newReview = Review (entity: entityReview!, insertInto: context)
         
@@ -290,7 +290,13 @@ class CoreDataController {
         newReview.texture = texture
         newReview.strength = strength
         newReview.notes = notes
-        newReview.reviewDate = Date()
+        if reviewDate == nil {
+            newReview.reviewDate = Date()
+        }
+        else{
+            newReview.reviewDate = reviewDate
+        }
+        
         
         return newReview
     }

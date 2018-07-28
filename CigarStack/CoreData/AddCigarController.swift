@@ -357,7 +357,13 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             self.saveButton.isEnabled = false
         }
         else{
-             self.saveButton.isEnabled = true
+            let nameRow = self.form.rowBy(tag: "Name") as! TextRow
+            if nameRow.value == nil {
+                self.saveButton.isEnabled = false
+            }
+            else{
+                self.saveButton.isEnabled = true
+            }
         }
     }
     

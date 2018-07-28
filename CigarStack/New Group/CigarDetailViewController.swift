@@ -191,7 +191,17 @@ class CigarDetailViewController: UIViewController {
                 self.present(navigationController, animated: true, completion: nil)
             }
             else{
+                let vc = SmokeCigarController()
+                vc.cigar = cigar
                 
+                let navigationController = UINavigationController(rootViewController: vc)
+                navigationController.navigationBar.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+                
+                navigationController.modalPresentationStyle = .formSheet
+                navigationController.modalTransitionStyle = .coverVertical
+                
+                
+                self.present(navigationController, animated: true, completion: nil)
             }
         }
         else {

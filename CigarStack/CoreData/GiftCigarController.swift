@@ -153,9 +153,6 @@ class GiftCigarController: FormViewController {
     
     @objc func cancel(sender: UIBarButtonItem) {
         self.view.endEditing(true)
-        if cigar.gift != nil {
-            CoreDataController.sharedInstance.discardContext()
-        }
         dismiss(animated: true, completion: nil)
     }
     
