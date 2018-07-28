@@ -148,6 +148,11 @@ class CoreDataController {
         }
     }
     
+    func deleteReview(review: Review){
+        self.context.delete(review)
+        self.saveContext()
+    }
+    
     func setHumidorOrderID(humidor: Humidor, orderID: Int16){
         humidor.orderID = orderID
         self.saveContext()

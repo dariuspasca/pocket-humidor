@@ -18,10 +18,12 @@ class CigarDetailViewController: UIViewController {
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    
     @IBOutlet weak var nameViewHeight: NSLayoutConstraint!
+    
+    
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var notesView: UITextView!
-    //@IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var pricePerCigarLabel: UILabel!
     @IBOutlet weak var priceTotalLabel: UILabel!
@@ -29,11 +31,25 @@ class CigarDetailViewController: UIViewController {
     @IBOutlet weak var ageDateLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var fromDateLabel: UILabel!
+    @IBOutlet weak var addedOn: UILabel!
+    
+    
+    //Review
     @IBOutlet weak var giftedStack: UIStackView!
     @IBOutlet weak var giftedToLabel: UILabel!
     @IBOutlet weak var giftedDateLabel: UILabel!
-    @IBOutlet weak var giftNotes: UILabel!
+    @IBOutlet weak var giftNotes: UITextView!
     
+    //Review
+    @IBOutlet weak var reviewStack: UIStackView!
+    @IBOutlet weak var rate: UILabel!
+    @IBOutlet weak var appearance: UILabel!
+    @IBOutlet weak var texture: UILabel!
+    @IBOutlet weak var draw: UILabel!
+    @IBOutlet weak var ash: UILabel!
+    @IBOutlet weak var strength: UILabel!
+    @IBOutlet weak var flavor: UILabel!
+    @IBOutlet weak var reviewNotes: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +89,9 @@ class CigarDetailViewController: UIViewController {
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale.current
         fromDateLabel.text = dateFormatter.string(from: cigar.purchaseDate!).capitalized
+        addedOn.text = dateFormatter.string(from: cigar.creationDate!).capitalized
         ageDateLabel.text = dateFormatter.string(from: cigar.ageDate!).capitalized
+        
         
         let (years, months) = computeAge(pastDate: cigar.ageDate!, currentDate: Date())
         if years == 1 {
@@ -92,14 +110,37 @@ class CigarDetailViewController: UIViewController {
                 ageLabel.text = String(years) + " " + NSLocalizedString("Years", comment: "") + " / " + String(months) + " " + NSLocalizedString("Months", comment: "")
             }
         }
-        if cigar.gift != nil {
-            giftedStack.isHidden = false
-            giftedToLabel.text = cigar.gift!.to!
-            giftedDateLabel.text = dateFormatter.string(from: cigar.gift!.giftDate!).capitalized
-            giftNotes.text = cigar.gift!.notes ?? "N/A"
+        if cigar.gift != nil || cigar.review != nil {
+            if cigar.gift != nil {
+                reviewStack.isHidden = true
+                giftedStack.isHidden = false
+                giftedToLabel.text = cigar.gift!.to!
+                giftedDateLabel.text = dateFormatter.string(from: cigar.gift!.giftDate!).capitalized
+                
+                giftNotes.isScrollEnabled = false
+                giftNotes.text = cigar.gift!.notes ?? "N/A"
+                giftNotes.sizeToFit()
+            }
+            else{
+                reviewStack.isHidden = false
+                giftedStack.isHidden = true
+                rate.text = String(cigar.review!.score) + "/100"
+
+                appearance.text = Appearance(rawValue: Int(cigar.review!.appearance))?.displayName
+                texture.text = Texture(rawValue: Int(cigar.review!.texture))?.displayName
+                draw.text = Draw(rawValue: Int(cigar.review!.draw))?.displayName
+                ash.text = Ash(rawValue: Int(cigar.review!.ash))?.displayName
+                strength.text = Strenght(rawValue: Int(cigar.review!.strength))?.displayName
+                flavor.text = Flavor(rawValue: Int(cigar.review!.flavour))?.displayName
+                
+                reviewNotes.isScrollEnabled = false
+                reviewNotes.text = cigar.review!.notes ?? NSLocalizedString("No notes", comment: "")
+                reviewNotes.sizeToFit()
+            }
         }
         else{
             giftedStack.isHidden = true
+            reviewStack.isHidden = true
         }
         
         
@@ -138,17 +179,33 @@ class CigarDetailViewController: UIViewController {
     }
     
     @IBAction func editCigar(_ sender: UIButton) {
-        let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
-        let vc = destVC.topViewController as! AddCigarController
-        vc.cigarToEdit = cigar
-       // vc.delegate = self
-        destVC.modalPresentationStyle = .formSheet
-        destVC.modalTransitionStyle = .coverVertical
-        
-        if UIDevice.current.userInterfaceIdiom == .pad{
-            destVC.preferredContentSize = CGSize(width: 500, height: 700)
+        if cigar.gift != nil || cigar.review != nil {
+            if cigar.gift != nil{
+                let vc = GiftCigarController()
+                vc.cigar = cigar
+                let navigationController = UINavigationController(rootViewController: vc)
+                navigationController.navigationBar.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+                
+                navigationController.modalPresentationStyle = .formSheet
+                navigationController.modalTransitionStyle = .coverVertical
+                self.present(navigationController, animated: true, completion: nil)
+            }
+            else{
+                
+            }
         }
-        present(destVC, animated: true, completion: nil)
+        else {
+            let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
+            let vc = destVC.topViewController as! AddCigarController
+            vc.cigarToEdit = cigar
+            destVC.modalPresentationStyle = .formSheet
+            destVC.modalTransitionStyle = .coverVertical
+        
+            if UIDevice.current.userInterfaceIdiom == .pad{
+                destVC.preferredContentSize = CGSize(width: 500, height: 700)
+            }
+            present(destVC, animated: true, completion: nil)
+        }
     }
   
     

@@ -410,9 +410,9 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     }
     
-    func smokeCigarDelegate(quantity: Int32, review: [String : Int16], notes: String?) {
+    func smokeCigarDelegate(quantity: Int32, review: Review) {
         if cigarIndex != nil{
-            var gift = true
+            var smoke = true
             /* Better implementation using .copy */
             let cigarToSmoke = cigars![cigarIndex!.row]
             let initialQuantity = cigarToSmoke.quantity
@@ -434,6 +434,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                        actionText: NSLocalizedString("Undo", comment: ""),
                                        actionBlock: { (snackbar) in
                                         /* Undo button action*/
+                                        CoreDataController.sharedInstance.deleteReview(review: review)
                                         self.tableView.beginUpdates()
                                         if initialQuantity == quantity{
                                             self.cigars!.insert(cigarToSmoke, at: self.cigarIndex!.row)
@@ -447,7 +448,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                         self.tableView.endUpdates()
                                         self.isSelected()
                                         /* Set delete to false thus the context won't be changed */
-                                        gift = false
+                                        smoke = false
             })
             snackbar.backgroundColor = UIColor.darkGray
             snackbar.show()
@@ -456,8 +457,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
              Removes the item from context if user hasn't selected otherwise
              */
             snackbar.dismissBlock = {
-                (snackbar: TTGSnackbar) -> Void in if (gift == true) {
-                    let review = CoreDataController.sharedInstance.createReview(score: review["score"]!, appearance: review["appearance"]!, flavour: review["flavor"]!, ash: review["ash"]!, draw: review["draw"]!, texture: review["texture"]!, strength: review["strength"]!, notes: notes)
+                (snackbar: TTGSnackbar) -> Void in if (smoke == true) {
                     
                     if initialQuantity == quantity {
                         CoreDataController.sharedInstance.updateCigar(cigar: cigarToSmoke, gift: nil, review: review)

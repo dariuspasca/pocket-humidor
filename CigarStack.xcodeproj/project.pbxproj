@@ -18,6 +18,7 @@
 		B7219C9D20518AA0001096A6 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C9C20518AA0001096A6 /* DataViewController.swift */; };
 		B7222DB620C18D4F000BA0E5 /* HumidorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */; };
 		B7224F912047FEC6005516B3 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7224F902047FEC6005516B3 /* SideMenu.framework */; };
+		B72A0B23210CAEE600FE935A /* CigarReviewEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A0B22210CAEE600FE935A /* CigarReviewEnums.swift */; };
 		B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684A205FCF84006CDFED /* AddHumidorController.swift */; };
 		B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684D205FCF8E006CDFED /* CoreDataController.swift */; };
 		B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7183063205FB69B000AF92D /* CigarStack.xcdatamodeld */; };
@@ -94,6 +95,7 @@
 		B7219C9C20518AA0001096A6 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidorDetailViewController.swift; sourceTree = "<group>"; };
 		B7224F902047FEC6005516B3 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
+		B72A0B22210CAEE600FE935A /* CigarReviewEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarReviewEnums.swift; sourceTree = "<group>"; };
 		B72A684A205FCF84006CDFED /* AddHumidorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHumidorController.swift; sourceTree = "<group>"; };
 		B72A684D205FCF8E006CDFED /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		B73624B7204DF88700B92801 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				B7219C932051836B001096A6 /* UserEngagement.swift */,
 				B7219C96205186C0001096A6 /* UserSettings.swift */,
+				B72A0B22210CAEE600FE935A /* CigarReviewEnums.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -241,8 +244,8 @@
 		B72A6848205FCF53006CDFED /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */,
 				B72A684D205FCF8E006CDFED /* CoreDataController.swift */,
+				B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */,
 				B72A684A205FCF84006CDFED /* AddHumidorController.swift */,
 				B7E524A6206166AA00E2CC38 /* AddCigarController.swift */,
 				B7CA195720AB22B30009FA99 /* MoveCigarController.swift */,
@@ -530,6 +533,7 @@
 				B7790CB720A1DD58003A713E /* circleView.swift in Sources */,
 				B7A4813C20582755001242F7 /* ContentTableViewCell.swift in Sources */,
 				B7A8532A20B6B6E80093C158 /* HistoryTableViewCell.swift in Sources */,
+				B72A0B23210CAEE600FE935A /* CigarReviewEnums.swift in Sources */,
 				B7E524A32061620500E2CC38 /* TabBarViewController.swift in Sources */,
 				B7A48138205822BC001242F7 /* ContentTableViewController.swift in Sources */,
 				B75A84252042DAB3008528D8 /* AppDelegate.swift in Sources */,

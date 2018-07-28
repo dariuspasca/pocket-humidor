@@ -21,6 +21,7 @@ class GiftCigarController: FormViewController {
     var dismissKeyboard = false
     var navigationAccessoryIsHidden = true
     var delegate:giftCigarViewDelegate!
+    var changesStatus: [Bool]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,10 @@ class GiftCigarController: FormViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Regala", comment: ""),style: .plain, target: self, action: #selector(giftCigar))
         navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        if cigar.gift != nil {
+            changesStatus = [false , false]
+        }
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         self.navigationItem.title =  cigar.name!
@@ -48,6 +53,7 @@ class GiftCigarController: FormViewController {
             <<< TextRow("To"){
                 $0.title = NSLocalizedString("Gift to:", comment: "")
                 $0.add(rule: RuleRequired(msg: "required"))
+                $0.value = cigar.gift?.to ?? nil
                 $0.validationOptions = .validatesOnChange
                 }.cellUpdate { cell, row in
                     if !self.navigationAccessoryIsHidden{
@@ -59,7 +65,20 @@ class GiftCigarController: FormViewController {
                         if trimmedWhitespacesName != ""{
                             row.value = trimmedWhitespacesName
                             cell.update()
-                            self.navigationItem.rightBarButtonItem?.isEnabled = true
+                            
+                            if self.cigar.gift != nil {
+                                if self.cigar.gift?.to! != row.value! {
+                                    self.changesStatus![0] = true
+                                }
+                                else{
+                                    self.changesStatus![0] = false
+                                }
+                                self.valuateSaveButonStatus()
+                                
+                            }
+                            else {
+                                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                            }
                         }
                     }
                     else{
@@ -68,8 +87,13 @@ class GiftCigarController: FormViewController {
                     
             }
             
+            
             <<< PickerInputRow<String>("Picker Row") {
                 $0.title = NSLocalizedString("Quantity", comment: "")
+                if cigar.gift != nil {
+                    $0.hidden = true
+                }
+                
                 var options = [String]()
                 for i in 1...Int(cigar.quantity){
                     options.append("\(i)")
@@ -93,11 +117,23 @@ class GiftCigarController: FormViewController {
             +++ Section()
             <<< TextAreaRow("Notes"){
                 $0.placeholder = NSLocalizedString("Notes", comment: "")
+                $0.value = cigar.gift?.notes ?? nil
                 }.cellUpdate { cell, row in
                     if self.navigationAccessoryIsHidden{
                         self.navigationAccessoryIsHidden = false
                     }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+                    
+                    if self.cigar.gift != nil {
+                        if self.cigar.gift?.notes != row.value {
+                            self.changesStatus![1] = true
+                        }
+                        else{
+                            self.changesStatus![1] = false
+                        }
+                        self.valuateSaveButonStatus()
+                        
+                    }
             }
     }
     
@@ -117,17 +153,40 @@ class GiftCigarController: FormViewController {
     
     @objc func cancel(sender: UIBarButtonItem) {
         self.view.endEditing(true)
+        if cigar.gift != nil {
+            CoreDataController.sharedInstance.discardContext()
+        }
         dismiss(animated: true, completion: nil)
     }
     
     @objc func giftCigar(){
         let formValues = self.form.values()
         let toForm = formValues["To"] as! String
-        let notesForm = formValues["To"] as? String
-        
-        delegate.giftCigarDelegate(to: toForm, notes: notesForm, quantity: quantity)
+        let notesForm = formValues["Notes"] as? String
+        if cigar.gift != nil {
+            cigar.gift!.to = toForm
+            cigar.gift!.notes = notesForm
+            CoreDataController.sharedInstance.saveContext()
+        }
+        else{
+            delegate.giftCigarDelegate(to: toForm, notes: notesForm, quantity: quantity)
+        }
         dismiss(animated: true, completion: nil)
         
+    }
+    
+    func valuateSaveButonStatus(){
+        if changesStatus![0] == true {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+        else if changesStatus![1] == true {
+            if changesStatus![0] == false {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+            else{
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            }
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 import Eureka
 
 protocol smokeCigarViewDelegate{
-    func smokeCigarDelegate(quantity: Int32,review: [String:Int16], notes: String?)
+    func smokeCigarDelegate(quantity: Int32,review: Review)
 }
 
 class SmokeCigarController: FormViewController {
@@ -19,8 +19,13 @@ class SmokeCigarController: FormViewController {
     var quantity: Int32!
     var delegate: smokeCigarViewDelegate!
     
-    /* Some SegmentedRows returns as selectedIndex -1 if they are not changed by the user. This way I avoid this problem by giving default values that are changed only when the user interacts with the segmentedrow*/
-    var review: [String: Int16] = ["score": 71, "appearance": 2, "texture": 2, "draw": 2, "ash": 2, "strength": 2, "flavor": 2]
+    var score: Int16 = 71
+    var appeareance: Appearance = .uniform
+    var texture: Texture = .spongy
+    var draw: Draw = .normal
+    var ash: Ash = .compact
+    var strength: Strenght = .medfull
+    var flavor: Flavor = .medfull
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +105,7 @@ class SmokeCigarController: FormViewController {
                         break
                     }
                     titleRow?.updateCell()
-                    self.review["score"] = Int16(row.value!)
+                    self.score = Int16(row.value!)
             }
         
       +++ Section()
@@ -112,10 +117,10 @@ class SmokeCigarController: FormViewController {
                 })
         
             <<< SegmentedRow<String>(){
-                $0.options =  [NSLocalizedString("Veins", comment: ""), NSLocalizedString("Not Uniform", comment: ""), NSLocalizedString("Uniform", comment: ""), NSLocalizedString("Perfect", comment: "")]
-                $0.value = NSLocalizedString("Uniform", comment: "")
+                $0.options =  [Appearance.veins.displayName, Appearance.notUniform.displayName, Appearance.uniform.displayName, Appearance.perfect.displayName]
+                $0.value = appeareance.displayName
                 }.onChange{row in
-                    self.review["appearance"] = Int16(row.cell.segmentedControl.selectedSegmentIndex)
+                    self.appeareance = Appearance(rawValue: row.cell.segmentedControl.selectedSegmentIndex)!
             }
        +++ Section()
             <<< LabelRow () {
@@ -126,10 +131,10 @@ class SmokeCigarController: FormViewController {
                 })
             
             <<< SegmentedRow<String>(){
-               $0.options =  [NSLocalizedString("Crumbly", comment: ""), NSLocalizedString("Dry", comment: ""), NSLocalizedString("Spongy", comment: ""), NSLocalizedString("Perfect", comment: "")]
-                $0.value = NSLocalizedString("Spongy", comment: "")
+               $0.options =  [Texture.crumbly.displayName, Texture.dry.displayName, Texture.spongy.displayName, Texture.perfect.displayName]
+                $0.value = texture.displayName
                 }.onChange{row in
-                    self.review["texture"] = Int16(row.cell.segmentedControl.selectedSegmentIndex)
+                    self.texture = Texture(rawValue: row.cell.segmentedControl.selectedSegmentIndex)!
             }
         
        +++ Section()
@@ -141,10 +146,10 @@ class SmokeCigarController: FormViewController {
                 })
             
             <<< SegmentedRow<String>(){
-                $0.options =  [NSLocalizedString("Hard", comment: ""), NSLocalizedString("Tight", comment: ""), NSLocalizedString("Normal", comment: ""), NSLocalizedString("Excellent", comment: "")]
-                $0.value = NSLocalizedString("Normal", comment: "")
+                $0.options =  [Draw.hard.displayName, Draw.tight.displayName, Draw.normal.displayName, Draw.excellent.displayName]
+                $0.value = draw.displayName
                 }.onChange{row in
-                    self.review["draw"] = Int16(row.cell.segmentedControl.selectedSegmentIndex)
+                    self.draw = Draw(rawValue: row.cell.segmentedControl.selectedSegmentIndex)!
             }
         +++ Section()
         <<< LabelRow () {
@@ -155,10 +160,10 @@ class SmokeCigarController: FormViewController {
             })
         
         <<< SegmentedRow<String>(){
-            $0.options =  [NSLocalizedString("Britlte", comment: ""), NSLocalizedString("Normal", comment: ""), NSLocalizedString("Compact", comment: ""), NSLocalizedString("Solid", comment: "")]
-            $0.value = NSLocalizedString("Compact", comment: "")
+            $0.options =  [Ash.britlte.displayName, Ash.normal.displayName, Ash.compact.displayName, Ash.solid.displayName]
+            $0.value = ash.displayName
             }.onChange{row in
-                self.review["ash"] = Int16(row.cell.segmentedControl.selectedSegmentIndex)
+                self.ash = Ash(rawValue: row.cell.segmentedControl.selectedSegmentIndex)!
             }
         +++ Section()
         <<< LabelRow () {
@@ -169,10 +174,10 @@ class SmokeCigarController: FormViewController {
             })
         
         <<< SegmentedRow<String>(){
-            $0.options =  [NSLocalizedString("Light", comment: ""), NSLocalizedString("Medium", comment: ""), NSLocalizedString("Med-Full", comment: ""), NSLocalizedString("Full", comment: "")]
-            $0.value = NSLocalizedString("Med-Full", comment: "")
+            $0.options =  [Strenght.light.displayName, Strenght.medium.displayName, Strenght.medfull.displayName, Strenght.full.displayName]
+            $0.value = strength.displayName
             }.onChange{row in
-                self.review["strength"] = Int16(row.cell.segmentedControl.selectedSegmentIndex)
+                self.strength = Strenght(rawValue: row.cell.segmentedControl.selectedSegmentIndex)!
             }
         +++ Section()
         <<< LabelRow () {
@@ -183,10 +188,10 @@ class SmokeCigarController: FormViewController {
             })
             
         <<< SegmentedRow<String>(){
-            $0.options =  [NSLocalizedString("Light", comment: ""), NSLocalizedString("Medium", comment: ""), NSLocalizedString("Med-Full", comment: ""), NSLocalizedString("Full", comment: "")]
-            $0.value = NSLocalizedString("Med-Full", comment: "")
+            $0.options =  [Flavor.light.displayName, Flavor.medium.displayName, Flavor.medfull.displayName, Flavor.full.displayName]
+            $0.value = flavor.displayName
             }.onChange{row in
-                self.review["flavor"] = Int16(row.cell.segmentedControl.selectedSegmentIndex)
+                 self.flavor = Flavor(rawValue: row.cell.segmentedControl.selectedSegmentIndex)!
             }
         
         +++ Section()
@@ -208,11 +213,14 @@ class SmokeCigarController: FormViewController {
     }
     
     @objc func reviewCigar(){
-        let notes = form.rowBy(tag: "notes") as? TextAreaRow
+        let notes = form.rowBy(tag: "Notes") as? TextAreaRow
+         let review = CoreDataController.sharedInstance.createReview(score: score, appearance: Int16(appeareance.rawValue), flavour: Int16(flavor.rawValue), ash: Int16(ash.rawValue), draw: Int16(draw.rawValue), texture: Int16(texture.rawValue), strength: Int16(strength.rawValue), notes: notes?.value)
         
-        delegate?.smokeCigarDelegate(quantity: quantity, review: review, notes: notes?.value)
+        
+        delegate?.smokeCigarDelegate(quantity: quantity, review: review)
         dismiss(animated: true, completion: nil)
     }
 }
+
 
 

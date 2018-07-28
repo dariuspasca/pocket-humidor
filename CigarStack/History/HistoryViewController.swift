@@ -94,6 +94,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - DZNEmptyDataSet
     
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        
+        let attributes =
+            [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20, weight: .light),
+             NSAttributedStringKey.foregroundColor : UIColor.black,
+             NSAttributedStringKey.backgroundColor : UIColor.clear]
+        return NSAttributedString(string: NSLocalizedString("Cigar History", comment: ""), attributes: attributes)
+    }
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let attributes =
@@ -104,14 +112,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        let language = Locale.current.languageCode
-        if language! == "en" {
-            return UIImage(named: "historyempty_en")
-        }
-        else{
-            return UIImage(named: "historyempty_ita")
-        }
-        
+        return UIImage(named: "historyEmpty")
     }
     
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
