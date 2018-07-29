@@ -34,11 +34,12 @@ class CigarDetailViewController: UIViewController {
     @IBOutlet weak var addedOn: UILabel!
     
     
-    //Review
+    //Gift
     @IBOutlet weak var giftedStack: UIStackView!
     @IBOutlet weak var giftedToLabel: UILabel!
     @IBOutlet weak var giftedDateLabel: UILabel!
     @IBOutlet weak var giftNotes: UITextView!
+    @IBOutlet weak var giftNotesStack: UIStackView!
     
     //Review
     @IBOutlet weak var reviewStack: UIStackView!
@@ -50,6 +51,7 @@ class CigarDetailViewController: UIViewController {
     @IBOutlet weak var strength: UILabel!
     @IBOutlet weak var flavor: UILabel!
     @IBOutlet weak var reviewNotes: UITextView!
+    @IBOutlet weak var reviewNotesStack: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,14 +119,19 @@ class CigarDetailViewController: UIViewController {
                 giftedToLabel.text = cigar.gift!.to!
                 giftedDateLabel.text = dateFormatter.string(from: cigar.gift!.giftDate!).capitalized
                 
-                giftNotes.isScrollEnabled = false
-                giftNotes.text = cigar.gift!.notes ?? "N/A"
-                giftNotes.sizeToFit()
+                if cigar.gift?.notes != nil {
+                    giftNotes.isScrollEnabled = false
+                    giftNotes.text = cigar.gift!.notes
+                    giftNotes.sizeToFit()
+                }
+                else{
+                    giftNotesStack.isHidden=true
+                }
             }
             else{
                 reviewStack.isHidden = false
                 giftedStack.isHidden = true
-                rate.text = String(cigar.review!.score) + "/100"
+                rate.text = String(cigar.review!.score) + " / 100"
 
                 appearance.text = Appearance(rawValue: Int(cigar.review!.appearance))?.displayName
                 texture.text = Texture(rawValue: Int(cigar.review!.texture))?.displayName
@@ -133,9 +140,14 @@ class CigarDetailViewController: UIViewController {
                 strength.text = Strenght(rawValue: Int(cigar.review!.strength))?.displayName
                 flavor.text = Flavor(rawValue: Int(cigar.review!.flavour))?.displayName
                 
-                reviewNotes.isScrollEnabled = false
-                reviewNotes.text = cigar.review!.notes ?? NSLocalizedString("No notes", comment: "")
-                reviewNotes.sizeToFit()
+                if cigar.review?.notes != nil {
+                    reviewNotes.isScrollEnabled = false
+                    reviewNotes.text = cigar.review!.notes
+                    reviewNotes.sizeToFit()
+                }
+                else{
+                    reviewNotesStack.isHidden=true
+                }
             }
         }
         else{

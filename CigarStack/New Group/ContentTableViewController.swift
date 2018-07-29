@@ -339,7 +339,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func giftCigarDelegate(to: String, notes: String?, quantity: Int32){
+    func giftCigarDelegate(to: String, notes: String?, quantity: Int32,date: Date){
         if cigarIndex != nil{
             var gift = true
             /* Better implementation using .copy */
@@ -387,7 +387,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
              */
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (gift == true) {
-                    let gift = CoreDataController.sharedInstance.createGift(to: to, notes: notes)
+                    let gift = CoreDataController.sharedInstance.createGift(to: to, notes: notes,date: date)
                     if initialQuantity == quantity {
                         CoreDataController.sharedInstance.updateCigar(cigar: cigarToGift, gift: gift, review: nil)
                         CoreDataController.sharedInstance.updateHumidorValues(tray: cigarToGift.tray!, quantity: cigarToGift.quantity, value: cigarToGift.price, add: false)

@@ -259,18 +259,19 @@ class CoreDataController {
     func updateCigar(cigar: Cigar,gift: Gift?, review: Review?){
         cigar.gift = gift
         cigar.review = review
+        cigar.editDate = Date()
         
         self.saveContext()
     }
     
     
-    func createGift(to: String,notes: String?) -> Gift{
+    func createGift(to: String,notes: String?,date: Date) -> Gift{
         let entityGift = NSEntityDescription.entity(forEntityName: "Gift", in: self.context)
         let newGift = Gift (entity: entityGift!, insertInto: context)
         
         newGift.to = to
         newGift.notes = notes
-        newGift.giftDate = Date()
+        newGift.giftDate = date
         
         self.saveContext()
         return newGift
@@ -290,12 +291,8 @@ class CoreDataController {
         newReview.texture = texture
         newReview.strength = strength
         newReview.notes = notes
-        if reviewDate == nil {
-            newReview.reviewDate = Date()
-        }
-        else{
-            newReview.reviewDate = reviewDate
-        }
+        newReview.reviewDate = reviewDate
+
         
         
         return newReview

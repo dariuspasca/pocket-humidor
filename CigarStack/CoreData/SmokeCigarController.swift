@@ -45,7 +45,7 @@ class SmokeCigarController: FormViewController {
         quantity = 1
         
         if cigar.review != nil{
-            changesStatus = Array(repeating: false, count: 9)
+            changesStatus = Array(repeating: false, count: 10)
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
         
@@ -334,6 +334,31 @@ class SmokeCigarController: FormViewController {
                 self.valuateSaveButonStatus()
             }
         }
+            
+         +++ Section()
+            <<< DateInlineRow("Date"){
+                $0.title = NSLocalizedString("Date", comment: "")
+                
+                if cigar.review != nil {
+                    $0.value = cigar.review!.reviewDate
+                }
+                else {
+                    $0.value = Date()
+                }
+                
+                
+                }.onChange({ (row) in
+                    if self.cigar.review != nil {
+                        if self.cigar.review?.reviewDate != row.value {
+                            self.changesStatus![8] = true
+                        }
+                        else{
+                            self.changesStatus![8] = false
+                        }
+                        self.valuateSaveButonStatus()
+                        
+                    }
+                })
         
         
     }
@@ -359,10 +384,10 @@ class SmokeCigarController: FormViewController {
     
     @objc func reviewCigar(){
         let notes = form.rowBy(tag: "Notes") as? TextAreaRow
-        let review = CoreDataController.sharedInstance.createReview(score: score, appearance: Int16(appeareance.rawValue), flavour: Int16(flavor.rawValue), ash: Int16(ash.rawValue), draw: Int16(draw.rawValue), texture: Int16(texture.rawValue), strength: Int16(strength.rawValue), notes: notes?.value, reviewDate: nil)
+        let dateForm = form.rowBy(tag: "Date") as! DateInlineRow
+        let review = CoreDataController.sharedInstance.createReview(score: score, appearance: Int16(appeareance.rawValue), flavour: Int16(flavor.rawValue), ash: Int16(ash.rawValue), draw: Int16(draw.rawValue), texture: Int16(texture.rawValue), strength: Int16(strength.rawValue), notes: notes?.value, reviewDate: dateForm.value)
         
         if cigar.review != nil {
-            review.reviewDate = cigar.review?.reviewDate!
             CoreDataController.sharedInstance.deleteReview(review: cigar.review!)
             CoreDataController.sharedInstance.updateCigar(cigar: cigar, gift: nil, review: review)
         }

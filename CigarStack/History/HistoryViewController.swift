@@ -160,8 +160,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! HistoryTableViewCell
         let cigar = data![indexPath.section].cigars[indexPath.row]
-        let pastDate = cigar.ageDate!
-        let (years, months) = computeAge(pastDate: pastDate, currentDate: Date())
+        let (years, months) = computeAge(pastDate: cigar.ageDate!, currentDate: cigar.editDate!)
         
         var percentage = Double(months)/12
         if years > 0 && months == 0 {

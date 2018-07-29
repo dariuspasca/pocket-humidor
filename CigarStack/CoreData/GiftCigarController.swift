@@ -10,7 +10,7 @@ import UIKit
 import Eureka
 
 protocol giftCigarViewDelegate{
-    func giftCigarDelegate(to: String, notes: String?, quantity: Int32)
+    func giftCigarDelegate(to: String, notes: String?, quantity: Int32, date: Date)
 }
 
 
@@ -31,7 +31,7 @@ class GiftCigarController: FormViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
         
         if cigar.gift != nil {
-            changesStatus = [false , false]
+             changesStatus = Array(repeating: false, count: 4)
         }
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
@@ -113,6 +113,30 @@ class GiftCigarController: FormViewController {
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
                     self.quantity = Int32(row.value!)
             }
+            
+            <<< DateInlineRow("Date"){
+                $0.title = NSLocalizedString("Date", comment: "")
+                
+                if cigar.gift != nil {
+                    $0.value = cigar.gift!.giftDate
+                }
+                else {
+                    $0.value = Date()
+                }
+                
+               
+                }.onChange({ (row) in
+                    if self.cigar.gift != nil {
+                        if self.cigar.gift?.giftDate != row.value {
+                            self.changesStatus![1] = true
+                        }
+                        else{
+                            self.changesStatus![1] = false
+                        }
+                        self.valuateSaveButonStatus()
+                        
+                    }
+                })
         
             +++ Section()
             <<< TextAreaRow("Notes"){
@@ -126,10 +150,10 @@ class GiftCigarController: FormViewController {
                     
                     if self.cigar.gift != nil {
                         if self.cigar.gift?.notes != row.value {
-                            self.changesStatus![1] = true
+                            self.changesStatus![2] = true
                         }
                         else{
-                            self.changesStatus![1] = false
+                            self.changesStatus![2] = false
                         }
                         self.valuateSaveButonStatus()
                         
@@ -159,25 +183,28 @@ class GiftCigarController: FormViewController {
     @objc func giftCigar(){
         let formValues = self.form.values()
         let toForm = formValues["To"] as! String
+        let dateForm = formValues["Date"] as! Date
         let notesForm = formValues["Notes"] as? String
         if cigar.gift != nil {
             cigar.gift!.to = toForm
+            cigar.gift!.giftDate = dateForm
             cigar.gift!.notes = notesForm
             CoreDataController.sharedInstance.saveContext()
         }
         else{
-            delegate.giftCigarDelegate(to: toForm, notes: notesForm, quantity: quantity)
+            delegate.giftCigarDelegate(to: toForm, notes: notesForm, quantity: quantity,date: dateForm)
         }
         dismiss(animated: true, completion: nil)
         
     }
     
     func valuateSaveButonStatus(){
-        if changesStatus![0] == true {
+        if !changesStatus!.contains(true){
             navigationItem.rightBarButtonItem?.isEnabled = true
         }
-        else if changesStatus![1] == true {
-            if changesStatus![0] == false {
+        else{
+            let toRow = self.form.rowBy(tag: "To") as! TextRow
+            if toRow.value == nil {
                 navigationItem.rightBarButtonItem?.isEnabled = false
             }
             else{
