@@ -86,7 +86,9 @@ class UserSettings{
         }
     }
     
-    static var isPremium = UserSetting<Bool>(key: "sendAnalytics", defaultValue: false)
+    static var isPremium = UserSetting<Bool>(key: "isPremium", defaultValue: false)
+    static var premiumPrice = UserSetting<String>(key: "premiumPrice", defaultValue: "")
+    
     static var sendAnalytics = UserSetting<Bool>(key: "sendAnalytics", defaultValue: true)
     static var sendCrashReports = UserSetting<Bool>(key: "sendCrashReports", defaultValue: true)
     static var iCloud = UserSetting<Bool>(key: "iCloud", defaultValue: true)

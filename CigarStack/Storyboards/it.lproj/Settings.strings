@@ -1,0 +1,39 @@
+
+/* Class = "UINavigationItem"; title = "Ordinamento"; ObjectID = "4i9-qU-PCR"; */
+"4i9-qU-PCR.title" = "Ordinamento";
+
+/* Class = "UILabel"; text = "Contattaci"; ObjectID = "7XH-bq-15n"; */
+"7XH-bq-15n.text" = "Contattaci";
+
+/* Class = "UILabel"; text = "Dati"; ObjectID = "82i-dT-Gfm"; */
+"82i-dT-Gfm.text" = "Dati";
+
+/* Class = "UINavigationItem"; title = "Generali"; ObjectID = "9YZ-OW-ir8"; */
+"9YZ-OW-ir8.title" = "Generali";
+
+/* Class = "UINavigationItem"; title = "Informazioni"; ObjectID = "DCq-4o-t7G"; */
+"DCq-4o-t7G.title" = "Informazioni";
+
+/* Class = "UINavigationItem"; title = "Dati"; ObjectID = "IBU-Kj-ko8"; */
+"IBU-Kj-ko8.title" = "Dati";
+
+/* Class = "UILabel"; text = "CigarStack Premium"; ObjectID = "Ixk-tT-swR"; */
+"Ixk-tT-swR.text" = "CigarStack Premium";
+
+/* Class = "UINavigationItem"; title = "Impostazioni"; ObjectID = "X0f-38-Rlh"; */
+"X0f-38-Rlh.title" = "Impostazioni";
+
+/* Class = "UINavigationItem"; title = "CigarStack Pro"; ObjectID = "eYm-U7-pIg"; */
+"eYm-U7-pIg.title" = "CigarStack Pro";
+
+/* Class = "UILabel"; text = "Informazioni"; ObjectID = "lFZ-xt-8ag"; */
+"lFZ-xt-8ag.text" = "Informazioni";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lmx-t7-Lp3"; */
+"lmx-t7-Lp3.text" = "Label";
+
+/* Class = "UILabel"; text = "Ordinamento"; ObjectID = "oT0-qp-bt9"; */
+"oT0-qp-bt9.text" = "Ordinamento";
+
+/* Class = "UILabel"; text = "Generali"; ObjectID = "xqM-bZ-Ju6"; */
+"xqM-bZ-Ju6.text" = "Generali";

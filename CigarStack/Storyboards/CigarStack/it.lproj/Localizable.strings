@@ -178,5 +178,9 @@
 "Limited" = "Limitato";
 "Rate" = "Vota";
 "Attributions" = "Attribuzioni";
-"Purchase CigarStack Pro" = "Acquista CigarStack Pro";
-"Restore Purchase" = "Ripristina Acquisti";
+
+/* In-App Purchase */
+
+"Purchases are disabled in your device!" = "Gli acquisti sono disabilitati sul tuo dispositivo!";
+"You've successfully restored your purchase!" = "Hai ripristinato il tuo acquisto con successo!";
+"You've successfully bought CigarStack Premium!" = "Hai comprato con successo CigarStack Premium!";

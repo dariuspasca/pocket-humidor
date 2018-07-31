@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P2P-N6-IDA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P2P-N6-IDA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -266,17 +266,157 @@
             </objects>
             <point key="canvasLocation" x="1539" y="2566"/>
         </scene>
-        <!--CigarStack Pro-->
+        <!--CigarStack Premium-->
         <scene sceneID="ewy-qH-DGY">
             <objects>
                 <viewController id="Xnh-Ct-uLl" customClass="PurchaseViewController" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sL2-Bp-LTB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="5Mv-cC-V05">
+                                <rect key="frame" x="25" y="20" width="325" height="457"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LM-jB-DGL">
+                                        <rect key="frame" x="0.0" y="0.0" width="216" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B9Q-L3-rh7">
+                                        <rect key="frame" x="0.0" y="83" width="318.5" height="294"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="iVZ-YZ-iBi" userLabel="CigarFeature">
+                                                <rect key="frame" x="0.0" y="0.0" width="318.5" height="64.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-9o-cWu">
+                                                        <rect key="frame" x="0.0" y="7.5" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="sDc-ex-1WY"/>
+                                                            <constraint firstAttribute="width" constant="50" id="whU-ul-fO1"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MuK-aY-QJC" userLabel="Cigars">
+                                                        <rect key="frame" x="65" y="0.0" width="253.5" height="64.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Infinite Cigar Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtA-q0-yVc">
+                                                                <rect key="frame" x="0.0" y="0.0" width="177" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add as many cigars as you want. The free limit is 25 cigars." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlf-9e-hs0">
+                                                                <rect key="frame" x="0.0" y="23.5" width="250" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="99W-eU-Gav" userLabel="HumidorFeature">
+                                                <rect key="frame" x="0.0" y="84.5" width="318.5" height="64.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fgX-wB-BBB">
+                                                        <rect key="frame" x="0.0" y="7.5" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="6Nx-ef-jtK"/>
+                                                            <constraint firstAttribute="width" constant="50" id="vd9-jL-Qna"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4bB-tg-pUq" userLabel="Humidor">
+                                                        <rect key="frame" x="65" y="0.0" width="253.5" height="64.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Infinite Humidor Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aS-Nn-jj5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="204" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mange as many humidors as you want. The free limit is 2 humidors." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-h9-hSL">
+                                                                <rect key="frame" x="0.0" y="23.5" width="253.5" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4xs-FG-Vt7" userLabel="SupportFeature">
+                                                <rect key="frame" x="0.0" y="169" width="318.5" height="125"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SfG-lz-w2A">
+                                                        <rect key="frame" x="0.0" y="37.5" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="6KZ-rY-jnS"/>
+                                                            <constraint firstAttribute="height" constant="50" id="AiW-uL-exc"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ERq-nP-T3N" userLabel="Support">
+                                                        <rect key="frame" x="65" y="0.0" width="253.5" height="125"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support Development" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjO-6p-qAs">
+                                                                <rect key="frame" x="0.0" y="0.0" width="182" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXj-qw-Jb8">
+                                                                <rect key="frame" x="0.0" y="23.5" width="251.5" height="101.5"/>
+                                                                <string key="text">CigarStack is being developed and support by an indie developer. By buying CigarStack Premium you support the further development of the app.</string>
+                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWh-z1-SfJ">
+                                        <rect key="frame" x="0.0" y="412" width="325" height="45"/>
+                                        <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="YHq-02-e2g"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title="Unlock Premium For 4,49 $">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="purchase:" destination="Xnh-Ct-uLl" eventType="touchUpInside" id="ITB-qh-b8W"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GWh-z1-SfJ" secondAttribute="trailing" id="3Sd-WB-XbR"/>
+                                    <constraint firstItem="GWh-z1-SfJ" firstAttribute="leading" secondItem="5Mv-cC-V05" secondAttribute="leading" id="X4j-bo-3QD"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2l-sS-pCZ">
+                                <rect key="frame" x="127" y="563" width="121" height="30"/>
+                                <state key="normal" title="Restore Purchase"/>
+                                <connections>
+                                    <action selector="restorePurchase:" destination="Xnh-Ct-uLl" eventType="touchUpInside" id="95q-wJ-c7x"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ovg-v6-dMK" firstAttribute="bottom" secondItem="p2l-sS-pCZ" secondAttribute="bottom" constant="10" id="1Og-Ej-Ztn"/>
+                            <constraint firstItem="p2l-sS-pCZ" firstAttribute="centerX" secondItem="sL2-Bp-LTB" secondAttribute="centerX" id="75Z-pV-L2E"/>
+                            <constraint firstItem="5Mv-cC-V05" firstAttribute="top" secondItem="ovg-v6-dMK" secondAttribute="top" constant="20" id="MiY-xP-Qdc"/>
+                            <constraint firstItem="5Mv-cC-V05" firstAttribute="leading" secondItem="sL2-Bp-LTB" secondAttribute="leading" constant="25" id="TV5-cW-v3O"/>
+                            <constraint firstAttribute="trailing" secondItem="5Mv-cC-V05" secondAttribute="trailing" constant="25" id="hM2-6o-hmP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ovg-v6-dMK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="CigarStack Pro" id="eYm-U7-pIg"/>
+                    <navigationItem key="navigationItem" title="CigarStack Premium" id="eYm-U7-pIg"/>
+                    <connections>
+                        <outlet property="purchaseButton" destination="GWh-z1-SfJ" id="skw-0f-jCM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MLP-ta-thc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

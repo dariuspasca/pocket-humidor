@@ -153,7 +153,6 @@
 "Select which cigars to be displayed." = "Select which cigars to be displayed.";
 "When you smoke or gift a cigar it will show here." = "When you smoke or gift a cigar it will show here.";
 
-
 /* Settings Storyboard */
 
 "Send Feedback?" = "Send Feedback?";
@@ -179,5 +178,9 @@
 "Limited" = "Limited";
 "Rate" = "Rate";
 "Attributions" = "Attributions";
-"Purchase CigarStack Pro" = "Purchase CigarStack Pro";
-"Restore Purchase" = "Restore Purchase";
+
+/* In-App Purchase */
+
+"Purchases are disabled in your device!" = "Purchases are disabled in your device!";
+"You've successfully restored your purchase!" = "You've successfully restored your purchase!";
+"You've successfully bought CigarStack Premium!" = "You've successfully bought CigarStack Premium!";

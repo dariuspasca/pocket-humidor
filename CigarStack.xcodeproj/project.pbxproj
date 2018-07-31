@@ -18,6 +18,8 @@
 		B7219C9D20518AA0001096A6 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C9C20518AA0001096A6 /* DataViewController.swift */; };
 		B7222DB620C18D4F000BA0E5 /* HumidorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */; };
 		B7224F912047FEC6005516B3 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7224F902047FEC6005516B3 /* SideMenu.framework */; };
+		B728AF80211061E300C78BD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B728AF7F211061E300C78BD0 /* StoreKit.framework */; };
+		B728AF83211063A800C78BD0 /* IAPHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B728AF82211063A800C78BD0 /* IAPHandler.swift */; };
 		B72A0B23210CAEE600FE935A /* CigarReviewEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A0B22210CAEE600FE935A /* CigarReviewEnums.swift */; };
 		B72A684C205FCF84006CDFED /* AddHumidorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684A205FCF84006CDFED /* AddHumidorController.swift */; };
 		B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A684D205FCF8E006CDFED /* CoreDataController.swift */; };
@@ -95,10 +97,13 @@
 		B7219C9C20518AA0001096A6 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidorDetailViewController.swift; sourceTree = "<group>"; };
 		B7224F902047FEC6005516B3 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
+		B728AF7F211061E300C78BD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B728AF82211063A800C78BD0 /* IAPHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHandler.swift; sourceTree = "<group>"; };
 		B72A0B22210CAEE600FE935A /* CigarReviewEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarReviewEnums.swift; sourceTree = "<group>"; };
 		B72A684A205FCF84006CDFED /* AddHumidorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHumidorController.swift; sourceTree = "<group>"; };
 		B72A684D205FCF8E006CDFED /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		B73624B7204DF88700B92801 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B73F49E0210F617F00DEDC4E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Settings.strings; sourceTree = "<group>"; };
 		B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewController.swift; sourceTree = "<group>"; };
 		B757517D20E6370300853F8E /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		B75A84212042DAB3008528D8 /* CigarStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CigarStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +143,6 @@
 		B7D3A0B42055686F00AA6A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7D3A0B52055686F00AA6A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7D3A0B62055687000AA6A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
-		B7D3A0C1205568E200AA6A29 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = it; path = it.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		B7D4B98720976F1300A48167 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D4B98920976F1800A48167 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B7D6BE312048121600B50CCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B757517E20E6370300853F8E /* Eureka.framework in Frameworks */,
+				B728AF80211061E300C78BD0 /* StoreKit.framework in Frameworks */,
 				B7B4F0EA2045BC2B00343A8E /* TTGSnackbar.framework in Frameworks */,
 				B7B4F0EB2045BC2B00343A8E /* FlagKit.framework in Frameworks */,
 				B7B4F0ED2045BC2B00343A8E /* DZNEmptyDataSet.framework in Frameworks */,
@@ -282,6 +287,7 @@
 			children = (
 				B7E524A22061620500E2CC38 /* TabBarViewController.swift */,
 				B75A84242042DAB3008528D8 /* AppDelegate.swift */,
+				B728AF82211063A800C78BD0 /* IAPHandler.swift */,
 				B72A6848205FCF53006CDFED /* CoreData */,
 				B7161B182055AC2E001B2E1A /* Home */,
 				B7219C9520518377001096A6 /* Data */,
@@ -329,6 +335,7 @@
 		B7B4F0E32045BC2A00343A8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B728AF7F211061E300C78BD0 /* StoreKit.framework */,
 				B757517D20E6370300853F8E /* Eureka.framework */,
 				B7F37DF720E6348000E40AF2 /* Eureka.framework.dSYM */,
 				B7A4813320581B95001242F7 /* PagingKit.framework */,
@@ -419,6 +426,14 @@
 					B75A84202042DAB3008528D8 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					B75A84342042DAB3008528D8 = {
 						CreatedOnToolsVersion = 9.2;
@@ -526,6 +541,7 @@
 				B7849A5120ADBE6D00CD80BA /* HistoryViewController.swift in Sources */,
 				B7CF29C22051A42100D8C4A3 /* AboutViewController.swift in Sources */,
 				B7222DB620C18D4F000BA0E5 /* HumidorDetailViewController.swift in Sources */,
+				B728AF83211063A800C78BD0 /* IAPHandler.swift in Sources */,
 				B7CF29BE20519AE300D8C4A3 /* SplitViewController.swift in Sources */,
 				B7EF0ADF20ACC9EF008F9DF2 /* SmokeCigarController.swift in Sources */,
 				B72A684F205FD4CB006CDFED /* CigarStack.xcdatamodeld in Sources */,
@@ -606,7 +622,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B7D3A0B62055687000AA6A29 /* Base */,
-				B7D3A0C1205568E200AA6A29 /* it */,
+				B73F49E0210F617F00DEDC4E /* it */,
 			);
 			name = Settings.storyboard;
 			sourceTree = "<group>";
@@ -769,7 +785,7 @@
 				INFOPLIST_FILE = CigarStack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pasca.CigarStack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cigarStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -789,7 +805,7 @@
 				INFOPLIST_FILE = CigarStack/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pasca.CigarStack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cigarStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
