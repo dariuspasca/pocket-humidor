@@ -1,39 +1,67 @@
 
-/* Class = "UINavigationItem"; title = "Ordinamento"; ObjectID = "4i9-qU-PCR"; */
+/* Class = "UILabel"; text = "Infinite Humidor Number"; ObjectID = "0aS-Nn-jj5"; */
+"0aS-Nn-jj5.text" = "Humidor Illimitati";
+
+/* Class = "UILabel"; text = "Be Premium"; ObjectID = "4LM-jB-DGL"; */
+"4LM-jB-DGL.text" = "Be Premium";
+
+/* Class = "UINavigationItem"; title = "Sort"; ObjectID = "4i9-qU-PCR"; */
 "4i9-qU-PCR.title" = "Ordinamento";
 
-/* Class = "UILabel"; text = "Contattaci"; ObjectID = "7XH-bq-15n"; */
-"7XH-bq-15n.text" = "Contattaci";
+/* Class = "UILabel"; text = "Contact "; ObjectID = "7XH-bq-15n"; */
+"7XH-bq-15n.text" = "Contattaci ";
 
-/* Class = "UILabel"; text = "Dati"; ObjectID = "82i-dT-Gfm"; */
-"82i-dT-Gfm.text" = "Dati";
+/* Class = "UILabel"; text = "Data"; ObjectID = "82i-dT-Gfm"; */
+"82i-dT-Gfm.text" = "Data";
 
-/* Class = "UINavigationItem"; title = "Generali"; ObjectID = "9YZ-OW-ir8"; */
+/* Class = "UINavigationItem"; title = "General"; ObjectID = "9YZ-OW-ir8"; */
 "9YZ-OW-ir8.title" = "Generali";
 
-/* Class = "UINavigationItem"; title = "Informazioni"; ObjectID = "DCq-4o-t7G"; */
+/* Class = "UILabel"; text = "Support Development"; ObjectID = "CjO-6p-qAs"; */
+"CjO-6p-qAs.text" = "Sostieni Lo Sviluppo";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "DCq-4o-t7G"; */
 "DCq-4o-t7G.title" = "Informazioni";
 
-/* Class = "UINavigationItem"; title = "Dati"; ObjectID = "IBU-Kj-ko8"; */
-"IBU-Kj-ko8.title" = "Dati";
+/* Class = "UIButton"; normalTitle = "Unlock Premium For 4,49 $"; ObjectID = "GWh-z1-SfJ"; */
+"GWh-z1-SfJ.normalTitle" = "Unlock Premium For 4,49 $";
+
+/* Class = "UINavigationItem"; title = "Data"; ObjectID = "IBU-Kj-ko8"; */
+"IBU-Kj-ko8.title" = "Data";
 
 /* Class = "UILabel"; text = "CigarStack Premium"; ObjectID = "Ixk-tT-swR"; */
 "Ixk-tT-swR.text" = "CigarStack Premium";
 
-/* Class = "UINavigationItem"; title = "Impostazioni"; ObjectID = "X0f-38-Rlh"; */
+/* Class = "UILabel"; text = "Mange as many humidors as you want. The free limit is 2 humidors."; ObjectID = "M5i-h9-hSL"; */
+"M5i-h9-hSL.text" = "Gestisci quanti humidor vuoi. Il limite gratuito è di 2 humidor.";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "X0f-38-Rlh"; */
 "X0f-38-Rlh.title" = "Impostazioni";
 
-/* Class = "UINavigationItem"; title = "CigarStack Pro"; ObjectID = "eYm-U7-pIg"; */
-"eYm-U7-pIg.title" = "CigarStack Pro";
+/* Class = "UILabel"; text = "Infinite Cigar Number"; ObjectID = "ZtA-q0-yVc"; */
+"ZtA-q0-yVc.text" = "Infinito numero di sigari";
 
-/* Class = "UILabel"; text = "Informazioni"; ObjectID = "lFZ-xt-8ag"; */
+/* Class = "UINavigationItem"; title = "CigarStack Premium"; ObjectID = "eYm-U7-pIg"; */
+"eYm-U7-pIg.title" = "CigarStack Premium";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "lFZ-xt-8ag"; */
 "lFZ-xt-8ag.text" = "Informazioni";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "lmx-t7-Lp3"; */
 "lmx-t7-Lp3.text" = "Label";
 
-/* Class = "UILabel"; text = "Ordinamento"; ObjectID = "oT0-qp-bt9"; */
+/* Class = "UILabel"; text = "Sort"; ObjectID = "oT0-qp-bt9"; */
 "oT0-qp-bt9.text" = "Ordinamento";
 
-/* Class = "UILabel"; text = "Generali"; ObjectID = "xqM-bZ-Ju6"; */
+/* Class = "UIButton"; normalTitle = "Restore Purchase"; ObjectID = "p2l-sS-pCZ"; */
+"p2l-sS-pCZ.normalTitle" = "Ripristina Acquisto";
+
+/* Class = "UILabel"; text = "Add as many cigars as you want. The free limit is 25 cigars."; ObjectID = "qlf-9e-hs0"; */
+"qlf-9e-hs0.text" = "Aggiungi quanti sigari vuoi. Il limite gratuito è di 25 sigari.";
+
+/* Class = "UILabel"; text = "CigarStack is being developed and support by an indie developer. By buying CigarStack Premium you support the further development of the app."; ObjectID = "vXj-qw-Jb8"; */
+"vXj-qw-Jb8.text" = "CigarStack è sviluppato e supportato da uno sviluppatore indipendente. Acquistando CigarStack Premium, supporti l'ulteriore sviluppo dell'app.";
+
+/* Class = "UILabel"; text = "General"; ObjectID = "xqM-bZ-Ju6"; */
 "xqM-bZ-Ju6.text" = "Generali";
+

@@ -8,16 +8,41 @@
 
 import UIKit
 import CoreData
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
+            return true
+        }
+        
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                //Unlock content
+                UserSettings.isPremium.value = true
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                }
+            }
+        }
+        
         if UserSettings.premiumPrice.value == "" {
-            IAPHandler.shared.fetchAvailableProducts()
+            SwiftyStoreKit.retrieveProductsInfo(["cigarstackpremium"]) { result in
+                if let product = result.retrievedProducts.first {
+                    UserSettings.premiumPrice.value = product.localizedPrice!
+                }
+            }
         }
         return true
     }

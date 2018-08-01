@@ -174,13 +174,19 @@
 "Information" = "Information";
 "Version" = "Version";
 "Status" = "Status";
-"Unlimited" = "Unlimited";
-"Limited" = "Limited";
+"Free" = "Free";
 "Rate" = "Rate";
 "Attributions" = "Attributions";
 
 /* In-App Purchase */
-
+"Unlock Premium For " = "Unlock Premium For ";
+"There Is A Problem" = "There Is A Problem";
+"Sorry, no previous Premium purchase was found." = "Sorry, no previous Premium purchase was found.";
+"Sorry, something unexpected happened.If the error persists write us at support@cigarstack.app" = "Sorry, something unexpected happened.If the error persists write us at support@cigarstack.app";
+"Sorry, you're not allowed to make the payment" = "Sorry, you're not allowed to make the payment";
+"The device is not allowed to make the payment. If the error persists write us at support@cigarstack.app" = "The device is not allowed to make the payment. If the error persists write us at support@cigarstack.app";
+"Could not connect to the newtwork. If the error persists write us at support@cigarstack.app" = "Could not connect to the newtwork. If the error persists write us at support@cigarstack.app";
+"Thank you!" = "Thank you!";
 "Purchases are disabled in your device!" = "Purchases are disabled in your device!";
 "You've successfully restored your purchase!" = "You've successfully restored your purchase!";
-"You've successfully bought CigarStack Premium!" = "You've successfully bought CigarStack Premium!";
+"You've successfully purchased CigarStack Premium!" = "You've successfully purchased CigarStack Premium!";

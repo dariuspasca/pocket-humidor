@@ -174,13 +174,20 @@
 "Information" = "Informazioni";
 "Version" = "Versione";
 "Status" = "Stato";
-"Unlimited" = "Illimitato";
-"Limited" = "Limitato";
+"Free" = "Gratuito";
 "Rate" = "Vota";
 "Attributions" = "Attribuzioni";
 
 /* In-App Purchase */
 
+"Unlock Premium For " = "Sblocca Premium Per ";
+"There Is A Problem" = "C'è Un Problema";
+"Sorry, no previous Premium purchase was found." = "Siamo spiacenti, nessun precedente acquisto Premium è stato trovato.";
+"Sorry, something unexpected happened.If the error persists write us at support@cigarstack.app" = "Siamo spiacenti, è successo qualcosa di inaspettato. Se l'errore persiste scrivici a support@cigarstack.app";
+"Sorry, you're not allowed to make the payment" = "Siamo spiacenti, non ti è permesso effettuare il pagamento.";
+"The device is not allowed to make the payment. If the error persists write us at support@cigarstack.app" = "Il dispositivo non è autorizzato a effettuare il pagamento. Se l'errore persiste scrivici a support@cigarstack.app";
+"Could not connect to the newtwork. If the error persists write us at support@cigarstack.app" = "Impossibile connettersi alla rete. Se l'errore persiste scrivici a support@cigarstack.app";
+"Thank you!" = "Grazie!";
 "Purchases are disabled in your device!" = "Gli acquisti sono disabilitati sul tuo dispositivo!";
 "You've successfully restored your purchase!" = "Hai ripristinato il tuo acquisto con successo!";
-"You've successfully bought CigarStack Premium!" = "Hai comprato con successo CigarStack Premium!";
+"You've successfully purchased CigarStack Premium!" = "Hai comprato con successo CigarStack Premium!";

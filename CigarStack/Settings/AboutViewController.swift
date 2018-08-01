@@ -7,43 +7,16 @@
 //
 
 import UIKit
-import Eureka
+import FlagKit
 
-class AboutViewController: FormViewController {
-
+class AboutViewController: UIViewController {
+    
+    @IBOutlet weak var madeInFlag: UIImageView!
+    @IBOutlet weak var version: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        form +++ Section(NSLocalizedString("Information", comment: ""))
-            <<< LabelRow(){
-                $0.title = NSLocalizedString("Version", comment: "")
-                $0.value = "\(UserEngagement.appVersion)"
-            }
-            <<< LabelRow(){
-                $0.title = NSLocalizedString("Status", comment: "")
-                if UserDefaults.standard.bool(forKey: "CigarStackPro") == true {
-                    $0.value = NSLocalizedString("Unlimited", comment: "")
-                }
-                else{
-                    $0.value = NSLocalizedString("Limited", comment: "")
-                }
-        }
-        
-            +++ Section()
-            <<< LabelRow (NSLocalizedString("Rate", comment: "")) {
-                $0.title = $0.tag
-                $0.cell.accessoryType = .disclosureIndicator
-                }
-                .onCellSelection { cell, row in
-                    UIApplication.shared.open(URL(string: "itms-apps://\(SettingsViewController.appStoreAddress)?action=write-review")!, options: [:])
-            }
-                <<< LabelRow (NSLocalizedString("Attributions", comment: "")) {
-                    $0.title = $0.tag
-                    $0.cell.accessoryType = .disclosureIndicator
-                    }
-                    .onCellSelection { cell, row in
-                        self.performSegue(withIdentifier: "attributionsSegue", sender: self)
-                }
-
+       
     }
 }
 
