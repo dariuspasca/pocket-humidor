@@ -155,7 +155,7 @@
 
 /* Settings Storyboard */
 
-"Send Feedback?" = "Send Feedback?";
+"Send Feedback ?" = "Send Feedback ?";
 "Change the display currency. It does not convert prices from previous currency." = "Change the display currency. It does not convert prices from previous currency.";
 "Currency" = "Currency";
 "Automatically open newly added humidor." = "Automatically open newly created humidor";
@@ -172,11 +172,13 @@
 "Send Crash Reports" = "Send Crash Reports";
 "Send Analytics" = "Send Analytics";
 "Information" = "Information";
-"Version" = "Version";
-"Status" = "Status";
-"Free" = "Free";
+"Not Premium" = "Not Premium";
 "Rate" = "Rate";
-"Attributions" = "Attributions";
+"If you have any questions, comments or suggestions, please email me" = "If you have any questions, comments or suggestions, please email me";
+"at" = "at";
+"I'll do my best to respond." = "I'll do my best to respond.";
+"Send e-mail" = "Send e-mail";
+"Generating..." = "Generating...";
 
 /* In-App Purchase */
 "Unlock Premium For " = "Unlock Premium For ";

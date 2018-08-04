@@ -167,9 +167,8 @@ class AddHumidorController: FormViewController {
                                         }
                                         //Shows alert and cancels text
                                         if found{
-                                            let alert = UIAlertController(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-                                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                            alert.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+
+                                            self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
                                             row.value! = ""
                                            
                                         }
@@ -206,15 +205,27 @@ class AddHumidorController: FormViewController {
                         if row.isHighlighted == false {
             
                         let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
-                        if name != ""{
-                            if name != tray.name!{
-                                tray.name! = name!
-                                if self.saveButton.isEnabled == false {
+                            if name != ""{
+                                var found = false
+                                for traySearch in self.trayList!{
+                                    if traySearch.name! == name {
+                                        found = true
+                                        break
+                                    }
+                                }
+                                //Shows alert and cancels text
+                                if found{
+                                    self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
+                                    row.value! = tray.name!
+                                    
+                                }
+                                else{
+                                    tray.name = name!
                                     self.saveButton.isEnabled = true
                                     self.dividersHaveBeenEdited = true
+                                    
                                 }
                             }
-                        }
 
                         }
                     })
@@ -312,39 +323,46 @@ class AddHumidorController: FormViewController {
         let name = formValues["Name"] as? String
         let humidity = formValues["Humidity Level"] as! Float
         if humidor != nil {
-            /* Updates eventual humidor info changes */
-            humidor!.name! = name!
-            if isCurrentHumidor{
-                UserSettings.currentHumidor.value = humidor!.name!
+            if humidor!.name! != name! {
+                if (CoreDataController.sharedInstance.searchHumidor(name: name!) != nil){
+                    showAlertButtonTapped(title: NSLocalizedString("Humidor already exists!", comment: ""), message: NSLocalizedString("You can't have multiple humidors with the same name.", comment: ""))
+                }
             }
-            humidor!.humidity = Int16(humidity)
-            
-            /* Add new trays and assign new orderID */
-            
-            let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
-        
-            for (index,tray) in trays.enumerated(){
-                let name = (tray as! String).trimmingCharacters(in: NSCharacterSet.whitespaces)
-                var found = false
-                /* Searches for existing tray. */
-                for existingTray in trayList!{
-                    if existingTray.name! == name{
-                        existingTray.orderID = Int16(index)
-                        found = true
-                        break
+            else{
+                /* Updates eventual humidor info changes */
+                humidor!.name! = name!
+                if isCurrentHumidor{
+                    UserSettings.currentHumidor.value = humidor!.name!
+                }
+                humidor!.humidity = Int16(humidity)
+                
+                /* Add new trays and assign new orderID */
+                
+                let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
+                
+                for (index,tray) in trays.enumerated(){
+                    let name = (tray as! String).trimmingCharacters(in: NSCharacterSet.whitespaces)
+                    var found = false
+                    /* Searches for existing tray. */
+                    for existingTray in trayList!{
+                        if existingTray.name! == name{
+                            existingTray.orderID = Int16(index)
+                            found = true
+                            break
+                        }
+                    }
+                    if found == false{
+                        _ = CoreDataController.sharedInstance.addNewTray(name: name, humidor: humidor!, orderID: Int16(index))
                     }
                 }
-                if found == false{
-                   _ = CoreDataController.sharedInstance.addNewTray(name: name, humidor: humidor!, orderID: Int16(index))
+                
+                UserSettings.shouldReloadView.value = true
+                CoreDataController.sharedInstance.saveContext()
+                if UIDevice.current.userInterfaceIdiom == .pad{
+                    delegate?.newHumidorForceReload()
                 }
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
             }
-    
-            UserSettings.shouldReloadView.value = true
-            CoreDataController.sharedInstance.saveContext()
-            if UIDevice.current.userInterfaceIdiom == .pad{
-                delegate?.newHumidorForceReload()
-            }
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }
         else{
             if (CoreDataController.sharedInstance.searchHumidor(name: name!) != nil){

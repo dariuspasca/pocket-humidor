@@ -11,11 +11,21 @@ import FlagKit
 
 class AboutViewController: UIViewController {
     
-    @IBOutlet weak var madeInFlag: UIImageView!
     @IBOutlet weak var version: UILabel!
+    @IBOutlet weak var premiumStatus: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if UserSettings.isPremium.value == true {
+            version.text = "Premium"
+        }
+        else{
+            version.text = NSLocalizedString("Not Premium", comment: "")
+        }
+        
+        version.text = "CigarStack " + UserEngagement.appVersion
+        
        
     }
 }

@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 import SwiftyStoreKit
+import Fabric
+import Crashlytics
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +20,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
+        if UserSettings.sendCrashReports.value == false {
+            if UserSettings.sendAnalytics.value == true {
+                Fabric.with([Answers.self])
+            }
+        }
+        else{
+            if UserSettings.sendAnalytics.value == false {
+                Fabric.with([Crashlytics.self])
+            }
+            else{
+                Fabric.with([Crashlytics.self , Answers.self])
+            }
+        }
+        
         
         SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
             return true

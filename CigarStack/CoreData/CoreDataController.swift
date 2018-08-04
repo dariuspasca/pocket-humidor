@@ -48,7 +48,7 @@ class CoreDataController {
     
     
     /* New Cigar */
-    func addNewCigar (tray: Tray, name: String, origin: String, quantity: Int32 , size: String, purchaseDate: Date?, from: String?, price: Double?, ageDate: Date?,image: Data?, notes: String?) -> Cigar {
+    func addNewCigar (tray: Tray, name: String, origin: String, quantity: Int32 , size: String, purchaseDate: Date?, from: String?, price: Double?, ageDate: Date?, notes: String?) -> Cigar {
         let currentDate = Date()
         let entityCigar = NSEntityDescription.entity(forEntityName: "Cigar", in: self.context)
         let newCigar = Cigar (entity: entityCigar!, insertInto: context)
@@ -63,7 +63,6 @@ class CoreDataController {
         newCigar.notes = notes
         newCigar.creationDate = currentDate
         newCigar.editDate = currentDate
-        newCigar.image = image
         tray.addToCigars(newCigar)
         updateHumidorValues(tray: tray, quantity: quantity, value: price!, add: true)
         self.saveContext()
@@ -243,6 +242,28 @@ class CoreDataController {
             print(fetchError)        }
         
         return cigars
+    }
+    
+    func fetchCigars() -> [Cigar]? {
+        var cigars: [Cigar]?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cigar")
+        do {
+            cigars = try context.fetch(request) as? [Cigar]
+        } catch let error {
+            let fetchError = error as NSError
+            print(fetchError)        }
+        
+        return cigars
+    }
+    
+    func getCigarAttributesNames() -> [String]{
+        let dictAttributes = Cigar.entity().attributesByName
+        var arrAttributeTitles:Array<String> = []
+        
+        for (key, _) in dictAttributes {
+            arrAttributeTitles.append(key)
+        }
+        return arrAttributeTitles
     }
     
     func searchTray(humidor: Humidor, searchTray: String) -> Tray? {

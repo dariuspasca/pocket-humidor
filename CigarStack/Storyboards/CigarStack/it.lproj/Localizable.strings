@@ -155,7 +155,7 @@
 
 /* Settings Storyboard */
 
-"Send Feedback?" = "Invia Suggerimenti?";
+"Send Feedback ?" = "Invia feedback ?";
 "Change the display currency. It does not convert prices from previous currency." = "Cambia la valuta visualizzata. Non converte i prezzi dalla valuta preccedente.";
 "Currency" = "Valuta";
 "Automatically open newly added humidor." = "Apri automaticamente humidor appena aggiunto.";
@@ -163,8 +163,8 @@
 "Select default display order." = "Seleziona l'ordine di visualizzazione predefinito.";
 "Sort Order" = "Ordinamento";
 "Select the preferred order when sorting" = "Seleziona l'ordine preferito per l'ordinamento";
-"Ascending" = "Ascendente";
-"Descending" = "Discendente";
+"Ascending" = "Crescente";
+"Descending" = "Decrescente";
 "Data Sync" = "Sincronizazzione Data";
 "Automatically upload and store your data in iCloud to be accessible from all your devices." = "Carica e archivia automaticamente i tuoi dati in iCloud per essere accessibili da tutti i tuoi dispositivi.";
 "Analytics" = "Analisi";
@@ -172,11 +172,13 @@
 "Send Crash Reports" = "Invia segnalazioni di arresti anomali";
 "Send Analytics" = "Invia statistiche sull'utilizzo";
 "Information" = "Informazioni";
-"Version" = "Versione";
-"Status" = "Stato";
-"Free" = "Gratuito";
+"Not Premium" = "Non Premium";
 "Rate" = "Vota";
-"Attributions" = "Attribuzioni";
+"If you have any questions, comments or suggestions, please email me" = "Per qualsiasi domanda, commento o suggerimento, scrivetemi";
+"at" = "a";
+"I'll do my best to respond." = "Cercherò di rispondere il prima possibile.";
+"Send e-mail" = "Invia e-mail";
+"Generating..." = "Elaborazione in corso...";
 
 /* In-App Purchase */
 

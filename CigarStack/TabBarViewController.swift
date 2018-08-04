@@ -16,6 +16,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
         self.delegate = self
 
     }
+    
+    override func viewDidLayoutSubviews() {
+        self.tabBar.invalidateIntrinsicContentSize()
+    }
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 1 {
             if UserSettings.currentHumidor.value != ""{

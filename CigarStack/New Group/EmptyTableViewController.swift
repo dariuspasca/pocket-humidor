@@ -63,7 +63,7 @@ class EmptyTableViewController: UITableViewController, DZNEmptyDataSetSource, DZ
     
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         let offset = superViewHeight - 144.0 - (superViewHeight/2)
-        return -offset/2
+        return -offset/1.2
     }
 
 

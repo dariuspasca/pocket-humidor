@@ -328,7 +328,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                         cigarToMove.price = initialPrice
                         
                         //Create copy of original cigar than update the quantity
-                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: toTray, name: cigarToMove.name!, origin: cigarToMove.origin!, quantity: initialQuantity, size: cigarToMove.size!, purchaseDate: cigarToMove.purchaseDate, from: cigarToMove.from, price: cigarToMove.price, ageDate: cigarToMove.ageDate, image: cigarToMove.image, notes: cigarToMove.notes)
+                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: toTray, name: cigarToMove.name!, origin: cigarToMove.origin!, quantity: initialQuantity, size: cigarToMove.size!, purchaseDate: cigarToMove.purchaseDate, from: cigarToMove.from, price: cigarToMove.price, ageDate: cigarToMove.ageDate, notes: cigarToMove.notes)
                         
                         CoreDataController.sharedInstance.updateCigarQuantity(cigar: cigarToMove, quantity: quantity, add: false)
                         CoreDataController.sharedInstance.updateCigarQuantity(cigar: newCigar, quantity: cigarToMove.quantity, add: false)
@@ -397,7 +397,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                         cigarToGift.price = initialPrice
                         
                         //Create copy of original cigar than update the quantity
-                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: cigarToGift.tray!, name: cigarToGift.name!, origin: cigarToGift.origin!, quantity: quantity, size: cigarToGift.size!, purchaseDate: cigarToGift.purchaseDate, from: cigarToGift.from, price: (Double(quantity)*(cigarToGift.price/Double(cigarToGift.quantity))), ageDate: cigarToGift.ageDate, image: cigarToGift.image, notes: cigarToGift.notes)
+                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: cigarToGift.tray!, name: cigarToGift.name!, origin: cigarToGift.origin!, quantity: quantity, size: cigarToGift.size!, purchaseDate: cigarToGift.purchaseDate, from: cigarToGift.from, price: (Double(quantity)*(cigarToGift.price/Double(cigarToGift.quantity))), ageDate: cigarToGift.ageDate, notes: cigarToGift.notes)
                         
                         CoreDataController.sharedInstance.updateCigarQuantity(cigar: cigarToGift, quantity: quantity, add: false)
                         CoreDataController.sharedInstance.updateHumidorValues(tray: newCigar.tray!, quantity: newCigar.quantity, value: newCigar.price, add: false)
@@ -468,7 +468,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                         cigarToSmoke.price = initialPrice
                         
                         //Create copy of original cigar than update the quantity
-                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: cigarToSmoke.tray!, name: cigarToSmoke.name!, origin: cigarToSmoke.origin!, quantity: quantity, size: cigarToSmoke.size!, purchaseDate: cigarToSmoke.purchaseDate, from: cigarToSmoke.from, price: (Double(quantity)*(cigarToSmoke.price/Double(cigarToSmoke.quantity))), ageDate: cigarToSmoke.ageDate, image: cigarToSmoke.image, notes: cigarToSmoke.notes)
+                        let newCigar = CoreDataController.sharedInstance.addNewCigar(tray: cigarToSmoke.tray!, name: cigarToSmoke.name!, origin: cigarToSmoke.origin!, quantity: quantity, size: cigarToSmoke.size!, purchaseDate: cigarToSmoke.purchaseDate, from: cigarToSmoke.from, price: (Double(quantity)*(cigarToSmoke.price/Double(cigarToSmoke.quantity))), ageDate: cigarToSmoke.ageDate, notes: cigarToSmoke.notes)
                         
                         CoreDataController.sharedInstance.updateCigarQuantity(cigar: cigarToSmoke, quantity: quantity, add: false)
                         CoreDataController.sharedInstance.updateHumidorValues(tray: newCigar.tray!, quantity: newCigar.quantity, value: newCigar.price, add: false)

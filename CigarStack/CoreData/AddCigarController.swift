@@ -462,7 +462,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             CoreDataController.sharedInstance.saveContext()
         }
         else{
-            _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: Int32(quantityForm), size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , image: nil, notes: notesForm)
+            _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: Int32(quantityForm), size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , notes: notesForm)
         }
         
         if humidorForm == UserSettings.currentHumidor.value {
