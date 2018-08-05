@@ -11,6 +11,10 @@ import UIKit
 class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigarDelegate {
 
     var previousSelectedItem: Int!
+    
+    var selectedSplitViewController: UISplitViewController? {
+        return selectedViewController as? UISplitViewController
+    }
 
     override func viewDidLoad() {
         self.delegate = self
@@ -46,8 +50,16 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
                 self.present(alert, animated: true, completion: nil)
             }
         }
-
+        else if item.tag == 3 {
+            guard let selectedSplitViewController = selectedSplitViewController else { return }
+            
+            //back to root
+            if selectedSplitViewController.masterNavigationController.viewControllers.count > 1 {
+                selectedSplitViewController.masterNavigationController.popToRootViewController(animated: true)
+            }
+        }
     }
+    
     
     func addCigarForceReload() {
         let nav = self.viewControllers![0] as! UINavigationController
