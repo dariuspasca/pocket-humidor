@@ -39,6 +39,7 @@
 		B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75A84282042DAB3008528D8 /* Main.storyboard */; };
 		B7802D7F2113055100561627 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7802D7D2113055000561627 /* Fabric.framework */; };
 		B7802D802113055100561627 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7802D7E2113055100561627 /* Crashlytics.framework */; };
+		B782222F21185797007E8319 /* CigarCSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782222E21185797007E8319 /* CigarCSVImporter.swift */; };
 		B7849A5120ADBE6D00CD80BA /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */; };
 		B7849A5320ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7849A5220ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift */; };
 		B78E17952111B28800122684 /* SwiftyStoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78E17942111B28800122684 /* SwiftyStoreKit.framework */; };
@@ -54,6 +55,7 @@
 		B7B4F0EA2045BC2B00343A8E /* TTGSnackbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */; };
 		B7B4F0EB2045BC2B00343A8E /* FlagKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E62045BC2A00343A8E /* FlagKit.framework */; };
 		B7B4F0ED2045BC2B00343A8E /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B4F0E82045BC2B00343A8E /* DZNEmptyDataSet.framework */; };
+		B7BF285B211876D500422656 /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BF285A211876D500422656 /* CSV.framework */; };
 		B7CA195820AB22B30009FA99 /* MoveCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CA195720AB22B30009FA99 /* MoveCigarController.swift */; };
 		B7CB23BC20C0519C00370D0D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CB23BB20C0519C00370D0D /* FilterViewController.swift */; };
 		B7CF29BE20519AE300D8C4A3 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */; };
@@ -133,6 +135,7 @@
 		B7802D9021130D0300561627 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = FirebaseAnalytics/nanopb.framework; sourceTree = "<group>"; };
 		B7802D9921130E8100561627 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = FirebaseAnalytics/Firebase.h; sourceTree = "<group>"; };
 		B7802DA12113108700561627 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = FirebaseAnalytics/module.modulemap; sourceTree = "<group>"; };
+		B782222E21185797007E8319 /* CigarCSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarCSVImporter.swift; sourceTree = "<group>"; };
 		B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		B7849A5220ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		B78E17942111B28800122684 /* SwiftyStoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyStoreKit.framework; path = Carthage/Build/iOS/SwiftyStoreKit.framework; sourceTree = "<group>"; };
@@ -151,6 +154,7 @@
 		B7B4F0E52045BC2A00343A8E /* TTGSnackbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTGSnackbar.framework; path = Carthage/Build/iOS/TTGSnackbar.framework; sourceTree = "<group>"; };
 		B7B4F0E62045BC2A00343A8E /* FlagKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlagKit.framework; path = Carthage/Build/iOS/FlagKit.framework; sourceTree = "<group>"; };
 		B7B4F0E82045BC2B00343A8E /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = Carthage/Build/iOS/DZNEmptyDataSet.framework; sourceTree = "<group>"; };
+		B7BF285A211876D500422656 /* CSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSV.framework; path = Carthage/Build/iOS/CSV.framework; sourceTree = "<group>"; };
 		B7CA195720AB22B30009FA99 /* MoveCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCigarController.swift; sourceTree = "<group>"; };
 		B7CB23BB20C0519C00370D0D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7BF285B211876D500422656 /* CSV.framework in Frameworks */,
 				B757517E20E6370300853F8E /* Eureka.framework in Frameworks */,
 				B728AF80211061E300C78BD0 /* StoreKit.framework in Frameworks */,
 				B7B4F0EA2045BC2B00343A8E /* TTGSnackbar.framework in Frameworks */,
@@ -261,6 +266,7 @@
 		B7219C9520518377001096A6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B782222E21185797007E8319 /* CigarCSVImporter.swift */,
 				B7219C932051836B001096A6 /* UserEngagement.swift */,
 				B7219C96205186C0001096A6 /* UserSettings.swift */,
 				B72A0B22210CAEE600FE935A /* CigarReviewEnums.swift */,
@@ -358,6 +364,7 @@
 		B7B4F0E32045BC2A00343A8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7BF285A211876D500422656 /* CSV.framework */,
 				B745703A21159B7D001385E9 /* SVProgressHUD.framework */,
 				B7802DA12113108700561627 /* module.modulemap */,
 				B7802D9921130E8100561627 /* Firebase.h */,
@@ -569,6 +576,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyStoreKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CSV.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -580,6 +588,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PagingKit.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftyStoreKit.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SVProgressHUD.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CSV.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -613,6 +622,7 @@
 				B7219C992051888B001096A6 /* GeneralViewController.swift in Sources */,
 				B7219C9D20518AA0001096A6 /* PrivacyViewController.swift in Sources */,
 				B713C1B4204ABC6400AA40DD /* SideMenuUIViewController.swift in Sources */,
+				B782222F21185797007E8319 /* CigarCSVImporter.swift in Sources */,
 				B7CF29C02051A03F00D8C4A3 /* PurchaseViewController.swift in Sources */,
 				B7219C942051836B001096A6 /* UserEngagement.swift in Sources */,
 				B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */,

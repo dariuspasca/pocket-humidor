@@ -62,6 +62,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         let pastDate = cigar.ageDate!
         let (years, months) = computeAge(pastDate: pastDate, currentDate: Date())
         
+       
         var percentage = Double(months)/12
         if years > 0 && months == 0 {
             percentage = 0.01
@@ -447,6 +448,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                                         }
                                         self.tableView.endUpdates()
                                         self.isSelected()
+                                            
                                         /* Set delete to false thus the context won't be changed */
                                         smoke = false
             })

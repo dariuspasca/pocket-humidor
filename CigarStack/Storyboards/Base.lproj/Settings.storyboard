@@ -337,7 +337,7 @@
         <scene sceneID="cgQ-4O-1ED">
             <objects>
                 <tableViewController id="v46-lo-jgn" customClass="ExportImportTableView" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="e8G-0i-uKL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="e8G-0i-uKL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -390,6 +390,30 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="aXb-cR-nYc">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2RL-WC-Htf">
+                                        <rect key="frame" x="0.0" y="195" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2RL-WC-Htf" id="XOA-zw-TPj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrz-gP-K8w">
+                                                    <rect key="frame" x="151.5" y="12" width="73" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Qrz-gP-K8w" firstAttribute="centerY" secondItem="XOA-zw-TPj" secondAttribute="centerY" id="5SX-JS-DF1"/>
+                                                <constraint firstItem="Qrz-gP-K8w" firstAttribute="centerX" secondItem="XOA-zw-TPj" secondAttribute="centerX" id="LOK-ZY-jdB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="v46-lo-jgn" id="TkT-R7-Ao4"/>
@@ -399,7 +423,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2Q-BD-Yfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4010" y="2760"/>
+            <point key="canvasLocation" x="4008.8000000000002" y="2759.8200899550229"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jb3-be-ejR">
@@ -690,7 +714,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-3w-VNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="bG9-Bu-j7z">
                     <connections>
-                        <segue destination="s3P-4X-MAh" kind="showDetail" id="yPE-gZ-yCa"/>
+                        <segue destination="s3P-4X-MAh" kind="show" id="yPE-gZ-yCa"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -733,7 +757,7 @@
             <objects>
                 <tableViewController id="s3P-4X-MAh" customClass="AttributionsTableViewcontroller" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="168-BN-b8t">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>

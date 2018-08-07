@@ -371,7 +371,6 @@ class AddHumidorController: FormViewController {
             else{
                 
                 let humidorOrderID = CoreDataController.sharedInstance.countHumidors()
-                //could change to humidor but it looses clearance
                 let newHumidor = CoreDataController.sharedInstance.addNewHumidor(name: name!, humidityLevel: Int16(humidity),orderID: Int16(humidorOrderID))
                 let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
                 

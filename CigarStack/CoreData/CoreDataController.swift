@@ -294,7 +294,7 @@ class CoreDataController {
         newGift.notes = notes
         newGift.giftDate = date
         
-        self.saveContext()
+        //self.saveContext()
         return newGift
         
     }
@@ -315,8 +315,19 @@ class CoreDataController {
         newReview.reviewDate = reviewDate
 
         
-        
+        //self.saveContext()
         return newReview
+    }
+    
+     func deleteAll(){
+        let humidorEntity = NSFetchRequest<NSFetchRequestResult>(entityName: "Humidor")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: humidorEntity)
+        do {
+            try context.execute(deleteRequest)
+            saveContext()
+        } catch {
+            print ("There is an error in deleting records")
+        }
     }
     
      /* Save Context */
