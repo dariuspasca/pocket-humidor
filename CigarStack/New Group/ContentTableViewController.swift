@@ -491,20 +491,6 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         
        // performSegue(withIdentifier: "detailCigar", sender: self)
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailCigar"{
-            let storyboard = UIStoryboard(name: "DetailCigar", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "DetailCigar") as! CigarDetailViewController
-            vc.cigar = cigars![cigarIndex!.row]
-            
-            self.present(vc, animated: true, completion: nil)
-            
-        }
-        
-    }
-    */
     // MARK: - Data
     
     func fetchData(){

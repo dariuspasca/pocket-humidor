@@ -204,14 +204,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newHumidor"{
-            let navVC = segue.destination as! UINavigationController
-            let destVC = navVC.topViewController as! AddHumidorController
-            destVC.delegate = self
-            if UserSettings.isPremium.value == false {
-                let count = CoreDataController.sharedInstance.countHumidors()
-                if count > 1{
-                    print("Humidor more than 1 -- LIMIT FREE VERSION")
-                }
+            if UserSettings.isPremium.value == false && CoreDataController.sharedInstance.countHumidors() > 1{
+                let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PurchaseViewController
+                destVC.hideCloseButton = false
+                self.present(destVC, animated: true, completion: nil)
+            }
+            else{
+                let navVC = segue.destination as! UINavigationController
+                let destVC = navVC.topViewController as! AddHumidorController
+                destVC.delegate = self
             }
         }
         

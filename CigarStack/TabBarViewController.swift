@@ -28,16 +28,32 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 1 {
             if UserSettings.currentHumidor.value != ""{
-                let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
-                let vc = destVC.topViewController as! AddCigarController
-                vc.delegate = self
-                destVC.modalPresentationStyle = .formSheet
-                destVC.modalTransitionStyle = .coverVertical
-                
-                if UIDevice.current.userInterfaceIdiom == .pad{
-                    destVC.preferredContentSize = CGSize(width: 500, height: 700)
+                var countCigars:Int32 = 0
+                let humidors = CoreDataController.sharedInstance.fetchHumidors()
+                for humidor in humidors!{
+                    countCigars = countCigars + humidor.quantity
                 }
-                present(destVC, animated: true, completion: nil)
+                
+                if !UserSettings.isPremium.value && countCigars > 24{
+                    let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                    let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PurchaseViewController
+                    destVC.hideCloseButton = false
+                    destVC.modalPresentationStyle = .formSheet
+                    destVC.modalTransitionStyle = .coverVertical
+                    self.present(destVC, animated: true, completion: nil)
+                }
+                else{
+                    let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
+                    let vc = destVC.topViewController as! AddCigarController
+                    vc.delegate = self
+                    destVC.modalPresentationStyle = .formSheet
+                    destVC.modalTransitionStyle = .coverVertical
+                    
+                    if UIDevice.current.userInterfaceIdiom == .pad{
+                        destVC.preferredContentSize = CGSize(width: 500, height: 700)
+                    }
+                    present(destVC, animated: true, completion: nil)
+                }
             }
             else{
                 // create the alert

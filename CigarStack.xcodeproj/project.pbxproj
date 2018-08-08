@@ -218,10 +218,10 @@
 		B7161B182055AC2E001B2E1A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B7A4813520581E34001242F7 /* HomeViewController.swift */,
 				B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */,
 				B702A162209317AA00AB1AFC /* ManageHumidorsTableViewController.swift */,
 				B713C1B3204ABC6400AA40DD /* SideMenuUIViewController.swift */,
-				B7A4813520581E34001242F7 /* HomeViewController.swift */,
 				B7A48137205822BC001242F7 /* ContentTableViewController.swift */,
 				B7A4813B20582755001242F7 /* ContentTableViewCell.swift */,
 				B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */,

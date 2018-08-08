@@ -12,29 +12,38 @@ import SVProgressHUD
 
 class DataViewController: UIViewController {
 
-    @IBOutlet weak var container: UIView!
+
+    var importUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ExportImportTableView
+        vc.importUrl = importUrl
     }
+    
 }
 
 
 class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
+    
+    var importUrl: URL?
+    
+    @IBOutlet weak var exportLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = 44.0
-        SVProgressHUD.setMinimumDismissTimeInterval(1)
-        SVProgressHUD.setDefaultStyle(.dark)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if importUrl != nil {
+            self.confirmImport(fromFile: importUrl!)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -109,6 +118,9 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
                         SVProgressHUD.showInfo(withStatus: NSLocalizedString("File Saved", comment: ""))
                         return
                     }
+                }
+                if let popOver = vc.popoverPresentationController {
+                    popOver.sourceView = self.exportLabel
                 }
                 SVProgressHUD.dismiss(withDelay: 2, completion: {self.present(vc, animated: true, completion: nil)})
                 
@@ -187,7 +199,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
     }
     
     func importFinishedSuccessful(status: CigarCSVImportResults) {
-        SVProgressHUD.dismiss(withDelay: 1, completion: {SVProgressHUD.showSuccess(withStatus: NSLocalizedString("Import completed.", comment: "") + NSLocalizedString("Successfull:", comment: "") + String(status.success) + ", " + NSLocalizedString("Duplicates:", comment: "") + String(status.duplicate) + ", " + NSLocalizedString("Errors:", comment: "") + String(status.error))})
+        SVProgressHUD.dismiss(withDelay: 1, completion: {SVProgressHUD.showSuccess(withStatus: NSLocalizedString("Import completed.", comment: "") + NSLocalizedString("Successfull:", comment: "") + String(status.success) + " " + NSLocalizedString("Duplicates:", comment: "") + String(status.duplicate) + " " + NSLocalizedString("Errors:", comment: "") + String(status.error))})
         
         //If there were not humidors before the import sets as default the first humidor
         if UserSettings.currentHumidor.value == "" {

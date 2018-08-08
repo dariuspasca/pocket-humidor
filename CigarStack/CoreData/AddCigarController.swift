@@ -412,7 +412,49 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {
+       
+        if !UserSettings.isPremium.value{
+            var countCigars:Int32 = 0
+            let humidors = CoreDataController.sharedInstance.fetchHumidors()
+            for humidor in humidors!{
+                countCigars = countCigars + humidor.quantity
+            }
+            let cigarQuantity = Int32((form.rowBy(tag: "Quantity") as! IntRow).value!)
+            if (countCigars + cigarQuantity) > 24{
+                // create the alert
+                let alert = UIAlertController(title: NSLocalizedString("CigarStack Premium", comment: ""), message: NSLocalizedString("CigarStack Premium allows you to add as many cigars as you want. You are using the free version which allows you to add a maximum of 25 cigars. You have", comment: "") + " " + String(25-countCigars) +
+                     " " + NSLocalizedString("cigars left.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Get Premium", comment: ""), style: .destructive) { _ in
+                    let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                    let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PurchaseViewController
+                    destVC.hideCloseButton = false
+                    destVC.modalPresentationStyle = .formSheet
+                    destVC.modalTransitionStyle = .coverVertical
+                    self.present(destVC, animated: true, completion: nil)
+                    
+                })
+                alert.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                saveCigar()
+            }
+            
+        }
+        else{
+            saveCigar()
+        }
         
+ 
+    }
+    
+    
+    func saveCigar(){
         let formValues = self.form.values()
         let nameForm = formValues["Name"] as! String
         let sizeForm = formValues["Size"] as! String
@@ -429,6 +471,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             ageDateForm = purchaseDateForm
         }
         
+        
         let humidor = CoreDataController.sharedInstance.searchHumidor(name: humidorForm)
         let location = CoreDataController.sharedInstance.searchTray(humidor: humidor!, searchTray: trayForm)
         
@@ -442,7 +485,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 humidor?.quantity = (humidor?.quantity)! - (cigarToEdit?.quantity)!
                 humidor?.quantity = (humidor?.quantity)! + quantity
             }
-
+            
             cigarToEdit?.quantity = quantity
             cigarToEdit?.purchaseDate = purchaseDateForm
             cigarToEdit?.ageDate = ageDateForm
@@ -459,7 +502,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             if changesStatus![10] == true{
                 cigarToEdit?.tray = location
             }
-
+            
             CoreDataController.sharedInstance.saveContext()
         }
         else{
@@ -476,7 +519,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         }
         
         delegate?.cigarTriggerReview()
- 
     }
 
     // MARK: - Segue

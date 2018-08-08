@@ -93,6 +93,10 @@
 "Since" = "Dal";
 "Photo" = "Foto";
 "Location" = "Posizione";
+"CigarStack Premium allows you to add as many cigars as you want. You are using the free version which allows you to add a maximum of 25 cigars. You have" = "CigarStack Premium ti permette di aggiungere quanti sigari vuoi. Al momento stai utilizzando la versione gratuita che ti permette di aggiungere un massimo di 25 sigari. Hai";
+"cigars left." = "sigari rimasti.";
+"Get Premium" = "Acquista Premium";
+
 
 /* Cigar Review */
 "How would you rate it?" = "Come lo valuteresti?";

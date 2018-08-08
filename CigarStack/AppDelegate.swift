@@ -11,6 +11,7 @@ import CoreData
 import SwiftyStoreKit
 import Fabric
 import Crashlytics
+import SVProgressHUD
 
 
 
@@ -28,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        completeStoreTransactions()
        setupAdditionalStoreSettings()
        setupUserAnalytics()
-
+       setupSvProgressHud()
 
         return true
     }
@@ -55,6 +56,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        openCsvImport(url: url)
+        return true
+    }
+    
+    func setupSvProgressHud() {
+
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setDefaultMaskType(.clear)
+        SVProgressHUD.setMinimumDismissTimeInterval(2)
+    }
+    
+    func openCsvImport(url: URL) {
+        tabBarController.selectedIndex = 4
+        
+        
+        let settingsSplitView = tabBarController.selectedSplitViewController!
+        let navController = settingsSplitView.masterNavigationController
+        navController.dismiss(animated: false)
+
+        navController.viewControllers.first!.performSegue(withIdentifier: "settingsData", sender: url)
+ 
     }
     
     func setupUserAnalytics(){

@@ -340,23 +340,29 @@ class AddHumidorController: FormViewController {
                 
                 let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
                 
-                for (index,tray) in trays.enumerated(){
-                    let name = (tray as! String).trimmingCharacters(in: NSCharacterSet.whitespaces)
-                    var found = false
-                    /* Searches for existing tray. */
-                    for existingTray in trayList!{
-                        if existingTray.name! == name{
-                            existingTray.orderID = Int16(index)
-                            found = true
-                            break
+                if trays.count == 0 {
+                    _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: humidor!, orderID: 0)
+                }
+                else{
+                    for (index,tray) in trays.enumerated(){
+                        let name = (tray as! String).trimmingCharacters(in: NSCharacterSet.whitespaces)
+                        var found = false
+                        /* Searches for existing tray. */
+                        for existingTray in trayList!{
+                            if existingTray.name! == name{
+                                existingTray.orderID = Int16(index)
+                                found = true
+                                break
+                            }
                         }
-                    }
-                    if found == false{
-                        _ = CoreDataController.sharedInstance.addNewTray(name: name, humidor: humidor!, orderID: Int16(index))
+                        if found == false{
+                            _ = CoreDataController.sharedInstance.addNewTray(name: name, humidor: humidor!, orderID: Int16(index))
+                        }
                     }
                 }
                 
                 UserSettings.shouldReloadView.value = true
+                
                 CoreDataController.sharedInstance.saveContext()
                 if UIDevice.current.userInterfaceIdiom == .pad{
                     delegate?.newHumidorForceReload()
