@@ -19,51 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    var tabBarController: TabBarController {
+        return window!.rootViewController as! TabBarController
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
-        if UserSettings.sendCrashReports.value == false {
-            if UserSettings.sendAnalytics.value == true {
-                Fabric.with([Answers.self])
-            }
-        }
-        else{
-            if UserSettings.sendAnalytics.value == false {
-                Fabric.with([Crashlytics.self])
-            }
-            else{
-                Fabric.with([Crashlytics.self , Answers.self])
-            }
-        }
-        
-        
-        SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
-            return true
-        }
-        
-        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
-            for purchase in purchases {
-                switch purchase.transaction.transactionState {
-                case .purchased, .restored:
-                    if purchase.needsFinishTransaction {
-                        // Deliver content from server, then:
-                        SwiftyStoreKit.finishTransaction(purchase.transaction)
-                    }
-                //Unlock content
-                UserSettings.isPremium.value = true
-                case .failed, .purchasing, .deferred:
-                    break // do nothing
-                }
-            }
-        }
-        
-        if UserSettings.premiumPrice.value == "" {
-            SwiftyStoreKit.retrieveProductsInfo(["cigarstackpremium"]) { result in
-                if let product = result.retrievedProducts.first {
-                    UserSettings.premiumPrice.value = product.localizedPrice!
-                }
-            }
-        }
+       completeStoreTransactions()
+       setupAdditionalStoreSettings()
+       setupUserAnalytics()
+
+
         return true
     }
     
@@ -89,6 +55,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    func setupUserAnalytics(){
+        if UserSettings.sendCrashReports.value == false {
+            if UserSettings.sendAnalytics.value == true {
+                Fabric.with([Answers.self])
+            }
+        }
+        else{
+            if UserSettings.sendAnalytics.value == false {
+                Fabric.with([Crashlytics.self])
+            }
+            else{
+                Fabric.with([Crashlytics.self , Answers.self])
+            }
+        }
+    }
+    
+    func setupAdditionalStoreSettings(){
+        //Enable in appstore purchase
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { payment, product in
+            return true
+        }
+        
+        //Saves the price
+        SwiftyStoreKit.retrieveProductsInfo(["cigarstackpremium"]) { result in
+            if let product = result.retrievedProducts.first {
+                UserSettings.premiumPrice.value = product.localizedPrice!
+            }
+        }
+    }
+    
+    func completeStoreTransactions(){
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    //Unlock content
+                    UserSettings.isPremium.value = true
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                }
+            }
+        }
     }
     
     // MARK: - Core Data stack

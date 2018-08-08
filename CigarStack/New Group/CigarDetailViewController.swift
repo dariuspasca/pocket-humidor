@@ -53,6 +53,7 @@ class CigarDetailViewController: UIViewController {
     @IBOutlet weak var reviewNotes: UITextView!
     @IBOutlet weak var reviewNotesStack: UIStackView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -154,9 +155,6 @@ class CigarDetailViewController: UIViewController {
             giftedStack.isHidden = true
             reviewStack.isHidden = true
         }
-        
-        
-        
       
     
     }

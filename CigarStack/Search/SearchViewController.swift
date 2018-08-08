@@ -15,9 +15,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var noResultsFlag: Bool!
+    var clearData = true
     
     var isSearching = false
     var searchResults:[Cigar]?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +32,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        searchResults?.removeAll()
-        searchBar.text = ""
-        noResultsFlag = false
-        self.tableView.reloadData()
+        if !clearData{
+            clearData = true
+        }
+        else{
+            searchResults?.removeAll()
+            searchBar.text = ""
+            noResultsFlag = false
+            self.tableView.reloadData()
+        }
     }
     
 
@@ -41,20 +48,46 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-        let results = CoreDataController.sharedInstance.searchCigarThatContains(key: searchBar.text!)
-        searchResults = results?.filter() { $0.gift == nil && $0.review == nil }
-        if searchResults!.isEmpty {
-            noResultsFlag = true
-            self.tableView.reloadEmptyDataSet()
+        if searchBar.text != ""{
+            var results = CoreDataController.sharedInstance.searchCigarThatNameContains(name: searchBar.text!)
+            
+            let countries = self.getCountryCode(name: searchBar.text!)
+            if countries != nil {
+                for country in countries!{
+                    let result = CoreDataController.sharedInstance.searchCigarByCountry(country: country)
+                    if result != nil {
+                        if results == nil {
+                            results = [Cigar]()
+                        }
+                        results!.append(contentsOf: result!)
+                    }
+                }
+            }
+            
+            let sizeResults = CoreDataController.sharedInstance.searchCigarBySize(size: searchBar.text!.capitalized)
+            if sizeResults != nil {
+                if results == nil {
+                    results = [Cigar]()
+                }
+                results!.append(contentsOf: sizeResults!)
+            }
+            
+            if results != nil {
+                results! = self.removeDuplicates(cigars: results!)
+            }
+            
+            searchResults = results?.filter() { $0.gift == nil && $0.review == nil }
+            if searchResults!.isEmpty {
+                noResultsFlag = true
+                self.tableView.reloadEmptyDataSet()
+            }
+            else{
+                noResultsFlag = false
+            }
+            self.tableView.reloadData()
+            isSearching = false
+            self.searchBar.endEditing(true)
         }
-        else{
-            noResultsFlag = false
-        }
-        self.tableView.reloadData()
-        isSearching = false
-        self.searchBar.endEditing(true)
-        
-        
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -71,6 +104,42 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchResults?.removeAll()
         tableView.reloadData()
         view.endEditing(true)
+    }
+    
+    
+    func removeDuplicates(cigars: [Cigar]) -> [Cigar]{
+        var noDuplicates = [Cigar]()
+        
+        for cigar in cigars{
+            var found = false
+            for item in noDuplicates{
+                if item.objectID == cigar.objectID {
+                    found = true
+                    break
+                }
+            }
+            if !found{
+                noDuplicates.append(cigar)
+            }
+        }
+        
+        return noDuplicates
+    }
+    
+    
+    func getCountryCode(name: String) -> [String]?{
+        var countries:[String]?
+        
+        for country in Flag.all{
+            if country.localizedName.contains(name){
+                if countries == nil {
+                    countries = [String]()
+                }
+                countries?.append(country.countryCode)
+            }
+        }
+        
+        return countries
     }
     
     // MARK: - TableView
@@ -111,6 +180,24 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.cigarShape.text = cigar.size!
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        clearData = false
+        tableView.deselectRow(at: indexPath, animated: true)
+        let storyboard = UIStoryboard(name: "DetailCigar", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DetailCigar") as! CigarDetailViewController
+        vc.cigar = searchResults![indexPath.row]
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            vc.modalPresentationStyle = .formSheet
+            vc.modalTransitionStyle = .coverVertical
+        }
+        else{
+            vc.modalPresentationStyle = .fullScreen
+            vc.modalTransitionStyle = .coverVertical
+        }
+        vc.modalPresentationCapturesStatusBarAppearance = true
+        self.present(vc, animated: true, completion: nil)
     }
     
     // MARK: - DZNEmptyDataSet

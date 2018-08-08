@@ -24,6 +24,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
     override func viewDidLayoutSubviews() {
         self.tabBar.invalidateIntrinsicContentSize()
     }
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 1 {
             if UserSettings.currentHumidor.value != ""{
@@ -65,6 +66,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
         let nav = self.viewControllers![0] as! UINavigationController
         let home = nav.topViewController as! HomeViewController
         home.viewWillAppear(true)
+    }
+    
+    func cigarTriggerReview() {
+        UserEngagement.onReviewTrigger()
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

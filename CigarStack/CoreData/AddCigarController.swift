@@ -12,6 +12,7 @@ import FlagKit
 
 protocol AddCigarDelegate{
     func addCigarForceReload()
+    func cigarTriggerReview()
 }
 
 class AddCigarController: FormViewController, SelectCountryDelegate {
@@ -474,6 +475,8 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             delegate?.addCigarForceReload()
         }
         
+        delegate?.cigarTriggerReview()
+ 
     }
 
     // MARK: - Segue

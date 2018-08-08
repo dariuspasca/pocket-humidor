@@ -94,10 +94,38 @@ class CoreDataController {
         self.saveContext()
     }
     
-    func searchCigarThatContains(key: String) -> [Cigar]?{
+    func searchCigarThatNameContains(name: String) -> [Cigar]?{
         var results: [Cigar]?
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cigar")
-        request.predicate =  NSPredicate(format: "name contains[c] %@", key)
+        request.predicate =  NSPredicate(format: "name contains[c] %@", name)
+        
+        do {
+            results = try context.fetch(request) as? [Cigar]
+        } catch let error {
+            let fetchError = error as NSError
+            print(fetchError)        }
+        
+        return results
+    }
+    
+    func searchCigarByCountry(country: String) -> [Cigar]?{
+        var results: [Cigar]?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cigar")
+        request.predicate =  NSPredicate(format: "origin = %@", country)
+        
+        do {
+            results = try context.fetch(request) as? [Cigar]
+        } catch let error {
+            let fetchError = error as NSError
+            print(fetchError)        }
+        
+        return results
+    }
+    
+    func searchCigarBySize(size: String) -> [Cigar]?{
+        var results: [Cigar]?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cigar")
+        request.predicate =  NSPredicate(format: "#size contains[c] %@", size)
         
         do {
             results = try context.fetch(request) as? [Cigar]

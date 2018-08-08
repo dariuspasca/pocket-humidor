@@ -194,11 +194,18 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "DetailCigar", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DetailCigar") as! CigarDetailViewController
         vc.cigar = data![indexPath.section].cigars[indexPath.row]
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .coverVertical
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            vc.modalPresentationStyle = .formSheet
+            vc.modalTransitionStyle = .coverVertical
+        }
+        else{
+            vc.modalPresentationStyle = .fullScreen
+            vc.modalTransitionStyle = .coverVertical
+        }
         vc.modalPresentationCapturesStatusBarAppearance = true
         self.present(vc, animated: true, completion: nil)
     }

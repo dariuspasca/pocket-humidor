@@ -15,7 +15,7 @@ class UserEngagement{
     
     static func onReviewTrigger() {
         UserDefaults.standard.incrementCounter(withKey: userEngagementCountKey)
-        if #available(iOS 10.3, *), shouldTryRequestReview() {
+        if shouldTryRequestReview() {
             SKStoreReviewController.requestReview()
         }
     }
@@ -30,6 +30,8 @@ class UserEngagement{
         
         let appStartCount = UserDefaults.standard.getCount(withKey: appStartupCountKey)
         let userEngagementCount = UserDefaults.standard.getCount(withKey: userEngagementCountKey)
+        
+        print(userEngagementCount)
         
         return appStartCount >= appStartCountMinRequirement && userEngagementCount % userEngagementModulo == 0
     }
