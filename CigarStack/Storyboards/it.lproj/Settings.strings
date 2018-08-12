@@ -5,13 +5,16 @@
 /* Class = "UILabel"; text = "Be Premium"; ObjectID = "4LM-jB-DGL"; */
 "4LM-jB-DGL.text" = "Be Premium";
 
+/* Class = "UILabel"; text = "Export"; ObjectID = "4gm-gL-eiP"; */
+"4gm-gL-eiP.text" = "Esporta";
+
 /* Class = "UINavigationItem"; title = "Sort"; ObjectID = "4i9-qU-PCR"; */
 "4i9-qU-PCR.title" = "Ordinamento";
 
-/* Class = "UILabel"; text = "Contact "; ObjectID = "7XH-bq-15n"; */
-"7XH-bq-15n.text" = "Contattaci ";
+/* Class = "UILabel"; text = "Send Feedback"; ObjectID = "7XH-bq-15n"; */
+"7XH-bq-15n.text" = "Contattaci";
 
-/* Class = "UILabel"; text = "Data"; ObjectID = "82i-dT-Gfm"; */
+/* Class = "UILabel"; text = "Privacy"; ObjectID = "82i-dT-Gfm"; */
 "82i-dT-Gfm.text" = "Privacy";
 
 /* Class = "UINavigationItem"; title = "General"; ObjectID = "9YZ-OW-ir8"; */
@@ -26,7 +29,7 @@
 /* Class = "UIButton"; normalTitle = "Unlock Premium For 4,49 $"; ObjectID = "GWh-z1-SfJ"; */
 "GWh-z1-SfJ.normalTitle" = "Unlock Premium For 4,49 $";
 
-/* Class = "UINavigationItem"; title = "Data"; ObjectID = "IBU-Kj-ko8"; */
+/* Class = "UINavigationItem"; title = "Privacy"; ObjectID = "IBU-Kj-ko8"; */
 "IBU-Kj-ko8.title" = "Privacy";
 
 /* Class = "UILabel"; text = "CigarStack Premium"; ObjectID = "Ixk-tT-swR"; */
@@ -35,17 +38,44 @@
 /* Class = "UILabel"; text = "Mange as many humidors as you want. The free limit is 2 humidors."; ObjectID = "M5i-h9-hSL"; */
 "M5i-h9-hSL.text" = "Gestisci quanti humidor vuoi. Il limite gratuito è di 2 humidor.";
 
+/* Class = "UILabel"; text = "Import"; ObjectID = "Ogk-kz-mdx"; */
+"Ogk-kz-mdx.text" = "Importa";
+
+/* Class = "UILabel"; text = "Not Premium"; ObjectID = "QgN-X1-TLG"; */
+"QgN-X1-TLG.text" = "Non Premium";
+
+/* Class = "UILabel"; text = "Delete All"; ObjectID = "Qrz-gP-K8w"; */
+"Qrz-gP-K8w.text" = "Elimina Tutto";
+
+/* Class = "UILabel"; text = "CigarStack"; ObjectID = "SHr-QB-kaU"; */
+"SHr-QB-kaU.text" = "CigarStack";
+
+/* Class = "UILabel"; text = "© 2018 Darius Pasca"; ObjectID = "UvN-e5-Jtm"; */
+"UvN-e5-Jtm.text" = "© 2018 Darius Pasca";
+
+/* Class = "UINavigationItem"; title = "Data"; ObjectID = "V0l-pF-fbP"; */
+"V0l-pF-fbP.title" = "Data";
+
+/* Class = "UILabel"; text = "Rate CigarStack"; ObjectID = "Wra-D9-rKG"; */
+"Wra-D9-rKG.text" = "Vota CigarStack";
+
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "X0f-38-Rlh"; */
 "X0f-38-Rlh.title" = "Impostazioni";
 
 /* Class = "UILabel"; text = "Infinite Cigar Number"; ObjectID = "ZtA-q0-yVc"; */
 "ZtA-q0-yVc.text" = "Infinito numero di sigari";
 
+/* Class = "UILabel"; text = "Special thanks to my friend "; ObjectID = "c6U-Xn-XRA"; */
+"c6U-Xn-XRA.text" = "Un ringraziamento speciale a ";
+
 /* Class = "UINavigationItem"; title = "CigarStack Premium"; ObjectID = "eYm-U7-pIg"; */
 "eYm-U7-pIg.title" = "CigarStack Premium";
 
-/* Class = "UILabel"; text = "About"; ObjectID = "lFZ-xt-8ag"; */
-"lFZ-xt-8ag.text" = "Informazioni";
+/* Class = "UILabel"; text = "About"; ObjectID = "gB9-uB-mJK"; */
+"gB9-uB-mJK.text" = "About";
+
+/* Class = "UILabel"; text = "CigarStack 1.0.0"; ObjectID = "hG9-xP-P0K"; */
+"hG9-xP-P0K.text" = "CigarStack 1.0.0";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "lmx-t7-Lp3"; */
 "lmx-t7-Lp3.text" = "Label";
@@ -59,9 +89,24 @@
 /* Class = "UILabel"; text = "Add as many cigars as you want. The free limit is 25 cigars."; ObjectID = "qlf-9e-hs0"; */
 "qlf-9e-hs0.text" = "Aggiungi quanti sigari vuoi. Il limite gratuito è di 25 sigari.";
 
+/* Class = "UILabel"; text = "Martelli Enrico"; ObjectID = "sdZ-kn-A6u"; */
+"sdZ-kn-A6u.text" = "Martelli Enrico";
+
 /* Class = "UILabel"; text = "CigarStack is being developed and support by an indie developer. By buying CigarStack Premium you support the further development of the app."; ObjectID = "vXj-qw-Jb8"; */
 "vXj-qw-Jb8.text" = "CigarStack è sviluppato e supportato da uno sviluppatore indipendente. Acquistando CigarStack Premium, supporti l'ulteriore sviluppo dell'app.";
+
+/* Class = "UILabel"; text = "Data"; ObjectID = "vcB-YQ-40g"; */
+"vcB-YQ-40g.text" = "Data";
+
+/* Class = "UILabel"; text = "Import and Export can be used to move cigars between devices. Create an export of your cigars below, and send or share the file with your other device. On the other device, Import from the file to copy the cigars."; ObjectID = "wz0-FX-ANx"; */
+"wz0-FX-ANx.text" = "Import and Export can be used to move cigars between devices. Create an export of your cigars below, and send or share the file with your other device. On the other device, Import from the file to copy the cigars.";
+"Le funzionalità Importa ed Esporta possono essere utilizzate per spostare sigari tra dispositivi. Crea una esportazione dei tuoi sigari qui sotto e invia o condividi il file con l'altro dispositivo. Sull'altro dispositivo, Importa dal file per copiare i sigari.";
+
+/* Class = "UILabel"; text = "by Darius Pasca"; ObjectID = "xjj-cB-cLa"; */
+"xjj-cB-cLa.text" = "by Darius Pasca";
 
 /* Class = "UILabel"; text = "General"; ObjectID = "xqM-bZ-Ju6"; */
 "xqM-bZ-Ju6.text" = "Generali";
 
+/* Class = "UILabel"; text = "Import - Export"; ObjectID = "yLY-5k-Hhq"; */
+"yLY-5k-Hhq.text" = "Importa - Esporta";

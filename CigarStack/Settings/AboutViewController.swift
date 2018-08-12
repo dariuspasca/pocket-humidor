@@ -28,6 +28,14 @@ class AboutViewController: UIViewController {
         
        
     }
+    
+   
+    @IBAction func openEnrico(_ sender: UITapGestureRecognizer) {
+        UIApplication.shared.open(URL(string : "https://github.com/MartelliEnrico")!, options: [:], completionHandler: { (status) in
+        })
+    }
+    
+    
 }
 
 class AttributionsTableViewcontroller: UITableViewController {

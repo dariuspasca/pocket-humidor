@@ -19,7 +19,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     
     var sizes = ["Cigarillo" , "Small Panetela" , "Slim Panetela" , "Short Panetela" , "Pantetela" , "Long Panetela" , "Toscanello" , "Toscano",
                  "Petit Corona" , "Corona", "Long Corona" , "Lonsdale" , "Corona Extra" , "Grand Corona" , "Double Corona" ,
-                 "Giant Corona" , "Churchill" , "Petit Robusto" , "Robusto" , "Robusto Extra", "Double Robusto" , "Giant Robusto" ,
+                 "Giant Corona" , "Churchill" , "Petit Robusto" , "Robusto" , "Robusto Extra", "Double Robusto" , "Giant Robusto" , "Toro" ,
                  "Culebra" , "Oetut Pyramid" , "Pyramid" , "Double Pyramid" , "Petit Perfecto" , "Perfecto" , "Double Perfecto" , "Giant Perfecto" ]
     
     var delegate:AddCigarDelegate?

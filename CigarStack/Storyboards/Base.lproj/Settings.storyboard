@@ -497,7 +497,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="iVZ-YZ-iBi" userLabel="CigarFeature">
                                                 <rect key="frame" x="0.0" y="0.0" width="318.5" height="64.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-9o-cWu">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cig" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-9o-cWu">
                                                         <rect key="frame" x="0.0" y="7.5" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="sDc-ex-1WY"/>
@@ -524,7 +524,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="99W-eU-Gav" userLabel="HumidorFeature">
                                                 <rect key="frame" x="0.0" y="89.5" width="318.5" height="64.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="fgX-wB-BBB">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hum" translatesAutoresizingMaskIntoConstraints="NO" id="fgX-wB-BBB">
                                                         <rect key="frame" x="0.0" y="7.5" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="6Nx-ef-jtK"/>
@@ -551,7 +551,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4xs-FG-Vt7" userLabel="SupportFeature">
                                                 <rect key="frame" x="0.0" y="179" width="318.5" height="125"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="SfG-lz-w2A">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dev" translatesAutoresizingMaskIntoConstraints="NO" id="SfG-lz-w2A">
                                                         <rect key="frame" x="0.0" y="37.5" width="50" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="6KZ-rY-jnS"/>
@@ -665,22 +665,43 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4dV-p7-a2m">
-                                <rect key="frame" x="108" y="261" width="157.5" height="81.5"/>
+                                <rect key="frame" x="62" y="245.5" width="251" height="112"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CigarStack 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG9-xP-P0K">
-                                        <rect key="frame" x="15" y="0.0" width="127.5" height="20.5"/>
+                                        <rect key="frame" x="62" y="0.0" width="127.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Premium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgN-X1-TLG">
-                                        <rect key="frame" x="27.5" y="30.5" width="102.5" height="20.5"/>
+                                        <rect key="frame" x="74.5" y="30.5" width="102.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Mr-5j-wNt">
+                                        <rect key="frame" x="0.0" y="61" width="251" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special thanks to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6U-Xn-XRA">
+                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Martelli Enrico" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdZ-kn-A6u">
+                                                <rect key="frame" x="138.5" y="0.0" width="112.5" height="20.5"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="pft-uD-jGA" appends="YES" id="rcw-Fe-wTP"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHO-A7-aQI">
-                                        <rect key="frame" x="0.0" y="61" width="157.5" height="20.5"/>
+                                        <rect key="frame" x="47" y="91.5" width="157.5" height="20.5"/>
                                         <gestureRecognizers/>
                                         <attributedString key="attributedText">
                                             <fragment content="Third Party Software">
@@ -736,9 +757,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-3w-VNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="bG9-Bu-j7z">
+                <tapGestureRecognizer id="bG9-Bu-j7z" userLabel="ThirdParties">
                     <connections>
                         <segue destination="s3P-4X-MAh" kind="show" id="yPE-gZ-yCa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="pft-uD-jGA">
+                    <connections>
+                        <action selector="openEnrico:" destination="d1w-Ll-TEe" id="Dux-H4-qau"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -967,10 +993,13 @@
     </scenes>
     <resources>
         <image name="About" width="29" height="29"/>
+        <image name="Cig" width="50" height="50"/>
         <image name="Contact" width="29" height="29"/>
         <image name="Data" width="29" height="29"/>
+        <image name="Dev" width="50" height="50"/>
         <image name="General" width="29" height="29"/>
-        <image name="Icon" width="60" height="60"/>
+        <image name="Hum" width="50" height="50"/>
+        <image name="Icon" width="76" height="76"/>
         <image name="Privacy" width="29" height="29"/>
         <image name="Rate" width="29" height="29"/>
         <image name="Settings" width="25" height="25"/>
@@ -978,7 +1007,6 @@
         <image name="Sort" width="29" height="29"/>
         <image name="Star" width="29" height="29"/>
         <image name="close" width="40" height="40"/>
-        <image name="plus" width="50" height="50"/>
     </resources>
     <color key="tintColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

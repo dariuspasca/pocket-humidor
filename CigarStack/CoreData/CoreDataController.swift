@@ -34,14 +34,16 @@ class CoreDataController {
     }
     
     /* New Tray */
-    func addNewTray (name: String,humidor: Humidor, orderID: Int16) -> Tray {
+    func addNewTray (name: String,humidor: Humidor, orderID: Int16, save: Bool) -> Tray {
         let entityTray = NSEntityDescription.entity(forEntityName: "Tray", in: self.context)
         let newTray = Tray (entity: entityTray!, insertInto: context)
         
         newTray.name = name
         newTray.orderID = orderID
         humidor.addToTrays(newTray)
-        self.saveContext()
+        if save {
+           self.saveContext()
+        }
         
         return newTray
     }

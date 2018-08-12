@@ -28,20 +28,13 @@ class PrivacyViewController: FormViewController {
             }
             */
            form +++ Section(header: NSLocalizedString("Analytics", comment: ""), footer: NSLocalizedString("Anonymous crash reports and usage statistics can be reported to help improve CigarStack.", comment: ""))
-            <<< SwitchRow(NSLocalizedString("Send Crash Reports", comment: "")){
+            <<< SwitchRow(NSLocalizedString("Share Analytics", comment: "")){
                 $0.title = $0.tag
-                $0.value = UserSettings.sendCrashReports.value
+                $0.value = UserSettings.shareAnalytics.value
                 }
                 .onChange {
-                    UserSettings.sendCrashReports.value = $0.value!
+                    UserSettings.shareAnalytics.value = $0.value!
             }
-            <<< SwitchRow(NSLocalizedString("Send Analytics", comment: "")){
-                $0.title = $0.tag
-                $0.value = UserSettings.sendAnalytics.value
-                }
-                .onChange {
-                    UserSettings.sendAnalytics.value = $0.value!
-        }
     }
 
 }

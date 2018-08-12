@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
        completeStoreTransactions()
        setupAdditionalStoreSettings()
        setupUserAnalytics()
@@ -84,18 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupUserAnalytics(){
-        if UserSettings.sendCrashReports.value == false {
-            if UserSettings.sendAnalytics.value == true {
-                Fabric.with([Answers.self])
-            }
-        }
-        else{
-            if UserSettings.sendAnalytics.value == false {
-                Fabric.with([Crashlytics.self])
-            }
-            else{
-                Fabric.with([Crashlytics.self , Answers.self])
-            }
+        if UserSettings.shareAnalytics.value == true  {
+            Fabric.with([Crashlytics.self])
         }
     }
     

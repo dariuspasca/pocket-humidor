@@ -89,8 +89,7 @@ class UserSettings{
     static var isPremium = UserSetting<Bool>(key: "isPremium", defaultValue: false)
     static var premiumPrice = UserSetting<String>(key: "premiumPrice", defaultValue: "")
     
-    static var sendAnalytics = UserSetting<Bool>(key: "sendAnalytics", defaultValue: true)
-    static var sendCrashReports = UserSetting<Bool>(key: "sendCrashReports", defaultValue: true)
+    static var shareAnalytics = UserSetting<Bool>(key: "sendCrashReports", defaultValue: true)
     static var iCloud = UserSetting<Bool>(key: "iCloud", defaultValue: true)
     static var defaultSortOrder = UserSetting<Int>(key: "defaultSortOrder", defaultValue: 0)
     static var sortAscending = UserSetting<Bool>(key: "SortAscending", defaultValue: true)

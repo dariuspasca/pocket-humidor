@@ -29,6 +29,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         noResultsFlag = false
+        searchBar.autocorrectionType = .yes
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -154,31 +154,27 @@ class AddHumidorController: FormViewController {
                                     }.cellSetup { (cell, row) in
                                         cell.textField.autocorrectionType = .yes
                                 }.onCellHighlightChanged({ (cell, row) in
-                                    if self.humidor != nil {
                                     if row.isHighlighted == false {
-                                        let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
-                                        //Search for same name tray
-                                        var found = false
-                                        for tray in self.trayList!{
-                                            if tray.name! == name {
-                                                found = true
-                                                break
+                                        if self.humidor != nil {
+                                            let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
+                                            if name != "" {
+                                                let found = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name!)
+                                                //Shows alert and cancels text
+                                                if found != nil {
+                                                    self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
+                                                    row.value! = ""
+                                                    
+                                                }
+                                                else{
+                                                    _ = CoreDataController.sharedInstance.addNewTray(name: name!, humidor: self.humidor!, orderID: 0, save: false)
+                                                    self.saveButton.isEnabled = true
+                                                    self.dividersHaveBeenEdited = true
+                                                    
+                                                }
                                             }
                                         }
-                                        //Shows alert and cancels text
-                                        if found{
 
-                                            self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
-                                            row.value! = ""
-                                           
-                                        }
-                                        else{
-                                            self.saveButton.isEnabled = true
-                                            self.dividersHaveBeenEdited = true
-                                            
-                                        }
                                     }
-                                }
                                 })
                             }
                              if humidor == nil{
@@ -205,24 +201,20 @@ class AddHumidorController: FormViewController {
                         if row.isHighlighted == false {
             
                         let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
-                            if name != ""{
-                                var found = false
-                                for traySearch in self.trayList!{
-                                    if traySearch.name! == name {
-                                        found = true
-                                        break
-                                    }
-                                }
+                            if name != "" && name != tray.name!{
+                                let found = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name!)
                                 //Shows alert and cancels text
-                                if found{
+                                if found != nil {
                                     self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
                                     row.value! = tray.name!
                                     
                                 }
                                 else{
-                                    tray.name = name!
-                                    self.saveButton.isEnabled = true
-                                    self.dividersHaveBeenEdited = true
+                                    if name != tray.name! {
+                                        tray.name = name!
+                                        self.saveButton.isEnabled = true
+                                        self.dividersHaveBeenEdited = true
+                                    }
                                     
                                 }
                             }
@@ -247,13 +239,6 @@ class AddHumidorController: FormViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath){
-        let section = form.last!
-        let movedObject = section[sourceIndexPath.row] as! NameRow
-        let another = section[destinationIndexPath.row] as! NameRow
-        let temp = another.value!
-        another.value = movedObject.value!
-        movedObject.value = temp
-        
         self.saveButton.isEnabled = true
         self.dividersHaveBeenEdited = true
         self.isDeleting = false
@@ -270,18 +255,12 @@ class AddHumidorController: FormViewController {
                 let row = rows[0] as! NameRow
                 let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
                 if name != "" {
-                    var index: Int16 = 0
-                    for (i,tray) in trayList!.enumerated(){
-                        if tray.name! == name{
-                            CoreDataController.sharedInstance.deleteTray(tray: tray, save: false)
-                            trayList?.remove(at: i)
-                        }
-                        else{
-                            tray.orderID = index
-                            index += 1
-                        }
+                    let tray = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name!)
+                    if name != nil {
+                        CoreDataController.sharedInstance.deleteTray(tray: tray!, save: false)
                     }
                 }
+
                 self.saveButton.isEnabled = true
                 self.dividersHaveBeenEdited = true
             }
@@ -323,10 +302,8 @@ class AddHumidorController: FormViewController {
         let name = formValues["Name"] as? String
         let humidity = formValues["Humidity Level"] as! Float
         if humidor != nil {
-            if humidor!.name! != name! {
-                if (CoreDataController.sharedInstance.searchHumidor(name: name!) != nil){
+            if humidor!.name! != name! && CoreDataController.sharedInstance.searchHumidor(name: name!) != nil  {
                     showAlertButtonTapped(title: NSLocalizedString("Humidor already exists!", comment: ""), message: NSLocalizedString("You can't have multiple humidors with the same name.", comment: ""))
-                }
             }
             else{
                 /* Updates eventual humidor info changes */
@@ -340,24 +317,20 @@ class AddHumidorController: FormViewController {
                 
                 let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
                 
+
                 if trays.count == 0 {
-                    _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: humidor!, orderID: 0)
+                    _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: humidor!, orderID: 0, save: false)
                 }
                 else{
                     for (index,tray) in trays.enumerated(){
                         let name = (tray as! String).trimmingCharacters(in: NSCharacterSet.whitespaces)
-                        var found = false
-                        /* Searches for existing tray. */
-                        for existingTray in trayList!{
-                            if existingTray.name! == name{
-                                existingTray.orderID = Int16(index)
-                                found = true
-                                break
+                        if name != "" {
+                            let tray = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name)
+                            if tray != nil {
+                                tray!.orderID = Int16(index)
                             }
                         }
-                        if found == false{
-                            _ = CoreDataController.sharedInstance.addNewTray(name: name, humidor: humidor!, orderID: Int16(index))
-                        }
+                        
                     }
                 }
                 
@@ -382,14 +355,14 @@ class AddHumidorController: FormViewController {
                 
                 switch trays.count{
                 case 0:
-                    _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: newHumidor, orderID: 0)
+                    _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: newHumidor, orderID: 0, save: true)
                 case 1:
                     let trayTrimmed = (trays[0] as! String).trimmingCharacters(in: NSCharacterSet.whitespaces)
                     if trayTrimmed == ""{
-                        _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: newHumidor, orderID: 0)
+                        _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: newHumidor, orderID: 0, save: true)
                     }
                     else{
-                        _ = CoreDataController.sharedInstance.addNewTray(name: trayTrimmed, humidor: newHumidor, orderID: 0)
+                        _ = CoreDataController.sharedInstance.addNewTray(name: trayTrimmed, humidor: newHumidor, orderID: 0, save: true)
                     }
                 case 1...:
                     var orderID: Int16 = 0
@@ -397,7 +370,7 @@ class AddHumidorController: FormViewController {
                     for tray in traysUnique{
                         let trayTrimmed = tray.trimmingCharacters(in: NSCharacterSet.whitespaces)
                         if trayTrimmed != ""{
-                            _ = CoreDataController.sharedInstance.addNewTray(name: trayTrimmed, humidor: newHumidor, orderID: orderID)
+                            _ = CoreDataController.sharedInstance.addNewTray(name: trayTrimmed, humidor: newHumidor, orderID: orderID, save: true)
                             orderID += 1
                         }
                     }

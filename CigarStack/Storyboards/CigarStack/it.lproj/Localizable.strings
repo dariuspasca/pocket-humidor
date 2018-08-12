@@ -173,8 +173,7 @@
 "Automatically upload and store your data in iCloud to be accessible from all your devices." = "Carica e archivia automaticamente i tuoi dati in iCloud per essere accessibili da tutti i tuoi dispositivi.";
 "Analytics" = "Analisi";
 "Anonymous crash reports and usage statistics can be reported to help improve CigarStack." = "Segnalazioni di arresti anomali e statistiche di utilizzo possono essere segnalate per contribuire a migliorare CigarStack.";
-"Send Crash Reports" = "Invia segnalazioni di arresti anomali";
-"Send Analytics" = "Invia statistiche sull'utilizzo";
+"Share Analytics" = "Condivi Analisi";
 "Information" = "Informazioni";
 "Not Premium" = "Non Premium";
 "Rate" = "Vota";
