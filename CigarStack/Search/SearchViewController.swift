@@ -102,7 +102,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.setShowsCancelButton(false, animated: true)
-        searchResults?.removeAll()
+        searchResults = nil
         tableView.reloadData()
         view.endEditing(true)
     }
