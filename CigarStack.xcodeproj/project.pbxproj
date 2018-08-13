@@ -69,6 +69,7 @@
 		B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE3FD62066B43D000B761B /* CountrySelectViewController.swift */; };
 		B7EF0ADF20ACC9EF008F9DF2 /* SmokeCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */; };
 		B7F5021420FD5346001035A2 /* CigarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */; };
+		B7FD5C992121DE2B001087F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7FD5C982121DE2B001087F3 /* LaunchScreen.storyboard */; };
 		B7FDDF0B20FEB632001E8D4F /* DetailCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7FDDF0D20FEB632001E8D4F /* DetailCigar.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +177,7 @@
 		B7F37DF720E6348000E40AF2 /* Eureka.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Eureka.framework.dSYM; path = Carthage/Build/iOS/Eureka.framework.dSYM; sourceTree = "<group>"; };
 		B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarDetailViewController.swift; sourceTree = "<group>"; };
 		B7F57D462052904E0046FCB1 /* AttributesLicense.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AttributesLicense.plist; sourceTree = "<group>"; };
+		B7FD5C982121DE2B001087F3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 		B7219C8F205179D6001096A6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				B7FD5C982121DE2B001087F3 /* LaunchScreen.storyboard */,
 				B7E6A47420A742990085EA2D /* History.storyboard */,
 				B79C85ED20A39C70006A719F /* Search.storyboard */,
 				B75A842D2042DAB3008528D8 /* LaunchScreen.storyboard */,
@@ -523,6 +526,7 @@
 				B7E6A47520A742990085EA2D /* History.storyboard in Resources */,
 				B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */,
 				B79C85EE20A39C70006A719F /* Search.storyboard in Resources */,
+				B7FD5C992121DE2B001087F3 /* LaunchScreen.storyboard in Resources */,
 				B7A4813A205825D9001242F7 /* ContentTableViewController.storyboard in Resources */,
 				B7658097205293D8004FD39F /* AttributesLicense.plist in Resources */,
 				B7FDDF0B20FEB632001E8D4F /* DetailCigar.storyboard in Resources */,

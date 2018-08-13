@@ -35,6 +35,15 @@ class AboutViewController: UIViewController {
         })
     }
     
+    @IBAction func openInstagram(_ sender: UITapGestureRecognizer) {
+        UIApplication.shared.open(URL(string : "https://www.instagram.com/cigarstack/")!, options: [:], completionHandler: { (status) in
+        })
+    }
+    
+    @IBAction func openWebsite(_ sender: UITapGestureRecognizer) {
+        UIApplication.shared.open(URL(string : "https://www.cigarstack.app")!, options: [:], completionHandler: { (status) in
+        })
+    }
     
 }
 

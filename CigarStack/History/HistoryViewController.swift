@@ -175,6 +175,13 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let (years, months) = computeAge(pastDate: cigar.ageDate!, currentDate: referenceDate)
         
+        if years == 1 {
+            cell.yearsLabel.text = NSLocalizedString("Year", comment: "")
+        }
+        else{
+            cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
+        }
+        
         var percentage = Double(months)/12
         if years > 0 && months == 0 {
             percentage = 0.01
@@ -193,7 +200,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.size.text = cigar.size!
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
-        cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
+        
         
         if cigar.review != nil {
             cell.status.text = NSLocalizedString("Rating", comment: "")

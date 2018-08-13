@@ -25,6 +25,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     var tray: Tray!
     var cigars: [Cigar]?
     var cigarIndex: IndexPath?
+    var currentDate = Date()
 
     
     override func viewDidLoad() {
@@ -60,8 +61,13 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ContentTableViewCell
         let cigar = cigars![indexPath.row]
         let pastDate = cigar.ageDate!
-        let (years, months) = computeAge(pastDate: pastDate, currentDate: Date())
-        
+        let (years, months) = computeAge(pastDate: pastDate, currentDate: currentDate)
+        if years == 1 {
+            cell.yearsLabel.text = NSLocalizedString("Year", comment: "")
+        }
+        else{
+            cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
+        }
        
         var percentage = Double(months)/12
         if years > 0 && months == 0 {
@@ -82,7 +88,6 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         cell.size.text = cigar.size!
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
-        cell.yearsLabel.text = NSLocalizedString("Years", comment: "")
         return cell
     }
     

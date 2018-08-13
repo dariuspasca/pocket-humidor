@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9LA-iO-PHm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="YPr-pu-Pn6">
+            <objects>
+                <viewController id="9LA-iO-PHm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L9z-Yh-F1o"/>
+                        <viewControllerLayoutGuide type="bottom" id="gR5-9p-rin"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EpI-ZU-Qte">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-Ut-dyK">
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xbn-Ut-dyK" secondAttribute="height" multiplier="1:1" id="cWX-dX-oHB"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="xe5-UJ-FCH"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xbn-Ut-dyK" firstAttribute="centerX" secondItem="EpI-ZU-Qte" secondAttribute="centerX" id="2pM-rp-LvO"/>
+                            <constraint firstItem="xbn-Ut-dyK" firstAttribute="width" secondItem="EpI-ZU-Qte" secondAttribute="width" multiplier="0.4" priority="999" id="j27-rw-Ciu"/>
+                            <constraint firstItem="xbn-Ut-dyK" firstAttribute="centerY" secondItem="EpI-ZU-Qte" secondAttribute="centerY" id="ttq-wr-JaK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZNl-d8-0uH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NsO-Qa-Jyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-169" y="462"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="IconLaunch" width="509" height="520"/>
+    </resources>
+</document>
