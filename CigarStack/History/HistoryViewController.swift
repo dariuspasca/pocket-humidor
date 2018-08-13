@@ -51,6 +51,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationItem.title =  ""
         navigationBarBottomLine = self.navigationController?.navigationBar.shadowImage
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.tableView.estimatedRowHeight = 70.0
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -160,7 +161,19 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! HistoryTableViewCell
         let cigar = data![indexPath.section].cigars[indexPath.row]
-        let (years, months) = computeAge(pastDate: cigar.ageDate!, currentDate: cigar.editDate!)
+        var referenceDate = Date()
+        if cigar.review != nil {
+            cell.status.text = NSLocalizedString("Rating", comment: "")
+            cell.statusDetail.text = String(cigar.review!.score) + " / 100"
+            referenceDate = cigar.review!.reviewDate!
+        }
+        else{
+            cell.status.text = NSLocalizedString("Gifted to", comment: "")
+            cell.statusDetail.text = cigar.gift!.to!
+            referenceDate = cigar.gift!.giftDate!
+        }
+        
+        let (years, months) = computeAge(pastDate: cigar.ageDate!, currentDate: referenceDate)
         
         var percentage = Double(months)/12
         if years > 0 && months == 0 {
