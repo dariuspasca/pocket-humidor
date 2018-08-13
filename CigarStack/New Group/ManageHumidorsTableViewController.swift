@@ -23,6 +23,7 @@ class ManageHumidorsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = NSLocalizedString("Your Humidors", comment: "")
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         deleteButton = UIBarButtonItem(title: NSLocalizedString("Delete", comment: ""),style: .plain, target: self, action: #selector(deleteHumidors))
         self.navigationItem.leftBarButtonItem = cancelButton
