@@ -35,7 +35,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("Add Cigar", comment: "")
+        navigationItem.title = NSLocalizedString("New Item", comment: "")
         //Default Country
         selectedCountryCode = "CU"
         humidor = CoreDataController.sharedInstance.searchHumidor(name: UserSettings.currentHumidor.value)
@@ -60,7 +60,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
  
         form +++ Section()
             <<< TextRow ("Name") {
-                $0.placeholder = NSLocalizedString("Cigar Name", comment: "")
+                $0.placeholder = NSLocalizedString("Name", comment: "")
                 $0.value = cigarToEdit?.name! ?? nil
                 $0.add(rule: RuleRequired(msg: "required"))
                 $0.validationOptions = .validatesOnChange
@@ -422,8 +422,8 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             let cigarQuantity = Int32((form.rowBy(tag: "Quantity") as! IntRow).value!)
             if (countCigars + cigarQuantity) > 24{
                 // create the alert
-                let alert = UIAlertController(title: NSLocalizedString("CigarStack Premium", comment: ""), message: NSLocalizedString("CigarStack Premium allows you to add as many cigars as you want. You are using the free version which allows you to add a maximum of 25 cigars. You have", comment: "") + " " + String(25-countCigars) +
-                     " " + NSLocalizedString("cigars left.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: NSLocalizedString("CigarStack Premium", comment: ""), message: NSLocalizedString("CigarStack Premium allows you to add as many items as you want. You are using the free version which allows you to add a maximum of 25 items. You have", comment: "") + " " + String(25-countCigars) +
+                     " " + NSLocalizedString("items left.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))

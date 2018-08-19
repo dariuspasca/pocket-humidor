@@ -63,10 +63,10 @@
 "X0f-38-Rlh.title" = "Impostazioni";
 
 /* Class = "UILabel"; text = "Infinite Cigar Number"; ObjectID = "ZtA-q0-yVc"; */
-"ZtA-q0-yVc.text" = "Infinito numero di sigari";
+"ZtA-q0-yVc.text" = "Infinito numero di articoli";
 
 /* Class = "UILabel"; text = "Special thanks to my friend "; ObjectID = "c6U-Xn-XRA"; */
-"c6U-Xn-XRA.text" = "Un ringraziamento speciale a ";
+"c6U-Xn-XRA.text" = "Un ringraziamento a ";
 
 /* Class = "UINavigationItem"; title = "CigarStack Premium"; ObjectID = "eYm-U7-pIg"; */
 "eYm-U7-pIg.title" = "CigarStack Premium";
@@ -87,7 +87,7 @@
 "p2l-sS-pCZ.normalTitle" = "Ripristina Acquisto";
 
 /* Class = "UILabel"; text = "Add as many cigars as you want. The free limit is 25 cigars."; ObjectID = "qlf-9e-hs0"; */
-"qlf-9e-hs0.text" = "Aggiungi quanti sigari vuoi. Il limite gratuito è di 25 sigari.";
+"qlf-9e-hs0.text" = "Aggiungi quanti articoli vuoi. Il limite gratuito è di 25 articoli.";
 
 /* Class = "UILabel"; text = "Martelli Enrico"; ObjectID = "sdZ-kn-A6u"; */
 "sdZ-kn-A6u.text" = "Martelli Enrico";

@@ -55,7 +55,7 @@ class HumidorDetailViewController: UIViewController, UITableViewDelegate{
         aboutLabel.text = NSLocalizedString("About", comment: "")
         humidityLabel.text = NSLocalizedString("Humidity level:", comment: "")
         humidityValue.text = String(humidor!.humidity) + " %"
-        numberLabel.text = NSLocalizedString("Number of cigars:", comment: "")
+        numberLabel.text = NSLocalizedString("Number of items:", comment: "")
         numberValue.text = String((humidor!.quantity))
         valueLabel.text = NSLocalizedString( "Humidor Value", comment: "")
         valueValue.text = humidor!.value.asLocalCurrency

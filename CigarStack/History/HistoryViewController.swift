@@ -101,16 +101,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 20, weight: .light),
              NSAttributedStringKey.foregroundColor : UIColor.black,
              NSAttributedStringKey.backgroundColor : UIColor.clear]
-        return NSAttributedString(string: NSLocalizedString("Cigar History", comment: ""), attributes: attributes)
+        return NSAttributedString(string: NSLocalizedString("Items History", comment: ""), attributes: attributes)
     }
     
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let attributes =
-            [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .light),
-             NSAttributedStringKey.foregroundColor : UIColor.darkGray,
-             NSAttributedStringKey.backgroundColor : UIColor.clear]
-        return NSAttributedString(string: NSLocalizedString("When you smoke or gift a cigar it will show here.", comment: ""), attributes: attributes)
-    }
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return UIImage(named: "historyEmpty")
@@ -309,7 +302,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             /* Undo view */
-            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar deleted", comment: ""),
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Item deleted", comment: ""),
                                        duration: .middle,
                                        actionText: NSLocalizedString("Undo", comment: ""),
                                        actionBlock: { (snackbar) in

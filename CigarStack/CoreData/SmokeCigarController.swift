@@ -345,7 +345,7 @@ class SmokeCigarController: FormViewController {
                 else {
                     $0.value = Date()
                 }
-                
+                $0.minimumDate = cigar.purchaseDate!
                 
                 }.onChange({ (row) in
                     if self.cigar.review != nil {

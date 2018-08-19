@@ -34,7 +34,7 @@ class FilterViewController: FormViewController {
             }
         }
         
-        form +++ SelectableSection<ListCheckRow<Filter>>(header: NSLocalizedString("Show", comment: ""), footer: NSLocalizedString("Select which cigars to be displayed.", comment: ""), selectionType: .singleSelection(enableDeselection: false))
+        form +++ SelectableSection<ListCheckRow<Filter>>(header: NSLocalizedString("Show", comment: ""), footer: NSLocalizedString("Select which items to be displayed.", comment: ""), selectionType: .singleSelection(enableDeselection: false))
             
             <<< filterRow(.smoke)
             <<< filterRow(.gift)

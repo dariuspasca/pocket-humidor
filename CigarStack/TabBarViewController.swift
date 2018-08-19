@@ -57,7 +57,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
             }
             else{
                 // create the alert
-                let alert = UIAlertController(title: NSLocalizedString("No Humidor Available", comment: ""), message: NSLocalizedString("To add cigars at least one humidor is required. Tap the + button in the right top corner to add a humidor.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: NSLocalizedString("No Humidor Available", comment: ""), message: NSLocalizedString("To add items at least one humidor is required. Tap the + button in the right top corner to add a humidor.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
                 
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

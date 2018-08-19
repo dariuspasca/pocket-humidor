@@ -165,7 +165,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             self.tableView.endUpdates()
             self.isSelected()
             /* Undo view */
-            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar deleted", comment: ""),
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Item deleted", comment: ""),
                                        duration: .short,
                                        actionText: NSLocalizedString("Undo", comment: ""),
                                        actionBlock: { (snackbar) in
@@ -227,7 +227,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
     
     func contextualSmokeAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal,
-                                        title: NSLocalizedString("Smoke", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                                        title: NSLocalizedString("Review", comment: "")) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                                             
                                             /* Prepare the selected cigar to be sent to the segue */
                                             self.cigarIndex = indexPath
@@ -298,7 +298,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             self.tableView.endUpdates()
             self.isSelected()
             
-            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar moved", comment: ""),
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Item moved", comment: ""),
                                        duration: .short,
                                        actionText: NSLocalizedString("Undo", comment: ""),
                                        actionBlock: { (snackbar) in
@@ -365,7 +365,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             self.tableView.endUpdates()
             self.isSelected()
             
-            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar gifted", comment: ""),
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Item gifted", comment: ""),
                                        duration: .short,
                                        actionText: NSLocalizedString("Undo", comment: ""),
                                        actionBlock: { (snackbar) in
@@ -435,7 +435,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
             }
             self.tableView.endUpdates()
             self.isSelected()
-            let snackbar = TTGSnackbar(message: NSLocalizedString("Cigar smoked", comment: ""),
+            let snackbar = TTGSnackbar(message: NSLocalizedString("Item reviewd", comment: ""),
                                        duration: .short,
                                        actionText: NSLocalizedString("Undo", comment: ""),
                                        actionBlock: { (snackbar) in

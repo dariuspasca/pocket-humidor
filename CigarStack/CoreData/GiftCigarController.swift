@@ -116,13 +116,14 @@ class GiftCigarController: FormViewController {
             
             <<< DateInlineRow("Date"){
                 $0.title = NSLocalizedString("Date", comment: "")
-                
                 if cigar.gift != nil {
                     $0.value = cigar.gift!.giftDate
                 }
                 else {
                     $0.value = Date()
                 }
+                
+                $0.minimumDate = cigar.purchaseDate!
                 
                
                 }.onChange({ (row) in

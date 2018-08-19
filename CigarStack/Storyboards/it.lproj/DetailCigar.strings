@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "Price per cigar"; ObjectID = "0oL-aI-LLW"; */
-"0oL-aI-LLW.text" = "Prezzo per sigaro";
+"0oL-aI-LLW.text" = "Prezzo per articolo";
 
 /* Class = "UILabel"; text = "Added on"; ObjectID = "4om-cF-7Ca"; */
 "4om-cF-7Ca.text" = "Aggiunto il";

@@ -48,7 +48,7 @@ enum Filter: Int {
         case .gift:
             return NSLocalizedString("Gifted", comment: "")
         case .smoke:
-            return NSLocalizedString("Smoked", comment: "")
+            return NSLocalizedString("Reviewed", comment: "")
         }
     }
 }

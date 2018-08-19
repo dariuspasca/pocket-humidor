@@ -140,7 +140,7 @@ class ManageHumidorsTableViewController: UITableViewController {
     }
     
     @objc func deleteHumidors(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "", message: NSLocalizedString("Are you sure you want to continue? All cigars will be permanently removed from selected humidors.", comment: ""), preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: NSLocalizedString("Are you sure you want to continue? All items will be permanently removed from selected humidors.", comment: ""), preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.cancel, handler: nil));
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertActionStyle.destructive, handler: {
             alertAction in

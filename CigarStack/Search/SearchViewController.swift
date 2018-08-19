@@ -213,7 +213,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return NSAttributedString(string: NSLocalizedString("No results for", comment: ""), attributes: attributes)
         }
         else{
-            return NSAttributedString(string: NSLocalizedString("Search Cigars", comment: ""), attributes: attributes)
+            return NSAttributedString(string: NSLocalizedString("Search Item", comment: ""), attributes: attributes)
         }
         
     }
@@ -231,7 +231,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .light),
                  NSAttributedStringKey.foregroundColor : UIColor.darkGray,
                  NSAttributedStringKey.backgroundColor : UIColor.clear]
-             return NSAttributedString(string: NSLocalizedString("Search cigars by name, country of origin or size.", comment: ""), attributes: attributes)
+             return NSAttributedString(string: NSLocalizedString("Search item by name, country of origin or size.", comment: ""), attributes: attributes)
         }
        
     }

@@ -164,7 +164,7 @@ class CigarDetailViewController: UIViewController {
     }
     
     @IBAction func deleteCigar(_ sender: UIButton) {
-        let alert = UIAlertController(title: NSLocalizedString("Do you want to delete this cigar?", comment: ""), message: NSLocalizedString("Your cannot undo this action.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("Do you want to delete item cigar?", comment: ""), message: NSLocalizedString("Your cannot undo this action.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: delete))
         self.present(alert, animated: true, completion: nil)
