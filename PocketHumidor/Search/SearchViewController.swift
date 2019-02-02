@@ -44,6 +44,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if searchResults != nil {
+            if !searchResults!.isEmpty{
+                self.searchBarSearchButtonClicked(self.searchBar)
+            }
+            
+        }
+    }
+    
 
     // MARK: - Search
     

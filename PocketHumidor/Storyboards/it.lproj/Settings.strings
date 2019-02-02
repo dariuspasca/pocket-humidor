@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "Infinite Humidor Number"; ObjectID = "0aS-Nn-jj5"; */
-"0aS-Nn-jj5.text" = "Humidor Illimitati";
+"0aS-Nn-jj5.text" = "Contenitori Illimitati";
 
 /* Class = "UILabel"; text = "Be Premium"; ObjectID = "4LM-jB-DGL"; */
 "4LM-jB-DGL.text" = "Be Premium";
@@ -33,10 +33,10 @@
 "IBU-Kj-ko8.title" = "Privacy";
 
 /* Class = "UILabel"; text = "CigarStack Premium"; ObjectID = "Ixk-tT-swR"; */
-"Ixk-tT-swR.text" = "PocketHumidor Premium";
+"Ixk-tT-swR.text" = "PocketStack Premium";
 
 /* Class = "UILabel"; text = "Mange as many humidors as you want. The free limit is 2 humidors."; ObjectID = "M5i-h9-hSL"; */
-"M5i-h9-hSL.text" = "Gestisci quanti humidor vuoi. Il limite gratuito è di 2 humidor.";
+"M5i-h9-hSL.text" = "Gestisci quanti contenitori vuoi. Il limite gratuito è di 2 contenitori.";
 
 /* Class = "UILabel"; text = "Import"; ObjectID = "Ogk-kz-mdx"; */
 "Ogk-kz-mdx.text" = "Importa";
@@ -48,7 +48,7 @@
 "Qrz-gP-K8w.text" = "Elimina Tutto";
 
 /* Class = "UILabel"; text = "CigarStack"; ObjectID = "SHr-QB-kaU"; */
-"SHr-QB-kaU.text" = "PocketHumidor";
+"SHr-QB-kaU.text" = "PocketStack";
 
 /* Class = "UILabel"; text = "© 2018 Darius Pasca"; ObjectID = "UvN-e5-Jtm"; */
 "UvN-e5-Jtm.text" = "© 2018 Darius Pasca";
@@ -57,25 +57,25 @@
 "V0l-pF-fbP.title" = "Data";
 
 /* Class = "UILabel"; text = "Rate CigarStack"; ObjectID = "Wra-D9-rKG"; */
-"Wra-D9-rKG.text" = "Vota PocketHumidor";
+"Wra-D9-rKG.text" = "Vota PocketStack";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "X0f-38-Rlh"; */
 "X0f-38-Rlh.title" = "Impostazioni";
 
 /* Class = "UILabel"; text = "Infinite Cigar Number"; ObjectID = "ZtA-q0-yVc"; */
-"ZtA-q0-yVc.text" = "Infinito numero di articoli";
+"ZtA-q0-yVc.text" = "Articoli Illimitati";
 
 /* Class = "UILabel"; text = "Special thanks to my friend "; ObjectID = "c6U-Xn-XRA"; */
 "c6U-Xn-XRA.text" = "Un ringraziamento a ";
 
 /* Class = "UINavigationItem"; title = "CigarStack Premium"; ObjectID = "eYm-U7-pIg"; */
-"eYm-U7-pIg.title" = "PocketHumidor Premium";
+"eYm-U7-pIg.title" = "PocketStack Premium";
 
 /* Class = "UILabel"; text = "About"; ObjectID = "gB9-uB-mJK"; */
 "gB9-uB-mJK.text" = "Informazioni";
 
 /* Class = "UILabel"; text = "CigarStack 1.0.0"; ObjectID = "hG9-xP-P0K"; */
-"hG9-xP-P0K.text" = "PocketHumidor 1.0.0";
+"hG9-xP-P0K.text" = "PocketStack 1.0.0";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "lmx-t7-Lp3"; */
 "lmx-t7-Lp3.text" = "Label";
@@ -93,7 +93,7 @@
 "sdZ-kn-A6u.text" = "Martelli Enrico";
 
 /* Class = "UILabel"; text = "CigarStack is being developed and support by an indie developer. By buying CigarStack Premium you support the further development of the app."; ObjectID = "vXj-qw-Jb8"; */
-"vXj-qw-Jb8.text" = "PocketHumidor è sviluppato e supportato da uno sviluppatore indipendente. Acquistando CigarStack Premium, supporti l'ulteriore sviluppo dell'app.";
+"vXj-qw-Jb8.text" = "PocketStack è sviluppato e supportato da uno sviluppatore indipendente. Acquistando PocketStack Premium, supporti l'ulteriore sviluppo dell'app.";
 
 /* Class = "UILabel"; text = "Data"; ObjectID = "vcB-YQ-40g"; */
 "vcB-YQ-40g.text" = "Data";

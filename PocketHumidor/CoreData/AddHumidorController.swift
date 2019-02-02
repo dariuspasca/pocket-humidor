@@ -29,6 +29,7 @@ class AddHumidorController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.tintColor =  UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        navigationItem.title = NSLocalizedString("New Box", comment: "")
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = 44.0
         
@@ -98,7 +99,7 @@ class AddHumidorController: FormViewController {
                     }
                     
             }
-            +++ Section()
+            +++ Section(footer: NSLocalizedString("Too low or too high levels of humidty might affect your items.", comment: ""))
             
             <<< SliderRow("Humidity Level"){
                 $0.title = NSLocalizedString("Humidity Level", comment: "")

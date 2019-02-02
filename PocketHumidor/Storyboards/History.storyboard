@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7mt-Ya-Fsi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7mt-Ya-Fsi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +13,7 @@
         <!--History View Controller-->
         <scene sceneID="ruD-L9-OId">
             <objects>
-                <viewController id="Q2s-6s-zzu" customClass="HistoryViewController" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Q2s-6s-zzu" customClass="HistoryViewController" customModule="PocketHumidor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QI6-bf-pj1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,7 +41,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-KL-D5F">
-                                                        <rect key="frame" x="336" y="10" width="24" height="24"/>
+                                                        <rect key="frame" x="336" y="10.5" width="24" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="8bM-9o-eSa"/>
                                                             <constraint firstAttribute="width" constant="24" id="Oj7-gG-aYh"/>
@@ -67,7 +68,7 @@
                                                 <rect key="frame" x="0.0" y="53" width="375" height="602"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerIdentifier" rowHeight="70" id="B3q-9u-P8d" customClass="HistoryHeaderTableViewCell" customModule="CigarStack" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerIdentifier" rowHeight="70" id="B3q-9u-P8d" customClass="HistoryHeaderTableViewCell" customModule="PocketHumidor" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B3q-9u-P8d" id="Qnw-Ni-7eA">
@@ -75,7 +76,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="vav-vF-bIY">
-                                                                    <rect key="frame" x="15" y="13.5" width="345" height="44"/>
+                                                                    <rect key="frame" x="15" y="13" width="345" height="44"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-k2-cKo" userLabel="Date">
                                                                             <rect key="frame" x="0.0" y="0.0" width="345" height="19.5"/>
@@ -103,7 +104,7 @@
                                                             <outlet property="day" destination="LwP-gd-pNl" id="vLW-Ga-rGs"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" rowHeight="90" id="RWF-bC-6YZ" customClass="HistoryTableViewCell" customModule="CigarStack" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" rowHeight="90" id="RWF-bC-6YZ" customClass="HistoryTableViewCell" customModule="PocketHumidor" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="98" width="375" height="90"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RWF-bC-6YZ" id="95h-AL-arw">
@@ -129,7 +130,7 @@
                                                                                     <rect key="frame" x="31" y="0.0" width="12" height="18"/>
                                                                                     <subviews>
                                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="bR0-l8-hbd">
-                                                                                            <rect key="frame" x="0.0" y="2.5" width="12" height="12"/>
+                                                                                            <rect key="frame" x="0.0" y="3" width="12" height="12"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="12" id="fbe-Xf-0BZ"/>
                                                                                                 <constraint firstAttribute="height" constant="12" id="jHd-m1-gRq"/>
@@ -205,10 +206,10 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcC-Vi-Cp8" userLabel="TimeView">
-                                                                    <rect key="frame" x="300" y="9.5" width="70" height="70.5"/>
+                                                                    <rect key="frame" x="300" y="10" width="70" height="70"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7R-yz-bk3">
-                                                                            <rect key="frame" x="11.5" y="10.5" width="48" height="48"/>
+                                                                            <rect key="frame" x="11" y="11" width="48" height="48"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="48" id="66O-pb-402"/>
@@ -216,7 +217,7 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DgR-Fv-sEP" userLabel="Years">
-                                                                            <rect key="frame" x="22.5" y="23" width="25" height="25"/>
+                                                                            <rect key="frame" x="22.5" y="22.5" width="25" height="25"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDq-lo-w0u">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="16.5"/>
@@ -328,7 +329,7 @@
         <!--Filter View Controller-->
         <scene sceneID="YJC-Fx-s3w">
             <objects>
-                <viewController id="kTi-W6-PYU" customClass="FilterViewController" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kTi-W6-PYU" customClass="FilterViewController" customModule="PocketHumidor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SdI-1Q-cWy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -398,10 +399,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Filter" width="93" height="73"/>
+        <image name="Filter" width="31" height="24"/>
         <image name="History" width="23" height="24"/>
         <image name="History - Filled" width="23" height="24"/>
-        <image name="plus" width="50" height="50"/>
+        <image name="plus" width="38.297870635986328" height="38.297870635986328"/>
     </resources>
     <color key="tintColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

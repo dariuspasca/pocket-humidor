@@ -126,45 +126,50 @@ class CigarCSVImporter{
         
         //removes cigar from different humidor
         if cigars != nil {
-            for cigar in cigars! {
-                
-                //skip the cigar just added before
-                if cigarToCompare.objectID != cigar.objectID {
-                if cigar.origin! == cigarToCompare.origin, cigar.quantity == cigarToCompare.quantity, cigar.size == cigarToCompare.size , cigar.purchaseDate == cigarToCompare.purchaseDate,
-                     cigar.from == cigarToCompare.from, cigar.price == cigarToCompare.price, cigar.ageDate == cigarToCompare.ageDate, cigar.notes == cigarToCompare.notes, cigar.creationDate == cigarToCompare.creationDate {
+            if cigars!.isEmpty{
+                return false
+            }
+            else{
+                for cigar in cigars! {
                     
-                    
-                    //if cigars are equal, checks for review or gift , they might be different
-                    if (cigarToCompare.review != nil && cigar.review != nil ) || (cigarToCompare.gift != nil && cigar.gift != nil ) {
-                        if cigarToCompare.review != nil {
-                            if cigarToCompare.gift!.giftDate == cigar.gift!.giftDate, cigarToCompare.gift!.to == cigar.gift!.to, cigarToCompare.gift!.notes == cigar.gift!.notes{
+                    //skip the cigar just added before
+                    if cigarToCompare.objectID != cigar.objectID {
+                        if cigar.origin! == cigarToCompare.origin, cigar.quantity == cigarToCompare.quantity, cigar.size == cigarToCompare.size , cigar.purchaseDate == cigarToCompare.purchaseDate,
+                            cigar.from == cigarToCompare.from, cigar.price == cigarToCompare.price, cigar.ageDate == cigarToCompare.ageDate, cigar.notes == cigarToCompare.notes, cigar.creationDate == cigarToCompare.creationDate {
+                            
+                            
+                            //if cigars are equal, checks for review or gift , they might be different
+                            if (cigarToCompare.review != nil && cigar.review != nil ) || (cigarToCompare.gift != nil && cigar.gift != nil ) {
+                                if cigarToCompare.review != nil {
+                                    if cigarToCompare.gift!.giftDate == cigar.gift!.giftDate, cigarToCompare.gift!.to == cigar.gift!.to, cigarToCompare.gift!.notes == cigar.gift!.notes{
+                                        return true
+                                    }
+                                    else{
+                                        return false
+                                    }
+                                }
+                                else if cigarToCompare.gift != nil {
+                                    if cigarToCompare.review!.reviewDate == cigar.review!.reviewDate, cigarToCompare.review!.notes == cigar.review!.notes, cigarToCompare.review!.ash == cigar.review!.ash, cigarToCompare.review!.appearance == cigar.review!.appearance, cigarToCompare.review!.draw == cigar.review!.draw, cigarToCompare.review!.texture == cigar.review!.texture, cigarToCompare.review!.flavour == cigar.review!.flavour, cigarToCompare.review!.strength == cigar.review!.strength, cigarToCompare.review!.score == cigar.review!.score {
+                                        
+                                        return true
+                                    }
+                                    else {
+                                        return false
+                                    }
+                                }
+                                
+                            }
+                                // otherwise they are n the same
+                            else{
                                 return true
                             }
-                            else{
-                                return false
-                            }
                         }
-                        else if cigarToCompare.gift != nil {
-                            if cigarToCompare.review!.reviewDate == cigar.review!.reviewDate, cigarToCompare.review!.notes == cigar.review!.notes, cigarToCompare.review!.ash == cigar.review!.ash, cigarToCompare.review!.appearance == cigar.review!.appearance, cigarToCompare.review!.draw == cigar.review!.draw, cigarToCompare.review!.texture == cigar.review!.texture, cigarToCompare.review!.flavour == cigar.review!.flavour, cigarToCompare.review!.strength == cigar.review!.strength, cigarToCompare.review!.score == cigar.review!.score {
-                                
-                                    return true
-                            }
-                            else {
-                                return false
-                            }
+                        else{
+                            return false
                         }
-                        
                     }
-                    // otherwise they are n the same
-                    else{
-                        return true
-                    }
-                }
-                else{
-                    return false
                 }
             }
-        }
         }
             
         else{

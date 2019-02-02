@@ -11,8 +11,8 @@ import MessageUI
 
 class SettingsViewController: UITableViewController {
     
-    static let feedbackEmailAddress = "contact@pockethumidor.app"
-    static let appStoreAddress = "1435531216"
+    static let feedbackEmailAddress = "contact@pocketstack.app"
+    static let appStoreAddress = "1450368969"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class SettingsViewController: UITableViewController {
             contact()
         }
         else if indexPath.section == 2 && indexPath.row == 0 {
-            UIApplication.shared.open(URL(string: "itms-apps://\(SettingsViewController.appStoreAddress)?action=write-review")!, options: [:])
+            UIApplication.shared.open(URL(string: "itms-apps://itunes.apple.com/app/\(SettingsViewController.appStoreAddress)?action=write-review")!, options: [:])
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -70,8 +70,8 @@ class SettingsViewController: UITableViewController {
     func presentMailComposeWindow() {
         let mailComposer = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
-        mailComposer.setToRecipients(["PocketHumidor Developer <\(SettingsViewController.feedbackEmailAddress)>"])
-        mailComposer.setSubject("PocketHumidor Feedback")
+        mailComposer.setToRecipients(["PocketStack Developer <\(SettingsViewController.feedbackEmailAddress)>"])
+        mailComposer.setSubject("PocketStack Feedback")
         let messageBody = """
         
         

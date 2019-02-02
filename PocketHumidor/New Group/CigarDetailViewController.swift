@@ -13,6 +13,7 @@ import FlagKit
 class CigarDetailViewController: UIViewController {
     
     var cigar: Cigar!
+    var update:Bool = true
     
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var mainScrollView: UIScrollView!
@@ -164,7 +165,7 @@ class CigarDetailViewController: UIViewController {
     }
     
     @IBAction func deleteCigar(_ sender: UIButton) {
-        let alert = UIAlertController(title: NSLocalizedString("Do you want to delete item cigar?", comment: ""), message: NSLocalizedString("Your cannot undo this action.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("Do you want to delete this cigar?", comment: ""), message: NSLocalizedString("Your cannot undo this action.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: delete))
         self.present(alert, animated: true, completion: nil)
@@ -182,7 +183,7 @@ class CigarDetailViewController: UIViewController {
     }
     
     func delete(alert: UIAlertAction){
-        CoreDataController.sharedInstance.deleteCigar(cigar: cigar, withUpdate: true)
+        CoreDataController.sharedInstance.deleteCigar(cigar: cigar, withUpdate: update)
         UserSettings.shouldReloadData.value = true
         self.dismiss(animated: true, completion: nil)
         

@@ -65,7 +65,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh-mm"
         
-        let fileName = "PocketHumidor - \(UIDevice.current.name) - \(dateFormatter.string(from: Date())).csv"
+        let fileName = "PocketStack - \(UIDevice.current.name) - \(dateFormatter.string(from: Date())).csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         
          SVProgressHUD.show(withStatus: NSLocalizedString("Generating...", comment: ""))

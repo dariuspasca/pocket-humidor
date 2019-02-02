@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         //Saves the price
-        SwiftyStoreKit.retrieveProductsInfo(["pockethumidorpremium"]) { result in
+        SwiftyStoreKit.retrieveProductsInfo(["premium"]) { result in
             if let product = result.retrievedProducts.first {
                 UserSettings.premiumPrice.value = product.localizedPrice!
             }

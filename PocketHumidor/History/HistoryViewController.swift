@@ -111,6 +111,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         //let offset = UIScreen.main.bounds.height / 3
+        
         return -((self.view.center.y - scrollView.center.y)+topView.frame.height)
     }
     
@@ -211,6 +212,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let storyboard = UIStoryboard(name: "DetailCigar", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DetailCigar") as! CigarDetailViewController
         vc.cigar = data![indexPath.section].cigars[indexPath.row]
+        vc.update = false
         if UIDevice.current.userInterfaceIdiom == .pad{
             vc.modalPresentationStyle = .formSheet
             vc.modalTransitionStyle = .coverVertical
@@ -296,11 +298,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.tableView.beginUpdates()
                 self.tableView.deleteSections([indexPath.section], with: .right)
                 self.tableView.endUpdates()
-                if self.data!.isEmpty {
+            /*    if self.data!.isEmpty {
                     self.topView.isHidden = true
-                }
+                } */
             }
-            
             /* Undo view */
             let snackbar = TTGSnackbar(message: NSLocalizedString("Item deleted", comment: ""),
                                        duration: .middle,
@@ -320,7 +321,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
                                             self.tableView.beginUpdates()
                                             self.tableView.insertSections([indexPath.section], with: .right)
                                             self.tableView.endUpdates()
-                                             self.topView.isHidden = false
+                                             //self.topView.isHidden = false
                                         }
 
                                         

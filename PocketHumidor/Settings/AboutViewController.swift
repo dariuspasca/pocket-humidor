@@ -18,10 +18,10 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         
         if UserSettings.isPremium.value == true {
-            version.text = "Premium"
+            premiumStatus.text = "Premium"
         }
         else{
-            version.text = NSLocalizedString("Not Premium", comment: "")
+            premiumStatus.text = NSLocalizedString("Not Premium", comment: "")
         }
         
         version.text = "PocketHumidor " + UserEngagement.appVersion
@@ -36,12 +36,12 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func openInstagram(_ sender: UITapGestureRecognizer) {
-        UIApplication.shared.open(URL(string : "https://www.instagram.com/pockethumidor/")!, options: [:], completionHandler: { (status) in
+        UIApplication.shared.open(URL(string : "https://www.instagram.com/pocketstack/")!, options: [:], completionHandler: { (status) in
         })
     }
     
     @IBAction func openWebsite(_ sender: UITapGestureRecognizer) {
-        UIApplication.shared.open(URL(string : "https://www.pockethumidor.app")!, options: [:], completionHandler: { (status) in
+        UIApplication.shared.open(URL(string : "https://www.pocketstack.app")!, options: [:], completionHandler: { (status) in
         })
     }
     
@@ -70,8 +70,8 @@ class AttributionsTableViewcontroller: UITableViewController {
     func fetchLicenses(){
         if let url = Bundle.main.url(forResource:"AttributesLicense", withExtension: "plist"){
             let licensesDictionary = NSDictionary(contentsOf: url)
-            licenseKeys = licensesDictionary!["Keys"] as! Array<String>
-            licenseValues = licensesDictionary!["Values"] as! Array<String>
+            licenseKeys = (licensesDictionary!["Keys"] as! Array<String>)
+            licenseValues = (licensesDictionary!["Values"] as! Array<String>)
         }
     }
     

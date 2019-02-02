@@ -20,7 +20,7 @@ class SmokeCigarController: FormViewController {
     var delegate: smokeCigarViewDelegate!
     var changesStatus: [Bool]?
     
-    var score: Int16!
+    var score: Int16?
     var appeareance: Appearance = .uniform
     var texture: Texture = .spongy
     var draw: Draw = .normal
@@ -47,9 +47,11 @@ class SmokeCigarController: FormViewController {
         if cigar.review != nil{
             changesStatus = Array(repeating: false, count: 10)
             navigationItem.rightBarButtonItem?.isEnabled = false
+            score = cigar.review!.score
         }
-        
-        score = cigar.review?.score ?? 71
+        else {
+            score = 71
+        }
         
         form +++ Section(){
             if self.cigar.quantity > 1 {
@@ -78,7 +80,7 @@ class SmokeCigarController: FormViewController {
         +++ Section(header: NSLocalizedString("How would you rate it?", comment: ""), footer: "")
             <<< LabelRow () {
                 $0.tag = "reviewTitle"
-                switch score {
+                switch score! {
                 case 0...50:
                     $0.title = NSLocalizedString("Bad", comment: "")
                 case 51...60:
@@ -112,6 +114,7 @@ class SmokeCigarController: FormViewController {
                 else{
                     $0.value = 71
                 }
+                
                 $0.steps = 100
                 $0.maximumValue = 100
                 $0.minimumValue = 0
@@ -385,7 +388,7 @@ class SmokeCigarController: FormViewController {
     @objc func reviewCigar(){
         let notes = form.rowBy(tag: "Notes") as? TextAreaRow
         let dateForm = form.rowBy(tag: "Date") as! DateInlineRow
-        let review = CoreDataController.sharedInstance.createReview(score: score, appearance: Int16(appeareance.rawValue), flavour: Int16(flavor.rawValue), ash: Int16(ash.rawValue), draw: Int16(draw.rawValue), texture: Int16(texture.rawValue), strength: Int16(strength.rawValue), notes: notes?.value, reviewDate: dateForm.value)
+        let review = CoreDataController.sharedInstance.createReview(score: score!, appearance: Int16(appeareance.rawValue), flavour: Int16(flavor.rawValue), ash: Int16(ash.rawValue), draw: Int16(draw.rawValue), texture: Int16(texture.rawValue), strength: Int16(strength.rawValue), notes: notes?.value, reviewDate: dateForm.value)
         
         if cigar.review != nil {
             CoreDataController.sharedInstance.deleteReview(review: cigar.review!)

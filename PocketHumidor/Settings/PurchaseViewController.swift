@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyStoreKit
+import Crashlytics
 
 class PurchaseViewController: UIViewController {
     
@@ -19,7 +20,6 @@ class PurchaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         closeButtonImage.isHidden = hideCloseButton
         closeButtonImage.isUserInteractionEnabled = !hideCloseButton
         if UserSettings.isPremium.value == true {
@@ -38,9 +38,12 @@ class PurchaseViewController: UIViewController {
     
 
     @IBAction func purchase(_ sender: UIButton) {
-        SwiftyStoreKit.retrieveProductsInfo(["pockethumidorpremium"]) { result in
+        SwiftyStoreKit.retrieveProductsInfo(["premium"]) { result in
             if let product = result.retrievedProducts.first {
                 SwiftyStoreKit.purchaseProduct(product, quantity: 1, atomically: true) { result in
+                    let price = product.price
+                    let currencyCode = product.priceLocale.currencyCode
+                    var success = true
                     switch result {
                     case .success(let product):
                         if product.needsFinishTransaction {
@@ -48,7 +51,9 @@ class PurchaseViewController: UIViewController {
                         }
                         UserSettings.isPremium.value = true
                         self.presentAlert(title: NSLocalizedString("Thank you!", comment: ""),message: NSLocalizedString("You've successfully purchased PocketHumidor Premium!", comment: ""))
+                        
                     case .error(let error):
+                        success = false
                         switch error.code {
                         case .unknown: self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .clientInvalid: self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, you're not allowed to make the payment", comment: ""))
@@ -66,6 +71,18 @@ class PurchaseViewController: UIViewController {
                         case .cloudServiceNetworkConnectionFailed:  self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Could not connect to the newtwork. If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
                         }
+                    }
+                    
+                    //report log
+                    if UserSettings.shareAnalytics.value == true {
+                        print(success as NSNumber)
+                        Answers.logPurchase(withPrice: price,
+                                            currency: currencyCode,
+                                            success: success as NSNumber,
+                                            itemName: "Premium",
+                                            itemType: "in-app purchase",
+                                            itemId: "iap-001",
+                                            customAttributes: nil)
                     }
                 }
             }
@@ -98,3 +115,4 @@ class PurchaseViewController: UIViewController {
     }
     
 }
+

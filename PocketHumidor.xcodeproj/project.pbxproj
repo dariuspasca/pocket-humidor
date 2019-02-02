@@ -436,7 +436,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Fabric.framework/run\" 65c4322de7f3c7ed26457b8f238917cf5c5e913f b588193008cd5ddf3e345549d84cc47711f803c0c502cf1736fe798a79dbaf8b";
+			shellScript = "./Fabric.framework/run 546d3e57e4c4dbffcea3bc2bad07d3c1646cb11a c8fa6e6eb2059ec458b8f7e6dbcdce69f23eca90b8b9f691a743bcf6e086ae1f\n";
 		};
 		B7B4F0E22045BB7300343A8E /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -691,7 +691,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/PocketHumidor/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pocketHumidor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pocketStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -715,7 +715,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/PocketHumidor/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pocketHumidor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pocketStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

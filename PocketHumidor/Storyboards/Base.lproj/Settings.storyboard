@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P2P-N6-IDA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P2P-N6-IDA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,15 +43,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="PocketHumidor Premium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Ixk-tT-swR">
-                                                    <rect key="frame" x="60" y="0.0" width="280" height="43.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="PocketStack Premium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Ixk-tT-swR">
+                                                    <rect key="frame" x="75" y="0.0" width="265" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Star" id="Afg-3p-Cn2">
-                                                    <rect key="frame" x="16" y="7" width="29" height="29"/>
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -72,14 +72,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="General" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="xqM-bZ-Ju6">
-                                                    <rect key="frame" x="60" y="0.0" width="280" height="43.5"/>
+                                                    <rect key="frame" x="75" y="0.0" width="265" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="General" id="sJK-2Z-kol">
-                                                    <rect key="frame" x="16" y="7" width="29" height="29"/>
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -96,14 +96,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Sort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="oT0-qp-bt9">
-                                                    <rect key="frame" x="60" y="0.0" width="280" height="43.5"/>
+                                                    <rect key="frame" x="75" y="0.0" width="265" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Sort" id="jWq-zQ-R2R">
-                                                    <rect key="frame" x="16" y="7" width="29" height="29"/>
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -144,14 +144,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="vcB-YQ-40g">
-                                                    <rect key="frame" x="60" y="0.0" width="280" height="43.5"/>
+                                                    <rect key="frame" x="75" y="0.0" width="265" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Data" id="18x-lc-dv4">
-                                                    <rect key="frame" x="16" y="7" width="29" height="29"/>
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -171,15 +171,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rate PocketHumidor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Wra-D9-rKG">
-                                                    <rect key="frame" x="60" y="0.0" width="280" height="43.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rate PocketStack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Wra-D9-rKG">
+                                                    <rect key="frame" x="75" y="0.0" width="265" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Rate" id="KbA-oC-fea">
-                                                    <rect key="frame" x="16" y="7" width="29" height="29"/>
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -193,14 +193,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Send Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="7XH-bq-15n">
-                                                    <rect key="frame" x="60" y="0.0" width="280" height="43.5"/>
+                                                    <rect key="frame" x="75" y="0.0" width="265" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Contact" id="Cld-te-YCD">
-                                                    <rect key="frame" x="16" y="7" width="29" height="29"/>
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -218,14 +218,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="gB9-uB-mJK">
-                                                    <rect key="frame" x="60" y="0.0" width="280" height="43.5"/>
+                                                    <rect key="frame" x="75" y="0.0" width="265" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="About" id="nO8-xo-Maf">
-                                                    <rect key="frame" x="16" y="7" width="29" height="29"/>
+                                                    <rect key="frame" x="16" y="0.0" width="44" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -350,7 +350,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gm-gL-eiP">
-                                                    <rect key="frame" x="162" y="11" width="51" height="21"/>
+                                                    <rect key="frame" x="162" y="11.5" width="51" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -374,7 +374,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogk-kz-mdx">
-                                                    <rect key="frame" x="162" y="12" width="51" height="21"/>
+                                                    <rect key="frame" x="162" y="11.5" width="51" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -398,7 +398,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrz-gP-K8w">
-                                                    <rect key="frame" x="151" y="12" width="73" height="21"/>
+                                                    <rect key="frame" x="151" y="11.5" width="73" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -459,7 +459,7 @@
             </objects>
             <point key="canvasLocation" x="-292" y="3654"/>
         </scene>
-        <!--PocketHumidor Premium-->
+        <!--PocketStack Premium-->
         <scene sceneID="ewy-qH-DGY">
             <objects>
                 <viewController storyboardIdentifier="premiumController" id="Xnh-Ct-uLl" customClass="PurchaseViewController" customModule="PocketHumidor" customModuleProvider="target" sceneMemberID="viewController">
@@ -493,10 +493,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="B9Q-L3-rh7">
-                                        <rect key="frame" x="0.0" y="88" width="320.5" height="304"/>
+                                        <rect key="frame" x="0.0" y="88" width="316.5" height="304"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="iVZ-YZ-iBi" userLabel="CigarFeature">
-                                                <rect key="frame" x="0.0" y="0.0" width="320.5" height="64.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="316.5" height="64.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cig" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-9o-cWu">
                                                         <rect key="frame" x="0.0" y="7.5" width="50" height="50"/>
@@ -506,10 +506,10 @@
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MuK-aY-QJC" userLabel="Cigars">
-                                                        <rect key="frame" x="65" y="0.0" width="255.5" height="64.5"/>
+                                                        <rect key="frame" x="65" y="0.0" width="251.5" height="64.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Infinite Items Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtA-q0-yVc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="178.5" height="21.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited Items" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtA-q0-yVc">
+                                                                <rect key="frame" x="0.0" y="0.0" width="130" height="21.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -523,7 +523,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="99W-eU-Gav" userLabel="HumidorFeature">
-                                                <rect key="frame" x="0.0" y="89.5" width="320.5" height="64.5"/>
+                                                <rect key="frame" x="0.0" y="89.5" width="316.5" height="64.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hum" translatesAutoresizingMaskIntoConstraints="NO" id="fgX-wB-BBB">
                                                         <rect key="frame" x="0.0" y="7.5" width="50" height="50"/>
@@ -533,15 +533,15 @@
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4bB-tg-pUq" userLabel="Humidor">
-                                                        <rect key="frame" x="65" y="0.0" width="255.5" height="64.5"/>
+                                                        <rect key="frame" x="65" y="0.0" width="251.5" height="64.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Infinite Humidor Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aS-Nn-jj5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="204" height="21.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited Stacks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aS-Nn-jj5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="139.5" height="21.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mange as many humidors as you want. The free limit is 2 humidors." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-h9-hSL">
-                                                                <rect key="frame" x="0.0" y="23.5" width="253.5" height="41"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mange as many stacks as you want. The free limit is 2 boxes." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-h9-hSL">
+                                                                <rect key="frame" x="0.0" y="23.5" width="229.5" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -550,7 +550,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4xs-FG-Vt7" userLabel="SupportFeature">
-                                                <rect key="frame" x="0.0" y="179" width="320.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="179" width="316.5" height="125"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dev" translatesAutoresizingMaskIntoConstraints="NO" id="SfG-lz-w2A">
                                                         <rect key="frame" x="0.0" y="37.5" width="50" height="50"/>
@@ -560,7 +560,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ERq-nP-T3N" userLabel="Support">
-                                                        <rect key="frame" x="65" y="0.0" width="255.5" height="125"/>
+                                                        <rect key="frame" x="65" y="0.0" width="251.5" height="125"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support Development" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjO-6p-qAs">
                                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="21.5"/>
@@ -568,8 +568,8 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXj-qw-Jb8">
-                                                                <rect key="frame" x="0.0" y="23.5" width="255.5" height="101.5"/>
-                                                                <string key="text">PocketHumidor is being developed and support by an indie developer. By buying PocketHumidor Premium you support the further development of the app.</string>
+                                                                <rect key="frame" x="0.0" y="23.5" width="251.5" height="101.5"/>
+                                                                <string key="text">PocketPuff is being developed and supported by an indie developer. By buying PocketPuff Premium you support the further development of the app.</string>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -624,7 +624,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ovg-v6-dMK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="PocketHumidor Premium" id="eYm-U7-pIg"/>
+                    <navigationItem key="navigationItem" title="PocketStack Premium" id="eYm-U7-pIg"/>
                     <connections>
                         <outlet property="bePremium" destination="4LM-jB-DGL" id="hpE-rL-Xvf"/>
                         <outlet property="closeButtonImage" destination="ZGs-po-cpQ" id="UK8-ve-79J"/>
@@ -652,7 +652,7 @@
                                 <rect key="frame" x="106" y="510" width="163.5" height="83"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="A1O-Pp-U4M">
-                                        <rect key="frame" x="40" y="0.0" width="84" height="32"/>
+                                        <rect key="frame" x="39.5" y="0.0" width="84" height="32"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Instagram" translatesAutoresizingMaskIntoConstraints="NO" id="8qP-Sc-AuU">
                                                 <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -682,7 +682,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Darius Pasca" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjj-cB-cLa">
-                                        <rect key="frame" x="19.5" y="37" width="125" height="20.5"/>
+                                        <rect key="frame" x="19" y="37" width="125" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -698,8 +698,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4dV-p7-a2m">
                                 <rect key="frame" x="62" y="245.5" width="251" height="112"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PocketHumidor 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG9-xP-P0K">
-                                        <rect key="frame" x="44.5" y="0.0" width="162.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PocketStack 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG9-xP-P0K">
+                                        <rect key="frame" x="56" y="0.0" width="139.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -752,17 +752,17 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="L3g-bs-dkD">
-                                <rect key="frame" x="75" y="50" width="225" height="138.5"/>
+                                <rect key="frame" x="96.5" y="50" width="182.5" height="133.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="pgU-1Y-6XI">
-                                        <rect key="frame" x="72.5" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="53.5" y="0.0" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="pgU-1Y-6XI" secondAttribute="height" multiplier="1:1" id="LUU-Mh-5f1"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="cMt-jH-qrN"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PocketHumidor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHr-QB-kaU">
-                                        <rect key="frame" x="0.0" y="100" width="225" height="38.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PocketStack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHr-QB-kaU">
+                                        <rect key="frame" x="0.0" y="95" width="182.5" height="38.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                         <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1033,21 +1033,21 @@
         </scene>
     </scenes>
     <resources>
-        <image name="About" width="29" height="29"/>
+        <image name="About" width="198.85714721679688" height="198.85714721679688"/>
         <image name="Cig" width="50" height="50"/>
-        <image name="Contact" width="29" height="29"/>
-        <image name="Data" width="29" height="29"/>
+        <image name="Contact" width="198.85714721679688" height="198.85714721679688"/>
+        <image name="Data" width="198.85714721679688" height="198.85714721679688"/>
         <image name="Dev" width="50" height="50"/>
-        <image name="General" width="29" height="29"/>
+        <image name="General" width="198.85714721679688" height="198.85714721679688"/>
         <image name="Hum" width="50" height="50"/>
-        <image name="IconLaunch" width="1024" height="1024"/>
+        <image name="IconLaunch" width="75" height="75"/>
         <image name="Instagram" width="30" height="30"/>
         <image name="Privacy" width="29" height="29"/>
-        <image name="Rate" width="29" height="29"/>
-        <image name="Settings" width="25" height="25"/>
-        <image name="Settings Filled" width="25" height="25"/>
-        <image name="Sort" width="29" height="29"/>
-        <image name="Star" width="29" height="29"/>
+        <image name="Rate" width="198.85714721679688" height="198.85714721679688"/>
+        <image name="Settings" width="50" height="50"/>
+        <image name="Settings Filled" width="50" height="50"/>
+        <image name="Sort" width="198.85714721679688" height="198.85714721679688"/>
+        <image name="Star" width="198.85714721679688" height="198.85714721679688"/>
         <image name="Website" width="24" height="24"/>
         <image name="close" width="40" height="40"/>
     </resources>
