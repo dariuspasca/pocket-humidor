@@ -49,8 +49,15 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         scrollView.delegate = self
         setupSideMenu()
         
-        //Resets sort order to default
-        UserSettings.tableSortOrder = TableSortOrder(rawValue: UserSettings.defaultSortOrder.value)!
+        /* Resets sort order to default
+           First checks that the value is valid (v1.1 bug)
+         */
+        
+        if 0...5 ~= UserSettings.defaultSortOrder.value {
+            UserSettings.tableSortOrder = TableSortOrder(rawValue: UserSettings.defaultSortOrder.value)!
+        } else {
+            UserSettings.tableSortOrder = .byDate
+        }
         
         menuViewController?.register(type: TitleLabelMenuViewCell.self, forCellWithReuseIdentifier: "identifier")
         menuViewController?.registerFocusView(view: UnderlineFocusView())

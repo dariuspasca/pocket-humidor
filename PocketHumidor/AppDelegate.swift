@@ -30,6 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        setupAdditionalStoreSettings()
        setupUserAnalytics()
        setupSvProgressHud()
+    
+        //Keeps track of the versiom for now
+        if UserSettings.currentVersion.value == "" {
+            UserSettings.currentVersion.value = UserEngagement.appVersion
+        }
+        else{
+            if UserEngagement.appVersion > UserSettings.currentVersion.value {
+                 UserSettings.currentVersion.value = UserEngagement.appVersion
+            }
+        }
+        
+        print( UserSettings.currentVersion.value)
 
         return true
     }

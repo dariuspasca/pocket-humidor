@@ -300,7 +300,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                     
                 }.onChange { row in
                     self.humidor = CoreDataController.sharedInstance.searchHumidor(name: row.value!)
-                    let trayRow: PushRow! = self.form.rowBy(tag: "Tray") as! PushRow<String>
+                    let trayRow: PushRow! = self.form.rowBy(tag: "Tray") as? PushRow<String>
                     let traysOptions = self.getTraysList(humidor: self.humidor)
                     trayRow.value = traysOptions.first!
                     trayRow.options = traysOptions

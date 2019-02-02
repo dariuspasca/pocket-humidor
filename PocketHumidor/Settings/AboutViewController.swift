@@ -41,7 +41,7 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func openWebsite(_ sender: UITapGestureRecognizer) {
-        UIApplication.shared.open(URL(string : "https://www.pocketstack.app")!, options: [:], completionHandler: { (status) in
+        UIApplication.shared.open(URL(string : "https://www.reddit.com/r/PocketStack")!, options: [:], completionHandler: { (status) in
         })
     }
     

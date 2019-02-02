@@ -50,7 +50,7 @@ class GeneralViewController: FormViewController {
         guard let selectedSort = (row.section as! SelectableSection<ListCheckRow<TableSortOrder>>).selectedRow()?.baseValue as? TableSortOrder else { return }
         
         UserSettings.shouldReloadData.value = true
-        UserSettings.defaultSortOrder.value = selectedSort.hashValue
+        UserSettings.defaultSortOrder.value = selectedSort.rawValue
         UserSettings.tableSortOrder = selectedSort
     }
 

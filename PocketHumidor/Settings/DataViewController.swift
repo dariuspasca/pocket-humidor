@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import Crashlytics
 
 
 class DataViewController: UIViewController {
@@ -116,6 +117,10 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
                     //User saved file
                     if completed {
                         SVProgressHUD.showInfo(withStatus: NSLocalizedString("File Saved", comment: ""))
+                        if UserSettings.shareAnalytics.value == true {
+                            Answers.logCustomEvent(withName: "Export Successfull",
+                                                   customAttributes: nil)
+                        }
                         return
                     }
                 }
@@ -130,6 +135,10 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
                  alert.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
                 self.present(alert, animated: true, completion: nil)
                 print("\(error)")
+                if UserSettings.shareAnalytics.value == true {
+                    Answers.logCustomEvent(withName: "Export Unsuccessfull",
+                                           customAttributes: nil)
+                }
             }
         }
     }
@@ -158,7 +167,10 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
     }
     
     func deleteAll() {
-        
+        if UserSettings.shareAnalytics.value == true {
+            Answers.logCustomEvent(withName: "Delete All",
+                                   customAttributes: nil)
+        }
         if UserSettings.currentHumidor.value == "" {
             let alert = UIAlertController(title: "", message: NSLocalizedString("There is no data to be deleted.", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default))
@@ -193,6 +205,10 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
     
     func importFinishedUnsuccessful(message: String) {
         SVProgressHUD.dismiss(withDelay: 1)
+        if UserSettings.shareAnalytics.value == true {
+            Answers.logCustomEvent(withName: "Import Unsuccessfull",
+                                   customAttributes: nil)
+        }
         let alert = UIAlertController(title: NSLocalizedString("Import Failed", comment: ""), message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)
@@ -206,6 +222,11 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
             let humidors = CoreDataController.sharedInstance.fetchHumidors()
             UserSettings.currentHumidor.value = humidors!.first?.name  ?? ""
             
+        }
+        
+        if UserSettings.shareAnalytics.value == true {
+            Answers.logCustomEvent(withName: "Import Successfull",
+                                           customAttributes: nil)
         }
         UserSettings.shouldReloadView.value = true
     }
