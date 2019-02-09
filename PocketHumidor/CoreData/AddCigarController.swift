@@ -471,6 +471,11 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             ageDateForm = purchaseDateForm
         }
         
+        var quantity = Int32(quantityForm)
+        if quantity <= 0 {
+            quantity = 1
+        }
+        
         
         let humidor = CoreDataController.sharedInstance.searchHumidor(name: humidorForm)
         let location = CoreDataController.sharedInstance.searchTray(humidor: humidor!, searchTray: trayForm)
@@ -479,7 +484,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             cigarToEdit?.name = nameForm
             cigarToEdit?.size = sizeForm
             cigarToEdit?.origin = selectedCountryCode
-            let quantity = Int32(quantityForm)
             //Update humidor quantity
             if cigarToEdit?.quantity != quantity {
                 humidor?.quantity = (humidor?.quantity)! - (cigarToEdit?.quantity)!
@@ -506,7 +510,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             CoreDataController.sharedInstance.saveContext()
         }
         else{
-            _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: Int32(quantityForm), size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , notes: notesForm)
+            _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: quantity, size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , notes: notesForm)
         }
         
         if humidorForm == UserSettings.currentHumidor.value {
