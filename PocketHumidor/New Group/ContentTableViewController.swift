@@ -85,7 +85,14 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.name.text =  cigar.name!
         cell.price.text = cigar.price.asLocalCurrency
-        cell.size.text = cigar.size!
+        
+        if cigar.size == nil {
+            cell.size.isHidden = true
+            cell.separator.isHidden = true
+        }
+        else{
+            cell.size.text = cigar.size!
+        }
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
         return cell

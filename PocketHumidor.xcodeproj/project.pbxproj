@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B702A163209317AA00AB1AFC /* ManageHumidorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B702A162209317AA00AB1AFC /* ManageHumidorsTableViewController.swift */; };
 		B713C1B4204ABC6400AA40DD /* SideMenuUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B713C1B3204ABC6400AA40DD /* SideMenuUIViewController.swift */; };
+		B717AAB22218664600369A69 /* SizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B717AAB12218664500369A69 /* SizeViewController.swift */; };
 		B721833920542D3B00E8DD09 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B721833720542D3B00E8DD09 /* Localizable.strings */; };
 		B72183492054432000E8DD09 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B721834B2054432000E8DD09 /* Settings.storyboard */; };
 		B7219C942051836B001096A6 /* UserEngagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7219C932051836B001096A6 /* UserEngagement.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		B702A162209317AA00AB1AFC /* ManageHumidorsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageHumidorsTableViewController.swift; sourceTree = "<group>"; };
 		B713C1B3204ABC6400AA40DD /* SideMenuUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUIViewController.swift; sourceTree = "<group>"; };
+		B717AAB12218664500369A69 /* SizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeViewController.swift; sourceTree = "<group>"; };
 		B7183064205FB69B000AF92D /* CigarStack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CigarStack.xcdatamodel; sourceTree = "<group>"; };
 		B721833C20542D6F00E8DD09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CigarStack/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B721833F20542D7700E8DD09 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = CigarStack/it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				B7222DB520C18D4F000BA0E5 /* HumidorDetailViewController.swift */,
 				B72A684A205FCF84006CDFED /* AddHumidorController.swift */,
 				B7E524A6206166AA00E2CC38 /* AddCigarController.swift */,
+				B717AAB12218664500369A69 /* SizeViewController.swift */,
 				B7CA195720AB22B30009FA99 /* MoveCigarController.swift */,
 				B76CC16620A83B3A004986EA /* GiftCigarController.swift */,
 				B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */,
@@ -486,6 +489,7 @@
 				B7CA195820AB22B30009FA99 /* MoveCigarController.swift in Sources */,
 				B7790CB720A1DD58003A713E /* circleView.swift in Sources */,
 				B7A4813C20582755001242F7 /* ContentTableViewCell.swift in Sources */,
+				B717AAB22218664600369A69 /* SizeViewController.swift in Sources */,
 				B7A8532A20B6B6E80093C158 /* HistoryTableViewCell.swift in Sources */,
 				B72A0B23210CAEE600FE935A /* CigarReviewEnums.swift in Sources */,
 				B7E524A32061620500E2CC38 /* TabBarViewController.swift in Sources */,
