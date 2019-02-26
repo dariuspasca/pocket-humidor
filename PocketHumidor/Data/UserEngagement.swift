@@ -8,10 +8,24 @@
 
 import Foundation
 import StoreKit
+import Firebase
 
 class UserEngagement{
     static let appStartupCountKey = "appStartupCount"
     static let userEngagementCountKey = "userEngagementCount"
+    
+    static var sendAnalytics: Bool {
+        return UserSettings.shareAnalytics.value
+    }
+    
+    static var sendCrashReports: Bool {
+        return UserSettings.shareCrashReports.value
+    }
+    
+    static func initialiseUserAnalytics() {
+        if sendAnalytics { FirebaseApp.configure() }
+        if sendCrashReports { Fabric.with([Crashlytics.self]) }
+    }
     
     static func onReviewTrigger() {
         UserDefaults.standard.incrementCounter(withKey: userEngagementCountKey)
@@ -42,6 +56,48 @@ class UserEngagement{
     
     static var appBuildNumber: String {
         get { return Bundle.main.infoDictionary!["CFBundleVersion"] as! String }
+    }
+    
+    enum Event: String {
+        // Add
+        case addHumidor = "Add_Humidor"
+        case addCigar = "Add_Cigar"
+        
+        // Data
+        case csvImport = "CSV_Import"
+        case csvUnsuccessfulImport = "CSV_Import_Error"
+        case csvExport = "CSV_Export"
+        case csvUnsuccessfulExport = "CSV_Export_Error"
+        case deleteAllData = "Delete_All_Data"
+        
+        // Modify
+        case deleteCigar = "Delete_Cigar"
+        case reviewCigar = "Review_Cigar"
+        case giftCigar = "Gift_Cigar"
+        case editCigar = "Edit_Cigar"
+        case moveCigar = "Move_Cigar"
+        case editHumidor = "Edit_Humidor"
+        
+        // Search
+        case search = "Search_Cigar"
+        
+        // Settings changes
+        case disableAnalytics = "Disable_Analytics"
+        case enableAnalytics = "Enable_Analytics"
+        case disableCrashReports = "Disable_Crash_Reports"
+        case enableCrashReports = "Enable_Crash_Reports"
+        case changeSortOrder = "Change_Sort"
+        
+        // Premium
+        case premmiumPageView = "Premium_Visualization"
+        case premiumPurchaseStart = "Premium_Purchase_Start"
+        case premiumPurchaseCompleted = "Premium_Purchase_Completed"
+        case premiumPurchaseCanceled = "Premium_Purchase_Canceled"
+    }
+    
+    static func logEvent(_ event: Event) {
+        guard sendAnalytics else { return }
+        Analytics.logEvent(event.rawValue, parameters: nil)
     }
 }
 

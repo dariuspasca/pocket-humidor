@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyStoreKit
 import Crashlytics
+import Firebase
 
 class PurchaseViewController: UIViewController {
     
@@ -37,13 +38,7 @@ class PurchaseViewController: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
-        //Logs PageViews
-        if UserSettings.shareAnalytics.value == true{
-            Answers.logContentView(withName: "PocketStack Premium",
-                                           contentType: "In-App Purchase",
-                                           contentId: "premium-001",
-                                           customAttributes: nil)
-        }
+        UserEngagement.logEvent(.premmiumPageView)
     }
     
 
@@ -55,7 +50,7 @@ class PurchaseViewController: UIViewController {
                     let currencyCode = product.priceLocale.currencyCode
                     
                     //Logs StartPurchase
-                    if UserSettings.shareAnalytics.value == true {
+                    if UserEngagement.sendCrashReports{
                         Answers.logStartCheckout(withPrice: price,
                                                           currency: currencyCode,
                                                           itemCount: 1,
@@ -69,7 +64,7 @@ class PurchaseViewController: UIViewController {
                         }
                         
                         //Log DidPurchase
-                        if UserSettings.shareAnalytics.value == true {
+                        if UserEngagement.sendCrashReports{
                             Answers.logPurchase(withPrice: price,
                                                 currency: currencyCode,
                                                 success: true,
@@ -86,17 +81,17 @@ class PurchaseViewController: UIViewController {
                         switch error.code {
                         case .unknown: self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .clientInvalid: self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, you're not allowed to make the payment", comment: ""))
-                        case .paymentCancelled: break
+                        case .paymentCancelled: UserEngagement.logEvent(.premiumPurchaseCanceled); break
                         case .paymentInvalid:
                             print("The purchase identifier was invalid")
                             self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened. Try later or send an e-mail at support@pockethumidor.app", comment: ""))
                         case .paymentNotAllowed: self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("The device is not allowed to make the payment. If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .storeProductNotAvailable:
                             print("The product is not available in the current storefront")
-                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened. Try later or send an e-mail at support@pockethumidor.app", comment: ""))
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .cloudServicePermissionDenied:
                             print("Access to cloud service information is not allowed")
-                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened. Try later or send an e-mail at support@pockethumidor.app", comment: ""))
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .cloudServiceNetworkConnectionFailed:  self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Could not connect to the newtwork. If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
                         }
@@ -110,6 +105,7 @@ class PurchaseViewController: UIViewController {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened. Try later or send an e-mail at support@pockethumidor.app", comment: ""))
+                print(results.restoreFailedPurchases)
             }
             else if results.restoredPurchases.count > 0 {
                 UserSettings.isPremium.value = true

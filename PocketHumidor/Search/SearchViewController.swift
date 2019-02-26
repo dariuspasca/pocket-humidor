@@ -59,7 +59,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         if searchBar.text != ""{
-            var results = CoreDataController.sharedInstance.searchCigarThatNameContains(name: searchBar.text!)
+            UserEngagement.logEvent(.search)
+            let searchFor = searchBar.text!.trimmingCharacters(in: NSCharacterSet.whitespaces)
+            var results = CoreDataController.sharedInstance.searchCigarThatNameContains(name: searchFor)
             
             let countries = self.getCountryCode(name: searchBar.text!)
             if countries != nil {
@@ -183,11 +185,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.cigarNumber.text = String(cigar.quantity)
         }
         
+        if cigar.size == nil {
+            cell.cigarShape.text = nil
+            cell.cigarShape.isHidden = true
+        }
+        else{
+            cell.cigarShape.text = cigar.size!
+        }
         cell.cigarCountry.image = Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.cigarName.text = cigar.name!
         cell.cigarCreationDate.text =  dateFormatter.string(from: cigar.creationDate!)
         cell.cigarHumidor.text = cigar.tray!.humidor!.name!
-        cell.cigarShape.text = cigar.size!
+        cell.cigarTray.text = cigar.tray!.name!
+        
         
         return cell
     }

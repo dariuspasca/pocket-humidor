@@ -44,6 +44,16 @@ class AddHumidorController: FormViewController {
             return naview
         }()
         
+        let deleteAction = SwipeAction(
+            style: .destructive,
+            title: "Delete",
+            handler: { (action, row, completionHandler) in
+                if let rowIndex = row.indexPath?.row {
+                    self.form.last!.remove(at: rowIndex)
+                    completionHandler?(true)
+                }
+        })
+        
         if humidor != nil {
             trayList = (humidor!.trays?.allObjects as! [Tray]).sorted(by: { $0.orderID < $1.orderID })
             if UserSettings.currentHumidor.value == humidor!.name {
@@ -152,6 +162,7 @@ class AddHumidorController: FormViewController {
                                     $0.placeholder = NSLocalizedString("Divider Name", comment: "")
                                     $0.add(rule: RuleRequired(msg: "required"))
                                     $0.validationOptions = .validatesOnChange
+                                    $0.trailingSwipe.actions.append(deleteAction)
                                     }.cellSetup { (cell, row) in
                                         cell.textField.autocorrectionType = .yes
                                 }.onCellHighlightChanged({ (cell, row) in
@@ -199,6 +210,7 @@ class AddHumidorController: FormViewController {
             for tray in trayList!.reversed(){
                 let row =  NameRow() {
                     $0.value = tray.name!
+                     $0.trailingSwipe.actions.append(deleteAction)
                     }.cellSetup { (cell, row) in
                         cell.textField.autocorrectionType = .yes
                     }.onCellHighlightChanged({ (cell, row) in
@@ -231,6 +243,7 @@ class AddHumidorController: FormViewController {
         
         
     }
+    
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -241,8 +254,9 @@ class AddHumidorController: FormViewController {
         }
         
     }
-    
+   
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath){
+        self.dismisskeyboard()
         if self.humidor != nil {
             self.saveButton.isEnabled = true
             self.dividersHaveBeenEdited = true
@@ -271,6 +285,7 @@ class AddHumidorController: FormViewController {
     
     override func rowsHaveBeenRemoved(_ rows: [BaseRow], at indexes: [IndexPath]) {
         if self.isDeleting == true {
+            self.dismisskeyboard()
             if humidor != nil{
                 let row = rows[0] as! NameRow
                 if row.value != nil {
@@ -347,6 +362,7 @@ class AddHumidorController: FormViewController {
                 
                 UserSettings.shouldReloadView.value = true
                 
+                UserEngagement.logEvent(.editHumidor)
                 CoreDataController.sharedInstance.saveContext()
                 if UIDevice.current.userInterfaceIdiom == .pad{
                     delegate?.newHumidorForceReload()
@@ -359,7 +375,7 @@ class AddHumidorController: FormViewController {
                 showAlertButtonTapped(title: NSLocalizedString("Humidor already exists!", comment: ""), message: NSLocalizedString("You can't have multiple humidors with the same name.", comment: ""))
             }
             else{
-                
+                UserEngagement.logEvent(.addHumidor)
                 let humidorOrderID = CoreDataController.sharedInstance.countHumidors()
                 let newHumidor = CoreDataController.sharedInstance.addNewHumidor(name: name!, humidityLevel: Int16(humidity),orderID: Int16(humidorOrderID))
                 let trays = (self.form.sectionBy(tag: "trays") as! MultivaluedSection).values()
@@ -447,3 +463,5 @@ extension Array {
         insert(remove(at: from), at: to)
     }
 }
+
+

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="55O-DK-Qa4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="55O-DK-Qa4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +13,7 @@
         <!--Search View Controller-->
         <scene sceneID="CS5-8q-f9a">
             <objects>
-                <viewController id="55O-DK-Qa4" customClass="SearchViewController" customModule="CigarStack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="55O-DK-Qa4" customClass="SearchViewController" customModule="PocketHumidor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p2d-a2-ihX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +60,7 @@
                                 <rect key="frame" x="0.0" y="77" width="375" height="590"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" rowHeight="80" id="TyD-Lg-ouh" customClass="SearchTableViewCell" customModule="CigarStack" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" rowHeight="80" id="TyD-Lg-ouh" customClass="SearchTableViewCell" customModule="PocketHumidor" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TyD-Lg-ouh" id="cs2-y2-Vtb">
@@ -85,7 +86,7 @@
                                                                     <rect key="frame" x="31" y="0.0" width="12" height="18"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="1IU-ph-Gh8">
-                                                                            <rect key="frame" x="0.0" y="2.5" width="12" height="12"/>
+                                                                            <rect key="frame" x="0.0" y="3" width="12" height="12"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="12" id="dek-4a-WMU"/>
                                                                                 <constraint firstAttribute="width" constant="12" id="f43-fI-Gp0"/>
@@ -123,17 +124,23 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="R3y-jT-ypi" userLabel="Location">
                                                             <rect key="frame" x="0.0" y="23" width="355" height="36.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="·" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmA-Wd-I2P">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="36.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Humidor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNC-RG-PhO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="188" height="36.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                    <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="·" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmA-Wd-I2P">
+                                                                    <rect key="frame" x="189" y="0.0" width="15" height="36.5"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="31" id="WTU-yv-di0"/>
+                                                                        <constraint firstAttribute="width" constant="15" id="WTU-yv-di0"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
                                                                     <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lu-XK-H1u">
-                                                                    <rect key="frame" x="32" y="0.0" width="202" height="36.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tray" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Lu-XK-H1u">
+                                                                    <rect key="frame" x="205" y="0.0" width="29" height="36.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.42655369639396667" green="0.47584608197212219" blue="0.48026475310325623" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -172,10 +179,11 @@
                                         <connections>
                                             <outlet property="cigarCountry" destination="1IU-ph-Gh8" id="I3Y-JB-PQ9"/>
                                             <outlet property="cigarCreationDate" destination="Eta-24-9fY" id="pvX-m7-RHd"/>
-                                            <outlet property="cigarHumidor" destination="6Lu-XK-H1u" id="KAq-uQ-SNt"/>
+                                            <outlet property="cigarHumidor" destination="rNC-RG-PhO" id="9q4-dh-1ha"/>
                                             <outlet property="cigarName" destination="npv-Iz-kEf" id="R0M-jI-Y7c"/>
                                             <outlet property="cigarNumber" destination="2oq-Cf-gyF" id="xPC-TX-hap"/>
                                             <outlet property="cigarShape" destination="JhI-HM-vZQ" id="Ink-3t-wIc"/>
+                                            <outlet property="cigarTray" destination="6Lu-XK-H1u" id="Wgk-mQ-nDH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -266,7 +274,7 @@
     <resources>
         <image name="Search" width="21" height="22"/>
         <image name="Search - Filled" width="21" height="22"/>
-        <image name="plus" width="50" height="50"/>
+        <image name="plus" width="38.297870635986328" height="38.297870635986328"/>
     </resources>
     <color key="tintColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

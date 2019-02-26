@@ -52,6 +52,7 @@ class GeneralViewController: FormViewController {
         UserSettings.shouldReloadData.value = true
         UserSettings.defaultSortOrder.value = selectedSort.rawValue
         UserSettings.tableSortOrder = selectedSort
+        UserEngagement.logEvent(.changeSortOrder)
     }
 
 }

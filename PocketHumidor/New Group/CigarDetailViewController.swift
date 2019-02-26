@@ -70,7 +70,14 @@ class CigarDetailViewController: UIViewController {
         notesView.sizeToFit()
        
  
-        sizeLabel.text = cigar.size
+        if cigar.size == nil {
+            sizeLabel.text = nil
+            sizeLabel.isHidden = true
+        }
+        else{
+            sizeLabel.text = cigar.size
+        }
+        
         nameLabel.text = cigar.name
         countryLabel.text = Locale.current.localizedString(forRegionCode: cigar.origin!)
         

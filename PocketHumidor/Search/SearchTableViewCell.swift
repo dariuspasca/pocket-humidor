@@ -15,5 +15,6 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var cigarName: UILabel!
     @IBOutlet weak var cigarCreationDate: UILabel!
     @IBOutlet weak var cigarHumidor: UILabel!
+    @IBOutlet weak var cigarTray: UILabel!
     @IBOutlet weak var cigarShape: UILabel!
 }

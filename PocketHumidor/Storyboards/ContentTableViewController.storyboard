@@ -105,7 +105,7 @@
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="·" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLL-ES-uCX">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="·" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLL-ES-uCX">
                                                                     <rect key="frame" x="67" y="0.0" width="35" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="35" id="A89-Dy-0Qs"/>
@@ -188,7 +188,7 @@
                                             <outlet property="price" destination="5cQ-76-vn4" id="KUf-df-PTb"/>
                                             <outlet property="progress" destination="Rqm-nw-4vn" id="kP9-xS-jE5"/>
                                             <outlet property="quantity" destination="L4i-dd-v9t" id="TcQ-hD-byf"/>
-                                            <outlet property="separator" destination="tLL-ES-uCX" id="Fwa-Ap-WqH"/>
+                                            <outlet property="separator" destination="tLL-ES-uCX" id="hTe-LD-JTL"/>
                                             <outlet property="size" destination="y6B-tA-P33" id="3Zo-9y-gME"/>
                                             <outlet property="years" destination="U8x-0W-Upq" id="RvK-QR-ZO2"/>
                                             <outlet property="yearsLabel" destination="gqQ-Gw-59U" id="QDd-d2-Cyd"/>

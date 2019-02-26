@@ -191,7 +191,16 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.countryFlag.image =  Flag(countryCode: cigar.origin!)?.image(style: .circle)
         cell.name.text =  cigar.name!
-        cell.size.text = cigar.size!
+        
+        if cigar.size == nil {
+            cell.size.text = nil
+            cell.separator.text = nil
+            cell.separator.isHidden = true
+            cell.size.isHidden = true
+        }
+        else{
+            cell.size.text = cigar.size!
+        }
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
         

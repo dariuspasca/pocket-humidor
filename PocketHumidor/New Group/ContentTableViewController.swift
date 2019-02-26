@@ -88,11 +88,11 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
         
         if cigar.size == nil {
             cell.size.isHidden = true
-            cell.separator.isHidden = true
+            cell.separator.text = nil
         }
         else{
             cell.size.text = cigar.size!
-        }
+            }
         cell.progress.addSubview(progressCircle)
         cell.years.text = String(years)
         return cell
@@ -193,6 +193,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
              */
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (delete == true) {
+                    UserEngagement.logEvent(.deleteCigar)
                     CoreDataController.sharedInstance.deleteCigar(cigar: tempCigar, withUpdate: true)
                     self.delegate?.updateHumidorView()
                 }
@@ -333,6 +334,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
              */
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (move == true) {
+                    UserEngagement.logEvent(.moveCigar)
                     if initialQuantity == quantity{
                         CoreDataController.sharedInstance.moveCigar(destinationTray: toTray, cigar: cigarToMove)
                     }
@@ -400,6 +402,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
              */
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (gift == true) {
+                    UserEngagement.logEvent(.giftCigar)
                     let gift = CoreDataController.sharedInstance.createGift(to: to, notes: notes,date: date)
                     if initialQuantity == quantity {
                         CoreDataController.sharedInstance.updateCigar(cigar: cigarToGift, gift: gift, review: nil)
@@ -472,7 +475,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
              */
             snackbar.dismissBlock = {
                 (snackbar: TTGSnackbar) -> Void in if (smoke == true) {
-                    
+                    UserEngagement.logEvent(.reviewCigar)
                     if initialQuantity == quantity {
                         CoreDataController.sharedInstance.updateCigar(cigar: cigarToSmoke, gift: nil, review: review)
                         CoreDataController.sharedInstance.updateHumidorValues(tray: cigarToSmoke.tray!, quantity: cigarToSmoke.quantity, value: cigarToSmoke.price, add: false)

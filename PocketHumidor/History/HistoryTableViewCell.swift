@@ -19,5 +19,6 @@ class HistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var size: UILabel!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var statusDetail: UILabel!
+    @IBOutlet weak var separator: UILabel!
     
 }

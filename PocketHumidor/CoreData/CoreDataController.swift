@@ -50,7 +50,7 @@ class CoreDataController {
     
     
     /* New Cigar */
-    func addNewCigar (tray: Tray, name: String, origin: String, quantity: Int32 , size: String, purchaseDate: Date?, from: String?, price: Double?, ageDate: Date?, notes: String?) -> Cigar {
+    func addNewCigar (tray: Tray, name: String, origin: String, quantity: Int32 , size: String?, purchaseDate: Date?, from: String?, price: Double?, ageDate: Date?, notes: String?) -> Cigar {
         let currentDate = Date()
         let entityCigar = NSEntityDescription.entity(forEntityName: "Cigar", in: self.context)
         let newCigar = Cigar (entity: entityCigar!, insertInto: context)

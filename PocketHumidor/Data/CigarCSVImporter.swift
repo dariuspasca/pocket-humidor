@@ -71,6 +71,8 @@ class CigarCSVImporter{
     
     func addCigar(){
        var humidor = CoreDataController.sharedInstance.searchHumidor(name: csv["Humidor"]!)
+        let size = ( csv["Size"] == "" ? nil:csv["Size"])
+       
         
         //Creates a new humidor if there isn't one yet
         if humidor == nil {
@@ -87,7 +89,7 @@ class CigarCSVImporter{
         }
         
         //Create a cigar
-        let cigar = CoreDataController.sharedInstance.addNewCigar(tray: divisor!, name: csv["Name"]!, origin: csv["Origin"]!, quantity: Int32(csv["Quantity"]!)!, size: csv["Size"]!, purchaseDate: Date(iso: csv["Purchase Date"]!), from: csv["From"]!, price: Double(csv["Price"]!)!, ageDate: Date(iso: csv["Aging Date"]!), notes: csv["Notes"]!)
+        let cigar = CoreDataController.sharedInstance.addNewCigar(tray: divisor!, name: csv["Name"]!, origin: csv["Origin"]!, quantity: Int32(csv["Quantity"]!)!, size: size, purchaseDate: Date(iso: csv["Purchase Date"]!), from: csv["From"]!, price: Double(csv["Price"]!)!, ageDate: Date(iso: csv["Aging Date"]!), notes: csv["Notes"]!)
         cigar.creationDate =  Date(iso: csv["Creation Date"]!)
         cigar.editDate =  Date(iso: csv["Last Edit"]!)
         
@@ -99,7 +101,7 @@ class CigarCSVImporter{
             gift = CoreDataController.sharedInstance.createGift(to: csv["Gift To"]!, notes: csv["Gift Notes"]!, date: Date(iso: csv["Gift Date"])!)
         }
         else if csv["Review Date"]! != "" {
-            review = CoreDataController.sharedInstance.createReview(score: Int16(csv["Score"]!)!, appearance: Int16(csv["Appearance"]!)!, flavour: Int16(csv["Flavor"]!)!, ash: Int16(csv["ash"]!)!, draw: Int16(csv["Draw"]!)!, texture: Int16(csv["Texture"]!)!, strength: Int16(csv["Strength"]!)!, notes: csv["Review Notes"]!, reviewDate: Date(iso: csv["Review Date"])!)
+            review = CoreDataController.sharedInstance.createReview(score: Int16(csv["Score"]!)!, appearance: Int16(csv["Appearance"]!)!, flavour: Int16(csv["Flavor"]!)!, ash: Int16(csv["Ash"]!)!, draw: Int16(csv["Draw"]!)!, texture: Int16(csv["Texture"]!)!, strength: Int16(csv["Strength"]!)!, notes: csv["Review Notes"]!, reviewDate: Date(iso: csv["Review Date"])!)
         }
         
         CoreDataController.sharedInstance.updateCigar(cigar: cigar, gift: gift, review: review)
@@ -180,7 +182,7 @@ class CigarCSVImporter{
     }
     
     func rowIsValid() -> Bool{
-        let rowNotOptionalValues:[String] = [csv["Name"]!,csv["Size"]!,csv["Origin"]!,csv["Quantity"]!,csv["Price"]!,csv["Purchase Date"]!,csv["Aging Date"]!,csv["Creation Date"]!,csv["Last Edit"]!]
+        let rowNotOptionalValues:[String] = [csv["Name"]!,csv["Origin"]!,csv["Quantity"]!,csv["Price"]!,csv["Purchase Date"]!,csv["Aging Date"]!,csv["Creation Date"]!,csv["Last Edit"]!]
         var status = true
         for value in rowNotOptionalValues{
             if value == "" {

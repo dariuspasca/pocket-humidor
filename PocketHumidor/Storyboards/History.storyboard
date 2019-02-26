@@ -268,6 +268,7 @@
                                                             <outlet property="name" destination="rw1-5W-360" id="luV-Mv-QIf"/>
                                                             <outlet property="progress" destination="L7R-yz-bk3" id="1uc-T6-RrX"/>
                                                             <outlet property="quantity" destination="1W9-TT-S87" id="zJT-rr-h2x"/>
+                                                            <outlet property="separator" destination="mmA-46-cm0" id="Iqn-n0-Dhv"/>
                                                             <outlet property="size" destination="aJs-S0-xwC" id="GFG-Nk-Ptr"/>
                                                             <outlet property="status" destination="1Sg-L9-KU9" id="egi-It-3FO"/>
                                                             <outlet property="statusDetail" destination="Hlh-2s-xHb" id="qV1-wO-qiC"/>

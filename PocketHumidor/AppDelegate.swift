@@ -12,8 +12,7 @@ import SwiftyStoreKit
 import Fabric
 import Crashlytics
 import SVProgressHUD
-
-
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,12 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-      
+       
+       UserEngagement.initialiseUserAnalytics()
        completeStoreTransactions()
        setupAdditionalStoreSettings()
-       setupUserAnalytics()
        setupSvProgressHud()
-    
+
+        
         //Keeps track of the versiom for now
         if UserSettings.currentVersion.value == "" {
             UserSettings.currentVersion.value = UserEngagement.appVersion
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        print( UserSettings.currentVersion.value)
+        
 
         return true
     }
@@ -93,12 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         navController.viewControllers.first!.performSegue(withIdentifier: "settingsData", sender: url)
  
-    }
-    
-    func setupUserAnalytics(){
-        if UserSettings.shareAnalytics.value == true  {
-            Fabric.with([Crashlytics.self])
-        }
     }
     
     func setupAdditionalStoreSettings(){

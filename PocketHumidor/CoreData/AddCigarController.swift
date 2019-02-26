@@ -9,13 +9,14 @@
 import UIKit
 import Eureka
 import FlagKit
+import SuggestionRow
 
 protocol AddCigarDelegate{
     func addCigarForceReload()
     func cigarTriggerReview()
 }
 
-class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeDelegate {
+class AddCigarController: FormViewController, SelectCountryDelegate {
     
     
     var sizes = ["Cigarillo" , "Small Panetela" , "Slim Panetela" , "Short Panetela" , "Pantetela" , "Long Panetela" , "Toscanello" , "Toscano",
@@ -30,7 +31,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
     var navigationAccessoryIsHidden = true
     
     var selectedCountryCode:String!
-    var selectedSize:String? = "Cigarillo"
     var humidor: Humidor!
     var humidorTrays: [Tray]!
     var changesStatus: [Bool]?
@@ -97,49 +97,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
                 }
             
             
-            /*
-            <<< PushRow<String>("Size"){
-                $0.title = NSLocalizedString("Size", comment: "")
-                $0.value = cigarToEdit?.size ?? sizes.first
-                $0.selectorTitle = $0.tag
-                $0.options = sizes
-                }.onPresent{ from, to in
-                    to.selectableRowCellUpdate = { cell, _ in cell.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)}
-                    to.navigationItem.title = NSLocalizedString("Size", comment: "")
-                    to.enableDeselection = false
-            }.cellUpdate { cell, row in
-                if self.cigarToEdit != nil {
-                    if self.cigarToEdit?.size != row.value! {
-                        self.changesStatus![1] = true
-                    }
-                    else{
-                        self.changesStatus![1] = false
-                    }
-                    self.valuateSaveButonStatus()
-                }
-            }
- */
-            
-            <<< LabelRow ("Size") {
-                $0.title = NSLocalizedString("Size", comment: "")
-                $0.value = selectedSize
-                $0.cell.accessoryType = .disclosureIndicator
-                }
-                .onCellSelection { cell, row in
-                    self.performSegue(withIdentifier: "sizeSelect", sender: self)
-                }.cellUpdate { cell, row in
-                    if self.cigarToEdit != nil {
-                        if self.cigarToEdit?.size != self.selectedSize {
-                            self.changesStatus![1] = true
-                        }
-                        else{
-                            self.changesStatus![1] = false
-                        }
-                        self.valuateSaveButonStatus()
-                    }
-            }
-
-            
             <<< LabelRow ("Country of origin") {
                 $0.title = NSLocalizedString("Country of origin", comment: "")
                 $0.value =  Locale.current.localizedString(forRegionCode: selectedCountryCode)
@@ -150,6 +107,30 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
                 }.cellUpdate { cell, row in
                     if self.cigarToEdit != nil {
                         if self.cigarToEdit?.origin != self.selectedCountryCode {
+                            self.changesStatus![1] = true
+                        }
+                        else{
+                            self.changesStatus![1] = false
+                        }
+                        self.valuateSaveButonStatus()
+                    }
+            }
+            
+            <<< SuggestionAccessoryRow<String>() {
+                $0.tag = "Size"
+                $0.title = NSLocalizedString("Size", comment: "")
+                $0.value = cigarToEdit?.size ?? nil
+                $0.filterFunction = { text in
+                    self.sizes.filter({ $0.hasPrefix(text) })
+                }
+                }.cellSetup { (cell, row) in
+                    cell.customizeCollectionViewCell = {
+                        $0.label.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+                        $0.label.textColor = UIColor.white
+                    }
+                }.cellUpdate { cell, row in
+                    if self.cigarToEdit != nil {
+                        if self.cigarToEdit?.size != row.value {
                             self.changesStatus![2] = true
                         }
                         else{
@@ -158,6 +139,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
                         self.valuateSaveButonStatus()
                     }
             }
+
 
             
             +++ Section()
@@ -484,7 +466,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
     func saveCigar(){
         let formValues = self.form.values()
         let nameForm = formValues["Name"] as! String
-        let sizeForm = formValues["Size"] as! String
+        var sizeForm = formValues["Size"] as? String
         let quantityForm = formValues["Quantity"] as! Int
         let priceForm = formValues["Price"] as! Double
         let fromForm = formValues["From"] as? String
@@ -502,7 +484,13 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
         if quantity <= 0 {
             quantity = 1
         }
-        
+    
+        if sizeForm != nil {
+            sizeForm = sizeForm!.trimmingCharacters(in: NSCharacterSet.whitespaces)
+            if sizeForm == "" {
+                sizeForm = nil
+            }
+        }
         
         let humidor = CoreDataController.sharedInstance.searchHumidor(name: humidorForm)
         let location = CoreDataController.sharedInstance.searchTray(humidor: humidor!, searchTray: trayForm)
@@ -535,8 +523,10 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
             }
             
             CoreDataController.sharedInstance.saveContext()
+            UserEngagement.logEvent(.editCigar)
         }
         else{
+            UserEngagement.logEvent(.addCigar)
             _ = CoreDataController.sharedInstance.addNewCigar(tray: location!, name: nameForm, origin: selectedCountryCode, quantity: quantity, size: sizeForm, purchaseDate: purchaseDateForm, from: fromForm, price: priceForm, ageDate: ageDateForm , notes: notesForm)
         }
         
@@ -560,12 +550,9 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
             destinationVC.delegateCountryCode = selectedCountryCode
             destinationVC.delegate = self
         }
-        else if segue.identifier == "sizeSelect" {
-            let destinationVC = segue.destination as! SizeViewController
-            destinationVC.delegateSize = selectedSize
-            destinationVC.delegate = self
-        }
     }
+    
+
     
     // MARK: - Delegate
     
@@ -575,17 +562,11 @@ class AddCigarController: FormViewController, SelectCountryDelegate, SelectSizeD
         selectedCountryCode = countryNameDelegate
         row.cell.update()
     }
-    
-    func completeDelegate(sizeDelegate: String?) {
-        let row = (form.rowBy(tag: "Size") as! LabelRow)
-        selectedSize = sizeDelegate
-        row.value = selectedSize ?? nil
-        row.cell.update()
-    }
 
 }
 
     //MARK: - Custom NavigationAccessoryView
+
 class CustomNavigationAccessoryView : NavigationAccessoryView {
         
         override init(frame: CGRect) {

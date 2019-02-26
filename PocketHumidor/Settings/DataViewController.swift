@@ -63,20 +63,18 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
     }
     
     func exportData(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh-mm"
-        
-        let fileName = "PocketStack - \(UIDevice.current.name) - \(dateFormatter.string(from: Date())).csv"
-        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        
-         SVProgressHUD.show(withStatus: NSLocalizedString("Generating...", comment: ""))
-         var csvText = "Name,Size,Origin,Quantity,Price,From,Purchase Date,Aging Date,Notes,Creation Date,Last Edit,Gift Date,Gift To,Gift Notes,Review Date,Score,Appearance,Ash,Draw,Flavor,Strength,Texture,Review Notes,Humidor,Humidor Humidity,Divisor\n"
-         let cigars = CoreDataController.sharedInstance.fetchCigars()
-        if cigars != nil {
+        let cigars = CoreDataController.sharedInstance.fetchCigars()
+        if cigars != nil && !cigars!.isEmpty{
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
             
+            let fileName = "PocketStack \(UserSettings.currentVersion.value) - \(UIDevice.current.name) - \(dateFormatter.string(from: Date())).csv"
+            let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+            
+            SVProgressHUD.show(withStatus: NSLocalizedString("Generating...", comment: ""))
+            var csvText = "Name,Size,Origin,Quantity,Price,From,Purchase Date,Aging Date,Notes,Creation Date,Last Edit,Gift Date,Gift To,Gift Notes,Review Date,Score,Appearance,Ash,Draw,Flavor,Strength,Texture,Review Notes,Humidor,Humidor Humidity,Divisor\n"
             for cigar in cigars! {
                 
                 var cigarGiftDate = ""
@@ -107,7 +105,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
                 }
                 
                 
-                let newLine = "\(cigar.name!),\(cigar.size!),\(cigar.origin!),\(String(cigar.quantity)),\(String(cigar.price)),\(cigar.from ?? ""),\(dateFormatter.string(from: cigar.purchaseDate!)),\(dateFormatter.string(from: cigar.ageDate!)),\(cigar.notes ?? ""),\(dateFormatter.string(from: cigar.creationDate!)),\(dateFormatter.string(from: cigar.editDate!)),\(cigarGiftDate),\(cigar.gift?.to ?? ""),\(cigar.gift?.notes ?? ""),\(cigarReviewDate),\(score),\(appeareance),\(ash),\(draw),\(flavor),\(strenght),\(texture),\(cigar.review?.notes ?? ""),\(cigar.tray!.humidor!.name!),\(String(cigar.tray!.humidor!.humidity)),\(cigar.tray!.name!)\n"
+                let newLine = "\(cigar.name!),\(cigar.size ?? ""),\(cigar.origin!),\(String(cigar.quantity)),\(String(cigar.price)),\(cigar.from ?? ""),\(dateFormatter.string(from: cigar.purchaseDate!)),\(dateFormatter.string(from: cigar.ageDate!)),\(cigar.notes ?? ""),\(dateFormatter.string(from: cigar.creationDate!)),\(dateFormatter.string(from: cigar.editDate!)),\(cigarGiftDate),\(cigar.gift?.to ?? ""),\(cigar.gift?.notes ?? ""),\(cigarReviewDate),\(score),\(appeareance),\(ash),\(draw),\(flavor),\(strenght),\(texture),\(cigar.review?.notes ?? ""),\(cigar.tray!.humidor!.name!),\(String(cigar.tray!.humidor!.humidity)),\(cigar.tray!.name!)\n"
                 csvText.append(contentsOf: newLine)
             }
             do {
@@ -117,10 +115,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
                     //User saved file
                     if completed {
                         SVProgressHUD.showInfo(withStatus: NSLocalizedString("File Saved", comment: ""))
-                        if UserSettings.shareAnalytics.value == true {
-                            Answers.logCustomEvent(withName: "Export Successfull",
-                                                   customAttributes: nil)
-                        }
+                        UserEngagement.logEvent(.csvExport) 
                         return
                     }
                 }
@@ -135,11 +130,14 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
                  alert.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
                 self.present(alert, animated: true, completion: nil)
                 print("\(error)")
-                if UserSettings.shareAnalytics.value == true {
-                    Answers.logCustomEvent(withName: "Export Unsuccessfull",
-                                           customAttributes: nil)
-                }
+                UserEngagement.logEvent(.csvUnsuccessfulExport)
             }
+        }
+        else{
+            let alert = UIAlertController(title: NSLocalizedString("There is nothing to export!", comment: ""), message: "", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
@@ -158,6 +156,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
             let csvParser = CigarCSVImporter()
             csvParser.delegate = self
             csvParser.startImport(fromFileAt: fromFile)
+            UserEngagement.logEvent(.csvImport)
         })
         
         
@@ -167,10 +166,6 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
     }
     
     func deleteAll() {
-        if UserSettings.shareAnalytics.value == true {
-            Answers.logCustomEvent(withName: "Delete All",
-                                   customAttributes: nil)
-        }
         if UserSettings.currentHumidor.value == "" {
             let alert = UIAlertController(title: "", message: NSLocalizedString("There is no data to be deleted.", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default))
@@ -181,6 +176,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
             // The CONFIRM DELETE action:
             let confirmDelete = UIAlertController(title: NSLocalizedString("Final Warning", comment: ""), message: NSLocalizedString("This action is irreversible. Are you sure you want to continue?", comment: ""), preferredStyle: .alert)
             confirmDelete.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { _ in
+                UserEngagement.logEvent(.deleteAllData)
                 CoreDataController.sharedInstance.deleteAll()
                 UserSettings.currentHumidor.value = ""
                 UserSettings.shouldReloadView.value = true
@@ -205,10 +201,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
     
     func importFinishedUnsuccessful(message: String) {
         SVProgressHUD.dismiss(withDelay: 1)
-        if UserSettings.shareAnalytics.value == true {
-            Answers.logCustomEvent(withName: "Import Unsuccessfull",
-                                   customAttributes: nil)
-        }
+        UserEngagement.logEvent(.csvUnsuccessfulImport)
         let alert = UIAlertController(title: NSLocalizedString("Import Failed", comment: ""), message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)
@@ -224,10 +217,7 @@ class ExportImportTableView: UITableViewController, CigarCSVImporterDelegate {
             
         }
         
-        if UserSettings.shareAnalytics.value == true {
-            Answers.logCustomEvent(withName: "Import Successfull",
-                                           customAttributes: nil)
-        }
+        UserEngagement.logEvent(.csvImport)
         UserSettings.shouldReloadView.value = true
     }
     
