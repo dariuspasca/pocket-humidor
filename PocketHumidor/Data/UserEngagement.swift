@@ -9,6 +9,8 @@
 import Foundation
 import StoreKit
 import Firebase
+import FBSDKCoreKit
+
 
 class UserEngagement{
     static let appStartupCountKey = "appStartupCount"
@@ -23,14 +25,40 @@ class UserEngagement{
     }
     
     static func initialiseUserAnalytics() {
-        if sendAnalytics { FirebaseApp.configure() }
+        if sendAnalytics {
+            FirebaseApp.configure()
+            FBSDKSettings.setAutoLogAppEventsEnabled(true)
+            FBSDKSettings.setAdvertiserIDCollectionEnabled(true)
+        }
+        else{
+            FBSDKSettings.setAutoLogAppEventsEnabled(false)
+            FBSDKSettings.setAdvertiserIDCollectionEnabled(false)
+        }
+        
         if sendCrashReports { Fabric.with([Crashlytics.self]) }
     }
     
-    static func onReviewTrigger() {
-        UserDefaults.standard.incrementCounter(withKey: userEngagementCountKey)
-        if shouldTryRequestReview() {
+    static func triggerReviewOrPremium(targetVC: UIViewController?) {
+        self.incrementEngagement()
+        if UserEngagement.shouldTryRequest(userEngagementModulo: 10) {
             SKStoreReviewController.requestReview()
+        }
+        else {
+            if UserEngagement.shouldTryRequest(userEngagementModulo: 15) && !UserSettings.isPremium.value{
+                let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PremiumViewController
+                destVC.hideCloseButton = false
+                destVC.modalPresentationStyle = .formSheet
+                destVC.modalTransitionStyle = .coverVertical
+                
+                if UIDevice.current.userInterfaceIdiom == .pad{
+                    destVC.preferredContentSize = CGSize(width: 500, height: 700)
+                }
+                let when = DispatchTime.now() + 0.1 // change to desired number of seconds
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    targetVC!.present(destVC, animated: true, completion: nil)
+                }
+            }
         }
     }
     
@@ -38,13 +66,15 @@ class UserEngagement{
         UserDefaults.standard.incrementCounter(withKey: appStartupCountKey)
     }
     
-    private static func shouldTryRequestReview() -> Bool {
+    static func incrementEngagement(){
+        UserDefaults.standard.incrementCounter(withKey: userEngagementCountKey)
+    }
+    
+    private static func shouldTryRequest(userEngagementModulo:Int) -> Bool {
         let appStartCountMinRequirement = 3
-        let userEngagementModulo = 10
         
         let appStartCount = UserDefaults.standard.getCount(withKey: appStartupCountKey)
         let userEngagementCount = UserDefaults.standard.getCount(withKey: userEngagementCountKey)
-        
         print(userEngagementCount)
         
         return appStartCount >= appStartCountMinRequirement && userEngagementCount % userEngagementModulo == 0
@@ -98,6 +128,7 @@ class UserEngagement{
     static func logEvent(_ event: Event) {
         guard sendAnalytics else { return }
         Analytics.logEvent(event.rawValue, parameters: nil)
+        FBSDKAppEvents.logEvent(event.rawValue)
     }
 }
 

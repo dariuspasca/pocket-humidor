@@ -12,8 +12,7 @@ import FlagKit
 import SuggestionRow
 
 protocol AddCigarDelegate{
-    func addCigarForceReload()
-    func cigarTriggerReview()
+    func addedCigar(forceReload:Bool)
 }
 
 class AddCigarController: FormViewController, SelectCountryDelegate {
@@ -34,6 +33,7 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     var humidor: Humidor!
     var humidorTrays: [Tray]!
     var changesStatus: [Bool]?
+    var unitPrice:Double?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +59,10 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
             naview.doneButton.action = #selector(dismisskeyboard)
             return naview
         }()
+        
+        if cigarToEdit != nil {
+            unitPrice = self.cigarToEdit!.price/Double(self.cigarToEdit!.quantity)
+        }
  
         form +++ Section()
             <<< TextRow ("Name") {
@@ -157,12 +161,17 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 }
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
             
-                if row.value! == 0 {
+                if row.value == nil || row.value! == 0 {
                     row.value = 1
                     cell.update()
                 }
         
                 if self.cigarToEdit != nil {
+                    //Updates price row when quantity changes
+                    let priceRow = self.form.rowBy(tag: "Price") as! DecimalRow
+                    priceRow.value = Double(row.value!) * self.unitPrice!
+                    priceRow.updateCell()
+                    
                     if (self.cigarToEdit?.quantity)! != Int32(row.value!) {
                         self.changesStatus![3] = true
                     }
@@ -189,6 +198,10 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                     cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
 
                     if self.cigarToEdit != nil {
+                        //Updates priceUnit variable
+                        let quantityRow = self.form.rowBy(tag: "Quantity") as! IntRow
+                        self.unitPrice = row.value!/Double(quantityRow.value!)
+                        
                         if self.cigarToEdit?.price != row.value! {
                             self.changesStatus![4] = true
                         }
@@ -421,7 +434,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {
-       
         if !UserSettings.isPremium.value{
             var countCigars:Int32 = 0
             let humidors = CoreDataController.sharedInstance.fetchHumidors()
@@ -429,7 +441,9 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 countCigars = countCigars + humidor.quantity
             }
             let cigarQuantity = Int32((form.rowBy(tag: "Quantity") as! IntRow).value!)
-            if (countCigars + cigarQuantity) > 24{
+            if (countCigars + cigarQuantity) > 25{
+                
+                /* Old - Alert
                 // create the alert
                 let alert = UIAlertController(title: NSLocalizedString("CigarStack Premium", comment: ""), message: NSLocalizedString("PocketHumidor Premium allows you to add as many items as you want. You are using the free version which allows you to add a maximum of 25 items. You have", comment: "") + " " + String(25-countCigars) +
                      " " + NSLocalizedString("items left.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
@@ -438,8 +452,9 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Get Premium", comment: ""), style: .destructive) { _ in
                     let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-                    let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PurchaseViewController
+                    let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PremiumViewController
                     destVC.hideCloseButton = false
+                    destVC.outOfItems = true
                     destVC.modalPresentationStyle = .formSheet
                     destVC.modalTransitionStyle = .coverVertical
                     self.present(destVC, animated: true, completion: nil)
@@ -449,6 +464,15 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                 
                 // show the alert
                 self.present(alert, animated: true, completion: nil)
+                 */
+                let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PremiumViewController
+                destVC.hideCloseButton = false
+                destVC.outOfItems = true
+                destVC.modalPresentationStyle = .formSheet
+                destVC.modalTransitionStyle = .coverVertical
+                self.present(destVC, animated: true, completion: nil)
+                
             }
             else{
                 saveCigar()
@@ -536,10 +560,11 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         
         dismiss(animated: true, completion: nil)
         if UIDevice.current.userInterfaceIdiom == .pad{
-            delegate?.addCigarForceReload()
+            delegate?.addedCigar(forceReload: true)
         }
-        
-        delegate?.cigarTriggerReview()
+        else{
+            delegate?.addedCigar(forceReload: false)
+        }
     }
 
     // MARK: - Segue

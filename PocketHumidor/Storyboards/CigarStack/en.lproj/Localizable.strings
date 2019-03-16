@@ -193,7 +193,8 @@
 "I'll do my best to respond." = "I'll do my best to respond.";
 "Send e-mail" = "Send e-mail";
 
-/* Import-Export */
+/* iCloud Backup*/
+"Auto Backup" = "Auto Backup";
 "There is nothing to export!" = "There is nothing to export!";
 "Generating..." = "Generating...";
 "Confirm Import" = "Confirm Import";
@@ -217,6 +218,12 @@
 
 
 /* In-App Purchase */
+"Unlimited Stacks" = "Unlimited Stacks";
+"Infinite Items" = "Infinite Items";
+"Support Development" = "Support Development";
+"Add as many items as you want. The free version limit is 25 items." = "Add as many items as you want. The free version limit is 25 items.";
+"Mange as many stacks as you want. The free limit is 2 stacks." = "Mange as many stacks as you want. The free version limit is 2 stacks.";
+"PocketStack is being developed and supported by an indie developer. Support the further development of the app." = "PocketStack is being developed and supported by an indie developer. Support the further development of the app.";
 "Unlock Premium for " = "Unlock Premium for ";
 "Sorry, something unexpected happened. Try later or send an e-mail at support@pockethumidor.app" = "Sorry, something unexpected happened. Try later or send an e-mail at support@pockethumidor.app";
 "There Is A Problem" = "There Is A Problem";

@@ -11,6 +11,7 @@ import Eureka
 
 protocol NewHumidorDelegate{
     func newHumidorForceReload()
+    func dismissedHumidorView()
 }
 
 class AddHumidorController: FormViewController {
@@ -368,6 +369,7 @@ class AddHumidorController: FormViewController {
                     delegate?.newHumidorForceReload()
                 }
                 self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                delegate?.dismissedHumidorView()
             }
         }
         else{
@@ -412,6 +414,7 @@ class AddHumidorController: FormViewController {
                 if UIDevice.current.userInterfaceIdiom == .pad{
                     delegate?.newHumidorForceReload()
                 }
+                delegate?.dismissedHumidorView()
             }
         }
         

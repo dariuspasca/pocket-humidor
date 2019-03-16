@@ -193,7 +193,8 @@
 "I'll do my best to respond." = "Cercherò di rispondere il prima possibile.";
 "Send e-mail" = "Invia e-mail";
 
-/* Import-Export */
+/* iCloud Backup*/
+"Auto Backup" = "Backup automatico";
 "There is nothing to export!" = "Non c'è niente da esportare!";
 "Generating..." = "Elaborazione in corso...";
 "Confirm Import" = "Conferma Importazione";
@@ -216,7 +217,12 @@
 "File Saved" = "Documento Salvato";
 
 /* In-App Purchase */
-
+"Unlimited Stacks" = "Contenitori Illimitati";
+"Infinite Items" = "Articoli Illimitati";
+"Support Development" = "Sostieni Lo Sviluppo";
+"Add as many items as you want. The free version limit is 25 items." = "Aggiungi quanti articoli vuoi. Il limite della versione gratuita è di 25 articoli.";
+"Mange as many stacks as you want. The free version limit is 2 stacks." = "Gestisci quanti contenitori vuoi. Il limite della versione gratuita è di 2 contenitori.";
+"PocketStack is being developed and supported by an indie developer. Support the further development of the app." = "PocketStack è sviluppato e supportato da uno sviluppatore indipendente. Supporta l'ulteriore sviluppo dell'app.";
 "Unlock Premium for " = "Sblocca Premium per ";
 "Sorry, something unexpected happened. Try later or send an e-mail at support@pockethumidor.app" = "Siamo spiacenti, è successo qualcosa di inaspettato. Prova più tardi o scrivici a support@pocketstack.app";
 "There Is A Problem" = "C'è Un Problema";

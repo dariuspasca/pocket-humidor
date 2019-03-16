@@ -349,6 +349,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                         CoreDataController.sharedInstance.updateCigarQuantity(cigar: newCigar, quantity: cigarToMove.quantity, add: false)
                     }
                     self.delegate?.updateData(container: self.tray)
+                    UserEngagement.triggerReviewOrPremium(targetVC: self)
                 }
             }
         }
@@ -421,6 +422,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                         CoreDataController.sharedInstance.updateCigar(cigar: newCigar, gift: gift, review: nil)
                     }
                     self.delegate?.updateHumidorView()
+                    UserEngagement.triggerReviewOrPremium(targetVC: self)
                 }
             }
     }
@@ -493,6 +495,7 @@ class ContentTableViewController: UIViewController, UITableViewDelegate, UITable
                         CoreDataController.sharedInstance.updateCigar(cigar: newCigar, gift: nil, review: review)
                     }
                     self.delegate?.updateHumidorView()
+                    UserEngagement.triggerReviewOrPremium(targetVC: self)
                 }
             }
         }

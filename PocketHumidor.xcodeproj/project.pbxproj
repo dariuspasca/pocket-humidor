@@ -28,6 +28,7 @@
 		B745703721158CB2001385E9 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B745703621158CB2001385E9 /* DataViewController.swift */; };
 		B745703C2115C5DD001385E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D6BE312048121600B50CCA /* Assets.xcassets */; };
 		B745A1A620A6AE7E000F2C83 /* EmptyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */; };
+		B74C9354222FC85F003AE277 /* PremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74C9353222FC85E003AE277 /* PremiumViewController.swift */; };
 		B75A84252042DAB3008528D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75A84242042DAB3008528D8 /* AppDelegate.swift */; };
 		B7658097205293D8004FD39F /* AttributesLicense.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7F57D462052904E0046FCB1 /* AttributesLicense.plist */; };
 		B76CC16720A83B3A004986EA /* GiftCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76CC16620A83B3A004986EA /* GiftCigarController.swift */; };
@@ -37,9 +38,11 @@
 		B7849A5120ADBE6D00CD80BA /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */; };
 		B7849A5320ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7849A5220ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift */; };
 		B78AE4872222C8EB009EEA5B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B728AF7F211061E300C78BD0 /* StoreKit.framework */; };
+		B78FFB032239606300543D24 /* CigarCSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FFB022239606300543D24 /* CigarCSVExporter.swift */; };
 		B798AB3B20A4BB54001753F7 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B798AB3A20A4BB54001753F7 /* SearchTableViewCell.swift */; };
 		B79C85EE20A39C70006A719F /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79C85ED20A39C70006A719F /* Search.storyboard */; };
 		B7A13387206BCD110003854B /* NewCigar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A13386206BCD110003854B /* NewCigar.storyboard */; };
+		B7A3485A223D313B006B1DEA /* CloudDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A34859223D313B006B1DEA /* CloudDataManager.swift */; };
 		B7A4813620581E34001242F7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4813520581E34001242F7 /* HomeViewController.swift */; };
 		B7A48138205822BC001242F7 /* ContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A48137205822BC001242F7 /* ContentTableViewController.swift */; };
 		B7A4813A205825D9001242F7 /* ContentTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */; };
@@ -48,13 +51,12 @@
 		B7CA195820AB22B30009FA99 /* MoveCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CA195720AB22B30009FA99 /* MoveCigarController.swift */; };
 		B7CB23BC20C0519C00370D0D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CB23BB20C0519C00370D0D /* FilterViewController.swift */; };
 		B7CF29BE20519AE300D8C4A3 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */; };
-		B7CF29C02051A03F00D8C4A3 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29BF2051A03F00D8C4A3 /* PurchaseViewController.swift */; };
 		B7CF29C22051A42100D8C4A3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */; };
 		B7D2BEEC20A38B0500F93515 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2BEEB20A38B0500F93515 /* SearchViewController.swift */; };
 		B7D7CF3620C1822800E4131A /* SideMenuMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */; };
 		B7E524A32061620500E2CC38 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E524A22061620500E2CC38 /* TabBarViewController.swift */; };
 		B7E524A7206166AA00E2CC38 /* AddCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E524A6206166AA00E2CC38 /* AddCigarController.swift */; };
-		B7E6A47520A742990085EA2D /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E6A47420A742990085EA2D /* History.storyboard */; };
+		B7E6A47520A742990085EA2D /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E6A47420A742990085EA2D /* Diary.storyboard */; };
 		B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EE3FD62066B43D000B761B /* CountrySelectViewController.swift */; };
 		B7EF0ADF20ACC9EF008F9DF2 /* SmokeCigarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */; };
 		B7F5021420FD5346001035A2 /* CigarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */; };
@@ -86,6 +88,7 @@
 		B73624B7204DF88700B92801 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B745703621158CB2001385E9 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		B745A1A520A6AE7E000F2C83 /* EmptyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewController.swift; sourceTree = "<group>"; };
+		B74C9353222FC85E003AE277 /* PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewController.swift; sourceTree = "<group>"; };
 		B75A84212042DAB3008528D8 /* PocketHumidor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketHumidor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75A84242042DAB3008528D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B75A84302042DAB3008528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,9 +99,12 @@
 		B782222E21185797007E8319 /* CigarCSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarCSVImporter.swift; sourceTree = "<group>"; };
 		B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		B7849A5220ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		B78FFB022239606300543D24 /* CigarCSVExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarCSVExporter.swift; sourceTree = "<group>"; };
+		B78FFB0422396B2400543D24 /* PocketHumidor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PocketHumidor.entitlements; sourceTree = "<group>"; };
 		B798AB3A20A4BB54001753F7 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B79C85ED20A39C70006A719F /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		B7A13386206BCD110003854B /* NewCigar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewCigar.storyboard; sourceTree = "<group>"; };
+		B7A34859223D313B006B1DEA /* CloudDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudDataManager.swift; sourceTree = "<group>"; };
 		B7A4813520581E34001242F7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B7A48137205822BC001242F7 /* ContentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewController.swift; sourceTree = "<group>"; };
 		B7A48139205825D9001242F7 /* ContentTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentTableViewController.storyboard; sourceTree = "<group>"; };
@@ -109,7 +115,6 @@
 		B7CA195720AB22B30009FA99 /* MoveCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCigarController.swift; sourceTree = "<group>"; };
 		B7CB23BB20C0519C00370D0D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B7CF29BD20519AE300D8C4A3 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
-		B7CF29BF2051A03F00D8C4A3 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		B7D2BEEB20A38B0500F93515 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B7D3A0B52055686F00AA6A29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,7 +125,7 @@
 		B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideMenuMain.storyboard; sourceTree = "<group>"; };
 		B7E524A22061620500E2CC38 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B7E524A6206166AA00E2CC38 /* AddCigarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCigarController.swift; sourceTree = "<group>"; };
-		B7E6A47420A742990085EA2D /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		B7E6A47420A742990085EA2D /* Diary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		B7EE3FD62066B43D000B761B /* CountrySelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectViewController.swift; sourceTree = "<group>"; };
 		B7EF0ADE20ACC9EF008F9DF2 /* SmokeCigarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeCigarController.swift; sourceTree = "<group>"; };
 		B7F5021320FD5346001035A2 /* CigarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CigarDetailViewController.swift; sourceTree = "<group>"; };
@@ -172,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				B7FD5C982121DE2B001087F3 /* LaunchScreen.storyboard */,
-				B7E6A47420A742990085EA2D /* History.storyboard */,
+				B7E6A47420A742990085EA2D /* Diary.storyboard */,
 				B79C85ED20A39C70006A719F /* Search.storyboard */,
 				B75A84282042DAB3008528D8 /* Main.storyboard */,
 				B7D7CF3520C1822800E4131A /* SideMenuMain.storyboard */,
@@ -194,8 +199,8 @@
 				B7219C982051888B001096A6 /* GeneralViewController.swift */,
 				B7219C9A20518A13001096A6 /* SortViewController.swift */,
 				B7219C9C20518AA0001096A6 /* PrivacyViewController.swift */,
-				B7CF29BF2051A03F00D8C4A3 /* PurchaseViewController.swift */,
 				B7CF29C12051A42100D8C4A3 /* AboutViewController.swift */,
+				B74C9353222FC85E003AE277 /* PremiumViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -204,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				B782222E21185797007E8319 /* CigarCSVImporter.swift */,
+				B78FFB022239606300543D24 /* CigarCSVExporter.swift */,
+				B7A34859223D313B006B1DEA /* CloudDataManager.swift */,
 				B7219C932051836B001096A6 /* UserEngagement.swift */,
 				B7219C96205186C0001096A6 /* UserSettings.swift */,
 				B72A0B22210CAEE600FE935A /* CigarReviewEnums.swift */,
@@ -247,13 +254,14 @@
 		B75A84232042DAB3008528D8 /* PocketHumidor */ = {
 			isa = PBXGroup;
 			children = (
+				B78FFB0422396B2400543D24 /* PocketHumidor.entitlements */,
 				B7E524A22061620500E2CC38 /* TabBarViewController.swift */,
 				B75A84242042DAB3008528D8 /* AppDelegate.swift */,
 				B72A6848205FCF53006CDFED /* CoreData */,
 				B7161B182055AC2E001B2E1A /* Home */,
 				B7219C9520518377001096A6 /* Data */,
 				B7D2BEEA20A38AEE00F93515 /* Search */,
-				B7849A4F20ADBDDF00CD80BA /* History */,
+				B7849A4F20ADBDDF00CD80BA /* Diary */,
 				B7219C9220517A7B001096A6 /* Settings */,
 				B7219C8F205179D6001096A6 /* Storyboards */,
 				B7D6BE312048121600B50CCA /* Assets.xcassets */,
@@ -265,7 +273,7 @@
 			path = PocketHumidor;
 			sourceTree = "<group>";
 		};
-		B7849A4F20ADBDDF00CD80BA /* History */ = {
+		B7849A4F20ADBDDF00CD80BA /* Diary */ = {
 			isa = PBXGroup;
 			children = (
 				B7849A5020ADBE6D00CD80BA /* HistoryViewController.swift */,
@@ -273,7 +281,7 @@
 				B7849A5220ADCC1B00CD80BA /* HistoryHeaderTableViewCell.swift */,
 				B7A8532920B6B6E80093C158 /* HistoryTableViewCell.swift */,
 			);
-			path = History;
+			path = Diary;
 			sourceTree = "<group>";
 		};
 		B7B4F0E32045BC2A00343A8E /* Frameworks */ = {
@@ -338,7 +346,7 @@
 								enabled = 1;
 							};
 							com.apple.iCloud = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -372,7 +380,7 @@
 				B721833920542D3B00E8DD09 /* Localizable.strings in Resources */,
 				B7A13387206BCD110003854B /* NewCigar.storyboard in Resources */,
 				B7D7CF3620C1822800E4131A /* SideMenuMain.storyboard in Resources */,
-				B7E6A47520A742990085EA2D /* History.storyboard in Resources */,
+				B7E6A47520A742990085EA2D /* Diary.storyboard in Resources */,
 				B77AB87C2061B23F007B4028 /* Main.storyboard in Resources */,
 				B79C85EE20A39C70006A719F /* Search.storyboard in Resources */,
 				B7FD5C992121DE2B001087F3 /* LaunchScreen.storyboard in Resources */,
@@ -418,9 +426,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PocketHumidor/Pods-PocketHumidor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/CSV.swift/CSV.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FlagKit/FlagKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingKit/PagingKit.framework",
@@ -435,9 +446,12 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSV.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlagKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingKit.framework",
@@ -494,10 +508,10 @@
 				B73624B8204DF88700B92801 /* SettingsViewController.swift in Sources */,
 				B76CC16720A83B3A004986EA /* GiftCigarController.swift in Sources */,
 				B7219C992051888B001096A6 /* GeneralViewController.swift in Sources */,
+				B7A3485A223D313B006B1DEA /* CloudDataManager.swift in Sources */,
 				B7219C9D20518AA0001096A6 /* PrivacyViewController.swift in Sources */,
 				B713C1B4204ABC6400AA40DD /* SideMenuUIViewController.swift in Sources */,
 				B782222F21185797007E8319 /* CigarCSVImporter.swift in Sources */,
-				B7CF29C02051A03F00D8C4A3 /* PurchaseViewController.swift in Sources */,
 				B7219C942051836B001096A6 /* UserEngagement.swift in Sources */,
 				B7EE3FD72066B43D000B761B /* CountrySelectViewController.swift in Sources */,
 				B7D2BEEC20A38B0500F93515 /* SearchViewController.swift in Sources */,
@@ -509,6 +523,8 @@
 				B745A1A620A6AE7E000F2C83 /* EmptyTableViewController.swift in Sources */,
 				B72A684E205FCF8E006CDFED /* CoreDataController.swift in Sources */,
 				B7F5021420FD5346001035A2 /* CigarDetailViewController.swift in Sources */,
+				B74C9354222FC85F003AE277 /* PremiumViewController.swift in Sources */,
+				B78FFB032239606300543D24 /* CigarCSVExporter.swift in Sources */,
 				B7219C97205186C0001096A6 /* UserSettings.swift in Sources */,
 				B7219C9B20518A13001096A6 /* SortViewController.swift in Sources */,
 				B7E524A7206166AA00E2CC38 /* AddCigarController.swift in Sources */,
@@ -678,6 +694,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PocketHumidor/PocketHumidor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = NPE3YFU9Q3;
@@ -699,6 +716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PocketHumidor/PocketHumidor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NPE3YFU9Q3;
 				HEADER_SEARCH_PATHS = "$(inherited)";

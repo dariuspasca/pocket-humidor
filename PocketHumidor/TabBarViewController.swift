@@ -9,7 +9,6 @@
 import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigarDelegate {
-
     var previousSelectedItem: Int!
     
     var selectedSplitViewController: UISplitViewController? {
@@ -36,8 +35,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
                 
                 if !UserSettings.isPremium.value && countCigars > 24{
                     let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-                    let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PurchaseViewController
+                    let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PremiumViewController
                     destVC.hideCloseButton = false
+                    destVC.outOfItems = true
                     destVC.modalPresentationStyle = .formSheet
                     destVC.modalTransitionStyle = .coverVertical
                     self.present(destVC, animated: true, completion: nil)
@@ -77,15 +77,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, AddCigar
         }
     }
     
+    //Presents a Review App or Buy Premium
     
-    func addCigarForceReload() {
-        let nav = self.viewControllers![0] as! UINavigationController
-        let home = nav.topViewController as! HomeViewController
-        home.viewWillAppear(true)
-    }
-    
-    func cigarTriggerReview() {
-        UserEngagement.onReviewTrigger()
+    func addedCigar(forceReload:Bool) {
+        if forceReload{
+            let nav = self.viewControllers![0] as! UINavigationController
+            let home = nav.topViewController as! HomeViewController
+            home.viewWillAppear(true)
+        }
+       UserEngagement.triggerReviewOrPremium(targetVC: self)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

@@ -34,8 +34,8 @@
                                                             <constraint firstAttribute="height" constant="1" id="wog-yL-WeE"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYL-wK-tHJ">
-                                                        <rect key="frame" x="15" y="1" width="109" height="38.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYL-wK-tHJ">
+                                                        <rect key="frame" x="15" y="1" width="78.5" height="38.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -361,7 +361,7 @@
         <scene sceneID="lm5-2o-Ted">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7mt-Ya-Fsi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="History" selectedImage="History - Filled" id="cL7-qI-D6U">
+                    <tabBarItem key="tabBarItem" title="" image="Diary" selectedImage="Diary - Filled" id="cL7-qI-D6U">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -400,9 +400,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Diary" width="18" height="21"/>
+        <image name="Diary - Filled" width="18" height="21"/>
         <image name="Filter" width="31" height="24"/>
-        <image name="History" width="23" height="24"/>
-        <image name="History - Filled" width="23" height="24"/>
         <image name="plus" width="38.297870635986328" height="38.297870635986328"/>
     </resources>
     <color key="tintColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

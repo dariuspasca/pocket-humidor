@@ -11,7 +11,6 @@ import PagingKit
 import SideMenu
 
 class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTableDelegate, UISideMenuNavigationControllerDelegate, NewHumidorDelegate {
-    
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
@@ -213,8 +212,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
         if segue.identifier == "newHumidor"{
             if UserSettings.isPremium.value == false && CoreDataController.sharedInstance.countHumidors() > 1{
                 let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-                let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PurchaseViewController
+                let destVC = storyboard.instantiateViewController(withIdentifier: "premiumController") as! PremiumViewController
                 destVC.hideCloseButton = false
+                destVC.outOfItems = false
                 self.present(destVC, animated: true, completion: nil)
             }
             else{
@@ -315,6 +315,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     
     func newHumidorForceReload() {
         self.viewWillAppear(true)
+    }
+    
+    func dismissedHumidorView() {
+        self.triggerReviewOrPremium()
+    }
+    
+    func triggerReviewOrPremium(){
+        UserEngagement.triggerReviewOrPremium(targetVC: self)
     }
     
     func updateHumidorView() {

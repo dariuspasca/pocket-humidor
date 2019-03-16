@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import FlagKit
 
-class CigarDetailViewController: UIViewController {
+class CigarDetailViewController: UIViewController, AddCigarDelegate {
     
     var cigar: Cigar!
     var update:Bool = true
@@ -68,7 +68,6 @@ class CigarDetailViewController: UIViewController {
         notesView.isScrollEnabled = false
         notesView.text = cigar.notes ?? NSLocalizedString("No notes", comment: "")
         notesView.sizeToFit()
-       
  
         if cigar.size == nil {
             sizeLabel.text = nil
@@ -226,6 +225,7 @@ class CigarDetailViewController: UIViewController {
             let destVC = UIStoryboard(name: "NewCigar", bundle: nil).instantiateInitialViewController() as! UINavigationController
             let vc = destVC.topViewController as! AddCigarController
             vc.cigarToEdit = cigar
+            vc.delegate = self
             destVC.modalPresentationStyle = .formSheet
             destVC.modalTransitionStyle = .coverVertical
         
@@ -248,5 +248,9 @@ class CigarDetailViewController: UIViewController {
         let theMonths = components.month!
         return (theYears, theMonths)
     }
-
+    
+    func addedCigar(forceReload: Bool) {
+        UserEngagement.triggerReviewOrPremium(targetVC: self)
+    }
+    
 }

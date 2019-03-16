@@ -175,7 +175,7 @@ class CountrySelectViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func popView() {
-        let when = DispatchTime.now() + 0.1 // change 2 to desired number of seconds
+        let when = DispatchTime.now() + 0.1 // change to desired number of seconds
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.navigationController?.popViewController(animated: true)
         }

@@ -39,8 +39,17 @@ class SideMenuUIViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UserSettings.currentHumidor.value = humidorsList[indexPath.row]
         UserSettings.shouldReloadView.value = true
-        //Resets sort order to default 
-        UserSettings.tableSortOrder = TableSortOrder(rawValue: UserSettings.defaultSortOrder.value)!
+        
+        /* Resets sort order to default
+         First checks that the value is valid (v1.1 bug)
+         */
+        
+        if 0...5 ~= UserSettings.defaultSortOrder.value {
+            UserSettings.tableSortOrder = TableSortOrder(rawValue: UserSettings.defaultSortOrder.value)!
+        } else {
+            UserSettings.tableSortOrder = .byDate
+        }
+        
         DispatchQueue.main.async
             {
                 self.dismiss(animated: true, completion: nil)

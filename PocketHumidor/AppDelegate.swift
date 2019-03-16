@@ -13,11 +13,14 @@ import Fabric
 import Crashlytics
 import SVProgressHUD
 import Firebase
+import FacebookCore
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var backgroundUpdateTask: UIBackgroundTaskIdentifier!
     
     var tabBarController: TabBarController {
         return window!.rootViewController as! TabBarController
@@ -26,10 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
        UserEngagement.initialiseUserAnalytics()
+       FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
        completeStoreTransactions()
        setupAdditionalStoreSettings()
        setupSvProgressHud()
-
         
         //Keeps track of the versiom for now
         if UserSettings.currentVersion.value == "" {
@@ -40,18 +43,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  UserSettings.currentVersion.value = UserEngagement.appVersion
             }
         }
-        
-        
 
         return true
     }
-    
+
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        if UserSettings.iCloudAutoBackup.value && UserSettings.iCloud.value{
+            self.runBackup()
+        }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -62,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         UserEngagement.onAppOpen()
+        AppEventsLogger.activate(application)
+ 
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -71,8 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
-        openCsvImport(url: url)
-        return true
+        if url.absoluteString.hasSuffix(".csv") {
+            openCsvImport(url: url)
+            return true
+        }
+        else{
+            let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+            return handled
+        }
     }
     
     func setupSvProgressHud() {
@@ -127,6 +139,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func runBackup(){
+        let cloudManager = CloudDataManager()
+        DispatchQueue.global().async(execute: { () -> Void in
+            self.beginBackgroundUpdateTask()
+                
+            cloudManager.doBackup()
+                
+                // End the background task.
+            self.endBackgroundUpdateTask()
+        })
+    }
+    
+    func beginBackgroundUpdateTask() {
+        self.backgroundUpdateTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+            self.endBackgroundUpdateTask()
+        })
+    }
+    
+    func endBackgroundUpdateTask() {
+        UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
+        self.backgroundUpdateTask = UIBackgroundTaskInvalid
+    }
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {

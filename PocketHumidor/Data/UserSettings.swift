@@ -41,7 +41,7 @@ enum Filter: Int {
     case smoke = 1
     case both = 2
     
-    var displayName: String{
+    var displayName: String {
         switch self {
         case .both:
             return NSLocalizedString("Both", comment: "")
@@ -92,6 +92,7 @@ class UserSettings{
     static var shareAnalytics = UserSetting<Bool>(key: "sendAnalytics", defaultValue: true)
     static var shareCrashReports = UserSetting<Bool>(key: "sendCrashReports", defaultValue: true)
     static var iCloud = UserSetting<Bool>(key: "iCloud", defaultValue: true)
+    static var iCloudAutoBackup = UserSetting<Bool>(key: "iCloudAutoBackup", defaultValue: true)
     static var defaultSortOrder = UserSetting<Int>(key: "defaultSortOrder", defaultValue: 0)
     static var sortAscending = UserSetting<Bool>(key: "SortAscending", defaultValue: true)
     static var openHumidor = UserSetting<Bool>(key: "openNewHumidor", defaultValue: true)
