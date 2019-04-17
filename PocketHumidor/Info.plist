@@ -75,7 +75,7 @@
 			<key>NSUbiquitousContainerName</key>
 			<string>PocketStack</string>
 			<key>NSUbiquitousContainerSupportedFolderLevels</key>
-			<string>Any</string>
+			<string>One</string>
 		</dict>
 	</dict>
 	<key>UIFileSharingEnabled</key>

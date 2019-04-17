@@ -17,15 +17,20 @@ class CigarCSVExporter {
         return FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents")
     }
     
-    func exportData(saveFileTo: URL, completion: (URL?) -> ()) {
+    func exportData(saveFileTo: URL, dataFileName: String?, completion: (URL?) -> ()) {
         let cigars = CoreDataController.sharedInstance.fetchCigars()
         if cigars != nil && !cigars!.isEmpty{
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
 
-
-            let fileName = "PocketStack \(UserSettings.currentVersion.value) - \(UIDevice.current.name) - \(dateFormatter.string(from: Date())).csv"
+            var fileName: String!
+            if dataFileName == nil {
+                fileName = "PocketStack \(UserSettings.currentVersion.value) - \(dateFormatter.string(from: Date())).csv"
+            }
+            else {
+               fileName = dataFileName!
+            }
             
             var csvText = "Name,Size,Origin,Quantity,Price,From,Purchase Date,Aging Date,Notes,Creation Date,Last Edit,Gift Date,Gift To,Gift Notes,Review Date,Score,Appearance,Ash,Draw,Flavor,Strength,Texture,Review Notes,Humidor,Humidor Humidity,Divisor\n"
             for cigar in cigars! {

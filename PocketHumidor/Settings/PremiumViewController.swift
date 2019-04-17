@@ -111,6 +111,18 @@ class PremiumViewController: UIViewController,  UICollectionViewDataSource, UICo
                             self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .cloudServiceNetworkConnectionFailed:  self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Could not connect to the newtwork. If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
+                        case .privacyAcknowledgementRequired:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .unauthorizedRequestData:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .invalidOfferIdentifier:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .invalidSignature:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .missingOfferParams:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .invalidOfferPrice:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         }
                     }
                 }

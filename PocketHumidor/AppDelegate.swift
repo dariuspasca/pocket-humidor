@@ -74,6 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+        if UserSettings.iCloudAutoBackup.value && UserSettings.iCloud.value{
+            self.runBackup()
+        }
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -144,7 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.global().async(execute: { () -> Void in
             self.beginBackgroundUpdateTask()
                 
-            cloudManager.doBackup()
+            cloudManager.runBackup()
                 
                 // End the background task.
             self.endBackgroundUpdateTask()
