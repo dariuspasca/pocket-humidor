@@ -30,9 +30,16 @@ class AboutViewController: UIViewController {
     }
     
    
-    @IBAction func openEnrico(_ sender: UITapGestureRecognizer) {
-        UIApplication.shared.open(URL(string : "https://github.com/MartelliEnrico")!, options: [:], completionHandler: { (status) in
-        })
+    @IBAction func openPrivacy(_ sender: UITapGestureRecognizer) {
+        let locale = NSLocale.current.languageCode
+        if locale! == "it" {
+            UIApplication.shared.open(URL(string : "https://www.iubenda.com/privacy-policy/86903826")!, options: [:], completionHandler: { (status) in
+            })
+        }
+        else {
+            UIApplication.shared.open(URL(string : "https://www.iubenda.com/privacy-policy/23606349")!, options: [:], completionHandler: { (status) in
+            })
+        }
     }
     
     @IBAction func openInstagram(_ sender: UITapGestureRecognizer) {

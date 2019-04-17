@@ -53,9 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        if UserSettings.iCloudAutoBackup.value && UserSettings.iCloud.value{
-            self.runBackup()
-        }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -74,9 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
-        if UserSettings.iCloudAutoBackup.value && UserSettings.iCloud.value{
-            self.runBackup()
-        }
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -116,12 +110,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
-        //Saves the price
-        SwiftyStoreKit.retrieveProductsInfo(["premium"]) { result in
-            if let product = result.retrievedProducts.first {
-                UserSettings.premiumPrice.value = product.localizedPrice!
+        //Saves the price -- To be fixed, it's too slow
+        if UserSettings.isPremium.value == false || UserSettings.currentVersion.value == "" {
+            SwiftyStoreKit.retrieveProductsInfo(["premium"]) { result in
+                if let product = result.retrievedProducts.first {
+                    UserSettings.premiumPrice.value = product.localizedPrice!
+                }
             }
         }
+        
     }
     
     func completeStoreTransactions(){
@@ -142,28 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func runBackup(){
-        let cloudManager = CloudDataManager()
-        DispatchQueue.global().async(execute: { () -> Void in
-            self.beginBackgroundUpdateTask()
-                
-            cloudManager.runBackup()
-                
-                // End the background task.
-            self.endBackgroundUpdateTask()
-        })
-    }
-    
-    func beginBackgroundUpdateTask() {
-        self.backgroundUpdateTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-            self.endBackgroundUpdateTask()
-        })
-    }
-    
-    func endBackgroundUpdateTask() {
-        UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
-        self.backgroundUpdateTask = UIBackgroundTaskInvalid
-    }
+   
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {

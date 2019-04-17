@@ -38,9 +38,8 @@ class PremiumViewController: UIViewController,  UICollectionViewDataSource, UICo
         else{
             purchaseButton.isEnabled = true
             purchaseButton.isHidden = false
+            purchaseButton.setTitle(NSLocalizedString("Unlock Premium for ", comment: "") + UserSettings.premiumPrice.value , for: .normal)
         }
-        
-        purchaseButton.setTitle(NSLocalizedString("Unlock Premium for ", comment: "") + UserSettings.premiumPrice.value , for: .normal)
         
         if outOfItems == nil {
             featuresTitle.reverse()
