@@ -36,15 +36,6 @@ class AddHumidorController: FormViewController {
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         
-        
-        navigationAccessoryView = {
-            let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
-            naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-            naview.doneButton.target = self
-            naview.doneButton.action = #selector(dismisskeyboard)
-            return naview
-        }()
-        
         let deleteAction = SwipeAction(
             style: .destructive,
             title: "Delete",
@@ -53,7 +44,7 @@ class AddHumidorController: FormViewController {
                     self.form.last!.remove(at: rowIndex)
                     completionHandler?(true)
                 }
-        })
+            })
         
         if humidor != nil {
             trayList = (humidor!.trays?.allObjects as! [Tray]).sorted(by: { $0.orderID < $1.orderID })
@@ -66,56 +57,56 @@ class AddHumidorController: FormViewController {
         
         form +++ Section()
             <<< TextRow ("Name") {
-               $0.placeholder = NSLocalizedString("Humidor Name", comment: "")
+                $0.placeholder = NSLocalizedString("Humidor Name", comment: "")
                 $0.add(rule: RuleRequired(msg: "required"))
                 $0.value = humidor?.name
                 $0.validationOptions = .validatesOnChange
-                }.cellUpdate { cell, row in
-                    if !self.navigationAccessoryIsHidden{
-                        self.navigationAccessoryIsHidden = true
-                    }
-                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
-                    
-                    if row.validate().isEmpty {
-                        let trimmedWhitespacesName = row.value!.trimmingCharacters(in: NSCharacterSet.whitespaces)
-                        if trimmedWhitespacesName != ""{
-                            row.value = trimmedWhitespacesName
-                            cell.update()
-                            
-                            /* Edit Mode
-                             Enables save button only if value has been changed
-                             */
-                            if self.humidor != nil {
-                                if self.humidor!.name! != row.value! {
-                                    self.saveButton.isEnabled = true
-                                }
-                                else{
-                                    //Checks if the humidity field has been modified. If not, disables save button, otherwise not
-                                    let humidityRow = self.form.rowBy(tag: "Humidity Level") as! SliderRow
-                                    if (Int16(humidityRow.value!) == self.humidor!.humidity) && self.dividersHaveBeenEdited == false{
-                                        self.saveButton.isEnabled = false
-                                    }
-                                    else{
-                                        self.saveButton.isEnabled = true
-                                    }
-                                }
-                            }
-                            else{
+            }.cellUpdate { cell, row in
+                if !self.navigationAccessoryIsHidden{
+                    self.navigationAccessoryIsHidden = true
+                }
+                cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+
+                if row.validate().isEmpty {
+                    let trimmedWhitespacesName = row.value!.trimmingCharacters(in: NSCharacterSet.whitespaces)
+                    if trimmedWhitespacesName != ""{
+                        row.value = trimmedWhitespacesName
+                        cell.update()
+
+                        /* Edit Mode
+                         Enables save button only if value has been changed
+                         */
+                        if self.humidor != nil {
+                            if self.humidor!.name! != row.value! {
                                 self.saveButton.isEnabled = true
                             }
+                            else{
+                                //Checks if the humidity field has been modified. If not, disables save button, otherwise not
+                                let humidityRow = self.form.rowBy(tag: "Humidity Level") as! SliderRow
+                                if (Int16(humidityRow.value!) == self.humidor!.humidity) && self.dividersHaveBeenEdited == false{
+                                    self.saveButton.isEnabled = false
+                                }
+                                else{
+                                    self.saveButton.isEnabled = true
+                                }
+                            }
+                        }
+                        else{
+                            self.saveButton.isEnabled = true
                         }
                     }
-                    else{
-                        self.saveButton.isEnabled = false
-                    }
-                    
+                }
+                else{
+                    self.saveButton.isEnabled = false
+                }
+
             }
             +++ Section(footer: NSLocalizedString("Too low or too high levels of humidty might affect your items.", comment: ""))
             
             <<< SliderRow("Humidity Level"){
                 $0.title = NSLocalizedString("Humidity Level", comment: "")
                 $0.displayValueFor = {
-                     return String(Int($0!))
+                    return String(Int($0!))
                 }
                 if humidor != nil{
                     $0.value = Float((humidor?.humidity)!)
@@ -125,84 +116,84 @@ class AddHumidorController: FormViewController {
                 }
                 $0.steps = 100
                 
-                $0.maximumValue = 100
-                $0.minimumValue = 50
-                }.cellSetup({ (cell, row) in
-                    cell.height = ({return 80})
-                }).cellUpdate{ cell, row in
-                    /* Edit Mode
-                      Enables save button only if value has been changed
-                     */
-                    if self.humidor != nil {
-                        if self.humidor!.humidity != Int16(row.value!){
-                            self.saveButton.isEnabled = true
-                        }
-                        else{
-                            //Checks if the name field has been modified. If not, disables save button, otherwise not
-                            let nameRow = self.form.rowBy(tag: "Name") as! TextRow
-                            if nameRow.value! == self.humidor!.name! {
-                                self.saveButton.isEnabled = false
-                            }
+                $0.cell.slider.maximumValue = 100
+                $0.cell.slider.minimumValue = 50
+            }.cellSetup({ (cell, row) in
+                cell.height = ({return 80})
+            }).cellUpdate{ cell, row in
+                /* Edit Mode
+                 Enables save button only if value has been changed
+                 */
+                if self.humidor != nil {
+                    if self.humidor!.humidity != Int16(row.value!){
+                        self.saveButton.isEnabled = true
+                    }
+                    else{
+                        //Checks if the name field has been modified. If not, disables save button, otherwise not
+                        let nameRow = self.form.rowBy(tag: "Name") as! TextRow
+                        if nameRow.value! == self.humidor!.name! {
+                            self.saveButton.isEnabled = false
                         }
                     }
                 }
+            }
             
             +++ Section()
 
             +++ MultivaluedSection(multivaluedOptions: [.Reorder, .Insert, .Delete,],
-                           header: NSLocalizedString("Dividers", comment: ""),
-                           footer: NSLocalizedString("Use dividers to keep your humidor organized.", comment: "")){
-                            $0.tag = "trays"
-                            $0.addButtonProvider = { section in
-                                return ButtonRow(){
-                                    $0.title = NSLocalizedString("Add New Divider", comment: "")
-                                }.cellUpdate { cell, row in cell.textLabel?.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1) }
-                            }
-                            $0.multivaluedRowToInsertAt = { index in
-                                return NameRow() {
-                                    $0.placeholder = NSLocalizedString("Divider Name", comment: "")
-                                    $0.add(rule: RuleRequired(msg: "required"))
-                                    $0.validationOptions = .validatesOnChange
-                                    $0.trailingSwipe.actions.append(deleteAction)
-                                    }.cellSetup { (cell, row) in
-                                        cell.textField.autocorrectionType = .yes
-                                }.onCellHighlightChanged({ (cell, row) in
-                                    if row.isHighlighted == false {
-                                        if self.humidor != nil {
-                                            if row.value != nil {
-                                                let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
-                                                if name != "" {
-                                                    let found = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name!)
-                                                    //Shows alert and cancels text
-                                                    if found != nil {
-                                                        self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
-                                                        row.value! = ""
-                                                        
-                                                    }
-                                                    else{
-                                                        let newTray = CoreDataController.sharedInstance.addNewTray(name: name!, humidor: self.humidor!, orderID: 0, save: false)
-                                                        self.trayList?.append(newTray)
-                                                        self.saveButton.isEnabled = true
-                                                        self.dividersHaveBeenEdited = true
-                                                        
-                                                    }
-                                                }
-                                            }
-                                        }
+                                   header: NSLocalizedString("Dividers", comment: ""),
+                                   footer: NSLocalizedString("Use dividers to keep your humidor organized.", comment: "")){
+                $0.tag = "trays"
+                $0.addButtonProvider = { section in
+                    return ButtonRow(){
+                        $0.title = NSLocalizedString("Add New Divider", comment: "")
+                    }.cellUpdate { cell, row in cell.textLabel?.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1) }
+                }
+                $0.multivaluedRowToInsertAt = { index in
+                    return NameRow() {
+                        $0.placeholder = NSLocalizedString("Divider Name", comment: "")
+                        $0.add(rule: RuleRequired(msg: "required"))
+                        $0.validationOptions = .validatesOnChange
+                        $0.trailingSwipe.actions.append(deleteAction)
+                    }.cellSetup { (cell, row) in
+                        cell.textField.autocorrectionType = .yes
+                    }.onCellHighlightChanged({ (cell, row) in
+                        if row.isHighlighted == false {
+                            if self.humidor != nil {
+                                if row.value != nil {
+                                    let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
+                                    if name != "" {
+                                        let found = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name!)
+                                        //Shows alert and cancels text
+                                        if found != nil {
+                                            self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
+                                            row.value! = ""
 
+                                        }
+                                        else{
+                                            let newTray = CoreDataController.sharedInstance.addNewTray(name: name!, humidor: self.humidor!, orderID: 0, save: false)
+                                            self.trayList?.append(newTray)
+                                            self.saveButton.isEnabled = true
+                                            self.dividersHaveBeenEdited = true
+
+                                        }
                                     }
-                                })
-                            }
-                             if humidor == nil{
-                                $0 <<< NameRow() {
-                                $0.placeholder = NSLocalizedString("Divider Name", comment: "")
-                                $0.add(rule: RuleRequired(msg: "required"))
-                                $0.validationOptions = .validatesOnChange
-                                }.cellSetup { (cell, row) in
-                                    cell.textField.autocorrectionType = .yes
                                 }
                             }
+
+                        }
+                    })
                 }
+                if humidor == nil{
+                    $0 <<< NameRow() {
+                        $0.placeholder = NSLocalizedString("Divider Name", comment: "")
+                        $0.add(rule: RuleRequired(msg: "required"))
+                        $0.validationOptions = .validatesOnChange
+                    }.cellSetup { (cell, row) in
+                        cell.textField.autocorrectionType = .yes
+                    }
+                }
+            }
         
         
 
@@ -211,33 +202,33 @@ class AddHumidorController: FormViewController {
             for tray in trayList!.reversed(){
                 let row =  NameRow() {
                     $0.value = tray.name!
-                     $0.trailingSwipe.actions.append(deleteAction)
-                    }.cellSetup { (cell, row) in
-                        cell.textField.autocorrectionType = .yes
-                    }.onCellHighlightChanged({ (cell, row) in
-                        if row.isHighlighted == false {
-            
-                        let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
-                            if name != "" && name != tray.name!{
-                                let found = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name!)
-                                //Shows alert and cancels text
-                                if found != nil {
-                                    self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
-                                    row.value! = tray.name!
-                                    
-                                }
-                                else{
-                                    if name != tray.name! {
-                                        tray.name = name!
-                                        self.saveButton.isEnabled = true
-                                        self.dividersHaveBeenEdited = true
-                                    }
-                                    
-                                }
-                            }
+                    $0.trailingSwipe.actions.append(deleteAction)
+                }.cellSetup { (cell, row) in
+                    cell.textField.autocorrectionType = .yes
+                }.onCellHighlightChanged({ (cell, row) in
+                    if row.isHighlighted == false {
 
+                        let name = row.value?.trimmingCharacters(in: NSCharacterSet.whitespaces)
+                        if name != "" && name != tray.name!{
+                            let found = CoreDataController.sharedInstance.searchTray(humidor: self.humidor!, searchTray: name!)
+                            //Shows alert and cancels text
+                            if found != nil {
+                                self.showAlertButtonTapped(title: "", message: NSLocalizedString("There is already a divisor with same name.", comment: ""))
+                                row.value! = tray.name!
+
+                            }
+                            else{
+                                if name != tray.name! {
+                                    tray.name = name!
+                                    self.saveButton.isEnabled = true
+                                    self.dividersHaveBeenEdited = true
+                                }
+
+                            }
                         }
-                    })
+
+                    }
+                })
                 section?.insert(row, at: 0)
             }
         }
@@ -255,7 +246,15 @@ class AddHumidorController: FormViewController {
         }
         
     }
-   
+
+    override var customNavigationAccessoryView: (UIView & NavigationAccessory)? {
+        let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
+        naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        naview.doneButton.target = self
+        naview.doneButton.action = #selector(dismisskeyboard)
+        return naview
+    }
+
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath){
         self.dismisskeyboard()
         if self.humidor != nil {
@@ -302,7 +301,7 @@ class AddHumidorController: FormViewController {
                 self.saveButton.isEnabled = true
                 self.dividersHaveBeenEdited = true
             }
-    
+
 
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: indexes, with: .right)
@@ -312,7 +311,7 @@ class AddHumidorController: FormViewController {
 
         self.isDeleting = true
     }
- 
+
     
     @objc func dismisskeyboard() {
         view.endEditing(true)
@@ -341,7 +340,7 @@ class AddHumidorController: FormViewController {
         let humidity = formValues["Humidity Level"] as! Float
         if humidor != nil {
             if humidor!.name! != name! && CoreDataController.sharedInstance.searchHumidor(name: name!) != nil  {
-                    showAlertButtonTapped(title: NSLocalizedString("Humidor already exists!", comment: ""), message: NSLocalizedString("You can't have multiple humidors with the same name.", comment: ""))
+                showAlertButtonTapped(title: NSLocalizedString("Humidor already exists!", comment: ""), message: NSLocalizedString("You can't have multiple humidors with the same name.", comment: ""))
             }
             else{
                 /* Updates eventual humidor info changes */
@@ -359,7 +358,7 @@ class AddHumidorController: FormViewController {
                 if trays.count == 0 {
                     _ = CoreDataController.sharedInstance.addNewTray(name: NSLocalizedString("Main Divider", comment: ""), humidor: humidor!, orderID: 0, save: false)
                 }
-               
+
                 
                 UserSettings.shouldReloadView.value = true
                 
@@ -429,7 +428,7 @@ class AddHumidorController: FormViewController {
     
     override func keyboardWillHide(_ notification: Notification) {
         if UIDevice.current.userInterfaceIdiom != .pad{
-           super.keyboardWillHide(notification)
+            super.keyboardWillHide(notification)
         }
     }
     

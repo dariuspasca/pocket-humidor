@@ -26,14 +26,7 @@ class MoveCigarViewController: FormViewController {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Move", comment: ""),style: .plain, target: self, action: #selector(moveCigar))
-        
-        navigationAccessoryView = {
-            let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
-            naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-            naview.doneButton.target = self
-            naview.doneButton.action = #selector(dismissKeyboard)
-            return naview
-        }()
+
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         
         
@@ -121,6 +114,14 @@ class MoveCigarViewController: FormViewController {
                 }.cellSetup { cell, row in cell.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1) }
         }
         
+    }
+
+    override var customNavigationAccessoryView: (UIView & NavigationAccessory)? {
+        let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
+        naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        naview.doneButton.target = self
+        naview.doneButton.action = #selector(dismissKeyboard)
+        return naview
     }
     
     override func viewWillAppear(_ animated: Bool) {

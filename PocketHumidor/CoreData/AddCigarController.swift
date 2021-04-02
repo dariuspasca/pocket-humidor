@@ -51,14 +51,6 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = 44.0
-      
-        navigationAccessoryView = {
-            let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
-            naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-            naview.doneButton.target = self
-            naview.doneButton.action = #selector(dismisskeyboard)
-            return naview
-        }()
         
         if cigarToEdit != nil {
             unitPrice = self.cigarToEdit!.price/Double(self.cigarToEdit!.quantity)
@@ -358,6 +350,14 @@ class AddCigarController: FormViewController, SelectCountryDelegate {
                         self.valuateSaveButonStatus()
                     }
         }
+    }
+
+    override var customNavigationAccessoryView: (UIView & NavigationAccessory)? {
+        let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
+        naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        naview.doneButton.target = self
+        naview.doneButton.action = #selector(dismisskeyboard)
+        return naview
     }
     
     override func viewDidAppear(_ animated: Bool) {

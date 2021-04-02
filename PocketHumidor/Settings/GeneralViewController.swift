@@ -14,8 +14,6 @@ class GeneralViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationAccessoryView.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-        
         func tableSortRow(_ tableSort: TableSortOrder) -> ListCheckRow<TableSortOrder> {
             return ListCheckRow<TableSortOrder>() {
                 $0.title = tableSort.displayName
@@ -44,7 +42,14 @@ class GeneralViewController: FormViewController {
             <<< tableSortRow(.byCountry)
             <<< tableSortRow(.byAge)
     }
-    
+
+    override var customNavigationAccessoryView: (UIView & NavigationAccessory)? {
+            // The width might not be correctly defined yet: (Normally you can use UIScreen.main.bounds)
+            let navView = NavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44.0))
+            navView.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            return navView
+        }
+
     override func valueHasBeenChanged(for row: BaseRow, oldValue: Any?, newValue: Any?) {
         guard row.section === form[1] else { return }
         guard let selectedSort = (row.section as! SelectableSection<ListCheckRow<TableSortOrder>>).selectedRow()?.baseValue as? TableSortOrder else { return }

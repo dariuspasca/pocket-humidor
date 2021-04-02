@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyStoreKit
-import Firebase
 
 class PremiumViewController: UIViewController,  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -63,15 +62,10 @@ class PremiumViewController: UIViewController,  UICollectionViewDataSource, UICo
         SwiftyStoreKit.retrieveProductsInfo(["premium"]) { result in
             if let product = result.retrievedProducts.first {
                 SwiftyStoreKit.purchaseProduct(product, quantity: 1, atomically: true) { result in
-                    let price = product.price
-                    let currencyCode = product.priceLocale.currencyCode
                     
                     //Logs StartPurchase
-                    if UserEngagement.sendCrashReports{
-                        Answers.logStartCheckout(withPrice: price,
-                                                 currency: currencyCode,
-                                                 itemCount: 1,
-                                                 customAttributes: nil)
+                    if UserEngagement.sendAnalytics{
+                        UserEngagement.logEvent(.premiumPurchaseStart)
                     }
                     
                     switch result {
@@ -81,14 +75,8 @@ class PremiumViewController: UIViewController,  UICollectionViewDataSource, UICo
                         }
                         
                         //Log DidPurchase
-                        if UserEngagement.sendCrashReports{
-                            Answers.logPurchase(withPrice: price,
-                                                currency: currencyCode,
-                                                success: true,
-                                                itemName: "Premium",
-                                                itemType: "In-App Purchase",
-                                                itemId: "iap-001",
-                                                customAttributes: nil)
+                        if UserEngagement.sendAnalytics{
+                            UserEngagement.logEvent(.premiumPurchaseCompleted)
                         }
                         
                         UserSettings.isPremium.value = true
@@ -122,6 +110,16 @@ class PremiumViewController: UIViewController,  UICollectionViewDataSource, UICo
                         case .missingOfferParams:
                             self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         case .invalidOfferPrice:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .overlayCancelled:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .overlayInvalidConfiguration:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .overlayTimeout:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .ineligibleForOffer:
+                            self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
+                        case .unsupportedPlatform:
                             self.presentAlert(title: NSLocalizedString("There Is A Problem", comment: ""), message: NSLocalizedString("Sorry, something unexpected happened.If the error persists write us at support@pockethumidor.app", comment: ""))
                         }
                     }

@@ -8,7 +8,6 @@
 
 import UIKit
 import SVProgressHUD
-import Crashlytics
 
 
 class DataViewController: UIViewController {

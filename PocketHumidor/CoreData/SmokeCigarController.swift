@@ -33,14 +33,6 @@ class SmokeCigarController: FormViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(reviewCigar))
         
-        navigationAccessoryView = {
-            let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
-            naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-            naview.doneButton.target = self
-            naview.doneButton.action = #selector(dismisskeyboard)
-            return naview
-        }()
-        
         self.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
         quantity = 1
         
@@ -116,8 +108,8 @@ class SmokeCigarController: FormViewController {
                 }
                 
                 $0.steps = 100
-                $0.maximumValue = 100
-                $0.minimumValue = 0
+                $0.cell.slider.maximumValue = 100
+                $0.cell.slider.minimumValue = 0
                 }.cellSetup({ (cell, row) in
                     cell.height = ({return 80})
                 }).onChange { row in
@@ -364,6 +356,14 @@ class SmokeCigarController: FormViewController {
                 })
         
         
+    }
+
+    override var customNavigationAccessoryView: (UIView & NavigationAccessory)? {
+        let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
+        naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        naview.doneButton.target = self
+        naview.doneButton.action = #selector(dismisskeyboard)
+        return naview
     }
     
     func valuateSaveButonStatus(){

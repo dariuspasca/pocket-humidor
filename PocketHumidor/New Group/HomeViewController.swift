@@ -10,7 +10,7 @@ import UIKit
 import PagingKit
 import SideMenu
 
-class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTableDelegate, UISideMenuNavigationControllerDelegate, NewHumidorDelegate {
+class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTableDelegate, SideMenuNavigationControllerDelegate, NewHumidorDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
@@ -172,9 +172,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, ContainerTable
     
     //MARK: - Setups
      func setupSideMenu() {
-        SideMenuManager.default.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? UISideMenuNavigationController
-        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.leftMenuNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
+        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
     }
     
     func setupHumidorViewData(withAnimation: Bool){

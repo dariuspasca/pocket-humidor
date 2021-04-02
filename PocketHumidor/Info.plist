@@ -46,24 +46,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.2.0</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>546d3e57e4c4dbffcea3bc2bad07d3c1646cb11a</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-		</array>
-	</dict>
-	<key>FacebookAppID</key>
-	<string>2229431123782460</string>
-	<key>FacebookDisplayName</key>
-	<string>PocketStack</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSUbiquitousContainers</key>

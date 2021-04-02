@@ -31,19 +31,11 @@ class GiftCigarController: FormViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
         
         if cigar.gift != nil {
-             changesStatus = Array(repeating: false, count: 4)
+            changesStatus = Array(repeating: false, count: 4)
         }
         
         self.form.keyboardReturnType = KeyboardReturnTypeConfiguration(nextKeyboardType: .send, defaultKeyboardType: .send)
         self.navigationItem.title =  cigar.name!
-        
-        navigationAccessoryView = {
-            let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
-            naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-            naview.doneButton.target = self
-            naview.doneButton.action = #selector(dismisskeyboard)
-            return naview
-        }()
         
         quantity = 1
         self.view.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
@@ -55,36 +47,36 @@ class GiftCigarController: FormViewController {
                 $0.add(rule: RuleRequired(msg: "required"))
                 $0.value = cigar.gift?.to ?? nil
                 $0.validationOptions = .validatesOnChange
-                }.cellUpdate { cell, row in
-                    if !self.navigationAccessoryIsHidden{
-                        self.navigationAccessoryIsHidden = true
-                    }
-                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
-                    if row.validate().isEmpty {
-                        let trimmedWhitespacesName = row.value!.trimmingCharacters(in: NSCharacterSet.whitespaces)
-                        if trimmedWhitespacesName != ""{
-                            row.value = trimmedWhitespacesName
-                            cell.update()
-                            
-                            if self.cigar.gift != nil {
-                                if self.cigar.gift?.to! != row.value! {
-                                    self.changesStatus![0] = true
-                                }
-                                else{
-                                    self.changesStatus![0] = false
-                                }
-                                self.valuateSaveButonStatus()
-                                
+            }.cellUpdate { cell, row in
+                if !self.navigationAccessoryIsHidden{
+                    self.navigationAccessoryIsHidden = true
+                }
+                cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+                if row.validate().isEmpty {
+                    let trimmedWhitespacesName = row.value!.trimmingCharacters(in: NSCharacterSet.whitespaces)
+                    if trimmedWhitespacesName != ""{
+                        row.value = trimmedWhitespacesName
+                        cell.update()
+
+                        if self.cigar.gift != nil {
+                            if self.cigar.gift?.to! != row.value! {
+                                self.changesStatus![0] = true
                             }
-                            else {
-                                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                            else{
+                                self.changesStatus![0] = false
                             }
+                            self.valuateSaveButonStatus()
+
+                        }
+                        else {
+                            self.navigationItem.rightBarButtonItem?.isEnabled = true
                         }
                     }
-                    else{
-                        self.navigationItem.rightBarButtonItem?.isEnabled = false
-                    }
-                    
+                }
+                else{
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+
             }
             
             
@@ -106,12 +98,12 @@ class GiftCigarController: FormViewController {
                 else{
                     $0.hidden = true
                 }
-                }.cellSetup { cell, row in cell.tintColor = UIColor.black }.cellUpdate { cell, row in
-                    if self.navigationAccessoryIsHidden{
-                        self.navigationAccessoryIsHidden = false
-                    }
-                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
-                    self.quantity = Int32(row.value!)
+            }.cellSetup { cell, row in cell.tintColor = UIColor.black }.cellUpdate { cell, row in
+                if self.navigationAccessoryIsHidden{
+                    self.navigationAccessoryIsHidden = false
+                }
+                cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+                self.quantity = Int32(row.value!)
             }
             
             <<< DateInlineRow("Date"){
@@ -125,41 +117,49 @@ class GiftCigarController: FormViewController {
                 
                 $0.minimumDate = cigar.purchaseDate!
                 
-               
-                }.onChange({ (row) in
-                    if self.cigar.gift != nil {
-                        if self.cigar.gift?.giftDate != row.value {
-                            self.changesStatus![1] = true
-                        }
-                        else{
-                            self.changesStatus![1] = false
-                        }
-                        self.valuateSaveButonStatus()
-                        
+
+            }.onChange({ (row) in
+                if self.cigar.gift != nil {
+                    if self.cigar.gift?.giftDate != row.value {
+                        self.changesStatus![1] = true
                     }
-                })
-        
+                    else{
+                        self.changesStatus![1] = false
+                    }
+                    self.valuateSaveButonStatus()
+
+                }
+            })
+
             +++ Section()
             <<< TextAreaRow("Notes"){
                 $0.placeholder = NSLocalizedString("Notes", comment: "")
                 $0.value = cigar.gift?.notes ?? nil
-                }.cellUpdate { cell, row in
-                    if self.navigationAccessoryIsHidden{
-                        self.navigationAccessoryIsHidden = false
+            }.cellUpdate { cell, row in
+                if self.navigationAccessoryIsHidden{
+                    self.navigationAccessoryIsHidden = false
+                }
+                cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
+
+                if self.cigar.gift != nil {
+                    if self.cigar.gift?.notes != row.value {
+                        self.changesStatus![2] = true
                     }
-                    cell.inputAccessoryView?.isHidden = self.navigationAccessoryIsHidden
-                    
-                    if self.cigar.gift != nil {
-                        if self.cigar.gift?.notes != row.value {
-                            self.changesStatus![2] = true
-                        }
-                        else{
-                            self.changesStatus![2] = false
-                        }
-                        self.valuateSaveButonStatus()
-                        
+                    else{
+                        self.changesStatus![2] = false
                     }
+                    self.valuateSaveButonStatus()
+
+                }
             }
+    }
+
+    override var customNavigationAccessoryView: (UIView & NavigationAccessory)? {
+        let naview = CustomNavigationAccessoryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44.0))
+        naview.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        naview.doneButton.target = self
+        naview.doneButton.action = #selector(dismisskeyboard)
+        return naview
     }
     
     override func viewDidAppear(_ animated: Bool) {

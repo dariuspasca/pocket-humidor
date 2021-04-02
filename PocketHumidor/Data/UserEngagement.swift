@@ -9,8 +9,6 @@
 import Foundation
 import StoreKit
 import Firebase
-import FBSDKCoreKit
-
 
 class UserEngagement{
     static let appStartupCountKey = "appStartupCount"
@@ -27,15 +25,9 @@ class UserEngagement{
     static func initialiseUserAnalytics() {
         if sendAnalytics {
             FirebaseApp.configure()
-            FBSDKSettings.setAutoLogAppEventsEnabled(true)
-            FBSDKSettings.setAdvertiserIDCollectionEnabled(true)
-        }
-        else{
-            FBSDKSettings.setAutoLogAppEventsEnabled(false)
-            FBSDKSettings.setAdvertiserIDCollectionEnabled(false)
         }
         
-        if sendCrashReports { Fabric.with([Crashlytics.self]) }
+       // if sendCrashReports { Fabric.with([Crashlytics.self]) }
     }
     
     static func triggerReviewOrPremium(targetVC: UIViewController?) {
@@ -128,7 +120,6 @@ class UserEngagement{
     static func logEvent(_ event: Event) {
         guard sendAnalytics else { return }
         Analytics.logEvent(event.rawValue, parameters: nil)
-        FBSDKAppEvents.logEvent(event.rawValue)
     }
 }
 

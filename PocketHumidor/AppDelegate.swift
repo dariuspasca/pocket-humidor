@@ -9,12 +9,8 @@
 import UIKit
 import CoreData
 import SwiftyStoreKit
-import Fabric
-import Crashlytics
 import SVProgressHUD
 import Firebase
-import FacebookCore
-import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
        UserEngagement.initialiseUserAnalytics()
-       FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
        completeStoreTransactions()
        setupAdditionalStoreSettings()
        setupSvProgressHud()
@@ -66,7 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         UserEngagement.onAppOpen()
-        AppEventsLogger.activate(application)
  
     }
     
@@ -82,12 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.absoluteString.hasSuffix(".csv") {
             openCsvImport(url: url)
-            return true
         }
-        else{
-            let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-            return handled
-        }
+        return true
     }
     
     func setupSvProgressHud() {
